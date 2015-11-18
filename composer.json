@@ -3,7 +3,7 @@
   "type": "library",
   "description": "Magento-based functionality for the Magium test library",
   "keywords": ["magento", "selenium", "webdriver", "testing"],
-  "homepage": "https://github.com/kschroeder/Magium",
+  "homepage": "https://github.com/magium/MagiumMagento",
   "license": "MIT",
   "authors": [
     {
