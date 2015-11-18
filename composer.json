@@ -1,0 +1,28 @@
+{
+  "name" : "eschrade/magium_magento",
+  "type": "library",
+  "description": "Magento-based functionality for the Magium test library",
+  "keywords": ["magento", "selenium", "webdriver", "testing"],
+  "homepage": "https://github.com/kschroeder/Magium",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kevin Schroeder",
+      "email": "kschroeder@mirageworks.com",
+      "homepage": "http://eschrade.com/",
+      "role": "Developer"
+    }
+  ],
+  "require" : {
+    "eschrade/magium": "0.0.4"
+  },
+  "repositories" : [ {
+    "type" : "composer",
+    "url" : "https://packagist.org/"
+  } ],
+  "autoload" : {
+    "psr-4" : {
+      "Magium\\" : "lib/"
+    }
+  }
+}
