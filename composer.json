@@ -14,7 +14,7 @@
     }
   ],
   "require" : {
-    "eschrade/magium": "0.0.4"
+    "eschrade/magium": "0.0.5"
   },
   "repositories" : [ {
     "type" : "composer",

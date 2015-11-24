@@ -21,6 +21,11 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
             ['Magium\\Magento\\Actions\\Checkout\\ShippingMethods\\FirstAvailable']
         );
 
+        $this->di->instanceManager()->setTypePreference(
+            'Magium\\Themes\\ThemeConfigurationInterface',
+            ['Magium\\Magento\\Themes\\ThemeConfiguration']
+        );
+
     }
     /**
      *

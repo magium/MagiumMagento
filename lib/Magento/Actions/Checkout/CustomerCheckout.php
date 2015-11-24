@@ -2,6 +2,7 @@
 
 namespace Magium\Magento\Actions\Checkout;
 
+use Magium\Magento\Actions\Checkout\Extractors\CartSummary;
 use Magium\Magento\Actions\Checkout\Extractors\OrderId;
 use Magium\Magento\Actions\Checkout\Steps\CustomerBillingAddress;
 use Magium\Magento\Actions\Checkout\Steps\LogInCustomer;
@@ -26,6 +27,7 @@ class CustomerCheckout extends AbstractCheckout
         ShippingAddress         $shippingAddress,
         ShippingMethod          $shippingMethod,
         PaymentMethod           $paymentMethod,
+        CartSummary             $cartSummary,
         PlaceOrder              $placeOrder,
         OrderId                 $orderIdExtractor
     )
@@ -36,6 +38,7 @@ class CustomerCheckout extends AbstractCheckout
         $this->addStep($shippingAddress);
         $this->addStep($shippingMethod);
         $this->addStep($paymentMethod);
+        $this->addStep($cartSummary);
         $this->addStep($placeOrder);
         $this->addStep($orderIdExtractor);
 
