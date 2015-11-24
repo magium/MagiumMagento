@@ -5,22 +5,12 @@ namespace Magium\Magento\Actions\Checkout\Extractors;
 use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Checkout\Steps\StepInterface;
-use Magium\Magento\Extractors\AbstractExtractor;
+use Magium\Extractors\AbstractExtractor;
 use Magium\WebDriver\WebDriver;
 
 class OrderId extends AbstractExtractor implements StepInterface
 {
 
-    protected $webDriver;
-    protected $testCase;
-
-    public function __construct(
-        WebDriver                   $webDriver,
-        AbstractMagentoTestCase     $testCase
-    ) {
-        $this->webDriver    = $webDriver;
-        $this->testCase     = $testCase;
-    }
 
     public function getOrderId()
     {
