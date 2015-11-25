@@ -2,8 +2,6 @@
 
 namespace Magium\Magento\Actions\Checkout;
 
-use Magium\Magento\Actions\Checkout\Extractors\CartSummary;
-use Magium\Magento\Actions\Checkout\Extractors\OrderId;
 use Magium\Magento\Actions\Checkout\Steps\BillingAddress;
 use Magium\Magento\Actions\Checkout\Steps\NewCustomerPassword;
 use Magium\Magento\Actions\Checkout\Steps\PaymentMethod;
@@ -13,6 +11,8 @@ use Magium\Magento\Actions\Checkout\Steps\SelectCustomerCheckout;
 use Magium\Magento\Actions\Checkout\Steps\SelectRegisterNewCustomerCheckout;
 use Magium\Magento\Actions\Checkout\Steps\ShippingAddress;
 use Magium\Magento\Actions\Checkout\Steps\ShippingMethod;
+use Magium\Magento\Extractors\Checkout\CartSummary;
+use Magium\Magento\Extractors\Checkout\OrderId;
 use Magium\Magento\Navigators\Checkout\CheckoutNavigator;
 use Magium\Magento\Navigators\Checkout\CheckoutStartNavigator;
 use Magium\Magento\Themes\OnePageCheckout\ThemeConfiguration as OnePageCheckoutTheme;
