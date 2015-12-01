@@ -1,6 +1,6 @@
 <?php
 
-namespace Magium\Magento\Actions\Checkout\Extractors;
+namespace Magium\Magento\Extractors\Checkout;
 
 use Magium\Magento\Actions\Checkout\Steps\StepInterface;
 use Magium\Extractors\AbstractExtractor;

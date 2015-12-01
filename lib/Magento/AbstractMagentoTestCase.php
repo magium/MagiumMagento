@@ -70,6 +70,20 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
     }
 
     /**
+     *
+     * @param string $extractor
+     * @return \Magium\Extractors\AbstractExtractor
+     */
+
+    public function getExtractor($extractor)
+    {
+        if (strpos($extractor, 'Magium') === false) {
+            $extractor = 'Magium\Magento\Extractors\\' . $extractor;
+        }
+        return $this->get($extractor);
+    }
+
+    /**
      * @param $method
      * @return \Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface
      */
