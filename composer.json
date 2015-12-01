@@ -1,5 +1,5 @@
 {
-  "name" : "eschrade/magium_magento",
+  "name" : "magium/magium_magento",
   "type": "library",
   "description": "Magento-based functionality for the Magium test library",
   "keywords": ["magento", "selenium", "webdriver", "testing"],
