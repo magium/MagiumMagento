@@ -7,6 +7,8 @@ use Magium\AbstractTestCase;
 abstract class AbstractMagentoTestCase extends AbstractTestCase
 {
 
+    protected $baseNamespace = 'Magium\Magento';
+
     protected function setUp()
     {
         parent::setUp();
@@ -27,61 +29,7 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
         );
 
     }
-    /**
-     *
-     * @param string $theme
-     * @return \Magium\Magento\Themes\ThemeConfiguration
-     */
 
-    public function getTheme($theme = 'Magium\Magento\Themes\ThemeConfiguration')
-    {
-        if (strpos($theme, 'Magium') === false) {
-            $theme = 'Magium\Magento\Themes\\' . $theme;
-        }
-        return $this->get($theme);
-    }
-
-    /**
-     *
-     * @param string $navigator
-     * @return mixed
-     */
-
-    public function getAction($action)
-    {
-        if (strpos($action, 'Magium' ) === false) {
-            $action = 'Magium\Magento\Actions\\' . $action;
-        }
-        return $this->get($action);
-    }
-
-    /**
-     *
-     * @param string $navigator
-     * @return \Magium\Magento\Navigators\BaseMenuNavigator
-     */
-
-    public function getNavigator($navigator = 'BaseMenuNavigator')
-    {
-        if (strpos($navigator, 'Magium') === false) {
-            $navigator = 'Magium\Magento\Navigators\\' . $navigator;
-        }
-        return $this->get($navigator);
-    }
-
-    /**
-     *
-     * @param string $extractor
-     * @return \Magium\Extractors\AbstractExtractor
-     */
-
-    public function getExtractor($extractor)
-    {
-        if (strpos($extractor, 'Magium') === false) {
-            $extractor = 'Magium\Magento\Extractors\\' . $extractor;
-        }
-        return $this->get($extractor);
-    }
 
     /**
      * @param $method
@@ -101,26 +49,10 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
 
     }
 
-    public function commandOpen($url)
-    {
-        $this->get('Magium\Commands\Open')->open($url);
-    }
 
     public function switchThemeConfiguration($fullyQualifiedClassName)
     {
         $this->di->instanceManager()->setTypePreference('Magium\Magento\Navigators\BaseNavigator', [$fullyQualifiedClassName]);
     }
 
-    /**
-     * @param string $name
-     * @return \Magium\Magento\Identities\AbstractEntity
-     */
-
-    public function getIdentity($name = 'Customer')
-    {
-        if (strpos($name, 'Magium') === false) {
-            $name = 'Magium\Magento\Identities\\' . $name;
-        }
-        return $this->get($name);
-    }
 }
