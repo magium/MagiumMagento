@@ -4,7 +4,7 @@ namespace Magium\Magento\Extractors\Admin\Order;
 
 use Magium\Extractors\AbstractExtractor;
 use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Themes\AdminThemeConfiguration;
+use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class OrderItems extends AbstractExtractor
@@ -12,7 +12,7 @@ class OrderItems extends AbstractExtractor
 
     protected $orderItems = [];
 
-    public function __construct(WebDriver $webDriver, AbstractMagentoTestCase $testCase, AdminThemeConfiguration $theme)
+    public function __construct(WebDriver $webDriver, AbstractMagentoTestCase $testCase, ThemeConfiguration $theme)
     {
         parent::__construct($webDriver, $testCase, $theme);
     }

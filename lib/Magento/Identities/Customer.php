@@ -2,7 +2,10 @@
 
 namespace Magium\Magento\Identities;
 
-class Customer extends AbstractEntity
+use Magium\Magento\Util\EmailGenerator\Generator;
+use Magium\Magento\Util\EmailGenerator\GeneratorAware;
+
+class Customer extends AbstractEntity implements GeneratorAware
 {
     protected $emailAddress          = 'test@example.com';
     protected $password              = 'password';
@@ -32,15 +35,17 @@ class Customer extends AbstractEntity
     protected $shippingFax              = '';
 
     protected $uniqueEmailAddressGenerated = false;
+    protected $generator;
+
+    public function setGenerator(Generator $generator)
+    {
+        $this->generator = $generator;
+    }
 
     public function generateUniqueEmailAddress($domain = 'example.com')
     {
         $this->uniqueEmailAddressGenerated = true;
-        $rand = uniqid(openssl_random_pseudo_bytes(10));
-        $encoded = base64_encode($rand);
-        $username = preg_replace('/\W/', '', $encoded);
-
-        $this->emailAddress = $username . '@' . $domain;
+        $this->emailAddress = $this->generator->generate($domain);
         return $this->emailAddress;
     }
 
@@ -59,8 +64,6 @@ class Customer extends AbstractEntity
     {
         $this->uniqueEmailAddressGenerated = $uniqueEmailAddressGenerated;
     }
-
-
 
     /**
      * @return string

@@ -2,7 +2,7 @@
 
 namespace Magium\Magento\Navigators\Customer;
 
-use Magium\Magento\Themes\ThemeConfiguration;
+use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Navigators\InstructionNavigator;
 
 class AccountHome
@@ -12,7 +12,7 @@ class AccountHome
     protected $instructionsNavigator;
 
     public function __construct(
-        ThemeConfiguration $theme,
+        AbstractThemeConfiguration $theme,
         InstructionNavigator $instructionsNavigator
 
     )

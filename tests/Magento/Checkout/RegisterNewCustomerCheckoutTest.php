@@ -23,7 +23,7 @@ class RegisterNewCustomerCheckoutTest extends AbstractMagentoTestCase
 
         $customerCheckout->execute();
 
-        $orderId = $this->getAction('Checkout\Extractors\OrderId');
+        $orderId = $this->getExtractor('Checkout\OrderId');
         $this->getLogger()->info(sprintf('Extracted %s as the order ID', $orderId->getOrderId()));
         /** @var $orderId OrderId */
         self::assertNotNull($orderId->getOrderId());

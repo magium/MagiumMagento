@@ -22,7 +22,7 @@ class NavigateToOrderTest extends AbstractMagentoTestCase
 
         $guestCheckout->execute();
 
-        $orderId = $this->getAction('Checkout\Extractors\OrderId')->getOrderId();
+        $orderId = $this->getExtractor('Checkout\OrderId')->getOrderId();
 
 
         $this->getAction('Admin\Login\Login')->login();

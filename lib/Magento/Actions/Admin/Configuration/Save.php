@@ -4,7 +4,7 @@ namespace Magium\Magento\Actions\Admin\Configuration;
 
 use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Themes\AdminThemeConfiguration;
+use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
@@ -17,7 +17,7 @@ class Save
 
     public function __construct(
         WebDriver                   $webDriver,
-        AdminThemeConfiguration     $adminThemeConfiguration,
+        ThemeConfiguration     $adminThemeConfiguration,
         AbstractMagentoTestCase     $testCase
     ) {
         $this->webDriver                = $webDriver;

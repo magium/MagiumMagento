@@ -4,7 +4,7 @@
 namespace Magium\Magento\Actions\Admin\Tables;
 
 use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Themes\AdminThemeConfiguration;
+use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class ClickButton
@@ -16,7 +16,7 @@ class ClickButton
 
     public function __construct(
         WebDriver                   $webDriver,
-        AdminThemeConfiguration     $theme,
+        ThemeConfiguration     $theme,
         AbstractMagentoTestCase     $testCase
     )
     {

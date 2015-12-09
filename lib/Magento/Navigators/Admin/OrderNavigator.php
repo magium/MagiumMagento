@@ -7,7 +7,7 @@ use Magium\Magento\Actions\Admin\Login\Login;
 use Magium\Magento\Actions\Admin\Tables\ClearTableFilters;
 use Magium\Magento\Actions\Admin\Tables\ClickButton;
 use Magium\Magento\Actions\Admin\WaitForLoadingMask;
-use Magium\Magento\Themes\AdminThemeConfiguration;
+use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
@@ -25,7 +25,7 @@ class OrderNavigator
 
     public function __construct(
         WebDriver                   $webDriver,
-        AdminThemeConfiguration     $themeConfiguration,
+        ThemeConfiguration     $themeConfiguration,
         Login                       $adminLogin,
         AdminMenuNavigator          $adminMenuNavigator,
         ClearTableFilters           $clearTableFilters,

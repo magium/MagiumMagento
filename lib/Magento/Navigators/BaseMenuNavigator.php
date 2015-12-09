@@ -2,15 +2,18 @@
 
 namespace Magium\Magento\Navigators;
 
+
+use Magium\Magento\Themes\AbstractThemeConfiguration;
+use Magium\Magento\Themes\NavigableThemeInterface;
+use Magium\Themes\ThemeConfigurationInterface;
 use Magium\WebDriver\WebDriver;
-use Magium\Magento\Themes\ThemeConfiguration;
 class BaseMenuNavigator
 {
     
     protected $webdriver;
     protected $themeConfiguration;
     
-    public function __construct(ThemeConfiguration $theme, WebDriver $webdriver)
+    public function __construct(NavigableThemeInterface $theme, WebDriver $webdriver)
     {
         $this->themeConfiguration = $theme;
         $this->webdriver = $webdriver;

@@ -6,7 +6,7 @@ use Facebook\WebDriver\Exception\WebDriverException;
 use Magium\Commands\Open;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Identities\Admin;
-use Magium\Magento\Themes\AdminThemeConfiguration;
+use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\Navigators\InstructionNavigator;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
@@ -22,7 +22,7 @@ class Login
     protected $messages;
     
     public function __construct(
-        AdminThemeConfiguration $theme,
+        ThemeConfiguration $theme,
         Admin      $adminIdentity,
         InstructionNavigator    $instructionsNavigator,
         WebDriver               $webdriver,

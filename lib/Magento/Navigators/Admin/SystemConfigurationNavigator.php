@@ -5,9 +5,9 @@ namespace Magium\Magento\Navigators\Admin;
 use Magium\AbstractTestCase;
 use Magium\InvalidInstructionException;
 use Magium\Magento\AbstractMagentoTestCase;
+use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
-use Magium\Magento\Themes\AdminThemeConfiguration;
 class SystemConfigurationNavigator
 {
     
@@ -16,7 +16,7 @@ class SystemConfigurationNavigator
     protected $testCase;
 
     public function __construct(
-        AdminThemeConfiguration $theme,
+        ThemeConfiguration $theme,
         WebDriver $webdriver,
         AbstractMagentoTestCase $testCase
     ) {

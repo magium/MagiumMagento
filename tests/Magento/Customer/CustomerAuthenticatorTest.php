@@ -2,13 +2,13 @@
 
 namespace Tests\Magento\Customer;
 
-use Magium\Magento\Identities\Customer;
+use Magium\Magento\AbstractMagentoTestCase;
 
-class CustomerAuthenticationTest extends \PHPUnit_Framework_TestCase
+class CustomerAuthenticationTest extends AbstractMagentoTestCase
 {
     public function testGeneratedEmailAddressUsesWordCharsOnly()
     {
-        $customer = new Customer();
+        $customer = $this->getIdentity();
         $emailAddress = $customer->generateUniqueEmailAddress();
         $parts = explode('@', $emailAddress);
         self::assertEquals(0, preg_match('/\W/', $parts[0]));
@@ -17,7 +17,7 @@ class CustomerAuthenticationTest extends \PHPUnit_Framework_TestCase
 
     public function testGeneratedEmailAddressUsesSpecifiedDomain()
     {
-        $customer = new Customer();
+        $customer = $this->getIdentity();
         $emailAddress = $customer->generateUniqueEmailAddress('eschrade.com');
         $parts = explode('@', $emailAddress);
         self::assertEquals('eschrade.com', $parts[1]);

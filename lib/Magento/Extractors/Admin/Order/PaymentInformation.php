@@ -4,7 +4,7 @@ namespace Magium\Magento\Extractors\Admin\Order;
 
 use Magium\Extractors\AbstractExtractor;
 use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Themes\AdminThemeConfiguration;
+use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class PaymentInformation extends AbstractExtractor
@@ -13,7 +13,7 @@ class PaymentInformation extends AbstractExtractor
     protected $paymentMethodInformation;
     protected $currency;
 
-    public function __construct(WebDriver $webDriver, AbstractMagentoTestCase $testCase, AdminThemeConfiguration $theme)
+    public function __construct(WebDriver $webDriver, AbstractMagentoTestCase $testCase, ThemeConfiguration $theme)
     {
         parent::__construct($webDriver, $testCase, $theme);
     }

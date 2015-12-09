@@ -4,7 +4,7 @@ namespace Magium\Magento\Extractors\Admin\Order;
 
 use Magium\Extractors\AbstractExtractor;
 use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Themes\AdminThemeConfiguration;
+use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class Totals extends AbstractExtractor
@@ -17,7 +17,7 @@ class Totals extends AbstractExtractor
     const VALUE_TOTAL_REFUNDED          = 'total-refunded';
     const VALUE_TOTAL_DUE               = 'total-due';
 
-    public function __construct(WebDriver $webDriver, AbstractMagentoTestCase $testCase, AdminThemeConfiguration $theme)
+    public function __construct(WebDriver $webDriver, AbstractMagentoTestCase $testCase, ThemeConfiguration $theme)
     {
         parent::__construct($webDriver, $testCase, $theme);
     }

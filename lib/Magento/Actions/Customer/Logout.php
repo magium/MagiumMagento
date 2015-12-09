@@ -2,7 +2,7 @@
 
 namespace Magium\Magento\Actions\Customer;
 
-use Magium\Magento\Themes\ThemeConfiguration;
+use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Navigators\InstructionNavigator;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
@@ -16,7 +16,7 @@ class Logout
 
     public function __construct(
         WebDriver               $webdriver,
-        ThemeConfiguration      $theme,
+        AbstractThemeConfiguration      $theme,
         InstructionNavigator    $instructionsNavigator
 
     ) {
