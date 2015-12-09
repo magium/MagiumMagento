@@ -5,7 +5,7 @@ namespace Magium\Magento\Actions\Checkout\Steps;
 use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Identities\Customer;
-use Magium\Magento\Themes\OnePageCheckout\ThemeConfiguration;
+use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class SelectRegisterNewCustomerCheckout implements StepInterface
@@ -18,7 +18,7 @@ class SelectRegisterNewCustomerCheckout implements StepInterface
     
     public function __construct(
         WebDriver               $webdriver,
-        ThemeConfiguration      $theme,
+        AbstractThemeConfiguration      $theme,
         AbstractMagentoTestCase $testCase,
         Customer                $customer
     ) {

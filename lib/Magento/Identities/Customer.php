@@ -2,8 +2,8 @@
 
 namespace Magium\Magento\Identities;
 
-use Magium\Magento\Util\EmailGenerator\Generator;
-use Magium\Magento\Util\EmailGenerator\GeneratorAware;
+use Magium\Util\EmailGenerator\Generator;
+use Magium\Util\EmailGenerator\GeneratorAware;
 
 class Customer extends AbstractEntity implements GeneratorAware
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Magium\Magento\Util\EmailGenerator;
+namespace Magium\Util\EmailGenerator;
 
 class Generator
 {

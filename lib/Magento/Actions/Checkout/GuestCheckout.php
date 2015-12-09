@@ -13,6 +13,7 @@ use Magium\Magento\Extractors\Checkout\CartSummary;
 use Magium\Magento\Extractors\Checkout\OrderId;
 use Magium\Magento\Navigators\Checkout\CheckoutNavigator;
 use Magium\Magento\Navigators\Checkout\CheckoutStartNavigator;
+use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 use Magium\Magento\Themes\OnePageCheckout\ThemeConfiguration as OnePageCheckoutTheme;
 
 class GuestCheckout extends AbstractCheckout
@@ -20,7 +21,7 @@ class GuestCheckout extends AbstractCheckout
 
     public function __construct(
         CheckoutStartNavigator  $navigator,
-        OnePageCheckoutTheme    $theme,
+        AbstractThemeConfiguration    $theme,
         SelectGuestCheckout     $selectGuestCheckout,
         BillingAddress          $billingAddress,
         ShippingAddress         $shippingAddress,

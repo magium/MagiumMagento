@@ -4,7 +4,7 @@ namespace Magium\Magento\Actions\Checkout\Steps;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Identities\Customer;
-use Magium\Magento\Themes\OnePageCheckout\ThemeConfiguration;
+use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class NewCustomerPassword implements StepInterface
@@ -19,7 +19,7 @@ class NewCustomerPassword implements StepInterface
 
     public function __construct(
         WebDriver                   $webdriver,
-        ThemeConfiguration          $theme,
+        AbstractThemeConfiguration          $theme,
         Customer            $customerIdentity,
         AbstractMagentoTestCase     $testCase
     ) {

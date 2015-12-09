@@ -14,14 +14,14 @@ use Magium\Magento\Extractors\Checkout\CartSummary;
 use Magium\Magento\Extractors\Checkout\OrderId;
 use Magium\Magento\Navigators\Checkout\CheckoutNavigator;
 use Magium\Magento\Navigators\Checkout\CheckoutStartNavigator;
-use Magium\Magento\Themes\OnePageCheckout\ThemeConfiguration as OnePageCheckoutTheme;
+use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 
 class CustomerCheckout extends AbstractCheckout
 {
 
     public function __construct(
         CheckoutStartNavigator  $navigator,
-        OnePageCheckoutTheme    $theme,
+        AbstractThemeConfiguration    $theme,
         LogInCustomer           $logInCustomer,
         CustomerBillingAddress  $billingAddress,
         ShippingAddress         $shippingAddress,

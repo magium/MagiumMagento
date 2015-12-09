@@ -76,6 +76,11 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
                 'Magium\Magento\Themes\Customer\AbstractThemeConfiguration',
                 [$this->getTheme()->getCustomerThemeClass()]
             );
+            $this->di->instanceManager()->unsetTypePreferences('Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration');
+            $this->di->instanceManager()->setTypePreference(
+                'Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration',
+                [$this->getTheme()->getOnePageCheckoutThemeClass()]
+            );
         } else {
             throw new InvalidConfigurationException('The theme configuration extend Magium\Magento\Themes\NavigableThemeInterface');
         }

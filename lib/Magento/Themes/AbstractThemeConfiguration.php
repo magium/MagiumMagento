@@ -114,6 +114,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     protected $cartSummaryCheckoutShippingTotal;
 
     abstract public function getCustomerThemeClass();
+    abstract public function getOnePageCheckoutThemeClass();
 
     /**
      * @return string

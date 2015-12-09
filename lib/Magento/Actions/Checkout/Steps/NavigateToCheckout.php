@@ -2,8 +2,9 @@
 
 namespace Magium\Magento\Actions\Checkout\Steps;
 
+use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
-use Magium\Magento\Themes\ThemeConfiguration;
+
 class NavigateToCheckout implements StepInterface
 {
     
@@ -12,7 +13,7 @@ class NavigateToCheckout implements StepInterface
     
     public function __construct(
         WebDriver $webdriver,
-        ThemeConfiguration $theme
+        AbstractThemeConfiguration $theme
     ) {
         $this->webdriver    = $webdriver;
         $this->theme        = $theme;
