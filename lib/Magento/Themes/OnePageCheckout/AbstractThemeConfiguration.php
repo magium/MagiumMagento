@@ -4,8 +4,9 @@ namespace Magium\Magento\Themes\OnePageCheckout;
 
 
 use Magium\AbstractConfigurableElement;
+use Magium\Themes\ThemeConfigurationInterface;
 
-abstract class AbstractThemeConfiguration extends AbstractConfigurableElement
+abstract class AbstractThemeConfiguration extends AbstractConfigurableElement implements ThemeConfigurationInterface // ThemeConfigurationInterface is here simply for compatibility for extractors
 {
 
     /**
@@ -91,6 +92,27 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement
 
     protected $passwordInputXpath;
     protected $confirmPasswordInputXpath;
+
+    /**
+     * This is a hard one.  Each of the summary checkout products will be iterated over until they cannot be found. Having
+     * this work in a manner that gets all of the products, in all languages, in all themes, is quite difficult and
+     * so the Xpath selector needs to be one that can find each individual column with an incrementing iterator.
+     *
+     * @see Magium\Magento\Actions\Checkout\Extractors\CartSummary for an example on how this is done
+     *
+     * @var string
+     */
+
+    protected $cartSummaryCheckoutProductLoopPriceXpath;
+    protected $cartSummaryCheckoutProductLoopNameXpath;
+    protected $cartSummaryCheckoutProductLoopQtyXpath;
+    protected $cartSummaryCheckoutProductLoopSubtotalXpath;
+
+    protected $cartSummaryCheckoutSubTotal;
+    protected $cartSummaryCheckoutTax;
+    protected $cartSummaryCheckoutGrandTotal;
+    protected $cartSummaryCheckoutShippingTotal;
+
 
     /**
      * @return string
@@ -557,6 +579,72 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement
     public function getBillingContinueButtonXpath()
     {
         return $this->translate($this->billingContinueButtonXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutSubTotal()
+    {
+        return $this->translate($this->cartSummaryCheckoutSubTotal);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutTax()
+    {
+        return $this->translate($this->cartSummaryCheckoutTax);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutGrandTotal()
+    {
+        return $this->translate($this->cartSummaryCheckoutGrandTotal);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutShippingTotal()
+    {
+        return $this->translate($this->cartSummaryCheckoutShippingTotal);
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutProductLoopPriceXpath()
+    {
+        return $this->translate($this->cartSummaryCheckoutProductLoopPriceXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutProductLoopNameXpath()
+    {
+        return $this->translate($this->cartSummaryCheckoutProductLoopNameXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutProductLoopQtyXpath()
+    {
+        return $this->translate($this->cartSummaryCheckoutProductLoopQtyXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutProductLoopSubtotalXpath()
+    {
+        return $this->translate($this->cartSummaryCheckoutProductLoopSubtotalXpath);
     }
 
 }

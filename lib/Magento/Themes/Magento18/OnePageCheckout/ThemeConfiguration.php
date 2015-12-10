@@ -1,6 +1,7 @@
 <?php
 
-namespace Magium\Magento\Themes\Magento19\OnePageCheckout;
+namespace Magium\Magento\Themes\Magento18\OnePageCheckout;
+
 
 use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 
@@ -41,6 +42,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     /**
      * @var string The Xpath string for the region_id OPTION to click.  Must be sprintf() compatible
      */
+//    protected $billingRegionIdXpath       = null; // Apparently this is not needed for 1.8
     protected $billingRegionIdXpath       = '//select[@id="billing:region_id"]/descendant::option[@title="%s"]';
     protected $billingPostCodeXpath       = '//input[@id="billing:postcode"]';
     /**
@@ -63,6 +65,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     /**
      * @var string The Xpath string for the region_id OPTION to click.  Must be sprintf() compatible
      */
+//    protected $shippingRegionIdXpath       = null; // Magento 1.8's checkout apparently does not have this
     protected $shippingRegionIdXpath       = '//select[@id="shipping:region_id"]/descendant::option[@title="%s"]';
     protected $shippingPostCodeXpath       = '//input[@id="shipping:postcode"]';
     /**
@@ -101,15 +104,14 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      * @var string
      */
 
-    protected $cartSummaryCheckoutProductLoopPriceXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="{{Price}}"])[%d]';
+    protected $cartSummaryCheckoutProductLoopPriceXpath = '(//table[@id="checkout-review-table"]/tbody//td[2]/descendant::span[@class="cart-price"])[%d]';
     protected $cartSummaryCheckoutProductLoopNameXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td/h3)[%d]';
-    protected $cartSummaryCheckoutProductLoopQtyXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="{{Qty}}"])[%d]';
-    protected $cartSummaryCheckoutProductLoopSubtotalXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="{{Subtotal}}"])[%d]';
+    protected $cartSummaryCheckoutProductLoopQtyXpath = '(//table[@id="checkout-review-table"]/tbody//td[3])[%d]';
+    protected $cartSummaryCheckoutProductLoopSubtotalXpath = '(//table[@id="checkout-review-table"]/tbody//td[4]/descendant::span[@class="cart-price"])[%d]';
 
     protected $cartSummaryCheckoutSubTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " {{Subtotal}} "]/../td[2]';
     protected $cartSummaryCheckoutTax              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " {{Tax}} "]/../td[2]';
     protected $cartSummaryCheckoutGrandTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " {{Grand Total}} "]/../td[2]';
     protected $cartSummaryCheckoutShippingTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[contains(concat(" ",normalize-space(.)," "), " {{Shipping & Handling}} (")]/../td[2]';
-
 
 }

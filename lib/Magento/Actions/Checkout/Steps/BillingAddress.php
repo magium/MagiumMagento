@@ -60,8 +60,10 @@ class BillingAddress implements StepInterface
         $this->testCase->assertElementExists($this->theme->getBillingAddressXpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getBillingAddress2Xpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getBillingCityXpath(), WebDriver::BY_XPATH);
-        $regionXpath = sprintf($this->theme->getBillingRegionIdXpath(), $this->customerIdentity->getBillingRegionId());
-        $this->testCase->assertElementExists($regionXpath, WebDriver::BY_XPATH);
+        if ($this->theme->getBillingRegionIdXpath()) {
+            $regionXpath = sprintf($this->theme->getBillingRegionIdXpath(), $this->customerIdentity->getBillingRegionId());
+            $this->testCase->assertElementExists($regionXpath, WebDriver::BY_XPATH);
+        }
         $this->testCase->assertElementExists($this->theme->getBillingPostCodeXpath(), WebDriver::BY_XPATH);
         $countryXpath = sprintf($this->theme->getBillingCountryIdXpath(), $this->customerIdentity->getBillingCountryId());
         $this->testCase->assertElementExists($countryXpath, WebDriver::BY_XPATH);

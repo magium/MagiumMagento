@@ -2,8 +2,10 @@
 
 namespace Magium\Magento\Extractors\Checkout;
 
+use Magium\AbstractTestCase;
 use Magium\Magento\Actions\Checkout\Steps\StepInterface;
 use Magium\Extractors\AbstractExtractor;
+use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class CartSummary extends AbstractExtractor implements StepInterface
@@ -12,7 +14,7 @@ class CartSummary extends AbstractExtractor implements StepInterface
     /**
      * Redefined here has a code completion helper
      *
-     * @var \Magium\Magento\Themes\ThemeConfiguration
+     * @var \Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration
      */
 
     protected $theme;
@@ -22,6 +24,15 @@ class CartSummary extends AbstractExtractor implements StepInterface
     const VALUE_SnH         = 'ship-handle';
     const VALUE_TAX         = 'tax';
     const VALUE_GRAND_TOTAL = 'grand-total';
+
+    public function __construct(
+        WebDriver           $webDriver,
+        AbstractTestCase    $testCase,
+        AbstractThemeConfiguration $theme
+    )
+    {
+        parent::__construct($webDriver, $testCase, $theme);
+    }
 
     /**
      * @return ProductIterator

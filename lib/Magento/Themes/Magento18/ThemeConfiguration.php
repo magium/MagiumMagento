@@ -57,6 +57,25 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     protected $myAccountTitle               = '{{My Account}}';
 
+    protected $registerFirstNameXpath           = '//input[@id="firstname"]';
+    protected $registerLastNameXpath            = '//input[@id="lastname"]';
+    protected $registerEmailXpath               = '//input[@id="email_address"]';
+    protected $registerPasswordXpath            = '//input[@id="password"]';
+    protected $registerConfirmPasswordXpath     = '//input[@id="confirmation"]';
+    protected $registerNewsletterXpath          = '//input[@id="is_subscribed"]';
+    protected $registerSubmitXpath              = '//button[@type="submit" and @title="{{Submit}}"]';
+
+    protected $logoutSuccessXpath               = '//div[contains(concat(" ",normalize-space(@class)," ")," page-title ")]/descendant::h1[.="{{You are now logged out}}"]';
+
+    /**
+     * @var array Instructions in an Xpath array syntax to get to the customer registration page
+     */
+
+    protected $logoutNavigationInstructions         = [
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//ul[@class="links"]/descendant::a[.="{{Log Out}}"]'],
+//        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="header-account"]/descendant::a[@title="{{Log Out}}"]']
+    ];
+
     /**
      * @var array Instructions in an Xpath array syntax to get to the login page.
      */
@@ -71,10 +90,19 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      */
 
     protected $checkoutNavigationInstructions         = [
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="header-minicart"]'],
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="minicart-actions"]/descendant::a[@title="Checkout"]']
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//ul[@class="links"]/descendant::a[@title="{{Checkout}}"]'],
+//        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="minicart-actions"]/descendant::a[@title="Checkout"]']
     ];
 
+
+    /**
+     * @var array Instructions in an Xpath array syntax to get to the customer registration page
+     */
+
+    protected $registrationNavigationInstructions         = [
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//ul[@class="links"]/descendant::a[.="{{My Account}}"]'],
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//button[@title="{{Create an Account}}"]']
+    ];
 
 
     /**
@@ -100,6 +128,11 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public function getCustomerThemeClass()
     {
         return 'Magium\Magento\Themes\Magento18\Customer\ThemeConfiguration';
+    }
+
+    public function getOnePageCheckoutThemeClass()
+    {
+        return 'Magium\Magento\Themes\Magento18\OnePageCheckout\ThemeConfiguration';
     }
     
 }

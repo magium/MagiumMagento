@@ -102,29 +102,10 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $registerPasswordXpath            = '//input[@id="password"]';
     protected $registerConfirmPasswordXpath     = '//input[@id="confirmation"]';
     protected $registerNewsletterXpath          = '//input[@id="is_subscribed"]';
-    protected $registerSubmitXpath              = '//button[@type="submit" and @title="Register"]';
+    protected $registerSubmitXpath              = '//button[@type="submit" and @title="{{Register}}"]';
 
     protected $logoutSuccessXpath               = '//div[contains(concat(" ",normalize-space(@class)," ")," page-title ")]/descendant::h1[.="{{You are now logged out}}"]';
 
-    /**
-     * This is a hard one.  Each of the summary checkout products will be iterated over until they cannot be found. Having
-     * this work in a manner that gets all of the products, in all languages, in all themes, is quite difficult and
-     * so the Xpath selector needs to be one that can find each individual column with an incrementing iterator.
-     *
-     * @see Magium\Magento\Actions\Checkout\Extractors\CartSummary for an example on how this is done
-     *
-     * @var string
-     */
-
-    protected $cartSummaryCheckoutProductLoopPriceXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="{{Price}}"])[%d]';
-    protected $cartSummaryCheckoutProductLoopNameXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td/h3)[%d]';
-    protected $cartSummaryCheckoutProductLoopQtyXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="{{Qty}}"])[%d]';
-    protected $cartSummaryCheckoutProductLoopSubtotalXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="{{Subtotal}}"])[%d]';
-
-    protected $cartSummaryCheckoutSubTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " {{Subtotal}} "]/../td[2]';
-    protected $cartSummaryCheckoutTax              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " {{Tax}} "]/../td[2]';
-    protected $cartSummaryCheckoutGrandTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " {{Grand Total}} "]/../td[2]';
-    protected $cartSummaryCheckoutShippingTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[contains(concat(" ",normalize-space(.)," "), " {{Shipping & Handling}} (")]/../td[2]';
 
     public function getCustomerThemeClass()
     {

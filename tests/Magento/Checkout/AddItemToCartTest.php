@@ -7,6 +7,10 @@ use Magium\Magento\AbstractMagentoTestCase;
 class AddItemToCartTest extends AbstractMagentoTestCase
 {
 
+    protected $categoryNavigation = 'Accessories/Eyewear';
+    protected $categoryPageAddToCart = '//a[@title="Aviator Sunglasses"]/../descendant::button';
+    protected $productPageAddToCart = '//a[@title="Aviator Sunglasses"]';
+
     public function testSimpleAddToCartWithDefaults()
     {
         $theme = $this->getTheme();
@@ -25,7 +29,7 @@ class AddItemToCartTest extends AbstractMagentoTestCase
         $addToCart = $this->getAction('Cart\AddItemToCart');
         /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
 
-        $addToCart->addSimpleProductToCartFromCategoryPage('Accessories/Eyewear', '//a[@title="Aviator Sunglasses"]/../descendant::button');
+        $addToCart->addSimpleProductToCartFromCategoryPage($this->categoryNavigation, $this->categoryPageAddToCart);
     }
 
     public function testAddSimpleItemToCartFromProductPageWithDefaults()
@@ -49,7 +53,7 @@ class AddItemToCartTest extends AbstractMagentoTestCase
         $addToCart = $this->getAction('Cart\AddItemToCart');
         /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
 
-        $addToCart->addSimpleItemToCartFromProductPage('//a[@title="Aviator Sunglasses"]', 'Accessories/Eyewear');
+        $addToCart->addSimpleItemToCartFromProductPage($this->productPageAddToCart, $this->categoryNavigation);
 
     }
 

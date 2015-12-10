@@ -49,7 +49,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      * @var string Xpath for the customer email form element
      */
 
-    protected $loginUsernameField           = '//input[@type="email" and @id="email"]';
+    protected $loginUsernameField           = '//input[@type="text" and @id="email"]';
 
     /**
      * @var string Xpath for the customer password form element
