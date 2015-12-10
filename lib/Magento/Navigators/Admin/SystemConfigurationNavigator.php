@@ -36,10 +36,12 @@ class SystemConfigurationNavigator
         $sectionToggleXpath = sprintf($this->themeConfiguration->getSystemConfigSectionToggleXpath(), $instructions[1]);
 
         $this->testCase->assertElementExists($tabXpath, AbstractTestCase::BY_XPATH);
+        if (!$this->webdriver->elementDisplayed($sectionDisplayXpath, WebDriver::BY_XPATH)) {
 
-        $this->webdriver->byXpath($tabXpath)->click();
+            $this->webdriver->byXpath($tabXpath)->click();
 
-        $this->webdriver->wait()->until(ExpectedCondition::elementExists($sectionDisplayXpath, AbstractTestCase::BY_XPATH));
+            $this->webdriver->wait()->until(ExpectedCondition::elementExists($sectionDisplayXpath, AbstractTestCase::BY_XPATH));
+        }
 
         $this->testCase->assertElementExists($sectionToggleXpath, AbstractTestCase::BY_XPATH);
         if (!$this->webdriver->elementDisplayed($sectionDisplayXpath, AbstractTestCase::BY_XPATH)) {

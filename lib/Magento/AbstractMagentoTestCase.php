@@ -40,18 +40,40 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
 
     public function setPaymentMethod($method)
     {
+
         // If we are passed just the class name we will prepend it with Magium\Magento\Actions\Checkout\PaymentMethods
         if (strpos($method, '\\') === false) {
             $method = $this->baseNamespace . '\\Actions\\Checkout\\PaymentMethods\\' . $method;
         }
 
-        $reflection = new \ReflectionClass($method);
-        if ($reflection->isSubclassOf('Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface')) {
+        if (is_subclass_of($method, 'Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface')) {
 
             $this->di->instanceManager()->unsetTypePreferences('Magium\\Magento\\Actions\\Checkout\\PaymentMethods\\PaymentMethodInterface');
             $this->di->instanceManager()->setTypePreference('Magium\\Magento\\Actions\\Checkout\\PaymentMethods\\PaymentMethodInterface', [$method]);
         } else {
             throw new InvalidConfigurationException('The payment method must implement Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface');
+        }
+    }
+
+    /**
+     * @param $method
+     * @return \Magium\Magento\Actions\Checkout\ShippingMethods\ShippingMethodInterface
+     */
+
+    public function setShippingMethod($method)
+    {
+
+        // If we are passed just the class name we will prepend it with Magium\Magento\Actions\Checkout\PaymentMethods
+        if (strpos($method, '\\') === false) {
+            $method = $this->baseNamespace . '\\Actions\\Checkout\\ShippingMethods\\' . $method;
+        }
+
+        if (is_subclass_of($method, 'Magium\Magento\Actions\Checkout\ShippingMethods\ShippingMethodInterface')) {
+
+            $this->di->instanceManager()->unsetTypePreferences('Magium\\Magento\\Actions\\Checkout\\PaymentMethods\\ShippingMethodInterface');
+            $this->di->instanceManager()->setTypePreference('Magium\\Magento\\Actions\\Checkout\\PaymentMethods\\ShippingMethodInterface', [$method]);
+        } else {
+            throw new InvalidConfigurationException('The payment method must implement Magium\Magento\Actions\Checkout\ShippingMethods\ShippingMethodInterface');
         }
     }
 
