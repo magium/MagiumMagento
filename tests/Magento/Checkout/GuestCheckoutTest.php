@@ -23,7 +23,7 @@ class GuestCheckoutTest extends AbstractMagentoTestCase
 
         $guestCheckout->execute();
 
-        $orderId = $this->getAction('Checkout\Extractors\OrderId');
+        $orderId = $this->getExtractor('Checkout\OrderId');
         /** @var $orderId OrderId */
         self::assertNotNull($orderId->getOrderId());
         self::assertGreaterThan(0, $orderId->getOrderId());

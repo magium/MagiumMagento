@@ -13,7 +13,9 @@ class CustomerNavigationTest extends AbstractMagentoTestCase
         $this->commandOpen($this->getTheme()->getBaseUrl());
         $this->getAction('Customer\NavigateAndLogin')->login();
         $this->getNavigator('Customer\Account')->navigateTo('My Orders');
-        $xpath = $this->getTheme('Customer\ThemeConfiguration')->getAccountSectionHeaderXpath();
+        $theme = $this->getTheme();
+        /* @var $theme \Magium\Magento\Themes\AbstractThemeConfiguration */
+        $xpath = $this->get($theme->getCustomerThemeClass())->getAccountSectionHeaderXpath();
         $xpath = sprintf($xpath, 'My Orders');
         $this->assertElementDisplayed($xpath, WebDriver::BY_XPATH);
     }
@@ -25,7 +27,9 @@ class CustomerNavigationTest extends AbstractMagentoTestCase
         $this->commandOpen($this->getTheme()->getBaseUrl());
         $this->getAction('Customer\NavigateAndLogin')->login();
         $this->getNavigator('Customer\Account')->navigateTo('My Orders', 'My Orders');
-        $xpath = $this->getTheme('Customer\ThemeConfiguration')->getAccountSectionHeaderXpath();
+        $theme = $this->getTheme();
+        /* @var $theme \Magium\Magento\Themes\AbstractThemeConfiguration */
+        $xpath = $this->get($theme->getCustomerThemeClass())->getAccountSectionHeaderXpath();
         $xpath = sprintf($xpath, 'My Orders');
         $this->assertElementDisplayed($xpath, WebDriver::BY_XPATH);
     }

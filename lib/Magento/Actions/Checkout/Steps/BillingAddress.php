@@ -5,7 +5,7 @@ namespace Magium\Magento\Actions\Checkout\Steps;
 use Facebook\WebDriver\WebDriverExpectedCondition;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Identities\Customer;
-use Magium\Magento\Themes\OnePageCheckout\ThemeConfiguration;
+use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class BillingAddress implements StepInterface
@@ -20,7 +20,7 @@ class BillingAddress implements StepInterface
     
     public function __construct(
         WebDriver                   $webdriver,
-        ThemeConfiguration          $theme,
+        AbstractThemeConfiguration          $theme,
         Customer            $customerIdentity,
         AbstractMagentoTestCase     $testCase
     ) {
@@ -60,8 +60,10 @@ class BillingAddress implements StepInterface
         $this->testCase->assertElementExists($this->theme->getBillingAddressXpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getBillingAddress2Xpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getBillingCityXpath(), WebDriver::BY_XPATH);
-        $regionXpath = sprintf($this->theme->getBillingRegionIdXpath(), $this->customerIdentity->getBillingRegionId());
-        $this->testCase->assertElementExists($regionXpath, WebDriver::BY_XPATH);
+        if ($this->theme->getBillingRegionIdXpath()) {
+            $regionXpath = sprintf($this->theme->getBillingRegionIdXpath(), $this->customerIdentity->getBillingRegionId());
+            $this->testCase->assertElementExists($regionXpath, WebDriver::BY_XPATH);
+        }
         $this->testCase->assertElementExists($this->theme->getBillingPostCodeXpath(), WebDriver::BY_XPATH);
         $countryXpath = sprintf($this->theme->getBillingCountryIdXpath(), $this->customerIdentity->getBillingCountryId());
         $this->testCase->assertElementExists($countryXpath, WebDriver::BY_XPATH);
@@ -78,8 +80,13 @@ class BillingAddress implements StepInterface
         $this->testCase->byXpath($this->theme->getBillingAddressXpath())->sendKeys($this->customerIdentity->getBillingAddress());
         $this->testCase->byXpath($this->theme->getBillingAddress2Xpath())->sendKeys($this->customerIdentity->getBillingAddress2());
         $this->testCase->byXpath($this->theme->getBillingCityXpath())->sendKeys($this->customerIdentity->getBillingCity());
-        $regionXpath = sprintf($this->theme->getBillingRegionIdXpath(), $this->customerIdentity->getBillingRegionId());
-        $this->testCase->byXpath($regionXpath)->click();
+        /* not all themes have a region ID.  This kind of conditional statement will probably be multiplied across all
+         * items so that if the theme does not require a certain element it will simply have it as null.
+         */
+        if ($this->theme->getBillingRegionIdXpath()) {
+            $regionXpath = sprintf($this->theme->getBillingRegionIdXpath(), $this->customerIdentity->getBillingRegionId());
+            $this->testCase->byXpath($regionXpath)->click();
+        }
         $this->testCase->byXpath($this->theme->getBillingPostCodeXpath())->sendKeys($this->customerIdentity->getBillingPostCode());
         $countryXpath = sprintf($this->theme->getBillingCountryIdXpath(), $this->customerIdentity->getBillingCountryId());
         $this->testCase->byXpath($countryXpath)->click();

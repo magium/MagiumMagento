@@ -14,7 +14,7 @@ class NavigateToOrder extends AbstractMagentoTestCase
         $this->setPaymentMethod('CashOnDelivery');
         $this->getAction('Checkout\CustomerCheckout')->execute();
 
-        $orderId = $this->get('Magium\Magento\Actions\Checkout\Extractors\OrderId')->getOrderId();
+        $orderId = $this->getExtractor('Checkout\OrderId')->getOrderId();
 
         $this->getNavigator('Customer\AccountHome')->navigateTo();
         $this->getNavigator('Customer\NavigateToOrder')->navigateTo($orderId);

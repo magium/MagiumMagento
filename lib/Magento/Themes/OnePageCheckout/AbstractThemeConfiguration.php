@@ -2,101 +2,124 @@
 
 namespace Magium\Magento\Themes\OnePageCheckout;
 
-use Magium\AbstractConfigurableElement;
 
-class ThemeConfiguration extends AbstractConfigurableElement
+use Magium\AbstractConfigurableElement;
+use Magium\Themes\ThemeConfigurationInterface;
+
+abstract class AbstractThemeConfiguration extends AbstractConfigurableElement implements ThemeConfigurationInterface // ThemeConfigurationInterface is here simply for compatibility for extractors
 {
 
     /**
      * @var string The continue button when choosing the checkout type
      */
 
-    protected $continueButtonXpath = '//button[@id="onepage-guest-register-button"]';
+    protected $continueButtonXpath;
 
     /**
      * @var string The checkbox (typically) that sets the guest checkout
      */
 
-    protected $guestCheckoutButtonXpath = '//input[@id="login:guest"]';
+    protected $guestCheckoutButtonXpath;
 
     /**
      * @var string The checkbox (typically) that sets the new customer checkout
      */
 
-    protected $registerNewCustomerCheckoutButtonXpath = '//input[@id="login:register"]';
+    protected $registerNewCustomerCheckoutButtonXpath;
 
-    protected $billingAddressDropdownXpath = '//select[@id="billing-address-select"]';
+    protected $billingAddressDropdownXpath;
 
-    protected $customerEmailInputXpath      = '//input[@id="login-email"]';
-    protected $customerPasswordInputXpath   = '//input[@id="login-password"]';
-    protected $customerButtonXpath          = '//button[@type="submit"]/descendant::span[.="Login"]';
+    protected $customerEmailInputXpath;
+    protected $customerPasswordInputXpath;
+    protected $customerButtonXpath;
 
-    protected $billingFirstNameXpath      = '//input[@id="billing:firstname"]';
-    protected $billingLastNameXpath       = '//input[@id="billing:lastname"]';
-    protected $billingCompanyXpath        = '//input[@id="billing:company"]';
-    protected $billingEmailAddressXpath   = '//input[@id="billing:email"]';
-    protected $billingAddressXpath        = '//input[@id="billing:street1"]';
-    protected $billingAddress2Xpath       = '//input[@id="billing:street2"]';
-    protected $billingCityXpath           = '//input[@id="billing:city"]';
+    protected $billingFirstNameXpath;
+    protected $billingLastNameXpath;
+    protected $billingCompanyXpath;
+    protected $billingEmailAddressXpath;
+    protected $billingAddressXpath;
+    protected $billingAddress2Xpath;
+    protected $billingCityXpath;
     /**
      * @var string The Xpath string for the region_id OPTION to click.  Must be sprintf() compatible
      */
-    protected $billingRegionIdXpath       = '//select[@id="billing:region_id"]/descendant::option[@title="%s"]';
-    protected $billingPostCodeXpath       = '//input[@id="billing:postcode"]';
+    protected $billingRegionIdXpath;
+    protected $billingPostCodeXpath;
     /**
      * @var string The Xpath string for the country OPTION to click.  Must be sprintf() compatible
      */
-    protected $billingCountryIdXpath      = '//select[@id="billing:country_id"]/descendant::option[@value="%s"]';
-    protected $billingTelephoneXpath      = '//input[@id="billing:telephone"]';
-    protected $billingFaxXpath            = '//input[@id="billing:fax"]';
-    protected $billingContinueButtonXpath = '//div[@id="billing-buttons-container"]/descendant::button[@title="Continue"]';
-    protected $billingContinueCompletedXpath   = '//span[@id="billing-please-wait"]';
+    protected $billingCountryIdXpath;
+    protected $billingTelephoneXpath;
+    protected $billingFaxXpath;
+    protected $billingContinueButtonXpath;
+    protected $billingContinueCompletedXpath;
 
 
-    protected $shippingFirstNameXpath      = '//input[@id="shipping:firstname"]';
-    protected $shippingLastNameXpath       = '//input[@id="shipping:lastname"]';
-    protected $shippingCompanyXpath        = '//input[@id="shipping:company"]';
-    protected $shippingEmailAddressXpath   = '//input[@id="shipping:email"]';
-    protected $shippingAddressXpath        = '//input[@id="shipping:street1"]';
-    protected $shippingAddress2Xpath       = '//input[@id="shipping:street2"]';
-    protected $shippingCityXpath           = '//input[@id="shipping:city"]';
+    protected $shippingFirstNameXpath;
+    protected $shippingLastNameXpath;
+    protected $shippingCompanyXpath;
+    protected $shippingEmailAddressXpath;
+    protected $shippingAddressXpath;
+    protected $shippingAddress2Xpath;
+    protected $shippingCityXpath;
     /**
      * @var string The Xpath string for the region_id OPTION to click.  Must be sprintf() compatible
      */
-    protected $shippingRegionIdXpath       = '//select[@id="shipping:region_id"]/descendant::option[@title="%s"]';
-    protected $shippingPostCodeXpath       = '//input[@id="shipping:postcode"]';
+    protected $shippingRegionIdXpath;
+    protected $shippingPostCodeXpath;
     /**
      * @var string The Xpath string for the country OPTION to click.  Must be sprintf() compatible
      */
-    protected $shippingCountryIdXpath      = '//select[@id="shipping:country_id"]/descendant::option[@value="%s"]';
-    protected $shippingTelephoneXpath      = '//input[@id="shipping:telephone"]';
-    protected $shippingFaxXpath            = '//input[@id="shipping:fax"]';
-    protected $shippingContinueButtonXpath = '//div[@id="shipping-buttons-container"]/descendant::button[@title="Continue"]';
-    protected $shippingContinueCompletedXpath   = '//span[@id="shipping-please-wait"]';
-    protected $shippingMethodContinueCompletedXpath   = '//span[@id="shipping-method-please-wait"]';
+    protected $shippingCountryIdXpath;
+    protected $shippingTelephoneXpath;
+    protected $shippingFaxXpath;
+    protected $shippingContinueButtonXpath;
+    protected $shippingContinueCompletedXpath;
+    protected $shippingMethodContinueCompletedXpath;
 
-    protected $shippingMethodContinueButtonXpath = '//div[@id="shipping-method-buttons-container"]/descendant::button';
-    protected $defaultShippingXpath             = '//input[@name="shipping_method"]';
+    protected $shippingMethodContinueButtonXpath;
+    protected $defaultShippingXpath;
 
-    protected $paymentMethodContinueCompleteXpath = '//span[@id="payment-please-wait"]';
+    protected $paymentMethodContinueCompleteXpath;
 
-    protected $paymentMethodContinueButtonXpath = '//div[@id="payment-buttons-container"]/descendant::button';
+    protected $paymentMethodContinueButtonXpath;
 
-    protected $placeOrderButtonXpath        = '//div[@id="review-buttons-container"]/descendant::button[@title="Place Order"]';
+    protected $placeOrderButtonXpath;
 
-    protected $orderReceivedCompleteXpath = '//h1[.="Your order has been received."]';
+    protected $orderReceivedCompleteXpath;
 
-    protected $shippingMethodFormXpath      = '//form[@id="co-shipping-method-form"]';
+    protected $shippingMethodFormXpath;
 
-    protected $passwordInputXpath           = '//input[@id="billing:customer_password"]';
-    protected $confirmPasswordInputXpath           = '//input[@id="billing:confirm_password"]';
+    protected $passwordInputXpath;
+    protected $confirmPasswordInputXpath;
+
+    /**
+     * This is a hard one.  Each of the summary checkout products will be iterated over until they cannot be found. Having
+     * this work in a manner that gets all of the products, in all languages, in all themes, is quite difficult and
+     * so the Xpath selector needs to be one that can find each individual column with an incrementing iterator.
+     *
+     * @see Magium\Magento\Actions\Checkout\Extractors\CartSummary for an example on how this is done
+     *
+     * @var string
+     */
+
+    protected $cartSummaryCheckoutProductLoopPriceXpath;
+    protected $cartSummaryCheckoutProductLoopNameXpath;
+    protected $cartSummaryCheckoutProductLoopQtyXpath;
+    protected $cartSummaryCheckoutProductLoopSubtotalXpath;
+
+    protected $cartSummaryCheckoutSubTotal;
+    protected $cartSummaryCheckoutTax;
+    protected $cartSummaryCheckoutGrandTotal;
+    protected $cartSummaryCheckoutShippingTotal;
+
 
     /**
      * @return string
      */
     public function getBillingAddressDropdownXpath()
     {
-        return $this->billingAddressDropdownXpath;
+        return $this->translate($this->billingAddressDropdownXpath);
     }
 
     /**
@@ -104,7 +127,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getPasswordInputXpath()
     {
-        return $this->passwordInputXpath;
+        return $this->translate($this->passwordInputXpath);
     }
 
     /**
@@ -112,7 +135,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getConfirmPasswordInputXpath()
     {
-        return $this->confirmPasswordInputXpath;
+        return $this->translate($this->confirmPasswordInputXpath);
     }
 
 
@@ -122,7 +145,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getRegisterNewCustomerCheckoutButtonXpath()
     {
-        return $this->registerNewCustomerCheckoutButtonXpath;
+        return $this->translate($this->registerNewCustomerCheckoutButtonXpath);
     }
 
     /**
@@ -130,7 +153,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getCustomerEmailInputXpath()
     {
-        return $this->customerEmailInputXpath;
+        return $this->translate($this->customerEmailInputXpath);
     }
 
     /**
@@ -138,7 +161,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getCustomerPasswordInputXpath()
     {
-        return $this->customerPasswordInputXpath;
+        return $this->translate($this->customerPasswordInputXpath);
     }
 
     /**
@@ -146,7 +169,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getCustomerButtonXpath()
     {
-        return $this->customerButtonXpath;
+        return $this->translate($this->customerButtonXpath);
     }
 
 
@@ -156,7 +179,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingMethodFormXpath()
     {
-        return $this->shippingMethodFormXpath;
+        return $this->translate($this->shippingMethodFormXpath);
     }
 
     /**
@@ -164,7 +187,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getOrderReceivedCompleteXpath()
     {
-        return $this->orderReceivedCompleteXpath;
+        return $this->translate($this->orderReceivedCompleteXpath);
     }
 
 
@@ -173,7 +196,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getPaymentMethodContinueButtonXpath()
     {
-        return $this->paymentMethodContinueButtonXpath;
+        return $this->translate($this->paymentMethodContinueButtonXpath);
     }
 
     /**
@@ -181,7 +204,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingMethodContinueButtonXpath()
     {
-        return $this->shippingMethodContinueButtonXpath;
+        return $this->translate($this->shippingMethodContinueButtonXpath);
     }
 
      /**
@@ -189,7 +212,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getPlaceOrderButtonXpath()
     {
-        return $this->placeOrderButtonXpath;
+        return $this->translate($this->placeOrderButtonXpath);
     }
 
 
@@ -198,13 +221,13 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getPaymentMethodContinueCompleteXpath()
     {
-        return $this->paymentMethodContinueCompleteXpath;
+        return $this->translate($this->paymentMethodContinueCompleteXpath);
     }
 
 
     public function getDefaultShippingXpath()
     {
-        return $this->defaultShippingXpath;
+        return $this->translate($this->defaultShippingXpath);
     }
 
     /**
@@ -212,7 +235,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingMethodContinueCompletedXpath()
     {
-        return $this->shippingMethodContinueCompletedXpath;
+        return $this->translate($this->shippingMethodContinueCompletedXpath);
     }
 
     /**
@@ -220,7 +243,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingFirstNameXpath()
     {
-        return $this->shippingFirstNameXpath;
+        return $this->translate($this->shippingFirstNameXpath);
     }
 
     /**
@@ -236,7 +259,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingLastNameXpath()
     {
-        return $this->shippingLastNameXpath;
+        return $this->translate($this->shippingLastNameXpath);
     }
 
     /**
@@ -252,7 +275,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingCompanyXpath()
     {
-        return $this->shippingCompanyXpath;
+        return $this->translate($this->shippingCompanyXpath);
     }
 
     /**
@@ -268,7 +291,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingEmailAddressXpath()
     {
-        return $this->shippingEmailAddressXpath;
+        return $this->translate($this->shippingEmailAddressXpath);
     }
 
     /**
@@ -284,7 +307,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingAddressXpath()
     {
-        return $this->shippingAddressXpath;
+        return $this->translate($this->shippingAddressXpath);
     }
 
     /**
@@ -300,7 +323,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingAddress2Xpath()
     {
-        return $this->shippingAddress2Xpath;
+        return $this->translate($this->shippingAddress2Xpath);
     }
 
     /**
@@ -316,7 +339,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingCityXpath()
     {
-        return $this->shippingCityXpath;
+        return $this->translate($this->shippingCityXpath);
     }
 
     /**
@@ -332,7 +355,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingRegionIdXpath()
     {
-        return $this->shippingRegionIdXpath;
+        return $this->translate($this->shippingRegionIdXpath);
     }
 
     /**
@@ -348,7 +371,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingPostCodeXpath()
     {
-        return $this->shippingPostCodeXpath;
+        return $this->translate($this->shippingPostCodeXpath);
     }
 
     /**
@@ -364,7 +387,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingCountryIdXpath()
     {
-        return $this->shippingCountryIdXpath;
+        return $this->translate($this->shippingCountryIdXpath);
     }
 
     /**
@@ -380,7 +403,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingTelephoneXpath()
     {
-        return $this->shippingTelephoneXpath;
+        return $this->translate($this->shippingTelephoneXpath);
     }
 
     /**
@@ -396,7 +419,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingFaxXpath()
     {
-        return $this->shippingFaxXpath;
+        return $this->translate($this->shippingFaxXpath);
     }
 
     /**
@@ -412,7 +435,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingContinueButtonXpath()
     {
-        return $this->shippingContinueButtonXpath;
+        return $this->translate($this->shippingContinueButtonXpath);
     }
 
     /**
@@ -428,7 +451,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getShippingContinueCompletedXpath()
     {
-        return $this->shippingContinueCompletedXpath;
+        return $this->translate($this->shippingContinueCompletedXpath);
     }
 
     /**
@@ -441,17 +464,17 @@ class ThemeConfiguration extends AbstractConfigurableElement
 
     public function getBillingContinueCompletedXpath()
     {
-        return $this->billingContinueCompletedXpath;
+        return $this->translate($this->billingContinueCompletedXpath);
     }
 
     public function getContinueButtonXpath()
     {
-        return $this->continueButtonXpath;
+        return $this->translate($this->continueButtonXpath);
     }
 
     public function getGuestCheckoutButtonXpath()
     {
-        return $this->guestCheckoutButtonXpath;
+        return $this->translate($this->guestCheckoutButtonXpath);
     }
 
     /**
@@ -459,7 +482,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingFirstNameXpath()
     {
-        return $this->billingFirstNameXpath;
+        return $this->translate($this->billingFirstNameXpath);
     }
 
     /**
@@ -467,7 +490,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingLastNameXpath()
     {
-        return $this->billingLastNameXpath;
+        return $this->translate($this->billingLastNameXpath);
     }
 
     /**
@@ -475,7 +498,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingCompanyXpath()
     {
-        return $this->billingCompanyXpath;
+        return $this->translate($this->billingCompanyXpath);
     }
 
     /**
@@ -483,7 +506,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingEmailAddressXpath()
     {
-        return $this->billingEmailAddressXpath;
+        return $this->translate($this->billingEmailAddressXpath);
     }
 
     /**
@@ -491,7 +514,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingAddressXpath()
     {
-        return $this->billingAddressXpath;
+        return$this->translate( $this->billingAddressXpath);
     }
 
     /**
@@ -499,7 +522,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingAddress2Xpath()
     {
-        return $this->billingAddress2Xpath;
+        return $this->translate($this->billingAddress2Xpath);
     }
 
     /**
@@ -507,7 +530,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingCityXpath()
     {
-        return $this->billingCityXpath;
+        return $this->translate($this->billingCityXpath);
     }
 
     /**
@@ -515,7 +538,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingRegionIdXpath()
     {
-        return $this->billingRegionIdXpath;
+        return $this->translate($this->billingRegionIdXpath);
     }
 
     /**
@@ -523,7 +546,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingPostCodeXpath()
     {
-        return $this->billingPostCodeXpath;
+        return $this->translate($this->billingPostCodeXpath);
     }
 
     /**
@@ -531,7 +554,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingCountryIdXpath()
     {
-        return $this->billingCountryIdXpath;
+        return $this->translate($this->billingCountryIdXpath);
     }
 
     /**
@@ -539,7 +562,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingTelephoneXpath()
     {
-        return $this->billingTelephoneXpath;
+        return $this->translate($this->billingTelephoneXpath);
     }
 
     /**
@@ -547,7 +570,7 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingFaxXpath()
     {
-        return $this->billingFaxXpath;
+        return $this->translate($this->billingFaxXpath);
     }
 
     /**
@@ -555,7 +578,73 @@ class ThemeConfiguration extends AbstractConfigurableElement
      */
     public function getBillingContinueButtonXpath()
     {
-        return $this->billingContinueButtonXpath;
+        return $this->translate($this->billingContinueButtonXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutSubTotal()
+    {
+        return $this->translate($this->cartSummaryCheckoutSubTotal);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutTax()
+    {
+        return $this->translate($this->cartSummaryCheckoutTax);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutGrandTotal()
+    {
+        return $this->translate($this->cartSummaryCheckoutGrandTotal);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutShippingTotal()
+    {
+        return $this->translate($this->cartSummaryCheckoutShippingTotal);
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutProductLoopPriceXpath()
+    {
+        return $this->translate($this->cartSummaryCheckoutProductLoopPriceXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutProductLoopNameXpath()
+    {
+        return $this->translate($this->cartSummaryCheckoutProductLoopNameXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutProductLoopQtyXpath()
+    {
+        return $this->translate($this->cartSummaryCheckoutProductLoopQtyXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartSummaryCheckoutProductLoopSubtotalXpath()
+    {
+        return $this->translate($this->cartSummaryCheckoutProductLoopSubtotalXpath);
     }
 
 }

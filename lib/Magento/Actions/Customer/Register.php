@@ -4,7 +4,7 @@ namespace Magium\Magento\Actions\Customer;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Identities\Customer;
-use Magium\Magento\Themes\ThemeConfiguration;
+use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Navigators\InstructionNavigator;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
@@ -20,7 +20,7 @@ class Register
 
     public function __construct(
         WebDriver               $webdriver,
-        ThemeConfiguration      $theme,
+        AbstractThemeConfiguration      $theme,
         InstructionNavigator    $instructionsNavigator,
         Customer                $customerIdentity,
         AbstractMagentoTestCase $testCase

@@ -4,7 +4,7 @@ namespace Magium\Magento\Actions\Checkout\ShippingMethods;
 
 use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Themes\OnePageCheckout\ThemeConfiguration;
+use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
@@ -17,7 +17,7 @@ class FirstAvailable implements ShippingMethodInterface
 
     public function __construct(
         WebDriver               $webDriver,
-        ThemeConfiguration      $theme,
+        AbstractThemeConfiguration      $theme,
         AbstractMagentoTestCase $testCase
     ) {
         $this->webDriver        = $webDriver;

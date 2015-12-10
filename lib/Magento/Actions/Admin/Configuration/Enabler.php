@@ -6,7 +6,7 @@ use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Navigators\Admin\AdminMenuNavigator;
 use Magium\Magento\Navigators\Admin\SystemConfigurationNavigator;
-use Magium\Magento\Themes\AdminThemeConfiguration;
+use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class Enabler
@@ -26,7 +26,7 @@ class Enabler
         WebDriver                       $webDriver,
         AdminMenuNavigator              $adminMenuNavigator,
         SystemConfigurationNavigator    $systemConfigurationNavigator,
-        AdminThemeConfiguration         $adminThemeConfiguration,
+        ThemeConfiguration         $adminThemeConfiguration,
         AbstractMagentoTestCase         $testCase,
         Save                            $save
     ) {

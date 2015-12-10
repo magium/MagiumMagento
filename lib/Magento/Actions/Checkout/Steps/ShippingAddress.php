@@ -5,7 +5,7 @@ namespace Magium\Magento\Actions\Checkout\Steps;
 use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Identities\Customer;
-use Magium\Magento\Themes\OnePageCheckout\ThemeConfiguration;
+use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class ShippingAddress implements StepInterface
@@ -18,7 +18,7 @@ class ShippingAddress implements StepInterface
 
     public function __construct(
         WebDriver                   $webdriver,
-        ThemeConfiguration          $theme,
+        AbstractThemeConfiguration          $theme,
         Customer                    $customerIdentity,
         AbstractMagentoTestCase     $testCase
     ) {

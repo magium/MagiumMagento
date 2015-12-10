@@ -2,7 +2,7 @@
 
 namespace Magium\Magento\Navigators\Customer;
 
-use Magium\Magento\Themes\Customer\ThemeConfiguration;
+use Magium\Magento\Themes\Customer\AbstractThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
@@ -16,7 +16,7 @@ class NavigateToOrder
     public function __construct(
         WebDriver               $webDriver,
         Account                 $accountNavigator,
-        ThemeConfiguration      $themeConfiguration
+        AbstractThemeConfiguration      $themeConfiguration
     )
     {
         $this->webDriver            = $webDriver;

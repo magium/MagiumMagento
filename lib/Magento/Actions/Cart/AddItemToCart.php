@@ -4,7 +4,7 @@ namespace Magium\Magento\Actions\Cart;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Navigators\BaseMenuNavigator;
-use Magium\Magento\Themes\ThemeConfiguration;
+use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class AddItemToCart
@@ -16,7 +16,7 @@ class AddItemToCart
     
     public function __construct(
         WebDriver $webdriver,
-        ThemeConfiguration $theme,
+        AbstractThemeConfiguration $theme,
         BaseMenuNavigator $navigator,
         AbstractMagentoTestCase $testCase
     ) {

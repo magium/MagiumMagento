@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento\Customer;
+namespace Tests\Magento\Admin;
 
 use Magium\Magento\AbstractMagentoTestCase;
 
@@ -9,7 +9,7 @@ class SaveSystemConfigurationSettingTest extends AbstractMagentoTestCase
 
     public function testLoginAdmin()
     {
-        $adminThemeConfiguration = $this->getTheme('AdminThemeConfiguration');
+        $adminThemeConfiguration = $this->getTheme('Admin\ThemeConfiguration');
 
         $this->getAction('Admin\Login\Login')->login();
         $enabler = $this->getAction('Admin\Configuration\Enabler');

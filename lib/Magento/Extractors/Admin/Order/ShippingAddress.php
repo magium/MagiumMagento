@@ -2,7 +2,14 @@
 
 namespace Magium\Magento\Extractors\Admin\Order;
 
-class ShippingAddress
+use Magium\Magento\Extractors\Admin\AddressExtractor;
+
+class ShippingAddress extends AddressExtractor
 {
+
+    public function getBaseXpath()
+    {
+        return '//h4[contains(concat(" ",normalize-space(@class)," ")," head-shipping-address ")]/../../fieldset';
+    }
 
 }

@@ -1,5 +1,5 @@
 {
-  "name" : "magium/magium_magento",
+  "name" : "magium/magento",
   "type": "library",
   "description": "Magento-based functionality for the Magium test library",
   "keywords": ["magento", "selenium", "webdriver", "testing"],
@@ -14,7 +14,7 @@
     }
   ],
   "require" : {
-    "magium/magium": "0.0.7"
+    "magium/magium": "^0.0.13"
   },
   "repositories" : [ {
     "type" : "composer",
@@ -22,7 +22,8 @@
   } ],
   "autoload" : {
     "psr-4" : {
-      "Magium\\" : "lib/"
+      "Magium\\" : "lib/",
+      "Tests\\" : "tests/"
     }
   }
 }

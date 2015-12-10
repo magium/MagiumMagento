@@ -2,7 +2,7 @@
 
 namespace Magium\Magento\Extractors\Admin;
 
-use Magium\Magento\Extractors\AbstractExtractor;
+use Magium\Extractors\AbstractExtractor;
 use Magium\Magento\Extractors\Admin\Order\AccountInformation;
 use Magium\Magento\Extractors\Admin\Order\BillingAddress;
 use Magium\Magento\Extractors\Admin\Order\OrderItems;
@@ -15,14 +15,7 @@ use Magium\Magento\Extractors\Admin\Order\Totals;
 class OrderInformationExtractor extends AbstractExtractor
 {
 
-    protected $accountInformation;
-    protected $billingAddress;
-    protected $orderItems;
-    protected $orderSummary;
-    protected $paymentInformation;
-    protected $shippingAddress;
-    protected $shippingInformation;
-    protected $totals;
+    protected $extractors = [];
 
     public function __construct(
         AccountInformation      $accountInformation,
@@ -35,19 +28,23 @@ class OrderInformationExtractor extends AbstractExtractor
         Totals                  $totals
     )
     {
-        $this->accountInformation       = $accountInformation;
-        $this->billingAddress           = $billingAddress;
-        $this->orderItems               = $orderItems;
-        $this->orderSummary             = $orderSummary;
-        $this->paymentInformation       = $paymentInformation;
-        $this->shippingAddress          = $shippingAddress;
-        $this->shippingInformation      = $shippingInformation;
-        $this->totals                   = $totals;
+        $this->extractors[] = $accountInformation;
+        $this->extractors[] = $billingAddress;
+        $this->extractors[] = $orderItems;
+        $this->extractors[] = $orderSummary;
+        $this->extractors[] = $paymentInformation;
+        $this->extractors[] = $shippingAddress;
+        $this->extractors[] = $shippingInformation;
+        $this->extractors[] = $totals;
     }
 
     public function extract()
     {
-
+        foreach ($this->extractors as $extractor) {
+            if ($extractor instanceof AbstractExtractor) {
+                $extractor->extract();
+            }
+        }
     }
 
 }

@@ -3,6 +3,7 @@
 namespace Magium\Magento\Actions\Checkout;
 
 use Magium\AbstractConfigurableElement;
+use Zend\I18n\Translator\Translator;
 
 class PaymentInformation extends AbstractConfigurableElement
 {
@@ -11,7 +12,7 @@ class PaymentInformation extends AbstractConfigurableElement
     protected $expiryDate;
     protected $cvv;
 
-    public function __construct($configurationFile = null)
+    public function __construct(Translator $translator,  $configurationFile = null)
     {
         /*
          * Note: payment information is placed in this class instead of the payment step because I wanted to make
@@ -24,7 +25,7 @@ class PaymentInformation extends AbstractConfigurableElement
         $this->creditCardNumber = '4111111111111111';
         $this->expiryDate = '01/' . date('', time() + (60 * 60 * 24 * 365 * 5));  // January plus 5 years
         $this->cvv = '123';
-        parent::__construct($configurationFile);
+        parent::__construct($translator, $configurationFile);
     }
 
     /**

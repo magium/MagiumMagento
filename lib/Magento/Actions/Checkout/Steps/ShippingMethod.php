@@ -5,7 +5,7 @@ namespace Magium\Magento\Actions\Checkout\Steps;
 use Facebook\WebDriver\WebDriverExpectedCondition;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Checkout\ShippingMethods\ShippingMethodInterface;
-use Magium\Magento\Themes\OnePageCheckout\ThemeConfiguration;
+use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class ShippingMethod implements StepInterface
@@ -20,7 +20,7 @@ class ShippingMethod implements StepInterface
 
     public function __construct(
         WebDriver                   $webdriver,
-        ThemeConfiguration          $theme,
+        AbstractThemeConfiguration          $theme,
         AbstractMagentoTestCase     $testCase,
         ShippingMethodInterface     $shippingMethod
     ) {
