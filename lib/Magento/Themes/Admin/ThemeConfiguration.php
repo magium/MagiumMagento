@@ -15,16 +15,16 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     protected $loginSubmitButton            = '//input[@type="submit" and @value="{{Login}}"]';
     
     protected $navigationBaseXPathSelector          = '//ul[@id="nav"]';
-    protected $navigationChildXPathSelector1         = 'li/descendant::span[.="%s"]';
-    protected $navigationChildXPathSelector         = 'li[contains(concat(" ",normalize-space(@class)," ")," level%d ")]/a[.="%s"]/..';
+//    protected $navigationChildXPathSelector1         = 'li/descendant::span[.="{{%s}}"]';
+    protected $navigationChildXPathSelector         = 'li[contains(concat(" ",normalize-space(@class)," ")," level%d ")]/a[.="{{%s}}"]/..';
 
     protected $adminPopupMessageContainerXpath         = '//*[@id="message-popup-window"]';
     protected $adminPopupMessageCloseButtonXpath        = '//*[@id="message-popup-window"]/descendant::*[@title="close"]';
 
-    protected $systemConfigTabsXpath                = '//ul[@id="system_config_tabs"]/descendant::a[contains(concat(" ",normalize-space(.)," ")," %s ")]';
-    protected $systemConfigSectionToggleXpath             = '//form[@id="config_edit_form"]/descendant::div[contains(concat(" ",normalize-space(@class)," ")," section-config ")]/descendant::a[.="%s"]';
-    protected $systemConfigSectionDisplayCheckXpath            = '//legend[.="%s"]/ancestor::fieldset';
-    protected $systemConfigToggleEnableXpath            = '//legend[.="%s"]/../descendant::td[concat(" ",normalize-space(.)," ") = " {{Enabled}} "]/../td/descendant::select/option[@value="%d"]';
+    protected $systemConfigTabsXpath                = '//ul[@id="system_config_tabs"]/descendant::a[concat(" ",normalize-space(.)," ") = " {{%s}} "]';
+    protected $systemConfigSectionToggleXpath             = '//form[@id="config_edit_form"]/descendant::div[contains(concat(" ",normalize-space(@class)," ")," section-config ")]/descendant::a[.="{{%s}}"]';
+    protected $systemConfigSectionDisplayCheckXpath            = '//legend[.="{{%s}}"]/ancestor::fieldset';
+    protected $systemConfigToggleEnableXpath            = '//legend[.="{{%s}}"]/../descendant::td[concat(" ",normalize-space(.)," ") = " {{Enabled}} "]/../td/descendant::select/option[@value="%d"]';
 
     protected $systemConfigurationSaveButtonXpath       = '//div[@class="main-col-inner"]/div[@class="content-header"]/descendant::button[@title="{{Save Config}}"]';
 
@@ -32,7 +32,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     protected $testLoggedInAtBaseUrl                     = '//a[@class="active"]/span[.="{{Dashboard}}"]';
 
-    protected $tableButtonXpath                         = '//table[@class="actions"]/descendant::span[.="%s"]';
+    protected $tableButtonXpath                         = '//table[@class="actions"]/descendant::span[.="{{%s}}"]';
 
     protected $selectOrderXpath                         = '//td[concat(" ",normalize-space(.)," ") = " %s "]/../td/a[.="{{View}}"]';
 
@@ -87,9 +87,10 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     /**
      * @return string
      */
-    public function getNavigationChildXPathSelector()
+    public function getNavigationChildXPathSelector($level, $text)
     {
-        return $this->translate($this->navigationChildXPathSelector);
+        $return = sprintf($this->navigationChildXPathSelector, $level, $text);
+        return $this->translate($return);
     }
 
     /**
@@ -113,17 +114,19 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     /**
      * @return string
      */
-    public function getSelectOrderXpath()
+    public function getSelectOrderXpath($order)
     {
-        return $this->translate($this->selectOrderXpath);
+        $return = sprintf($this->selectOrderXpath, $order);
+        return $this->translate($return);
     }
 
     /**
      * @return string
      */
-    public function getTableButtonXpath()
+    public function getTableButtonXpath($buttonValue)
     {
-        return $this->translate($this->tableButtonXpath);
+        $return = sprintf($this->tableButtonXpath, $buttonValue);
+        return $this->translate($return);
     }
 
 
@@ -157,42 +160,39 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     /**
      * @return string
      */
-    public function getSystemConfigSectionToggleXpath()
+    public function getSystemConfigSectionToggleXpath($section)
     {
-        return $this->translate($this->systemConfigSectionToggleXpath);
+        $return = sprintf($this->systemConfigSectionToggleXpath, $section);
+        return $this->translate($return);
     }
 
     /**
      * @return string
      */
-    public function getSystemConfigSectionDisplayCheckXpath()
+    public function getSystemConfigSectionDisplayCheckXpath($section)
     {
-        return $this->translate($this->systemConfigSectionDisplayCheckXpath);
+        $return = sprintf($this->systemConfigSectionDisplayCheckXpath, $section);
+        return $this->translate($return);
     }
 
     /**
      * @return string
      */
-    public function getSystemConfigToggleEnableXpath()
+    public function getSystemConfigToggleEnableXpath($section, $option)
     {
-        return $this->translate($this->systemConfigToggleEnableXpath);
+        $return = sprintf($this->systemConfigToggleEnableXpath, $section, $option);
+        return $this->translate($return);
     }
 
     /**
      * @return string
      */
-    public function getSystemConfigTabsXpath()
+    public function getSystemConfigTabsXpath($tabName)
     {
-        return $this->translate($this->systemConfigTabsXpath);
+        $return = sprintf($this->systemConfigTabsXpath, $tabName);
+        return $this->translate($return);
     }
 
-    /**
-     * @return string
-     */
-    public function getSystemConfigSectionXpath()
-    {
-        return $this->translate($this->systemConfigSectionXpath);
-    }
 
     public function getAdminPopupMessageContainerXpath()
     {

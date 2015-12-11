@@ -32,15 +32,13 @@ class Account
 
     public function navigateTo($section, $header = null)
     {
-        $xpath = $this->themeConfiguration->getAccountNavigationXpath();
-        $sectionSelector = sprintf($xpath, $section);
-        $element = $this->webDriver->byXpath($sectionSelector);
+        $xpath = $this->themeConfiguration->getAccountNavigationXpath($section);
+        $element = $this->webDriver->byXpath($xpath);
         $element->click();
 
         if ($header !== null) {
-            $xpath = $this->themeConfiguration->getAccountSectionHeaderXpath();
-            $headerSelector = sprintf($xpath, $header);
-            $this->webDriver->wait()->until(ExpectedCondition::elementExists($headerSelector, WebDriver::BY_XPATH));
+            $xpath = $this->themeConfiguration->getAccountSectionHeaderXpath($header);
+            $this->webDriver->wait()->until(ExpectedCondition::elementExists($xpath, WebDriver::BY_XPATH));
         }
     }
 

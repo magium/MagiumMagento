@@ -242,9 +242,10 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
         return $this->translate($this->navigationBaseXPathSelector);
     }
     
-    public function getNavigationChildXPathSelector()
+    public function getNavigationChildXPathSelector($level, $text)
     {
-        return $this->translate($this->navigationChildXPathSelector);
+        $return = sprintf($this->navigationChildXPathSelector, $level, $text);
+        return $this->translate($return);
     }
     
     public function getNavigationPathToProductCategory()

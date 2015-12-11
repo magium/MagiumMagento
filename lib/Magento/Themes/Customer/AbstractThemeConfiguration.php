@@ -47,17 +47,19 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement
     /**
      * @return string
      */
-    public function getAccountNavigationXpath()
+    public function getAccountNavigationXpath($section)
     {
-        return $this->translate($this->accountNavigationXpath);
+        $return = sprintf($this->accountNavigationXpath, $section);
+        return $this->translate($return);
     }
 
     /**
      * @return string
      */
-    public function getAccountSectionHeaderXpath()
+    public function getAccountSectionHeaderXpath($header)
     {
-        return $this->translate($this->accountSectionHeaderXpath);
+        $return = sprintf($this->accountSectionHeaderXpath, $header);
+        return $this->translate($return);
     }
 
     /**
@@ -71,9 +73,10 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement
     /**
      * @return string
      */
-    public function getViewOrderLinkXpath()
+    public function getViewOrderLinkXpath($order)
     {
-        return $this->translate($this->viewOrderLinkXpath);
+        $return = sprintf($this->viewOrderLinkXpath, $order);
+        return $this->translate($return);
     }
 
 

@@ -60,7 +60,7 @@ class OrderNavigator
         $this->testCase->sleep('100ms');
         $this->waitForLoadingMask->wait();
 
-        $selectXpath = sprintf($this->themeConfiguration->getSelectOrderXpath(), $orderId);
+        $selectXpath = $this->themeConfiguration->getSelectOrderXpath($orderId);
 
         $this->testCase->assertElementDisplayed($selectXpath, WebDriver::BY_XPATH);
         $element = $this->webDriver->byXpath($selectXpath);

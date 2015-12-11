@@ -48,12 +48,12 @@ class Enabler
 
     protected function navigateToSystemConfiguration($setting)
     {
-        $tabDisplayXpath = sprintf($this->adminThemeConfiguration->getSystemConfigTabsXpath(), $this->tab);
+        $tabDisplayXpath = $this->adminThemeConfiguration->getSystemConfigTabsXpath($this->tab);
         if (!$this->webDriver->elementDisplayed($tabDisplayXpath, AbstractTestCase::BY_XPATH)) {
             $this->adminMenuNavigator->navigateTo('System/Configuration');
         }
 
-        $sectionDisplayXpath = sprintf($this->adminThemeConfiguration->getSystemConfigSectionDisplayCheckXpath(), $this->section);
+        $sectionDisplayXpath = $this->adminThemeConfiguration->getSystemConfigSectionDisplayCheckXpath($this->section);
         if (!$this->webDriver->elementDisplayed($sectionDisplayXpath, AbstractTestCase::BY_XPATH)) {
             $this->systemConfigurationNavigator->navigateTo($setting);
         }
@@ -64,7 +64,7 @@ class Enabler
         // @TODO Note that much of this functionality may end up being moved to a more general settings modification class
         $this->setting($setting);
         $this->navigateToSystemConfiguration($setting);
-        $settingXpath = sprintf($this->adminThemeConfiguration->getSystemConfigToggleEnableXpath(), $this->section, 1);
+        $settingXpath = $this->adminThemeConfiguration->getSystemConfigToggleEnableXpath($this->section, 1);
         $element = $this->webDriver->byXpath($settingXpath);
         if (!$element->getAttribute('selected')) {
             $element->click();
@@ -80,7 +80,7 @@ class Enabler
         // @TODO Note that much of this functionality may end up being moved to a more general settings modification class
         $this->setting($setting);
         $this->navigateToSystemConfiguration($setting);
-        $settingXpath = sprintf($this->adminThemeConfiguration->getSystemConfigToggleEnableXpath(), $this->section, 0);
+        $settingXpath = $this->adminThemeConfiguration->getSystemConfigToggleEnableXpath($this->section, 0);
         $element = $this->webDriver->byXpath($settingXpath);
         if (!$element->getAttribute('selected')) {
             $element->click();

@@ -9,6 +9,6 @@ interface NavigableThemeInterface extends ThemeConfigurationInterface {
 
     public function getNavigationBaseXPathSelector();
 
-    public function getNavigationChildXPathSelector();
+    public function getNavigationChildXPathSelector($level, $text);
 
 }

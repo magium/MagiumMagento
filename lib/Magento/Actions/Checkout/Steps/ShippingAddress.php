@@ -2,6 +2,7 @@
 
 namespace Magium\Magento\Actions\Checkout\Steps;
 
+use Facebook\WebDriver\WebDriverExpectedCondition;
 use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Identities\Customer;
@@ -41,10 +42,10 @@ class ShippingAddress implements StepInterface
         $this->testCase->assertElementExists($this->theme->getShippingAddressXpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getShippingAddress2Xpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getShippingCityXpath(), WebDriver::BY_XPATH);
-        $regionXpath = sprintf($this->theme->getShippingRegionIdXpath(), $this->customerIdentity->getShippingRegionId());
+        $regionXpath = $this->theme->getShippingRegionIdXpath($this->customerIdentity->getShippingRegionId());
         $this->testCase->assertElementExists($regionXpath, WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getShippingPostCodeXpath(), WebDriver::BY_XPATH);
-        $countryXpath = sprintf($this->theme->getShippingCountryIdXpath(), $this->customerIdentity->getShippingCountryId());
+        $countryXpath = $this->theme->getShippingCountryIdXpath($this->customerIdentity->getShippingCountryId());
         $this->testCase->assertElementExists($countryXpath, WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getShippingTelephoneXpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getShippingFaxXpath(), WebDriver::BY_XPATH);
@@ -56,10 +57,10 @@ class ShippingAddress implements StepInterface
         $this->testCase->byXpath($this->theme->getShippingAddressXpath())->sendKeys($this->customerIdentity->getShippingAddress());
         $this->testCase->byXpath($this->theme->getShippingAddress2Xpath())->sendKeys($this->customerIdentity->getShippingAddress2());
         $this->testCase->byXpath($this->theme->getShippingCityXpath())->sendKeys($this->customerIdentity->getShippingCity());
-        $regionXpath = sprintf($this->theme->getShippingRegionIdXpath(), $this->customerIdentity->getShippingRegionId());
+        $regionXpath = $this->theme->getShippingRegionIdXpath($this->customerIdentity->getShippingRegionId());
         $this->testCase->byXpath($regionXpath)->click();
         $this->testCase->byXpath($this->theme->getShippingPostCodeXpath())->sendKeys($this->customerIdentity->getShippingPostCode());
-        $countryXpath = sprintf($this->theme->getShippingCountryIdXpath(), $this->customerIdentity->getShippingCountryId());
+        $countryXpath = $this->theme->getShippingCountryIdXpath($this->customerIdentity->getShippingCountryId());
         $this->testCase->byXpath($countryXpath)->click();
         $this->testCase->byXpath($this->theme->getShippingTelephoneXpath())->sendKeys($this->customerIdentity->getShippingTelephone());
         $this->testCase->byXpath($this->theme->getShippingFaxXpath())->sendKeys($this->customerIdentity->getShippingFax());

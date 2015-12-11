@@ -31,9 +31,9 @@ class SystemConfigurationNavigator
         if (count($instructions) !== 2) {
             throw new InvalidInstructionException('System Configuration instructions need to be in the format of "Tab/Section"');
         }
-        $tabXpath = sprintf($this->themeConfiguration->getSystemConfigTabsXpath(), $instructions[0]);
-        $sectionDisplayXpath = sprintf($this->themeConfiguration->getSystemConfigSectionDisplayCheckXpath(), $instructions[1]);
-        $sectionToggleXpath = sprintf($this->themeConfiguration->getSystemConfigSectionToggleXpath(), $instructions[1]);
+        $tabXpath = $this->themeConfiguration->getSystemConfigTabsXpath($instructions[0]);
+        $sectionDisplayXpath = $this->themeConfiguration->getSystemConfigSectionDisplayCheckXpath($instructions[1]);
+        $sectionToggleXpath = $this->themeConfiguration->getSystemConfigSectionToggleXpath($instructions[1]);
 
         $this->testCase->assertElementExists($tabXpath, AbstractTestCase::BY_XPATH);
         if (!$this->webdriver->elementDisplayed($sectionDisplayXpath, WebDriver::BY_XPATH)) {

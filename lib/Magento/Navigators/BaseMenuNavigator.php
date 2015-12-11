@@ -28,9 +28,8 @@ class BaseMenuNavigator
         $level = 0;
         
         foreach ($paths as $p) {
-            $childXpath = $this->themeConfiguration->getNavigationChildXPathSelector();
-            $xpath .= '/descendant::' . sprintf($childXpath, $level++, $p);
-            
+            $xpath = '/descendant::' . $this->themeConfiguration->getNavigationChildXPathSelector($level++, $p);
+
             $element = $this->webdriver->byXpath($xpath . '/a');
             $this->webdriver->getMouse()->mouseMove($element->getCoordinates());
             usleep(500000); // Give the UI some time to update

@@ -67,15 +67,15 @@ class CartSummary extends AbstractExtractor implements StepInterface
     {
         $productIterator = new ProductIterator();
         $this->values[self::VALUE_PRODUCTS] = $productIterator;
-        $count = 0;
+        $count = 1;
 
-        $testProductXpath = $this->theme->getCartSummaryCheckoutProductLoopNameXpath();
+        $testProductXpath = $this->theme->getCartSummaryCheckoutProductLoopNameXpath($count);
 
-        while ($this->webDriver->elementExists(sprintf($testProductXpath, ++$count), WebDriver::BY_XPATH)) {
-            $nameElement = $this->webDriver->byXpath(sprintf($this->theme->getCartSummaryCheckoutProductLoopNameXpath(), $count));
-            $priceElement = $this->webDriver->byXpath(sprintf($this->theme->getCartSummaryCheckoutProductLoopPriceXpath(), $count));
-            $qtyElement = $this->webDriver->byXpath(sprintf($this->theme->getCartSummaryCheckoutProductLoopQtyXpath(), $count));
-            $subtotalElement = $this->webDriver->byXpath(sprintf($this->theme->getCartSummaryCheckoutProductLoopSubtotalXpath(), $count));
+        while ($this->webDriver->elementExists($testProductXpath, WebDriver::BY_XPATH)) {
+            $nameElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopNameXpath($count));
+            $priceElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopPriceXpath($count));
+            $qtyElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopQtyXpath($count));
+            $subtotalElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopSubtotalXpath($count));
 
             $name = trim($nameElement->getText());
             $price = trim($priceElement->getText()); // We do not extract the number value so currency checks can be done
@@ -84,6 +84,7 @@ class CartSummary extends AbstractExtractor implements StepInterface
 
             $product = new Product($name, $qty, $price, $subtotal);
             $productIterator->addProduct($product);
+            $testProductXpath = $this->theme->getCartSummaryCheckoutProductLoopNameXpath(++$count);
         }
 
         $this->values[self::VALUE_GRAND_TOTAL]
