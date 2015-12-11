@@ -69,7 +69,10 @@ class Login
         if ($password === null) {
             $password = $this->adminIdentity->getPassword();
         }
-        
+
+        $usernameElement->clear();
+        $passwordElement->clear();
+
         $usernameElement->sendKeys($username);
         $passwordElement->sendKeys($password);
         
