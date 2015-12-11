@@ -35,8 +35,10 @@ abstract class AbstractCheckout
     public function execute()
     {
         foreach ($this->steps as $step) {
-            $continue = $step->execute();
-            if (!$continue) return;
+            if ($step instanceof StepInterface) {
+                $continue = $step->execute();
+                if (!$continue) return;
+            }
         }
     }
     

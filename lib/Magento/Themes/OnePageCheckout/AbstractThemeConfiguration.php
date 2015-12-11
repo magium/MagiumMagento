@@ -353,9 +353,10 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     /**
      * @return string
      */
-    public function getShippingRegionIdXpath()
+    public function getShippingRegionIdXpath($region)
     {
-        return $this->translate($this->shippingRegionIdXpath);
+        $return = sprintf($this->shippingRegionIdXpath, $region);
+        return $this->translate($return);
     }
 
     /**
@@ -385,9 +386,10 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     /**
      * @return string
      */
-    public function getShippingCountryIdXpath()
+    public function getShippingCountryIdXpath($country)
     {
-        return $this->translate($this->shippingCountryIdXpath);
+        $return = sprintf($this->shippingCountryIdXpath, $country);
+        return $this->translate($return);
     }
 
     /**
@@ -536,9 +538,10 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     /**
      * @return string
      */
-    public function getBillingRegionIdXpath()
+    public function getBillingRegionIdXpath($region)
     {
-        return $this->translate($this->billingRegionIdXpath);
+        $return = sprintf($this->billingRegionIdXpath, $region);
+        return $this->translate($return);
     }
 
     /**
@@ -552,9 +555,10 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     /**
      * @return string
      */
-    public function getBillingCountryIdXpath()
+    public function getBillingCountryIdXpath($country)
     {
-        return $this->translate($this->billingCountryIdXpath);
+        $return = sprintf($this->billingCountryIdXpath, $country);
+        return $this->translate($return);
     }
 
     /**
@@ -618,33 +622,37 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     /**
      * @return string
      */
-    public function getCartSummaryCheckoutProductLoopPriceXpath()
+    public function getCartSummaryCheckoutProductLoopPriceXpath($itemCount)
     {
-        return $this->translate($this->cartSummaryCheckoutProductLoopPriceXpath);
+        $return = sprintf($this->cartSummaryCheckoutProductLoopPriceXpath , $itemCount);
+        return $this->translate($return);
     }
 
     /**
      * @return string
      */
-    public function getCartSummaryCheckoutProductLoopNameXpath()
+    public function getCartSummaryCheckoutProductLoopNameXpath($itemCount)
     {
-        return $this->translate($this->cartSummaryCheckoutProductLoopNameXpath);
+        $return = sprintf($this->cartSummaryCheckoutProductLoopNameXpath , $itemCount);
+        return $this->translate($return);
     }
 
     /**
      * @return string
      */
-    public function getCartSummaryCheckoutProductLoopQtyXpath()
+    public function getCartSummaryCheckoutProductLoopQtyXpath($itemCount)
     {
-        return $this->translate($this->cartSummaryCheckoutProductLoopQtyXpath);
+        $return = sprintf($this->cartSummaryCheckoutProductLoopQtyXpath , $itemCount);
+        return $this->translate($return);
     }
 
     /**
      * @return string
      */
-    public function getCartSummaryCheckoutProductLoopSubtotalXpath()
+    public function getCartSummaryCheckoutProductLoopSubtotalXpath($itemCount)
     {
-        return $this->translate($this->cartSummaryCheckoutProductLoopSubtotalXpath);
+        $return = sprintf($this->cartSummaryCheckoutProductLoopSubtotalXpath , $itemCount);
+        return $this->translate($return);
     }
 
 }

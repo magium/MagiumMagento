@@ -2,6 +2,7 @@
 
 namespace Magium\Magento\Actions\Customer;
 
+use Facebook\WebDriver\Exception\NoSuchElementException;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Identities\Customer;
 use Magium\Magento\Themes\Customer\AbstractThemeConfiguration;
@@ -57,7 +58,7 @@ class Login
                     return;
                 }
                 // If we're logged in we don't need to do the login process.  Continue along.
-            } catch (\Facebook\WebDriver\Exception\NoSuchElementException $e ) {
+            } catch (NoSuchElementException $e ) {
                 return;
             }
         }
