@@ -11,7 +11,7 @@ class AdminNavigationTest extends AbstractMagentoTestCase
     {
 
         $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\AdminMenuNavigator')->navigateTo('System/Configuration');
+        $this->getNavigator('Admin\AdminMenu')->navigateTo('System/Configuration');
         self::assertEquals('Configuration / System / Magento Admin', $this->webdriver->getTitle());
     }
 }

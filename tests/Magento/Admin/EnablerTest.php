@@ -7,7 +7,7 @@ use Magium\Magento\AbstractMagentoTestCase;
 class SaveSystemConfigurationSettingTest extends AbstractMagentoTestCase
 {
 
-    public function testLoginAdmin()
+    public function testEnabler()
     {
         $adminThemeConfiguration = $this->getTheme('Admin\ThemeConfiguration');
 
@@ -34,6 +34,8 @@ class SaveSystemConfigurationSettingTest extends AbstractMagentoTestCase
         self::assertNotNull($element->getAttribute('selected'));
 
     }
+
+
 
 
     

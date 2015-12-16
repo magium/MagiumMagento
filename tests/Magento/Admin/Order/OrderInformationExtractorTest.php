@@ -23,7 +23,7 @@ class OrderInformationExtractorTest extends AbstractMagentoTestCase
 
         $orderId = $this->getExtractor('Checkout\OrderId')->getOrderId();
         $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\OrderNavigator')->navigateTo($orderId);
+        $this->getNavigator('Admin\Order')->navigateTo($orderId);
 
         $extractor = $this->getExtractor('Admin\OrderInformationExtractor');
         $extractor->extract();

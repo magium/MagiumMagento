@@ -4,8 +4,8 @@ namespace Magium\Magento\Actions\Admin\Configuration;
 
 use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Navigators\Admin\AdminMenuNavigator;
-use Magium\Magento\Navigators\Admin\SystemConfigurationNavigator;
+use Magium\Magento\Navigators\Admin\AdminMenu;
+use Magium\Magento\Navigators\Admin\SystemConfiguration;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
@@ -24,8 +24,8 @@ class Enabler
 
     public function __construct(
         WebDriver                       $webDriver,
-        AdminMenuNavigator              $adminMenuNavigator,
-        SystemConfigurationNavigator    $systemConfigurationNavigator,
+        AdminMenu              $adminMenuNavigator,
+        SystemConfiguration     $systemConfigurationNavigator,
         ThemeConfiguration         $adminThemeConfiguration,
         AbstractMagentoTestCase         $testCase,
         Save                            $save

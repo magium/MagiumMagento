@@ -10,11 +10,11 @@ class SystemConfigurationNavigationTest extends AbstractMagentoTestCase
     public function testConfigPanelOpened()
     {
         $this->getAction('Admin\Login\Login')->login();
-        $adminMenuNavigator = $this->getNavigator('Admin\AdminMenuNavigator');
+        $adminMenuNavigator = $this->getNavigator('Admin\AdminMenu');
         $adminMenuNavigator->navigateTo('System/Configuration');
 
-        $navigator = $this->getNavigator('Admin\SystemConfigurationNavigator');
-        /** @var $navigator \Magium\Magento\Navigators\Admin\SystemConfigurationNavigator */
+        $navigator = $this->getNavigator('Admin\SystemConfiguration');
+        /** @var $navigator \Magium\Magento\Navigators\Admin\SystemConfiguration */
         $navigator->navigateTo('Payment Methods/Saved CC');
         $this->assertElementDisplayed('payment_ccsave_active');
 
@@ -26,11 +26,11 @@ class SystemConfigurationNavigationTest extends AbstractMagentoTestCase
     public function testConfigPanelNotOpenedForExistingOpenPanel()
     {
         $this->getAction('Admin\Login\Login')->login();
-        $adminMenuNavigator = $this->getNavigator('Admin\AdminMenuNavigator');
+        $adminMenuNavigator = $this->getNavigator('Admin\AdminMenu');
         $adminMenuNavigator->navigateTo('System/Configuration');
 
-        $navigator = $this->getNavigator('Admin\SystemConfigurationNavigator');
-        /** @var $navigator \Magium\Magento\Navigators\Admin\SystemConfigurationNavigator */
+        $navigator = $this->getNavigator('Admin\SystemConfiguration');
+        /** @var $navigator \Magium\Magento\Navigators\Admin\SystemConfiguration */
         $navigator->navigateTo('Payment Methods/Saved CC');
         $this->assertElementDisplayed('payment_ccsave_active');
         $testElement = $this->byId('payment_ccsave_active');
@@ -59,11 +59,11 @@ class SystemConfigurationNavigationTest extends AbstractMagentoTestCase
          */
         $this->setExpectedException('Facebook\WebDriver\Exception\StaleElementReferenceException');
         $this->getAction('Admin\Login\Login')->login();
-        $adminMenuNavigator = $this->getNavigator('Admin\AdminMenuNavigator');
+        $adminMenuNavigator = $this->getNavigator('Admin\AdminMenu');
         $adminMenuNavigator->navigateTo('System/Configuration');
 
-        $navigator = $this->getNavigator('Admin\SystemConfigurationNavigator');
-        /** @var $navigator \Magium\Magento\Navigators\Admin\SystemConfigurationNavigator */
+        $navigator = $this->getNavigator('Admin\SystemConfiguration');
+        /** @var $navigator \Magium\Magento\Navigators\Admin\SystemConfiguration */
         $navigator->navigateTo('Payment Methods/Saved CC');
         $this->assertElementDisplayed('payment_ccsave_active');
         $testElement = $this->byId('payment_ccsave_active');

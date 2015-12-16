@@ -11,7 +11,7 @@ use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
-class OrderNavigator
+class Order
 {
 
     protected $webDriver;
@@ -27,7 +27,7 @@ class OrderNavigator
         WebDriver                   $webDriver,
         ThemeConfiguration     $themeConfiguration,
         Login                       $adminLogin,
-        AdminMenuNavigator          $adminMenuNavigator,
+        AdminMenu          $adminMenuNavigator,
         ClearTableFilters           $clearTableFilters,
         ClickButton                 $clickButton,
         WaitForLoadingMask          $waitForLoadingMask,

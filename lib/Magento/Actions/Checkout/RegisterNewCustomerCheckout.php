@@ -13,8 +13,8 @@ use Magium\Magento\Actions\Checkout\Steps\ShippingAddress;
 use Magium\Magento\Actions\Checkout\Steps\ShippingMethod;
 use Magium\Magento\Extractors\Checkout\CartSummary;
 use Magium\Magento\Extractors\Checkout\OrderId;
-use Magium\Magento\Navigators\Checkout\CheckoutNavigator;
-use Magium\Magento\Navigators\Checkout\CheckoutStartNavigator;
+use Magium\Magento\Navigators\Checkout\Checkout;
+use Magium\Magento\Navigators\Checkout\CheckoutStart;
 use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 use Magium\Magento\Themes\OnePageCheckout\ThemeConfiguration as OnePageCheckoutTheme;
 
@@ -22,7 +22,7 @@ class RegisterNewCustomerCheckout extends AbstractCheckout
 {
 
     public function __construct(
-        CheckoutStartNavigator  $navigator,
+        CheckoutStart             $navigator,
         AbstractThemeConfiguration    $theme,
         SelectRegisterNewCustomerCheckout           $registerNewCustomerCheckout,
         BillingAddress  $billingAddress,

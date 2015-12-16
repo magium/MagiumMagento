@@ -8,7 +8,7 @@ use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
-class SystemConfigurationNavigator
+class SystemConfiguration
 {
     
     protected $webdriver;

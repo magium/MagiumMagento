@@ -26,7 +26,7 @@ class NavigateToOrderTest extends AbstractMagentoTestCase
 
 
         $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\OrderNavigator')->navigateTo($orderId);
+        $this->getNavigator('Admin\Order')->navigateTo($orderId);
 
         $this->assertPageHasText($orderId);
 
