@@ -7,6 +7,7 @@ use Magium\WebDriver\WebDriver;
 
 class NavigateToCheckout implements StepInterface
 {
+    const ACTION = 'Checkout\Steps\NavigateToCheckout';
     
     protected $webdriver;
     protected $theme;

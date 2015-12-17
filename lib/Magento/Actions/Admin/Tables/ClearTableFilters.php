@@ -8,6 +8,8 @@ use Magium\WebDriver\WebDriver;
 class ClearTableFilters
     {
 
+    const ACTION = 'Admin\Tables\ClearTableFilters';
+
     protected $webDriver;
 
     public function __construct(

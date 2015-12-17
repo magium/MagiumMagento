@@ -2,8 +2,11 @@
 
 namespace Tests\Magento\Admin;
 
-use Facebook\WebDriver\WebDriverSelect;
 use Magium\Magento\AbstractMagentoTestCase;
+use Magium\Magento\Actions\Admin\Configuration\SettingModifier;
+use Magium\Magento\Actions\Admin\Login\Login;
+use Magium\Magento\Navigators\Admin\AdminMenu;
+use Magium\Magento\Navigators\Admin\SystemConfiguration;
 use Magium\WebDriver\FastSelectElement;
 
 class SettingModifierTest extends AbstractMagentoTestCase
@@ -11,11 +14,11 @@ class SettingModifierTest extends AbstractMagentoTestCase
 
     public function testTextSettingModifierWithoutNavigation()
     {
-        $modifier = $this->getAction('Admin\Configuration\SettingModifier');
+        $modifier = $this->getAction(SettingModifier::ACTION);
         /** @var $modifier \Magium\Magento\Actions\Admin\Configuration\SettingModifier */
 
-        $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\AdminMenu')->navigateTo('System/Configuration');
+        $this->getAction(Login::ACTION)->login();
+        $this->getNavigator(AdminMenu::NAVIGATOR)->navigateTo('System/Configuration');
         $this->getNavigator('Admin\SystemConfiguration')->navigateTo('General/Store Information');
 
         $modifier->set('general_store_information_name', 'Test');
@@ -32,17 +35,17 @@ class SettingModifierTest extends AbstractMagentoTestCase
 
     public function testTextSettingModifierSavedWithoutNavigation()
     {
-        $modifier = $this->getAction('Admin\Configuration\SettingModifier');
+        $modifier = $this->getAction(SettingModifier::ACTION);
         /** @var $modifier \Magium\Magento\Actions\Admin\Configuration\SettingModifier */
 
-        $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\AdminMenu')->navigateTo('System/Configuration');
-        $this->getNavigator('Admin\SystemConfiguration')->navigateTo('General/Store Information');
+        $this->getAction(Login::ACTION)->login();
+        $this->getNavigator(AdminMenu::NAVIGATOR)->navigateTo('System/Configuration');
+        $this->getNavigator(SystemConfiguration::NAVIGATOR)->navigateTo('General/Store Information');
 
         $modifier->set('general_store_information_name', 'Test', true); // True saves it
 
-        $this->getNavigator('Admin\SystemConfiguration')->navigateTo('Design/Header');
-        $this->getNavigator('Admin\SystemConfiguration')->navigateTo('General/Store Information');
+        $this->getNavigator(SystemConfiguration::NAVIGATOR)->navigateTo('Design/Header');
+        $this->getNavigator(SystemConfiguration::NAVIGATOR)->navigateTo('General/Store Information');
 
         self::assertEquals('Test', $this->webdriver->byId('general_store_information_name')->getAttribute('value'));
 
@@ -52,12 +55,12 @@ class SettingModifierTest extends AbstractMagentoTestCase
 
     public function testSetSettingUsingNameInsteadOfId()
     {
-        $modifier = $this->getAction('Admin\Configuration\SettingModifier');
+        $modifier = $this->getAction(SettingModifier::ACTION);
         /** @var $modifier \Magium\Magento\Actions\Admin\Configuration\SettingModifier */
 
-        $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\AdminMenu')->navigateTo('System/Configuration');
-        $this->getNavigator('Admin\SystemConfiguration')->navigateTo('General/Store Information');
+        $this->getAction(Login::ACTION)->login();
+        $this->getNavigator(AdminMenu::NAVIGATOR)->navigateTo('System/Configuration');
+        $this->getNavigator(SystemConfiguration::NAVIGATOR)->navigateTo('General/Store Information');
 
         $modifier->set('label=Store Name', 'Test');
 
@@ -72,11 +75,11 @@ class SettingModifierTest extends AbstractMagentoTestCase
 
     public function testTextSettingModifierWithNavigation()
     {
-        $modifier = $this->getAction('Admin\Configuration\SettingModifier');
+        $modifier = $this->getAction(SettingModifier::ACTION);
         /** @var $modifier \Magium\Magento\Actions\Admin\Configuration\SettingModifier */
 
-        $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\AdminMenu')->navigateTo('System/Configuration');
+        $this->getAction(Login::ACTION)->login();
+        $this->getNavigator(AdminMenu::NAVIGATOR)->navigateTo('System/Configuration');
 
         $modifier->set('General/Store Information::general_store_information_name', 'Test');
 
@@ -92,11 +95,11 @@ class SettingModifierTest extends AbstractMagentoTestCase
 
     public function testSetSettingUsingNameInsteadOfIdWithNavigation()
     {
-        $modifier = $this->getAction('Admin\Configuration\SettingModifier');
+        $modifier = $this->getAction(SettingModifier::ACTION);
         /** @var $modifier \Magium\Magento\Actions\Admin\Configuration\SettingModifier */
 
-        $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\AdminMenu')->navigateTo('System/Configuration');
+        $this->getAction(Login::ACTION)->login();
+        $this->getNavigator(AdminMenu::NAVIGATOR)->navigateTo('System/Configuration');
 
         $modifier->set('General/Store Information::label=Store Name', 'Test');
 
@@ -112,11 +115,11 @@ class SettingModifierTest extends AbstractMagentoTestCase
 
     public function testSetSelectSettingUsingValue()
     {
-        $modifier = $this->getAction('Admin\Configuration\SettingModifier');
+        $modifier = $this->getAction(SettingModifier::ACTION);
         /** @var $modifier \Magium\Magento\Actions\Admin\Configuration\SettingModifier */
 
-        $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\AdminMenu')->navigateTo('System/Configuration');
+        $this->getAction(Login::ACTION)->login();
+        $this->getNavigator(AdminMenu::NAVIGATOR)->navigateTo('System/Configuration');
 
         $modifier->set('general_store_information_merchant_country', 'AR');
 
@@ -131,28 +134,28 @@ class SettingModifierTest extends AbstractMagentoTestCase
 
     public function testSetSelectMultipleSettingUsingValueOnSingleReturnsLast()
     {
-        $modifier = $this->getAction('Admin\Configuration\SettingModifier');
+        $modifier = $this->getAction(SettingModifier::ACTION);
         /** @var $modifier \Magium\Magento\Actions\Admin\Configuration\SettingModifier */
 
-        $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\AdminMenu')->navigateTo('System/Configuration');
+        $this->getAction(Login::ACTION)->login();
+        $this->getNavigator(AdminMenu::NAVIGATOR)->navigateTo('System/Configuration');
 
         $modifier->set('general_store_information_merchant_country', ['CA', 'US']);
 
         $selectedOptions = (new FastSelectElement($this->webdriver, '//*[@id="general_store_information_merchant_country"]'))->getSelectedOptions();
 
         self::assertCount(1, $selectedOptions);
-        self::assertEquals('US', $selectedOptions[1]['value']);
+        self::assertEquals('US', $selectedOptions[0]['value']);
 
     }
 
     public function testSetSelectMultipleSettingUsingValue()
     {
-        $modifier = $this->getAction('Admin\Configuration\SettingModifier');
+        $modifier = $this->getAction(SettingModifier::ACTION);
         /** @var $modifier \Magium\Magento\Actions\Admin\Configuration\SettingModifier */
 
-        $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\AdminMenu')->navigateTo('System/Configuration');
+        $this->getAction(Login::ACTION)->login();
+        $this->getNavigator(AdminMenu::NAVIGATOR)->navigateTo('System/Configuration');
 
         $modifier->set('General/Countries Options::label=Allow Countries', ['CA', 'US']);
 
@@ -166,11 +169,11 @@ class SettingModifierTest extends AbstractMagentoTestCase
 
     public function testSetSelectSettingUsingLabel()
     {
-        $modifier = $this->getAction('Admin\Configuration\SettingModifier');
+        $modifier = $this->getAction(SettingModifier::ACTION);
         /** @var $modifier \Magium\Magento\Actions\Admin\Configuration\SettingModifier */
 
-        $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\AdminMenu')->navigateTo('System/Configuration');
+        $this->getAction(Login::ACTION)->login();
+        $this->getNavigator(AdminMenu::NAVIGATOR)->navigateTo('System/Configuration');
 
         $modifier->set('general_store_information_merchant_country', 'label=Argentina');
 

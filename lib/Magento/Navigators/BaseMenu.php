@@ -9,7 +9,7 @@ use Magium\Themes\ThemeConfigurationInterface;
 use Magium\WebDriver\WebDriver;
 class BaseMenu
 {
-    
+    const NAVIGATOR = 'BaseMenu';
     protected $webdriver;
     protected $themeConfiguration;
     

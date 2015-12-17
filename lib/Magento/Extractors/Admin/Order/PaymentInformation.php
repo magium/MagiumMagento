@@ -9,7 +9,7 @@ use Magium\WebDriver\WebDriver;
 
 class PaymentInformation extends AbstractExtractor
 {
-
+    const EXTRACTOR = 'Admin\Order\PaymentInformation';
     protected $paymentMethodInformation;
     protected $currency;
 

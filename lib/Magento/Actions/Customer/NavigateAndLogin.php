@@ -6,6 +6,7 @@ use Magium\Magento\Navigators\Customer\AccountHome as CustomerLogin;
 
 class NavigateAndLogin
 {
+    const ACTION = 'Customer\NavigateAndLogin';
 
     protected $login;
     protected $loginNavigator;

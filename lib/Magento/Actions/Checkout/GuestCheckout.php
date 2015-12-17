@@ -18,7 +18,7 @@ use Magium\Magento\Themes\OnePageCheckout\ThemeConfiguration as OnePageCheckoutT
 
 class GuestCheckout extends AbstractCheckout
 {
-
+    const ACTION = 'Checkout\GuestCheckout';
     public function __construct(
         CheckoutStart             $navigator,
         AbstractThemeConfiguration    $theme,

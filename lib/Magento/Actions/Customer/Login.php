@@ -11,6 +11,8 @@ use Magium\WebDriver\WebDriver;
 
 class Login
 {
+    const ACTION = 'Customer\Login';
+
     protected $webdriver;
     protected $theme;
     protected $testCase;

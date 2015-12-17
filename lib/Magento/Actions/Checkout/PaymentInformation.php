@@ -7,6 +7,7 @@ use Zend\I18n\Translator\Translator;
 
 class PaymentInformation extends AbstractConfigurableElement
 {
+    const ACTION = 'Checkout\PaymentInformation';
 
     protected $creditCardNumber;
     protected $expiryDate;

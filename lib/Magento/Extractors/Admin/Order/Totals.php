@@ -9,6 +9,7 @@ use Magium\WebDriver\WebDriver;
 
 class Totals extends AbstractExtractor
 {
+    const EXTRACTOR = 'Admin\Order\Totals';
     const VALUE_SUBTOTAL                = 'subtotal';
     const VALUE_SHIPPING_AND_HANDLING   = 'shipping-and-handling';
     const VALUE_TAX                     = 'tax';

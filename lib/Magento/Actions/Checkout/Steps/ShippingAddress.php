@@ -11,6 +11,7 @@ use Magium\WebDriver\WebDriver;
 
 class ShippingAddress implements StepInterface
 {
+    const ACTION = 'Checkout\Steps\ShippingAddress';
 
     protected $webdriver;
     protected $theme;

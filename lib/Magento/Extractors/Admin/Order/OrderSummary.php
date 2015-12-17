@@ -9,7 +9,7 @@ use Magium\WebDriver\WebDriver;
 
 class OrderSummary extends AbstractExtractor
 {
-
+    const EXTRACTOR = 'Admin\Order\OrderSummary';
     protected $orderDate;
     protected $orderStatus;
     protected $purchasedFrom;

@@ -10,7 +10,7 @@ use Magium\WebDriver\WebDriver;
 
 class FirstAvailable implements ShippingMethodInterface
 {
-
+    const ACTION = 'Checkout\ShippingMethods\FirstAvailable';
     protected $webDriver;
     protected $theme;
     protected $testCase;

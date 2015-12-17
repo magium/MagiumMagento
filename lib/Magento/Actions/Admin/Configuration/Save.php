@@ -10,6 +10,7 @@ use Magium\WebDriver\WebDriver;
 
 class Save
 {
+    const ACTION = 'Admin\Configuration\Save';
 
     protected $webDriver;
     protected $adminThemeConfiguration;

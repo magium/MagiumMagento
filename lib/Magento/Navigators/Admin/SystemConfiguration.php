@@ -11,7 +11,7 @@ use Magium\WebDriver\WebDriver;
 class SystemConfiguration
 {
 
-    const ACTION = 'Admin\SystemConfiguration';
+    const NAVIGATOR = 'Admin\SystemConfiguration';
     
     protected $webdriver;
     protected $themeConfiguration;

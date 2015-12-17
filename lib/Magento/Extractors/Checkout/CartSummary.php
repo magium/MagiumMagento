@@ -10,7 +10,7 @@ use Magium\WebDriver\WebDriver;
 
 class CartSummary extends AbstractExtractor implements StepInterface
 {
-
+    const EXTRACTOR = 'Checkout\CartSummary';
     /**
      * Redefined here has a code completion helper
      *

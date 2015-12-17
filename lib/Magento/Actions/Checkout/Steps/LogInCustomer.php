@@ -11,7 +11,8 @@ use Magium\WebDriver\WebDriver;
 
 class LogInCustomer implements StepInterface
 {
-    
+    const ACTION = 'Checkout\Steps\LogInCustomer';
+
     protected $webdriver;
     protected $theme;
     protected $testCase;

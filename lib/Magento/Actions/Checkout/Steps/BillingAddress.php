@@ -10,7 +10,8 @@ use Magium\WebDriver\WebDriver;
 
 class BillingAddress implements StepInterface
 {
-    
+    const ACTION = 'Checkout\Steps\BillingAddress';
+
     protected $webdriver;
     protected $theme;
     protected $customerIdentity;

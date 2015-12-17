@@ -11,6 +11,7 @@ use Magium\WebDriver\WebDriver;
 
 class Enabler
 {
+    const ACTION = 'Admin\Configuration\Enabler';
 
     protected $webDriver;
     protected $adminMenuNavigator;

@@ -2,9 +2,9 @@
 
 namespace Magium\Magento\Actions\Admin\Login;
 
-use Facebook\WebDriver\Exception\WebDriverException;
 use Magium\Commands\Open;
 use Magium\Magento\AbstractMagentoTestCase;
+use Magium\Magento\Extractors\Admin\Login\Messages;
 use Magium\Magento\Identities\Admin;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\Navigators\InstructionNavigator;
@@ -51,7 +51,7 @@ class Login
         } else {
             $this->webdriver->navigate()->to($this->theme->getBaseUrl());
             $title = $this->webdriver->getTitle();
-            if (strpos($title, 'Dashboard') !== false) {
+            if (strpos($title, $this->testCase->getTranslator()->translate('Dashboard')) !== false) {
                 return;
             }
         }
@@ -79,26 +79,10 @@ class Login
         $passwordElement->sendKeys($password);
         
         $submitElement->click();
-        $this->webdriver->wait(10)->until(ExpectedCondition::titleContains('Dashboard'));
+        $this->webdriver->wait(10)->until(ExpectedCondition::titleContains($this->testCase->getTranslator()->translate('Dashboard')));
 
-        $this->extractMessages();
+        $this->messages->extract();
 
     }
 
-
-    public function extractMessages()
-    {
-        try {
-            $element = $this->webdriver->byXpath($this->theme->getAdminPopupMessageContainerXpath());
-            $this->testCase->assertInstanceOf('Facebook\Webdriver\WebDriverElement', $element);
-            $this->messages->addMessage($element->getText());
-
-            $closeElement = $this->webdriver->byXpath($this->theme->getAdminPopupMessageCloseButtonXpath());
-            $this->testCase->assertInstanceOf('Facebook\Webdriver\WebDriverElement', $closeElement);
-            $closeElement->click();
-        } catch (WebDriverException $e) {
-            // Indicates that no popup messages were found when logging in.  Nothing needs to be done
-        }
-    }
-    
 }

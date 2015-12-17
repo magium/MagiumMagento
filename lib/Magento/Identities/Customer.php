@@ -7,6 +7,8 @@ use Magium\Util\EmailGenerator\GeneratorAware;
 
 class Customer extends AbstractEntity implements GeneratorAware
 {
+    const IDENTITY = 'Customer';
+
     protected $emailAddress          = 'test@example.com';
     protected $password              = 'password';
 

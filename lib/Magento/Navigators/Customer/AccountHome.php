@@ -7,7 +7,7 @@ use Magium\Navigators\InstructionNavigator;
 
 class AccountHome
 {
-
+    const NAVIGATOR = 'Customer\AccountHome';
     protected $theme;
     protected $instructionsNavigator;
 

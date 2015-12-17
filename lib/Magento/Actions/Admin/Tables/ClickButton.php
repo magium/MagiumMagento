@@ -10,6 +10,8 @@ use Magium\WebDriver\WebDriver;
 class ClickButton
 {
 
+    const ACTION = 'Admin\Tables\ClickButton';
+
     protected $webDriver;
     protected $theme;
     protected $testCase;

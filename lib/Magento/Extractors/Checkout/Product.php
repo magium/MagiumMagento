@@ -5,6 +5,7 @@ namespace Magium\Magento\Extractors\Checkout;
 class Product
 {
 
+    const EXTRACTOR = 'Checkout\Product';
     protected $name;
     protected $qty;
     protected $price;

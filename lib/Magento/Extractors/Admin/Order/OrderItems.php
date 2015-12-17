@@ -9,6 +9,7 @@ use Magium\WebDriver\WebDriver;
 
 class OrderItems extends AbstractExtractor
 {
+    const EXTRACTOR = 'Admin\Order\OrderItems';
 
     protected $orderItems = [];
 

@@ -10,6 +10,8 @@ use Magium\WebDriver\WebDriver;
 class NewCustomerPassword implements StepInterface
 {
 
+    const ACTION = 'Checkout\Steps\NewCustomerPassword';
+
     protected $webdriver;
     protected $theme;
     protected $customerIdentity;

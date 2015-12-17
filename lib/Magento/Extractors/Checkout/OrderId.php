@@ -11,6 +11,7 @@ use Magium\WebDriver\WebDriver;
 class OrderId extends AbstractExtractor implements StepInterface
 {
 
+    const EXTRACTOR = 'Checkout\OrderId';
 
     public function getOrderId()
     {

@@ -10,7 +10,7 @@ use Magium\WebDriver\WebDriver;
 
 class PlaceOrder implements StepInterface
 {
-
+    const ACTION = 'Checkout\Steps\PlaceOrder';
     protected $webdriver;
     protected $theme;
     protected $testCase;

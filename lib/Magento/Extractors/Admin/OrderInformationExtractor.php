@@ -14,7 +14,7 @@ use Magium\Magento\Extractors\Admin\Order\Totals;
 
 class OrderInformationExtractor extends AbstractExtractor
 {
-
+    const EXTRACTOR = 'Admin\OrderInformationExtractor';
     protected $extractors = [];
 
     public function __construct(

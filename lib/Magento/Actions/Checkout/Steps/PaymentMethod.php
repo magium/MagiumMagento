@@ -11,6 +11,7 @@ use Magium\WebDriver\WebDriver;
 
 class PaymentMethod implements StepInterface
 {
+    const ACTION = 'Checkout\Steps\PaymentMethod';
 
     protected $webdriver;
     protected $theme;

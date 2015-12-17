@@ -8,7 +8,7 @@ use Magium\WebDriver\WebDriver;
 
 class Account
 {
-
+    const NAVIGATOR = 'Customer\Account';
     protected $webDriver;
     protected $themeConfiguration;
 

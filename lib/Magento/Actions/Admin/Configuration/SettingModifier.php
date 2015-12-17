@@ -13,6 +13,8 @@ use Magium\WebDriver\WebDriver;
 class SettingModifier
 {
 
+    const ACTION = 'Admin\Configuration\SettingModifier';
+
     const SETTING_OPTION_YES = 1;
     const SETTING_OPTION_NO = 0;
 

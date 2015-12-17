@@ -8,7 +8,7 @@ use Magium\WebDriver\WebDriver;
 
 class NavigateToOrder
 {
-
+    const NAVIGATOR = 'Customer\NavigateToOrder';
     protected $webDriver;
     protected $accountNavigator;
     protected $themeConfiguration;
@@ -26,13 +26,11 @@ class NavigateToOrder
 
     public function navigateTo($orderId)
     {
-        $xpath = $this->themeConfiguration->getAccountNavigationXpath();
-        $sectionXpath = sprintf($xpath, $this->themeConfiguration->getOrderPageName());
-        $this->webDriver->byXpath($sectionXpath)->click();
+        $xpath = $this->themeConfiguration->getAccountNavigationXpath($this->themeConfiguration->getOrderPageName());
+        $this->webDriver->byXpath($xpath)->click();
 
-        $xpath = $this->themeConfiguration->getViewOrderLinkXpath();
-        $linkXpath = sprintf($xpath, $orderId);
-        $this->webDriver->byXpath($linkXpath)->click();
+        $xpath = $this->themeConfiguration->getViewOrderLinkXpath($orderId);
+        $this->webDriver->byXpath($xpath)->click();
 
         $this->webDriver->wait()->until(ExpectedCondition::titleContains($this->themeConfiguration->getOrderPageTitleContainsText()));
 

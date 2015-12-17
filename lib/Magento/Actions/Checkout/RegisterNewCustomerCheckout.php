@@ -20,6 +20,7 @@ use Magium\Magento\Themes\OnePageCheckout\ThemeConfiguration as OnePageCheckoutT
 
 class RegisterNewCustomerCheckout extends AbstractCheckout
 {
+    const ACTION = 'Checkout\RegisterNewCustomerCheckout';
 
     public function __construct(
         CheckoutStart             $navigator,

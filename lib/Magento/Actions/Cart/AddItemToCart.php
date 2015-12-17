@@ -9,6 +9,8 @@ use Magium\WebDriver\WebDriver;
 
 class AddItemToCart
 {
+    const ACTION = 'Cart\AddItemToCart';
+
     protected $webdriver;
     protected $theme;
     protected $navigator;

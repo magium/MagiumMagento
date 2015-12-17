@@ -13,6 +13,7 @@ use Magium\WebDriver\WebDriver;
 
 class Order
 {
+    const NAVIGATOR = 'Admin\Order';
 
     protected $webDriver;
     protected $themeConfiguration;

@@ -18,6 +18,7 @@ use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 
 class CustomerCheckout extends AbstractCheckout
 {
+    const ACTION = 'Checkout\CustomerCheckout';
 
     public function __construct(
         CheckoutStart             $navigator,
