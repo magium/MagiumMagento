@@ -106,6 +106,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     protected $logoutSuccessXpath               = '//div[contains(concat(" ",normalize-space(@class)," ")," page-title ")]/descendant::h1[.="{{You are now logged out}}"]';
 
+    protected $layeredNavigationTestXpath       = '//dl[@id="narrow-by-list"]';
 
     public function getCustomerThemeClass()
     {

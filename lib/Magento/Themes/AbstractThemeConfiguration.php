@@ -113,9 +113,18 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     protected $cartSummaryCheckoutGrandTotal;
     protected $cartSummaryCheckoutShippingTotal;
 
+    protected $layeredNavigationTestXpath;
+
     abstract public function getCustomerThemeClass();
     abstract public function getOnePageCheckoutThemeClass();
 
+    /**
+     * @return mixed
+     */
+    public function getLayeredNavigationTestXpath()
+    {
+        return $this->layeredNavigationTestXpath;
+    }
 
     public function getBaseUrl()
     {
