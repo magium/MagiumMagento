@@ -10,6 +10,8 @@ use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 class SystemConfiguration
 {
+
+    const ACTION = 'Admin\SystemConfiguration';
     
     protected $webdriver;
     protected $themeConfiguration;

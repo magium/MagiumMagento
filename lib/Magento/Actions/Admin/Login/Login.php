@@ -13,6 +13,8 @@ use Magium\WebDriver\WebDriver;
 
 class Login
 {
+
+    const ACTION = 'Admin\Login\Login';
     
     protected $theme;
     protected $adminIdentity;

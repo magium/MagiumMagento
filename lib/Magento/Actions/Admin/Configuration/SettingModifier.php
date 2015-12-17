@@ -13,6 +13,9 @@ use Magium\WebDriver\WebDriver;
 class SettingModifier
 {
 
+    const SETTING_OPTION_YES = 1;
+    const SETTING_OPTION_NO = 0;
+
     protected $webDriver;
     protected $testCase;
     protected $systemConfigurationNavigator;
