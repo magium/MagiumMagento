@@ -14,7 +14,7 @@
     }
   ],
   "require" : {
-    "magium/magium": "^0.0.15"
+    "magium/magium": "^0.0.16"
   },
   "repositories" : [ {
     "type" : "composer",

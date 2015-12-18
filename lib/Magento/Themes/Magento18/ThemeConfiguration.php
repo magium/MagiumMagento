@@ -127,6 +127,8 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $cartSummaryCheckoutGrandTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " Grand Total "]/../td[2]';
     protected $cartSummaryCheckoutShippingTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[contains(concat(" ",normalize-space(.)," "), " Shipping & Handling (")]/../td[2]';
 
+    protected $breadCrumbXpath                  = '//div[@class="breadcrumbs"]';
+
     public function getCustomerThemeClass()
     {
         return 'Magium\Magento\Themes\Magento18\Customer\ThemeConfiguration';

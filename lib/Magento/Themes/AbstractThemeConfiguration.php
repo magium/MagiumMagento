@@ -115,8 +115,18 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     protected $layeredNavigationTestXpath;
 
+    protected $breadCrumbXpath;
+
     abstract public function getCustomerThemeClass();
     abstract public function getOnePageCheckoutThemeClass();
+
+    /**
+     * @return mixed
+     */
+    public function getBreadCrumbXpath()
+    {
+        return $this->breadCrumbXpath;
+    }
 
     /**
      * @return mixed

@@ -108,6 +108,8 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     protected $layeredNavigationTestXpath       = '//dl[@id="narrow-by-list"]';
 
+    protected $breadCrumbXpath                  = '//div[@class="breadcrumbs"]';
+
     public function getCustomerThemeClass()
     {
         return 'Magium\Magento\Themes\Magento19\Customer\ThemeConfiguration';
