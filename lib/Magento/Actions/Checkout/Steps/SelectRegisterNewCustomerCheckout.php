@@ -10,7 +10,7 @@ use Magium\WebDriver\WebDriver;
 
 class SelectRegisterNewCustomerCheckout implements StepInterface
 {
-    
+    const ACTION = 'Checkout\Steps\SelectRegisterNewCustomerCheckout';
     protected $webdriver;
     protected $theme;
     protected $testCase;

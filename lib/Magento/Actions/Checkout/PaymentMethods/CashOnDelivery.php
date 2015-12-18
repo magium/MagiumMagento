@@ -8,6 +8,8 @@ use Magium\WebDriver\WebDriver;
 class CashOnDelivery implements PaymentMethodInterface
 {
 
+    const ACTION = 'Checkout\PaymentMethods\CashOnDelivery';
+
     protected $webDriver;
     protected $testCase;
 

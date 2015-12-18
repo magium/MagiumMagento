@@ -9,6 +9,7 @@ use Magium\WebDriver\WebDriver;
 
 class AccountInformation extends AbstractExtractor
 {
+    const EXTRACTOR = 'Admin\Order\AccountInformation';
 
     const VALUE_CUSTOMER_NAME       = 'customer-name';
     const VALUE_EMAIL               = 'email';

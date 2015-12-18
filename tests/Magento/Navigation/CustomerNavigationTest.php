@@ -3,6 +3,8 @@
 namespace Tests\Magento\Navigation;
 
 use Magium\Magento\AbstractMagentoTestCase;
+use Magium\Magento\Actions\Customer\NavigateAndLogin;
+use Magium\Magento\Navigators\Customer\Account;
 use Magium\WebDriver\WebDriver;
 
 class CustomerNavigationTest extends AbstractMagentoTestCase
@@ -11,8 +13,8 @@ class CustomerNavigationTest extends AbstractMagentoTestCase
     public function testNavigationSucceedsWithoutHeader()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getAction('Customer\NavigateAndLogin')->login();
-        $this->getNavigator('Customer\Account')->navigateTo('My Orders');
+        $this->getAction(NavigateAndLogin::ACTION)->login();
+        $this->getNavigator(Account::NAVIGATOR)->navigateTo('My Orders');
         $theme = $this->getTheme();
         /* @var $theme \Magium\Magento\Themes\AbstractThemeConfiguration */
         $xpath = $this->get($theme->getCustomerThemeClass())->getAccountSectionHeaderXpath('My Orders');
@@ -25,8 +27,8 @@ class CustomerNavigationTest extends AbstractMagentoTestCase
     {
 
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getAction('Customer\NavigateAndLogin')->login();
-        $this->getNavigator('Customer\Account')->navigateTo('My Orders', 'My Orders');
+        $this->getAction(NavigateAndLogin::ACTION)->login();
+        $this->getNavigator(Account::NAVIGATOR)->navigateTo('My Orders', 'My Orders');
         $theme = $this->getTheme();
         /* @var $theme \Magium\Magento\Themes\AbstractThemeConfiguration */
         $xpath = $this->get($theme->getCustomerThemeClass())->getAccountSectionHeaderXpath('My Orders');
@@ -37,8 +39,8 @@ class CustomerNavigationTest extends AbstractMagentoTestCase
     {
         $this->setExpectedException('Facebook\WebDriver\Exception\WebDriverException');
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getAction('Customer\NavigateAndLogin')->login();
-        $this->getNavigator('Customer\Account')->navigateTo('boogers');
+        $this->getAction(NavigateAndLogin::ACTION)->login();
+        $this->getNavigator(Account::NAVIGATOR)->navigateTo('boogers');
     }
 
 
@@ -46,8 +48,8 @@ class CustomerNavigationTest extends AbstractMagentoTestCase
     {
         $this->setExpectedException('Facebook\WebDriver\Exception\WebDriverException');
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getAction('Customer\NavigateAndLogin')->login();
-        $this->getNavigator('Customer\Account')->navigateTo('My Orders', 'boogers');
+        $this->getAction(NavigateAndLogin::ACTION)->login();
+        $this->getNavigator(Account::NAVIGATOR)->navigateTo('My Orders', 'boogers');
     }
 
 }

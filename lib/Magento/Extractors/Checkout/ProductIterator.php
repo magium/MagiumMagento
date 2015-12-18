@@ -6,6 +6,7 @@ use Magium\TestCaseException;
 
 class ProductIterator extends \ArrayObject
 {
+    const EXTRACTOR = 'Checkout\ProductIterator';
 
     public function addProduct(Product $product)
     {

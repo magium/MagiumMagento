@@ -3,6 +3,7 @@
 namespace Tests\Magento\Checkout;
 
 use Magium\Magento\AbstractMagentoTestCase;
+use Magium\Magento\Actions\Cart\AddItemToCart;
 
 class AddItemToCartTest extends AbstractMagentoTestCase
 {
@@ -16,7 +17,7 @@ class AddItemToCartTest extends AbstractMagentoTestCase
         $theme = $this->getTheme();
         $this->commandOpen($theme->getBaseUrl());
         $this->getLogger()->info('Opening page ' . $theme->getBaseUrl());
-        $addToCart = $this->getAction('Cart\AddItemToCart');
+        $addToCart = $this->getAction(AddItemToCart::ACTION);
         /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
 
         $addToCart->addSimpleProductToCartFromCategoryPage();
@@ -26,7 +27,7 @@ class AddItemToCartTest extends AbstractMagentoTestCase
     {
         $theme = $this->getTheme();
         $this->commandOpen($theme->getBaseUrl());
-        $addToCart = $this->getAction('Cart\AddItemToCart');
+        $addToCart = $this->getAction(AddItemToCart::ACTION);
         /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
 
         $addToCart->addSimpleProductToCartFromCategoryPage($this->categoryNavigation, $this->categoryPageAddToCart);
@@ -37,7 +38,7 @@ class AddItemToCartTest extends AbstractMagentoTestCase
         $theme = $this->getTheme();
         $this->commandOpen($theme->getBaseUrl());
         $this->getLogger()->info('Opening page ' . $theme->getBaseUrl());
-        $addToCart = $this->getAction('Cart\AddItemToCart');
+        $addToCart = $this->getAction(AddItemToCart::ACTION);
         /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
 
         $addToCart->addSimpleItemToCartFromProductPage();
@@ -50,7 +51,7 @@ class AddItemToCartTest extends AbstractMagentoTestCase
         $theme = $this->getTheme();
         $this->commandOpen($theme->getBaseUrl());
         $this->getLogger()->info('Opening page ' . $theme->getBaseUrl());
-        $addToCart = $this->getAction('Cart\AddItemToCart');
+        $addToCart = $this->getAction(AddItemToCart::ACTION);
         /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
 
         $addToCart->addSimpleItemToCartFromProductPage($this->productPageAddToCart, $this->categoryNavigation);

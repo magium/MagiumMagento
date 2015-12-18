@@ -7,9 +7,9 @@ use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Magento\Themes\NavigableThemeInterface;
 use Magium\Themes\ThemeConfigurationInterface;
 use Magium\WebDriver\WebDriver;
-class BaseMenuNavigator
+class BaseMenu
 {
-    
+    const NAVIGATOR = 'BaseMenu';
     protected $webdriver;
     protected $themeConfiguration;
     

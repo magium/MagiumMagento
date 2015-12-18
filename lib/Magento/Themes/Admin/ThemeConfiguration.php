@@ -26,6 +26,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     protected $systemConfigSectionDisplayCheckXpath            = '//legend[.="{{%s}}"]/ancestor::fieldset';
     protected $systemConfigToggleEnableXpath            = '//legend[.="{{%s}}"]/../descendant::td[concat(" ",normalize-space(.)," ") = " {{Enabled}} "]/../td/descendant::select/option[@value="%d"]';
 
+
     protected $systemConfigurationSaveButtonXpath       = '//div[@class="main-col-inner"]/div[@class="content-header"]/descendant::button[@title="{{Save Config}}"]';
 
     protected $systemConfigSaveSuccessfulXpath          = '//li[@class="success-msg"]/descendant::span[.="{{The configuration has been saved}}."]';
@@ -35,6 +36,17 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     protected $tableButtonXpath                         = '//table[@class="actions"]/descendant::span[.="{{%s}}"]';
 
     protected $selectOrderXpath                         = '//td[concat(" ",normalize-space(.)," ") = " %s "]/../td/a[.="{{View}}"]';
+
+    protected $systemConfigSettingLabelXpath            = '//td[@class="label"]/label[.=" {{%s}}"]';
+
+    /**
+     * @return string
+     */
+    public function getSystemConfigSettingLabelXpath($label)
+    {
+        $return = sprintf($this->systemConfigSettingLabelXpath, $label);
+        return $this->translate($return);
+    }
 
     /**
      * Why is this an option?  So you can have a different theme setup for different languages and still use the same code.

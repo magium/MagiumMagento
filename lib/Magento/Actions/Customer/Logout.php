@@ -9,6 +9,8 @@ use Magium\WebDriver\WebDriver;
 
 class Logout
 {
+    const ACTION = 'Customer\Logout';
+
     protected $webdriver;
     protected $theme;
     protected $instructionsNavigator;

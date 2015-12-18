@@ -9,7 +9,7 @@ use Magium\WebDriver\WebDriver;
 
 class ShippingInformation extends AbstractExtractor
 {
-
+    const EXTRACTOR = 'Admin\Order\ShippingInformation';
     protected $type;
     protected $cost;
 

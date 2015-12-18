@@ -3,7 +3,9 @@
 namespace Tests\Magento\Checkout;
 
 use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Actions\Checkout\Extractors\OrderId;
+use Magium\Magento\Actions\Cart\AddItemToCart;
+use Magium\Magento\Actions\Checkout\RegisterNewCustomerCheckout;
+use Magium\Magento\Extractors\Checkout\OrderId;
 
 class RegisterNewCustomerCheckoutTest extends AbstractMagentoTestCase
 {
@@ -13,17 +15,17 @@ class RegisterNewCustomerCheckoutTest extends AbstractMagentoTestCase
         $theme = $this->getTheme();
         $this->commandOpen($theme->getBaseUrl());
         $this->getLogger()->info('Opening page ' . $theme->getBaseUrl());
-        $addToCart = $this->getAction('Cart\AddItemToCart');
+        $addToCart = $this->getAction(AddItemToCart::ACTION);
         /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
 
         $addToCart->addSimpleProductToCartFromCategoryPage();
         $this->setPaymentMethod('CashOnDelivery');
-         $customerCheckout= $this->getAction('Checkout\RegisterNewCustomerCheckout');
+         $customerCheckout= $this->getAction(RegisterNewCustomerCheckout::ACTION);
         /* @var $customerCheckout \Magium\Magento\Actions\Checkout\RegisterNewCustomerCheckout */
 
         $customerCheckout->execute();
 
-        $orderId = $this->getExtractor('Checkout\OrderId');
+        $orderId = $this->getExtractor(OrderId::EXTRACTOR);
         $this->getLogger()->info(sprintf('Extracted %s as the order ID', $orderId->getOrderId()));
         /** @var $orderId OrderId */
         self::assertNotNull($orderId->getOrderId());

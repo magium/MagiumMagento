@@ -6,6 +6,7 @@ use Magium\Magento\Extractors\Admin\AddressExtractor;
 
 class ShippingAddress extends AddressExtractor
 {
+    const EXTRACTOR = 'Admin\Order\ShippingAddress';
 
     public function getBaseXpath()
     {

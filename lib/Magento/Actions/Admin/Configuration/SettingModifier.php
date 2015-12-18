@@ -3,33 +3,49 @@
 namespace Magium\Magento\Actions\Admin\Configuration;
 
 use Facebook\WebDriver\WebDriverElement;
+use Facebook\WebDriver\WebDriverSelect;
 use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Navigators\Admin\AdminMenuNavigator;
-use Magium\Magento\Navigators\Admin\SystemConfigurationNavigator;
+use Magium\Magento\Navigators\Admin\SystemConfiguration;
+use Magium\Magento\Themes\Admin\ThemeConfiguration;
+use Magium\WebDriver\FastSelectElement;
 use Magium\WebDriver\WebDriver;
 
 class SettingModifier
 {
 
+    const ACTION = 'Admin\Configuration\SettingModifier';
+
+    const SETTING_OPTION_YES = 1;
+    const SETTING_OPTION_NO = 0;
+
     protected $webDriver;
     protected $testCase;
     protected $systemConfigurationNavigator;
+    protected $themeConfiguration;
+    protected $save;
+
+    protected $dataChanged = false;
 
     /**
      * SettingModifier constructor.
      * @param $webDriver
      * @param $testCase
      * @param $systemConfigurationNavigator
+     * @param $themeConfiguration
      */
     public function __construct(
         WebDriver                       $webDriver,
         AbstractMagentoTestCase         $testCase,
-        SystemConfigurationNavigator    $systemConfigurationNavigator
+        SystemConfiguration             $systemConfigurationNavigator,
+        ThemeConfiguration              $themeConfiguration,
+        Save                            $save
     )
     {
         $this->webDriver = $webDriver;
         $this->testCase = $testCase;
         $this->systemConfigurationNavigator = $systemConfigurationNavigator;
+        $this->themeConfiguration = $themeConfiguration;
+        $this->save = $save;
     }
 
     /**
@@ -46,7 +62,7 @@ class SettingModifier
      * @throws \Magium\InvalidInstructionException
      */
 
-    public function set($identifier, $value)
+    public function set($identifier, $value, $save = false)
     {
         $parts = explode('::', $identifier);
         $setting = null;
@@ -57,17 +73,53 @@ class SettingModifier
             $setting = $parts[0];
         }
         $matches = null;
-        if (preg_match('/^name=(.+)$', $setting, $matches)) {
-
-        } else {
-            $element = $this->webDriver->byId($setting);
+        if (preg_match('/^label=(.+)$/', $setting, $matches)) {
+            $xpath = '';
+            if (count($xpath) === 2) {
+                $nav = explode('/', $parts[0]);
+                $xpath = $this->themeConfiguration->getSystemConfigSectionDisplayCheckXpath($nav[1]) . '/descendant::';
+            }
+            $xpath .= $this->themeConfiguration->getSystemConfigSettingLabelXpath($matches[1]);
+            $labelElement = $this->webDriver->byXpath($xpath);
+            $setting = $labelElement->getAttribute('for');
         }
-        $this->handleElementSetting($element, $value);
+
+        $this->handleElementSetting($setting, $value);
+        if ($save) {
+            $this->save->save();
+        }
     }
 
-    protected function handleElementSetting(WebDriverElement $element, $value)
+    protected function handleElementSetting($elementId, $value)
     {
+        $element = $this->webDriver->byId($elementId);
 
+        if (strtolower($element->getTagName()) === 'select') {
+            if (!is_array($value)) {
+                $value = [$value];
+            }
+            $xpath = sprintf('//select[@id="%s"]', $elementId);
+            $select = new FastSelectElement($this->webDriver, $xpath);
+//            $options = $select->getAllSelectedOptions();
+            $select->clearSelectedOptions();
+            foreach ($value as $v) {
+                $xpath = sprintf('//select[@id="%s"]', $elementId);
+                $matches = null;
+                if (preg_match('/^label=(.+)$/', $v, $matches)) {
+                    $xpath .= sprintf('/descendant::option[.="%s"]', str_replace('"', '\"', $matches[1]));
+                    $this->webDriver->byXpath($xpath)->click();
+                } else {
+                    $xpath .= sprintf('/descendant::option[@value="%s"]', str_replace('"', '\"', $v));
+                    $this->webDriver->byXpath($xpath)->click();
+                }
+            }
+
+        } else if (strtolower($element->getTagName()) === 'input') {
+            if ($element->getAttribute('value') != $value) {
+                $element->clear();
+                $element->sendKeys($value);
+                $this->dataChanged = true;
+            }
+        }
     }
-
 }

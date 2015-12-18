@@ -7,6 +7,7 @@ use Magium\WebDriver\WebDriver;
 
 class WaitForLoadingMask
 {
+    const ACTION = 'Admin\WaitForLoadingMask';
 
     protected $webDriver;
 

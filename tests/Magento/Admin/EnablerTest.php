@@ -3,16 +3,19 @@
 namespace Tests\Magento\Admin;
 
 use Magium\Magento\AbstractMagentoTestCase;
+use Magium\Magento\Actions\Admin\Configuration\Enabler;
+use Magium\Magento\Actions\Admin\Login\Login;
 
 class SaveSystemConfigurationSettingTest extends AbstractMagentoTestCase
 {
 
-    public function testLoginAdmin()
+    public function testEnabler()
     {
         $adminThemeConfiguration = $this->getTheme('Admin\ThemeConfiguration');
+            /* @var $adminThemeConfiguration \Magium\Magento\Themes\Admin\ThemeConfiguration */
 
-        $this->getAction('Admin\Login\Login')->login();
-        $enabler = $this->getAction('Admin\Configuration\Enabler');
+        $this->getAction(Login::ACTION)->login();
+        $enabler = $this->getAction(Enabler::ACTION);
         /** @var $enabler \Magium\Magento\Actions\Admin\Configuration\Enabler */
 
         $enabler->disable('Payment Methods/Saved CC');
@@ -34,6 +37,8 @@ class SaveSystemConfigurationSettingTest extends AbstractMagentoTestCase
         self::assertNotNull($element->getAttribute('selected'));
 
     }
+
+
 
 
     

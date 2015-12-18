@@ -3,6 +3,18 @@
 namespace Tests\Magento\Admin\Order;
 
 use Magium\Magento\AbstractMagentoTestCase;
+use Magium\Magento\Actions\Admin\Login\Login;
+use Magium\Magento\Actions\Cart\AddItemToCart;
+use Magium\Magento\Actions\Checkout\GuestCheckout;
+use Magium\Magento\Extractors\Admin\Order\AccountInformation;
+use Magium\Magento\Extractors\Admin\Order\BillingAddress;
+use Magium\Magento\Extractors\Admin\Order\OrderItems;
+use Magium\Magento\Extractors\Admin\Order\OrderSummary;
+use Magium\Magento\Extractors\Admin\Order\PaymentInformation;
+use Magium\Magento\Extractors\Admin\Order\Totals;
+use Magium\Magento\Extractors\Admin\OrderInformationExtractor;
+use Magium\Magento\Extractors\Checkout\OrderId;
+use Magium\Magento\Navigators\Admin\Order;
 
 class OrderInformationExtractorTest extends AbstractMagentoTestCase
 {
@@ -12,26 +24,26 @@ class OrderInformationExtractorTest extends AbstractMagentoTestCase
     {
 
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $addToCart = $this->getAction('Cart\AddItemToCart');
+        $addToCart = $this->getAction(AddItemToCart::ACTION);
         /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
 
         $addToCart->addSimpleProductToCartFromCategoryPage();
         $this->setPaymentMethod('CashOnDelivery');
 
-        $guestCheckout = $this->getAction('Checkout\GuestCheckout');
+        $guestCheckout = $this->getAction(GuestCheckout::ACTION);
         $guestCheckout->execute();
 
-        $orderId = $this->getExtractor('Checkout\OrderId')->getOrderId();
-        $this->getAction('Admin\Login\Login')->login();
-        $this->getNavigator('Admin\OrderNavigator')->navigateTo($orderId);
+        $orderId = $this->getExtractor(OrderId::EXTRACTOR)->getOrderId();
+        $this->getAction(Login::ACTION)->login();
+        $this->getNavigator(Order::NAVIGATOR)->navigateTo($orderId);
 
-        $extractor = $this->getExtractor('Admin\OrderInformationExtractor');
+        $extractor = $this->getExtractor(OrderInformationExtractor::EXTRACTOR);
         $extractor->extract();
 
         $identity = $this->getIdentity();
         /* @var $identity \Magium\Magento\Identities\Customer */
 
-        $billingAddress = $this->getExtractor('Admin\Order\BillingAddress');
+        $billingAddress = $this->getExtractor(BillingAddress::EXTRACTOR);
         /* @var $billingAddress \Magium\Magento\Extractors\Admin\Order\BillingAddress */
 
         self::assertEquals($identity->getBillingFirstName() . ' ' . $identity->getBillingLastName(), $billingAddress->getName());
@@ -43,7 +55,7 @@ class OrderInformationExtractorTest extends AbstractMagentoTestCase
         self::assertEquals('United States',                     $billingAddress->getCountry()); // SELECT in checkout and text in adminUI is different
         self::assertEquals($identity->getBillingTelephone(),    $billingAddress->getPhone());
 
-        $shippingAddress = $this->getExtractor('Admin\Order\BillingAddress');
+        $shippingAddress = $this->getExtractor(BillingAddress::EXTRACTOR);
         /* @var $shippingAddress \Magium\Magento\Extractors\Admin\Order\ShippingAddress */
 
         self::assertEquals($identity->getShippingFirstName() . ' ' . $identity->getShippingLastName(), $shippingAddress->getName());
@@ -59,14 +71,14 @@ class OrderInformationExtractorTest extends AbstractMagentoTestCase
 
         self::assertEquals($identity->getShippingTelephone(),    $shippingAddress->getPhone());
 
-        $accountInformation = $this->getExtractor('Admin\Order\AccountInformation');
+        $accountInformation = $this->getExtractor(AccountInformation::EXTRACTOR);
         /* @var $accountInformation \Magium\Magento\Extractors\Admin\Order\AccountInformation */
 
         self::assertEquals($identity->getShippingFirstName() . ' ' . $identity->getShippingLastName(), $accountInformation->getCustomerName());
         self::assertEquals($identity->getEmailAddress(), $accountInformation->getEmail());
         self::assertEquals('NOT LOGGED IN', $accountInformation->getCustomerGroup()); // Presuming "General" here
 
-        $orderSummary = $this->getExtractor('Admin\Order\OrderSummary');
+        $orderSummary = $this->getExtractor(OrderSummary::EXTRACTOR);
         /* @var $orderSummary \Magium\Magento\Extractors\Admin\Order\OrderSummary */
 
         self::assertEquals('Pending', $orderSummary->getOrderStatus());
@@ -74,13 +86,13 @@ class OrderInformationExtractorTest extends AbstractMagentoTestCase
         self::assertContains('Madison Island', $orderSummary->getPurchasedFrom());
         self::assertNotNull($orderSummary->getOrderDate());
 
-        $paymentInformation = $this->getExtractor('Admin\Order\PaymentInformation');
+        $paymentInformation = $this->getExtractor(PaymentInformation::EXTRACTOR);
         /* @var $paymentInformation \Magium\Magento\Extractors\Admin\Order\PaymentInformation */
 
         self::assertEquals($this->getTranslator()->translate('Cash On Delivery'), $paymentInformation->getPaymentMethodInformation());
         self::assertEquals('USD', $paymentInformation->getCurrency());
 
-        $items = $this->getExtractor('Admin\Order\OrderItems');
+        $items = $this->getExtractor(OrderItems::EXTRACTOR);
         /* @var $items \Magium\Magento\Extractors\Admin\Order\OrderItems */
 
         $subTotal = 0;
@@ -110,7 +122,7 @@ class OrderInformationExtractorTest extends AbstractMagentoTestCase
             $taxTotal += str_replace('$', '', $item->getTaxAmount());
         }
 
-        $totals = $this->getExtractor('Admin\Order\Totals');
+        $totals = $this->getExtractor(Totals::EXTRACTOR);
         /* @var $totals \Magium\Magento\Extractors\Admin\Order\Totals */
 
         $shipping = str_replace('$', '', $totals->getShippingAndHandling());

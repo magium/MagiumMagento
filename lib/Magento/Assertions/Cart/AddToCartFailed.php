@@ -2,19 +2,21 @@
 
 namespace Magium\Magento\Assertions\Cart;
 
+use Magium\Assertions\AssertionInterface;
 use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Assertions\AssertionInterface;
-use Magium\Magento\Themes\ThemeConfiguration;
+use Magium\Magento\Themes\AbstractThemeConfiguration;
+use Magium\WebDriver\WebDriver;
 
 class AddToCartFailed implements AssertionInterface
 {
+    const ASSERTION = 'Cart\AddToCartFailed';
 
     protected $testCase;
     protected $themeConfiguration;
 
     public function __construct(
         AbstractMagentoTestCase $testCase,
-        ThemeConfiguration  $themeConfiguration
+        AbstractThemeConfiguration $themeConfiguration
     )
     {
         $this->testCase             = $testCase;

@@ -4,6 +4,7 @@ namespace Magium\Magento\Extractors\Admin\Order;
 
 class OrderItem
 {
+    const EXTRACTOR = 'Admin\Order\OrderItem';
     protected $productName;
     protected $sku;
     protected $status;

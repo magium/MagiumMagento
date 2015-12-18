@@ -11,6 +11,8 @@ use Magium\WebDriver\WebDriver;
 
 class Register
 {
+    const ACTION = 'Customer\Register';
+
     protected $webdriver;
     protected $theme;
     protected $testCase;

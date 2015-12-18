@@ -10,7 +10,7 @@ use Magium\WebDriver\WebDriver;
 
 class ShippingMethod implements StepInterface
 {
-
+    const ACTION = 'Checkout\Steps\ShippingMethod';
     protected $webdriver;
     protected $theme;
     protected $testCase;

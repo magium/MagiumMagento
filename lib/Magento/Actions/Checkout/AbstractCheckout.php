@@ -10,13 +10,20 @@ abstract class AbstractCheckout
     
     public function addStep(StepInterface $step, $before = null)
     {
+
         if ($before === null) {
             $this->steps[] = $step;
             return;
         }
-        $key = array_search($step, $this->steps);
+        $key = array_search($before, $this->steps);
+        $stepCount = count($this->steps);
         if ($key !== false) {
-            array_splice($this->steps, $key, 0, $step);
+            $steps = array_slice($this->steps, 0, $key);
+            $steps[] = $step;
+            for ($i = $key; $i < $stepCount; $i++) {
+                $steps[] = $this->steps[$i];
+            }
+            $this->steps = $steps;
         } else {
             $this->steps[] = $step;
         }
