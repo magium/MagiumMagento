@@ -17,6 +17,26 @@ class HasLayeredNavigation extends AbstractExtractor
         return $this->hasLayeredNav;
     }
 
+    public function getProducts()
+    {
+
+    }
+
+    public function getProductCount()
+    {
+
+    }
+
+    public function getSortBy()
+    {
+
+    }
+
+    public function getShowCount()
+    {
+
+    }
+
     public function extract()
     {
         $xpath = $this->theme->getLayeredNavigationTestXpath();
