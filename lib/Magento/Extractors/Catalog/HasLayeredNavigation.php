@@ -1,13 +1,13 @@
 <?php
 
-namespace Magium\Magento\Extractors\Catalog\Category;
+namespace Magium\Magento\Extractors\Catalog;
 
 use Magium\Extractors\AbstractExtractor;
 use Magium\WebDriver\WebDriver;
 
 class HasLayeredNavigation extends AbstractExtractor
 {
-    const EXTRACTOR = 'Catalog\Category\HasLayeredNavigation';
+    const EXTRACTOR = 'Catalog\HasLayeredNavigation';
 
     protected $hasLayeredNav;
 
@@ -15,26 +15,6 @@ class HasLayeredNavigation extends AbstractExtractor
     {
         $this->extract();
         return $this->hasLayeredNav;
-    }
-
-    public function getProducts()
-    {
-
-    }
-
-    public function getProductCount()
-    {
-
-    }
-
-    public function getSortBy()
-    {
-
-    }
-
-    public function getShowCount()
-    {
-
     }
 
     public function extract()

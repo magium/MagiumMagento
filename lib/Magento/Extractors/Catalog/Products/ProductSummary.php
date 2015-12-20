@@ -1,6 +1,6 @@
 <?php
 
-namespace Magium\Magento\Extractors\Catalog\Product;
+namespace Magium\Magento\Extractors\Catalog\Products;
 
 class ProductSummary
 {

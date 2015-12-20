@@ -1,12 +1,12 @@
 <?php
 
-namespace Magium\Magento\Extractors\Catalog\Product;
+namespace Magium\Magento\Extractors\Catalog\Products;
 
 
 class ProductGrid extends AbstractProductCollection
 {
 
-    const EXTRACTOR = 'Catalog\Product\ProductGrid';
+    const EXTRACTOR = 'Catalog\Products\ProductGrid';
 
     public function getElementXpath($type, $count)
     {

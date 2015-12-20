@@ -4,7 +4,7 @@ namespace Magium\Magento\Extractors\Catalog\Category;
 
 use Magium\Magento\Extractors\Catalog\ProductCollection;
 
-class Category extends ProductCollection
+class Search extends ProductCollection
 {
-    const EXTRACTOR = 'Catalog\Category\Category';
+    const EXTRACTOR = 'Catalog\Category\Search';
 }

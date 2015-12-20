@@ -139,6 +139,9 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     protected $productGridWishlistLinkXpath;
     protected $productGridAddToCartLinkXpath;
 
+    protected $productsViewModeXpath;
+//    protected
+
     abstract public function getCustomerThemeClass();
     abstract public function getOnePageCheckoutThemeClass();
 

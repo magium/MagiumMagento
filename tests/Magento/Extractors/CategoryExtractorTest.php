@@ -4,8 +4,9 @@ namespace Tests\Magento\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\Category\Category;
-use Magium\Magento\Extractors\Catalog\Product\ProductGrid;
-use Magium\Magento\Extractors\Catalog\Product\ProductList;
+use Magium\Magento\Extractors\Catalog\Products;
+use Magium\Magento\Extractors\Catalog\Products\ProductGrid;
+use Magium\Magento\Extractors\Catalog\Products\ProductList;
 use Magium\Magento\Navigators\BaseMenu;
 
 class CategoryExtractorTest extends AbstractMagentoTestCase
