@@ -3,7 +3,9 @@
 namespace Tests\Magento\Admin\Configuration\PaymentMethods;
 
 use Magium\Magento\AbstractMagentoTestCase;
+use Magium\Magento\Actions\Admin\Configuration\AbstractSettingGroup;
 use Magium\Magento\Actions\Admin\Configuration\PaymentMethods\AbstractPaymentMethod;
+use Magium\Magento\Actions\Admin\Configuration\SettingModifier;
 use Magium\Magento\Actions\Admin\Login\Login;
 use Magium\Magento\Navigators\Admin\AdminMenu;
 use Magium\Magento\Navigators\Admin\SystemConfiguration;
@@ -18,7 +20,7 @@ abstract class AbstractPaymentMethodTest extends AbstractMagentoTestCase
 
         $paymentMethod = $this->getAction($action);
         /* @var $paymentMethod \Magium\Magento\Actions\Admin\Configuration\PaymentMethods\CashOnDelivery */
-        $paymentMethod->setEnabled(AbstractPaymentMethod::SETTING_OPTION_YES);
+        $paymentMethod->setEnabled(SettingModifier::SETTING_OPTION_YES);
         $paymentMethod->execute();
         $this->getNavigator(SystemConfiguration::NAVIGATOR)->navigateTo('General/Merchant Location');
 
@@ -37,7 +39,7 @@ abstract class AbstractPaymentMethodTest extends AbstractMagentoTestCase
 
         $paymentMethod = $this->getAction($action);
         /* @var $paymentMethod \Magium\Magento\Actions\Admin\Configuration\PaymentMethods\CashOnDelivery */
-        $paymentMethod->setEnabled(AbstractPaymentMethod::SETTING_OPTION_YES);
+        $paymentMethod->setEnabled(SettingModifier::SETTING_OPTION_YES);
         $paymentMethod->setTitle('This is a title');
         $paymentMethod->execute();
         $this->getNavigator(SystemConfiguration::NAVIGATOR)->navigateTo('General/Merchant Location');
