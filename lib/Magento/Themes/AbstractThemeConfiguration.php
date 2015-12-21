@@ -139,11 +139,61 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     protected $productGridWishlistLinkXpath;
     protected $productGridAddToCartLinkXpath;
 
-    protected $productsViewModeXpath;
-//    protected
+    protected $productCollectionViewModeXpath;
+    protected $productCollectionSortByXpath;
+    protected $productCollectionShowCountXpath;
+    protected $productCollectionShowCountOptionsXpath;
+    protected $productCollectionProductCountXpath;
 
     abstract public function getCustomerThemeClass();
     abstract public function getOnePageCheckoutThemeClass();
+
+    public function set($name, $value)
+    {
+        $this->$name = $value;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductCollectionViewModeXpath()
+    {
+        return $this->productCollectionViewModeXpath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductCollectionSortByXpath()
+    {
+        return $this->productCollectionSortByXpath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductCollectionShowCountXpath()
+    {
+        return $this->productCollectionShowCountXpath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductCollectionShowCountOptionsXpath()
+    {
+        return $this->productCollectionShowCountOptionsXpath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductCollectionProductCountXpath()
+    {
+        return $this->productCollectionProductCountXpath;
+    }
+
+
 
     /**
      * @return mixed

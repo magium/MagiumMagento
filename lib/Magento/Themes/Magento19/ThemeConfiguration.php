@@ -132,6 +132,12 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $productGridWishlistLinkXpath     = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-wishlist"]';
     protected $productGridAddToCartLinkXpath     = '/descendant::div[@class="actions"]/descendant::button[contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
 
+    protected $productCollectionViewModeXpath   = '//p[@class="view-mode"]/strong';
+    protected $productCollectionSortByXpath     = '//div[@class="sort-by"/descendant::option[@selected]'; // We select using the div, not the title because the title may be translated
+    protected $productCollectionShowCountXpath  = '//div[@class="limiter"]/descendant::option[@selected]'; // dittos
+    protected $productCollectionShowCountOptionsXpath  = '//div[@class="limiter"]/descendant::option';
+    protected $productCollectionProductCountXpath = '//div[@class="pager"]/p[@class="amount"]';
+
     public function getCustomerThemeClass()
     {
         return 'Magium\Magento\Themes\Magento19\Customer\ThemeConfiguration';
