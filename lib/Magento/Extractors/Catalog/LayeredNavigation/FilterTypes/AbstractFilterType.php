@@ -7,6 +7,7 @@ use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterValue;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\UnparseableValueException;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
+use Magium\WebDriver\WebDriver;
 
 abstract class AbstractFilterType
 {
@@ -14,6 +15,7 @@ abstract class AbstractFilterType
     protected $document;
     protected $testCase;
     protected $theme;
+    protected $webDriver;
 
     protected $filterTypesXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li';
     protected $filterLinkXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li/descendant::a';
@@ -22,13 +24,15 @@ abstract class AbstractFilterType
         $type,
         \DOMDocument $document,
         AbstractMagentoTestCase $testCase,
-        AbstractThemeConfiguration $theme
+        AbstractThemeConfiguration $theme,
+        WebDriver $webDriver
     )
     {
         $this->title = $type;
         $this->document = $document;
         $this->testCase = $testCase;
         $this->theme = $theme;
+        $this->webDriver = $webDriver;
     }
 
     abstract public function filterApplies();
@@ -76,7 +80,11 @@ abstract class AbstractFilterType
             if ($linkUrl === null) {
                 throw new UnparseableValueException('Unable to determine the link');
             }
-            $value = new FilterValue($text, $linkUrl, $count);
+
+            $linkElementXpath = sprintf($this->filterLinkXpath . '[@href="%s"]', $this->title, $linkUrl);
+            $linkElement = $this->webDriver->byXpath($linkElementXpath);
+
+            $value = new FilterValue($linkElement, $text, $linkUrl, $count);
             $returnElements[] = $value;
         }
         return $returnElements;

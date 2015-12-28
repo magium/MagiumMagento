@@ -121,6 +121,7 @@ class LayeredNavigation extends AbstractExtractor
     /**
      * @param $filter
      * @return AbstractFilterType
+     * @throws InvalidFilterException
      */
 
     public function getFilter($filter)
@@ -130,7 +131,7 @@ class LayeredNavigation extends AbstractExtractor
             return $this->filterValues[$filterKey];
         }
 
-        return null;
+        throw new InvalidFilterException('Could not find the filter: ' . $filter);
     }
 
     public function extract()
@@ -158,7 +159,8 @@ class LayeredNavigation extends AbstractExtractor
                         $filter,
                         $doc,
                         $this->testCase,
-                        $this->theme
+                        $this->theme,
+                        $this->webDriver
                     );
                     if ($type->filterApplies()) {
                         $this->filterValues[$filterKey] = $type;

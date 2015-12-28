@@ -2,15 +2,16 @@
 
 namespace Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes;
 
+use Facebook\WebDriver\WebDriverElement;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterValue;
 
 class SwatchFilterValue extends FilterValue
 {
     protected $image;
 
-    public function __construct($text, $link, $count, $image)
+    public function __construct(WebDriverElement $element, $text, $link, $count, $image)
     {
-        parent::__construct($text, $link, $count);
+        parent::__construct($element, $text, $link, $count);
         $this->image = $image;
     }
 

@@ -2,17 +2,29 @@
 
 namespace Magium\Magento\Extractors\Catalog\LayeredNavigation;
 
+use Facebook\WebDriver\WebDriverElement;
+
 class FilterValue
 {
+    protected $element;
     protected $text;
     protected $link;
     protected $count;
 
-    public function __construct($text, $link, $count)
+    public function __construct(WebDriverElement $element, $text, $link, $count)
     {
+        $this->element = $element;
         $this->text = $text;
         $this->link = $link;
         $this->count = $count;
+    }
+
+    /**
+     * @return WebDriverElement
+     */
+    public function getElement()
+    {
+        return $this->element;
     }
 
     /**

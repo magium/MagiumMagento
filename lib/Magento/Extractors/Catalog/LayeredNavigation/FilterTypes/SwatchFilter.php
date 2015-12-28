@@ -73,7 +73,12 @@ class SwatchFilter extends AbstractFilterType
             if ($linkUrl === null) {
                 throw new UnparseableValueException('Unable to determine the link');
             }
-            $value = new SwatchFilterValue($swatchText, $linkUrl, $count, $image);
+
+
+            $linkElementXpath = sprintf($this->filterLinkXpath . '[@href="%s"]', $this->title, $linkUrl);
+            $linkElement = $this->webDriver->byXpath($linkElementXpath);
+
+            $value = new SwatchFilterValue($linkElement, $swatchText, $linkUrl, $count, $image);
             $returnElements[] = $value;
         }
         return $returnElements;
