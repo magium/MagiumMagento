@@ -117,8 +117,238 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     protected $breadCrumbXpath;
 
+    protected $productListBaseXpath;
+    protected $productListDescriptionXpath;
+    protected $productListTitleXpath;
+    protected $productListCompareLinkXpath;
+    protected $productListImageXpath;
+    protected $productListLinkXpath;
+    protected $productListOriginalPriceXpath;
+    protected $productListPriceXpath;
+    protected $productListWishlistLinkXpath;
+    protected $productListAddToCartLinkXpath;
+
+    protected $productGridBaseXpath;
+    protected $productGridDescriptionXpath;
+    protected $productGridTitleXpath;
+    protected $productGridCompareLinkXpath;
+    protected $productGridImageXpath;
+    protected $productGridLinkXpath;
+    protected $productGridOriginalPriceXpath;
+    protected $productGridPriceXpath;
+    protected $productGridWishlistLinkXpath;
+    protected $productGridAddToCartLinkXpath;
+
+    protected $productCollectionViewModeXpath;
+    protected $productCollectionSortByXpath;
+    protected $productCollectionShowCountXpath;
+    protected $productCollectionShowCountOptionsXpath;
+    protected $productCollectionProductCountXpath;
+
+    protected $layeredNavigationBaseXpath;
+
+
     abstract public function getCustomerThemeClass();
     abstract public function getOnePageCheckoutThemeClass();
+
+    /**
+     * @return mixed
+     */
+    public function getLayeredNavigationBaseXpath()
+    {
+        return $this->layeredNavigationBaseXpath;
+    }
+
+    public function set($name, $value)
+    {
+        $this->$name = $value;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductCollectionViewModeXpath()
+    {
+        return $this->productCollectionViewModeXpath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductCollectionSortByXpath()
+    {
+        return $this->productCollectionSortByXpath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductCollectionShowCountXpath()
+    {
+        return $this->productCollectionShowCountXpath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductCollectionShowCountOptionsXpath()
+    {
+        return $this->productCollectionShowCountOptionsXpath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductCollectionProductCountXpath()
+    {
+        return $this->productCollectionProductCountXpath;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getProductListAddToCartLinkXpath($count)
+    {
+        return sprintf($this->productListBaseXpath . $this->productListAddToCartLinkXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductGridAddToCartLinkXpath($count)
+    {
+        return sprintf($this->productGridBaseXpath . $this->productGridAddToCartLinkXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductListDescriptionXpath($count)
+    {
+        return sprintf($this->productListBaseXpath . $this->productListDescriptionXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductListTitleXpath($count)
+    {
+        return sprintf($this->productListBaseXpath . $this->productListTitleXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductListCompareLinkXpath($count)
+    {
+        return sprintf($this->productListBaseXpath . $this->productListCompareLinkXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductListImageXpath($count)
+    {
+        return sprintf($this->productListBaseXpath . $this->productListImageXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductListLinkXpath($count)
+    {
+        return sprintf($this->productListBaseXpath . $this->productListLinkXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductListOriginalPriceXpath($count)
+    {
+        return sprintf($this->productListBaseXpath . $this->productListOriginalPriceXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductListPriceXpath($count)
+    {
+        return sprintf($this->productListBaseXpath . $this->productListPriceXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductListWishlistLinkXpath($count)
+    {
+        return sprintf($this->productListBaseXpath . $this->productListWishlistLinkXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductGridDescriptionXpath($count)
+    {
+        return sprintf($this->productGridBaseXpath . $this->productGridDescriptionXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductGridTitleXpath($count)
+    {
+        return sprintf($this->productGridBaseXpath . $this->productGridTitleXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductGridCompareLinkXpath($count)
+    {
+        return sprintf($this->productGridBaseXpath . $this->productGridCompareLinkXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductGridImageXpath($count)
+    {
+        return sprintf($this->productGridBaseXpath . $this->productGridImageXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductGridLinkXpath($count)
+    {
+        return sprintf($this->productGridBaseXpath . $this->productGridLinkXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductGridOriginalPriceXpath($count)
+    {
+        return sprintf($this->productGridBaseXpath . $this->productGridOriginalPriceXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductGridPriceXpath($count)
+    {
+        return sprintf($this->productGridBaseXpath . $this->productGridPriceXpath, $count);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductGridWishlistLinkXpath($count)
+    {
+        return sprintf($this->productGridBaseXpath . $this->productGridWishlistLinkXpath, $count);
+    }
 
     /**
      * @return mixed

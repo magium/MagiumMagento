@@ -110,6 +110,36 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     protected $breadCrumbXpath                  = '//div[@class="breadcrumbs"]';
 
+    protected $productListBaseXpath             = '//ol[contains(concat(" ",normalize-space(@class)," ")," products-list ")]/li[%d]';
+    protected $productListDescriptionXpath      = '/descendant::div[contains(concat(" ",normalize-space(@class)," ")," desc ")]';
+    protected $productListTitleXpath            = '/descendant::h2[@class="product-name"]/a';
+    protected $productListCompareLinkXpath      = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-compare"]';
+    protected $productListImageXpath            = '/descendant::a[@class="product-image"]/img';
+    protected $productListLinkXpath             = '/descendant::a[@class="product-image"]';
+    protected $productListOriginalPriceXpath    = '/descendant::div[@class="price-box"]/descendant::p[@class="old-price"]/descendant::*[@class="price"]';
+    protected $productListPriceXpath            = '/descendant::div[@class="price-box"]/descendant::*[@class="regular-price" or @class="special-price"]/descendant::span[@class="price"]';
+    protected $productListWishlistLinkXpath     = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-wishlist"]';
+    protected $productListAddToCartLinkXpath     = '/descendant::p[@class="action"]/descendant::button[contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
+
+    protected $productGridBaseXpath             = '//ul[contains(concat(" ",normalize-space(@class)," ")," products-grid ")]/li[%d]';
+    protected $productGridDescriptionXpath      = '/*[.="no description in the grid view"]';
+    protected $productGridTitleXpath            = '/descendant::h2[@class="product-name"]/a';
+    protected $productGridCompareLinkXpath      = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-compare"]';
+    protected $productGridImageXpath            = '/descendant::a[@class="product-image"]/img';
+    protected $productGridLinkXpath             = '/descendant::a[@class="product-image"]';
+    protected $productGridOriginalPriceXpath    = '/descendant::div[@class="price-box"]/descendant::p[@class="old-price"]/descendant::*[@class="price"]';
+    protected $productGridPriceXpath            = '/descendant::div[@class="price-box"]/descendant::*[@class="regular-price" or @class="special-price"]/descendant::span[@class="price"]';
+    protected $productGridWishlistLinkXpath     = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-wishlist"]';
+    protected $productGridAddToCartLinkXpath     = '/descendant::div[@class="actions"]/descendant::button[contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
+
+    protected $productCollectionViewModeXpath   = '//p[@class="view-mode"]/strong';
+    protected $productCollectionSortByXpath     = '//div[@class="sort-by"/descendant::option[@selected]'; // We select using the div, not the title because the title may be translated
+    protected $productCollectionShowCountXpath  = '//div[@class="limiter"]/descendant::option[@selected]'; // dittos
+    protected $productCollectionShowCountOptionsXpath  = '//div[@class="limiter"]/descendant::option';
+    protected $productCollectionProductCountXpath = '//div[@class="pager"]/p[@class="amount"]';
+
+    protected $layeredNavigationBaseXpath        = '//div[contains(concat(" ",normalize-space(@class)," ")," block-layered-nav ")]';
+
     public function getCustomerThemeClass()
     {
         return 'Magium\Magento\Themes\Magento19\Customer\ThemeConfiguration';
