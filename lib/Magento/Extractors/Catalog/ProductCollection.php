@@ -8,6 +8,7 @@ use Magium\Extractors\AbstractExtractor;
 use Magium\Magento\AbstractMagentoTestCase;
 
 
+use Magium\Magento\Extractors\Catalog\LayeredNavigation\HasLayeredNavigation;
 use Magium\Magento\Extractors\Catalog\Products\ProductGrid;
 use Magium\Magento\Extractors\Catalog\Products\ProductList;
 use Magium\Magento\Themes\AbstractThemeConfiguration;

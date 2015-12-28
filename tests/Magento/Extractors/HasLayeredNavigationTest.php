@@ -3,7 +3,7 @@
 namespace Tests\Magento\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Extractors\Catalog\HasLayeredNavigation;
+use Magium\Magento\Extractors\Catalog\LayeredNavigation\HasLayeredNavigation;
 use Magium\Magento\Navigators\BaseMenu;
 
 class HasLayeredNavigationTest extends AbstractMagentoTestCase

@@ -145,8 +145,19 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     protected $productCollectionShowCountOptionsXpath;
     protected $productCollectionProductCountXpath;
 
+    protected $layeredNavigationBaseXpath;
+
+
     abstract public function getCustomerThemeClass();
     abstract public function getOnePageCheckoutThemeClass();
+
+    /**
+     * @return mixed
+     */
+    public function getLayeredNavigationBaseXpath()
+    {
+        return $this->layeredNavigationBaseXpath;
+    }
 
     public function set($name, $value)
     {

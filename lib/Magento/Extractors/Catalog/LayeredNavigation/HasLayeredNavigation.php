@@ -1,13 +1,13 @@
 <?php
 
-namespace Magium\Magento\Extractors\Catalog;
+namespace Magium\Magento\Extractors\Catalog\LayeredNavigation;
 
 use Magium\Extractors\AbstractExtractor;
 use Magium\WebDriver\WebDriver;
 
 class HasLayeredNavigation extends AbstractExtractor
 {
-    const EXTRACTOR = 'Catalog\HasLayeredNavigation';
+    const EXTRACTOR = 'Catalog\LayeredNavigation\HasLayeredNavigation';
 
     protected $hasLayeredNav;
 

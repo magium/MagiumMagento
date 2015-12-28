@@ -157,6 +157,8 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $productCollectionShowCountOptionsXpath  = '//div[@class="limiter"]/descendant::option';
     protected $productCollectionProductCountXpath = '//div[@class="pager"]/p[@class="amount"]';
 
+    protected $layeredNavigationBaseXpath        = '//div[contains(concat(" ",normalize-space(@class)," ")," block-layered-nav ")]';
+
     public function getCustomerThemeClass()
     {
         return 'Magium\Magento\Themes\Magento18\Customer\ThemeConfiguration';
