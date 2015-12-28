@@ -4,6 +4,7 @@ namespace Tests\Magento\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes\PriceFilter;
+use Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterValue;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\LayeredNavigation;
 use Magium\Magento\Navigators\BaseMenu;
 
@@ -65,6 +66,7 @@ class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
         $price = $extractor->getFilter('price');
         self::assertInstanceOf('Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes\PriceFilter', $price);
         $price = $price->getValueForPrice(161);
+        /* @var $price FilterValue */
         self::assertInstanceOf('Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterValue', $price);
         self::assertTrue(strpos($price->getLink(), $url) === 0);
 
@@ -78,6 +80,25 @@ class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
         self::assertNotSame($price, $bigPrice);
     }
 
+    public function testWebDriverElementIsClickable()
+    {
+        $this->commandOpen($this->getTheme()->getBaseUrl());
+        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->category);
+
+        $extractor = $this->getExtractor(LayeredNavigation::EXTRACTOR);
+        /* @var $extractor \Magium\Magento\Extractors\Catalog\LayeredNavigation\LayeredNavigation */
+        $extractor->extract();
+
+        $price = $extractor->getFilter('price');
+        self::assertInstanceOf('Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes\PriceFilter', $price);
+        $price = $price->getValueForPrice(161);
+        /* @var $price FilterValue */
+        self::assertInstanceOf('Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterValue', $price);
+        self::assertInstanceOf('Facebook\WebDriver\WebDriverElement', $price->getElement());
+        $price->getElement()->click();
+        self::assertEquals($this->webdriver->getCurrentURL(), $price->getLink());
+
+    }
 
     public function testPriceValuesForNoValueReturnNull()
     {

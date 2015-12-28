@@ -159,7 +159,8 @@ class LayeredNavigation extends AbstractExtractor
                         $filter,
                         $doc,
                         $this->testCase,
-                        $this->theme
+                        $this->theme,
+                        $this->webDriver
                     );
                     if ($type->filterApplies()) {
                         $this->filterValues[$filterKey] = $type;
