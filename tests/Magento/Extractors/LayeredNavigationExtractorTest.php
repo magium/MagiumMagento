@@ -28,24 +28,17 @@ class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
         $extractor->extract();
         $types = $extractor->getFilterNames();
         self::assertNotFalse(array_search($this->filter, $types));
-        $values = $extractor->getFilter($this->filter)->getFilterValues();
-        self::assertGreaterThan(0, count($values));
-        $foundFilter = false;
-        foreach ($values as $value) {
-            /* @var $value \Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterValue */
-            if ($value->getText() == $this->expectedFilter[0]) {
-                self::assertEquals($this->expectedFilter[1], $value->getCount());
-                self::assertGreaterThan(strlen($url), strlen($value->getLink()));
-                self::assertTrue(strpos($value->getLink(), $url) === 0);
-                $foundFilter = true;
-            }
-        }
-        self::assertTrue($foundFilter);
+        $value = $extractor->getFilter($this->filter)->getValueForText($this->expectedFilter[0]);
+
+        self::assertEquals($this->expectedFilter[1], $value->getCount());
+        self::assertGreaterThan(strlen($url), strlen($value->getLink()));
+        self::assertTrue(strpos($value->getLink(), $url) === 0);
+
     }
 
-    public function testRequestingInvalidFilterThrowsException()
+    public function testRequestingMissingFilterThrowsException()
     {
-        $this->setExpectedException('Magium\Magento\Extractors\Catalog\LayeredNavigation\InvalidFilterException');
+        $this->setExpectedException('Magium\Magento\Extractors\Catalog\LayeredNavigation\MissingFilterException');
         $this->commandOpen($this->getTheme()->getBaseUrl());
         $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->category);
         $extractor = $this->getExtractor(LayeredNavigation::EXTRACTOR);
@@ -54,6 +47,17 @@ class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
         $extractor->getFilter('boogers');
     }
 
+
+    public function testRequestingMissingValueThrowsException()
+    {
+        $this->setExpectedException('Magium\Magento\Extractors\Catalog\LayeredNavigation\MissingValueException');
+        $this->commandOpen($this->getTheme()->getBaseUrl());
+        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->category);
+        $extractor = $this->getExtractor(LayeredNavigation::EXTRACTOR);
+        /* @var $extractor \Magium\Magento\Extractors\Catalog\LayeredNavigation\LayeredNavigation */
+        $extractor->extract();
+        $extractor->getFilter($this->filter)->getValueForText('boogers');
+    }
     public function testPriceValues()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());

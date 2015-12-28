@@ -5,6 +5,7 @@ namespace Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterValue;
+use Magium\Magento\Extractors\Catalog\LayeredNavigation\MissingValueException;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\UnparseableValueException;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
@@ -36,6 +37,23 @@ abstract class AbstractFilterType
     }
 
     abstract public function filterApplies();
+
+    /**
+     * @param $text
+     * @return FilterValue
+     * @throws MissingValueException
+     * @throws UnparseableValueException
+     */
+
+    public function getValueForText($text)
+    {
+        foreach ($this->getFilterValues() as $value) {
+            if (strtolower($value->getText()) == strtolower($text)) {
+                return $value;
+            }
+        }
+        throw new MissingValueException('Could not find the value for option: ' . $text);
+    }
 
     /**
      * @return FilterValue[]
