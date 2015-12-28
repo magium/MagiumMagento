@@ -131,7 +131,7 @@ class LayeredNavigation extends AbstractExtractor
             return $this->filterValues[$filterKey];
         }
 
-        throw new InvalidFilterException('Could not find the filter: ' . $filter);
+        throw new MissingFilterException('Could not find the filter: ' . $filter);
     }
 
     public function extract()
