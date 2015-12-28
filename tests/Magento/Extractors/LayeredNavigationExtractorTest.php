@@ -42,6 +42,17 @@ class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
         self::assertTrue($foundFilter);
     }
 
+    public function testRequestingInvalidFilterThrowsException()
+    {
+        $this->setExpectedException('Magium\Magento\Extractors\Catalog\LayeredNavigation\InvalidFilterException');
+        $this->commandOpen($this->getTheme()->getBaseUrl());
+        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->category);
+        $extractor = $this->getExtractor(LayeredNavigation::EXTRACTOR);
+        /* @var $extractor \Magium\Magento\Extractors\Catalog\LayeredNavigation\LayeredNavigation */
+        $extractor->extract();
+        $extractor->getFilter('boogers');
+    }
+
     public function testPriceValues()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
