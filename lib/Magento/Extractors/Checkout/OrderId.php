@@ -31,6 +31,12 @@ class OrderId extends AbstractExtractor implements StepInterface
     public function execute()
     {
         $this->extract();
+        return true;
+    }
+
+    public function nextAction()
+    {
+        return true;
     }
 
 }

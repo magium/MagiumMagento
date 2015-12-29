@@ -4,7 +4,7 @@
   "description": "Magento-based functionality for the Magium test library",
   "keywords": ["magento", "selenium", "webdriver", "testing"],
   "homepage": "https://github.com/magium/MagiumMagento",
-  "license": "MIT",
+  "license": "ASL-2.0",
   "authors": [
     {
       "name": "Kevin Schroeder",
@@ -14,7 +14,7 @@
     }
   ],
   "require" : {
-    "magium/magium": "^0.0.17",
+    "magium/magium": "^0.0.18",
     "zendframework/zend-uri": "^2.5"
   },
   "repositories" : [ {
@@ -24,7 +24,8 @@
   "autoload" : {
     "psr-4" : {
       "Magium\\" : "lib/",
-      "Tests\\" : "tests/"
+      "Tests\\Magium\\Magento\\" : "tests/Magento",
+      "Tests\\Magium\\Magento18\\" : "tests/Magento18"
     }
   }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento\Checkout;
+namespace Tests\Magium\Magento\Checkout;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Cart\AddItemToCart;

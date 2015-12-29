@@ -30,6 +30,12 @@ class PlaceOrder implements StepInterface
     {
         $this->testCase->assertElementExists($this->theme->getPlaceOrderButtonXpath(), AbstractTestCase::BY_XPATH);
         $this->testCase->assertElementDisplayed($this->theme->getPlaceOrderButtonXpath(), AbstractTestCase::BY_XPATH);
+
+        return true;
+    }
+
+    public function nextAction()
+    {
         $this->webdriver->byXpath($this->theme->getPlaceOrderButtonXpath())->click();
         $this->webdriver->wait()->until(
             ExpectedCondition::elementExists(

@@ -22,6 +22,12 @@ class NavigateToCheckout implements StepInterface
     
     public function execute()
     {
-        
+        // This class may not actually be used
+        return true;
+    }
+
+    public function nextAction()
+    {
+        return true;
     }
 }

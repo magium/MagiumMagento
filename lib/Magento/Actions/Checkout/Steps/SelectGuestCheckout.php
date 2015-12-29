@@ -31,11 +31,15 @@ class SelectGuestCheckout implements StepInterface
         $this->testCase->assertWebDriverElement($element);
         $element->click();
 
+        return true;
+    }
+
+    public function nextAction()
+    {
         $this->testCase->assertElementExists($this->theme->getContinueButtonXpath(), AbstractTestCase::BY_XPATH);
         $element = $this->webdriver->byXpath($this->theme->getContinueButtonXpath());
         $this->testCase->assertWebDriverElement($element);
         $element->click();
-
         return true;
     }
 }

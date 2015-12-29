@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Tests\Magento\Admin\Order;
+namespace Tests\Magium\Magento\Admin\Order;
 
 use Magium\Magento\Extractors\Admin\Order\BillingAddress;
 

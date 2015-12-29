@@ -17,6 +17,7 @@ class ShippingAddress implements StepInterface
     protected $theme;
     protected $customerIdentity;
     protected $testCase;
+    protected $bypassNextStep = false;
 
     public function __construct(
         WebDriver                   $webdriver,
@@ -34,6 +35,7 @@ class ShippingAddress implements StepInterface
     {
         // We will bypass ourself if the billing address is the same as the shipping address.
         if (!$this->webdriver->elementDisplayed($this->theme->getShippingFirstNameXpath(), AbstractTestCase::BY_XPATH)) {
+            $this->bypassNextStep = true;
             return true;
         }
 
@@ -66,10 +68,17 @@ class ShippingAddress implements StepInterface
         $this->testCase->byXpath($this->theme->getShippingTelephoneXpath())->sendKeys($this->customerIdentity->getShippingTelephone());
         $this->testCase->byXpath($this->theme->getShippingFaxXpath())->sendKeys($this->customerIdentity->getShippingFax());
 
+        return true;
+    }
+
+    public function nextAction()
+    {
+        if ($this->bypassNextStep) {
+            return true;
+        }
         $this->testCase->byXpath($this->theme->getShippingContinueButtonXpath())->click();
 
         $this->webdriver->wait()->until(WebDriverExpectedCondition::not(WebDriverExpectedCondition::visibilityOf($this->webdriver->byXpath($this->theme->getShippingContinueCompletedXpath()))));
-
         return true;
     }
 }

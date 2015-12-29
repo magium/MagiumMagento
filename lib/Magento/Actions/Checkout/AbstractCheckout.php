@@ -45,6 +45,9 @@ abstract class AbstractCheckout
             if ($step instanceof StepInterface) {
                 $continue = $step->execute();
                 if (!$continue) return;
+
+                $continue = $step->nextAction();
+                if (!$continue) return;
             }
         }
     }

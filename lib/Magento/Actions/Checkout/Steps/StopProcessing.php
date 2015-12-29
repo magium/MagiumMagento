@@ -12,4 +12,9 @@ class StopProcessing implements StepInterface
     {
         return false;
     }
+
+    public function nextAction()
+    {
+        return false;
+    }
 }

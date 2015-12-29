@@ -40,4 +40,10 @@ class NewCustomerPassword implements StepInterface
         return true;
     }
 
+    public function nextAction()
+    {
+        // Don't need to do anything here
+        return true;
+    }
+
 }

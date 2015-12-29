@@ -46,6 +46,12 @@ class PaymentMethod implements StepInterface
         $this->paymentMethod->pay($this->requirePayment);
 
         $this->testCase->assertElementExists($this->theme->getPaymentMethodContinueButtonXpath(), AbstractTestCase::BY_XPATH);
+
+        return true;
+    }
+
+    public function nextAction()
+    {
         $this->webdriver->byXpath($this->theme->getPaymentMethodContinueButtonXpath())->click();
 
         $this->webdriver->wait()->until(

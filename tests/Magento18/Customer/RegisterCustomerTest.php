@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Magento18\Customer;
+namespace Tests\Magium\Magento18\Customer;
 
 
-class RegisterCustomerTest extends \Tests\Magento\Customer\RegisterCustomerTest
+class RegisterCustomerTest extends \Tests\Magium\Magento\Customer\RegisterCustomerTest
 {
 
     protected function setUp()

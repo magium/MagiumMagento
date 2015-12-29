@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento\Assertion;
+namespace Tests\Magium\Magento\Assertion;
 
 use Magium\Magento\AbstractMagentoTestCase;
 

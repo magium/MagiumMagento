@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento\Checkout;
+namespace Tests\Magium\Magento\Checkout;
 
 class AbstractCheckoutTest extends \PHPUnit_Framework_TestCase
 {

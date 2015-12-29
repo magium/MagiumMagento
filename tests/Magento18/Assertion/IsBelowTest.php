@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Magento18\Assertion;
+namespace Tests\Magium\Magento18\Assertion;
 
 
 
-class IsBelowTest extends \Tests\Magento\Assertion\IsBelowTest
+class IsBelowTest extends \Tests\Magium\Magento\Assertion\IsBelowTest
 {
     protected function setUp()
     {

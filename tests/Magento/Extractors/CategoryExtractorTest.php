@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento\Extractors;
+namespace Tests\Magium\Magento\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\Category\Category;
@@ -28,7 +28,7 @@ class CategoryExtractorTest extends AbstractMagentoTestCase
         $productGridExtractor->extract();
         $products = $productGridExtractor->getProductList();
         self::assertNotCount(0, $products);
-        // This could fail if some details are missing.  So this is intended for a local test
+        // This could fail if some details are missing.  So this is intended for a local test with sample data
         self::assertNotNull($products[0]->getTitle());
         self::assertNotNull($products[0]->getAddToCartLink());
         self::assertNull($products[0]->getDescription()); // Product grid does not have description

@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Magento18\Navigation;
+namespace Tests\Magium\Magento18\Navigation;
 
 
-class CustomerNavigationTest extends \Tests\Magento\Navigation\CustomerNavigationTest
+class CustomerNavigationTest extends \Tests\Magium\Magento\Navigation\CustomerNavigationTest
 {
 
     protected function setUp()

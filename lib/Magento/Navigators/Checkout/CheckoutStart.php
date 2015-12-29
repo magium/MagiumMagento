@@ -34,4 +34,9 @@ class CheckoutStart extends InstructionNavigator implements StepInterface
         return true;
     }
 
+    public function nextAction()
+    {
+        return true;
+    }
+
 }

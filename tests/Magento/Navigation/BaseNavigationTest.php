@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento\Navigation;
+namespace Tests\Magium\Magento\Navigation;
 
 use Magium\Magento\AbstractMagentoTestCase;
 
