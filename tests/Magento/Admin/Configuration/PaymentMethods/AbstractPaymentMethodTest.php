@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento\Admin\Configuration\PaymentMethods;
+namespace Tests\Magium\Magento\Admin\Configuration\PaymentMethods;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Admin\Configuration\AbstractSettingGroup;

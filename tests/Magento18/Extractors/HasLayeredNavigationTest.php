@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Magento18\Extractors;
+namespace Tests\Magium\Magento18\Extractors;
 
 
-class HasLayeredNavigationTest extends \Tests\Magento\Extractors\HasLayeredNavigationTest
+class HasLayeredNavigationTest extends \Tests\Magium\Magento\Extractors\HasLayeredNavigationTest
 {
 
     protected $catalogHasNavigation = 'Apparel/Shirts';

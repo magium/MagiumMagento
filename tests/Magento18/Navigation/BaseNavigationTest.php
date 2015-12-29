@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Magento18\Navigation;
+namespace Tests\Magium\Magento18\Navigation;
 
 
-class BaseNavigationTest extends \Tests\Magento\Navigation\BaseNavigationTest
+class BaseNavigationTest extends \Tests\Magium\Magento\Navigation\BaseNavigationTest
 {
 
     protected $pageTextAssertionValue = 'Nokia 2610 Phone';

@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Magento18\Checkout;
+namespace Tests\Magium\Magento18\Checkout;
 
-class CartSummaryTest extends \Tests\Magento\Checkout\CartSummaryTest
+class CartSummaryTest extends \Tests\Magium\Magento\Checkout\CartSummaryTest
 {
     protected function setUp()
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Magento18\Customer;
+namespace Tests\Magium\Magento18\Customer;
 
-class ToCustomerLoginTest extends \Tests\Magento\Customer\ToCustomerLoginTest
+class ToCustomerLoginTest extends \Tests\Magium\Magento\Customer\ToCustomerLoginTest
 {
 
     protected function setUp()

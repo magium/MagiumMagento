@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento\Admin;
+namespace Tests\Magium\Magento\Admin;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Admin\Configuration\SettingModifier;

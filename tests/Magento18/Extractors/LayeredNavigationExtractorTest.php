@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Magento18\Extractors;
+namespace Tests\Magium\Magento18\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\LayeredNavigation;
 use Magium\Magento\Navigators\BaseMenu;
 
-class LayeredNavigationExtractorTest extends \Tests\Magento\Extractors\LayeredNavigationExtractorTest
+class LayeredNavigationExtractorTest extends \Tests\Magium\Magento\Extractors\LayeredNavigationExtractorTest
 {
 
     protected $category = 'Apparel/Shirts';

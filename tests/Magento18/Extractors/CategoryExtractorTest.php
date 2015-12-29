@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Magento18\Extractors;
+namespace Tests\Magium\Magento18\Extractors;
 
 
-class CategoryExtractorTest extends \Tests\Magento\Extractors\CategoryExtractorTest
+class CategoryExtractorTest extends \Tests\Magium\Magento\Extractors\CategoryExtractorTest
 {
     protected function setUp()
     {

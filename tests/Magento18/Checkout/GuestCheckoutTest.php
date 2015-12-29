@@ -2,7 +2,7 @@
 
 namespace Tests\Magento18\Checkout;
 
-class GuestCheckoutTest extends \Tests\Magento\Checkout\GuestCheckoutTest
+class GuestCheckoutTest extends \Tests\Magium\Magento\Checkout\GuestCheckoutTest
 {
 
     protected function setUp()

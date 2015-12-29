@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento\Admin\Order;
+namespace Tests\Magium\Magento\Admin\Order;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Admin\Login\Login;

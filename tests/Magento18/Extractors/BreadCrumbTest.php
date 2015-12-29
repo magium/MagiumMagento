@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Magento18\Extractors;
+namespace Tests\Magium\Magento18\Extractors;
 
 
-class BreadCrumbTest extends \Tests\Magento\Extractors\BreadCrumbTest
+class BreadCrumbTest extends \Tests\Magium\Magento\Extractors\BreadCrumbTest
 {
     protected $category = 'Apparel/Shirts';
     protected $baseFile = 'apparel.html';

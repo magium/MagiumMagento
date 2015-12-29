@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Magento18\Checkout;
+namespace Tests\Magium\Magento18\Checkout;
 
 
-class CustomerCheckoutTest extends \Tests\Magento\Checkout\CustomerCheckoutTest
+class CustomerCheckoutTest extends \Tests\Magium\Magento\Checkout\CustomerCheckoutTest
 {
 
     protected function setUp()

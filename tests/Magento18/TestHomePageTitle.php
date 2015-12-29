@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Magento18;
+namespace Tests\Magium\Magento18;
 
-class TestHomePageTitle extends \Tests\Magento\TestHomePageTitle
+class TestHomePageTitle extends \Tests\Magium\Magento\TestHomePageTitle
 {
 
     protected function setUp()

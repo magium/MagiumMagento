@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento\Extractors;
+namespace Tests\Magium\Magento\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\HasLayeredNavigation;

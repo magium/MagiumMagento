@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento\Extractors;
+namespace Tests\Magium\Magento\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes\PriceFilter;
@@ -172,12 +172,12 @@ class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
         $url = $this->webdriver->getCurrentURL();
         $extractor = $this->getExtractor(LayeredNavigation::EXTRACTOR);
         /* @var $extractor \Magium\Magento\Extractors\Catalog\LayeredNavigation\LayeredNavigation */
-        $extractor->replaceFilterType(LayeredNavigation::FILTER_TYPE_PRICE, 'Tests\Magento\Extractors\TemporaryPriceValueForLayeredNavigation');
+        $extractor->replaceFilterType(LayeredNavigation::FILTER_TYPE_PRICE, 'Tests\Magium\Magento\Extractors\TemporaryPriceValueForLayeredNavigation');
         $extractor->extract();
 
         $price = $extractor->getFilter('price');
 
-        self::assertInstanceOf('Tests\Magento\Extractors\TemporaryPriceValueForLayeredNavigation', $price);
+        self::assertInstanceOf('Tests\Magium\Magento\Extractors\TemporaryPriceValueForLayeredNavigation', $price);
     }
 }
 

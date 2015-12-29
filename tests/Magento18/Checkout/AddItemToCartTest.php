@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Magento18\Checkout;
+namespace Tests\Magium\Magento18\Checkout;
 
 
-class AddItemToCartTest extends \Tests\Magento\Checkout\AddItemToCartTest
+class AddItemToCartTest extends \Tests\Magium\Magento\Checkout\AddItemToCartTest
 {
 
     protected $categoryNavigation = 'Electronics/Cell Phones';

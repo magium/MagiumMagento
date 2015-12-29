@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento\Customer;
+namespace Tests\Magium\Magento\Customer;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Customer\Logout;

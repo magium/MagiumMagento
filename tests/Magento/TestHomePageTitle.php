@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magento;
+namespace Tests\Magium\Magento;
 
 use Magium\Magento\AbstractMagentoTestCase;
 
