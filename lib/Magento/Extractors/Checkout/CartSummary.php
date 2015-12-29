@@ -104,4 +104,8 @@ class CartSummary extends AbstractExtractor implements StepInterface
         return true;
     }
 
+    public function nextAction()
+    {
+        return true;
+    }
 }

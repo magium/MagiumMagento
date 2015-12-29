@@ -39,6 +39,12 @@ class ShippingMethod implements StepInterface
     public function execute()
     {
         $this->shipping->choose($this->requireShipping);
+
+        return true; // continue to next step
+    }
+
+    public function nextAction()
+    {
         $this->webdriver->byXpath($this->theme->getShippingMethodContinueButtonXpath())->click();
         $this->webdriver->wait()->until(
             WebDriverExpectedCondition::not(
@@ -49,6 +55,6 @@ class ShippingMethod implements StepInterface
                 )
             )
         );
-        return true; // continue to next step
+        return true;
     }
 }

@@ -48,7 +48,7 @@ class BillingAddress implements StepInterface
     {
         if ($this->webdriver->elementDisplayed($this->theme->getBillingAddressDropdownXpath(), WebDriver::BY_XPATH)) {
             // We're logged in and we have an address.
-            $this->clickContinue();
+
             return true;
         }
 
@@ -94,16 +94,14 @@ class BillingAddress implements StepInterface
         $this->testCase->byXpath($this->theme->getBillingTelephoneXpath())->sendKeys($this->customerIdentity->getBillingTelephone());
         $this->testCase->byXpath($this->theme->getBillingFaxXpath())->sendKeys($this->customerIdentity->getBillingFax());
 
-
-        $this->clickContinue();
-
         return true; // continue to next step
     }
 
-    protected function clickContinue()
+    public function nextAction()
     {
         $this->testCase->byXpath($this->theme->getBillingContinueButtonXpath())->click();
 
         $this->webdriver->wait()->until(WebDriverExpectedCondition::not(WebDriverExpectedCondition::visibilityOf($this->webdriver->byXpath($this->theme->getBillingContinueCompletedXpath()))));
+        return true;
     }
 }

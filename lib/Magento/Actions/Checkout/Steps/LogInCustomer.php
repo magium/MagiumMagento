@@ -45,11 +45,16 @@ class LogInCustomer implements StepInterface
         $passwordInput = $this->webdriver->byXpath($this->theme->getCustomerPasswordInputXpath());
         $passwordInput->sendKeys($this->customer->getPassword());
 
+
+        return true;
+    }
+
+    public function nextAction()
+    {
         $button = $this->webdriver->byXpath($this->theme->getCustomerButtonXpath());
         $button->click();
 
         $this->webdriver->wait()->until(ExpectedCondition::elementExists($this->theme->getBillingFirstNameXpath(), AbstractTestCase::BY_XPATH));
-
         return true;
     }
 }
