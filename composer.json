@@ -4,7 +4,7 @@
   "description": "Magento-based functionality for the Magium test library",
   "keywords": ["magento", "selenium", "webdriver", "testing"],
   "homepage": "https://github.com/magium/MagiumMagento",
-  "license": "MIT",
+  "license": "ASL-2.0",
   "authors": [
     {
       "name": "Kevin Schroeder",
