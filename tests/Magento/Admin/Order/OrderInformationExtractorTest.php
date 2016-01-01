@@ -50,7 +50,7 @@ class OrderInformationExtractorTest extends AbstractMagentoTestCase
         self::assertEquals($identity->getBillingAddress(),      $billingAddress->getStreet1());
         self::assertEquals($identity->getBillingAddress2(),     $billingAddress->getStreet2());
         self::assertEquals($identity->getBillingCity(),         $billingAddress->getCity());
-        self::assertEquals($identity->getBillingRegionId(),     $billingAddress->getRegionId());
+        self::assertEquals($identity->getBillingRegionId(),     $billingAddress->getRegion());
         self::assertEquals($identity->getBillingPostCode(),     $billingAddress->getPostCode());
         self::assertEquals('United States',                     $billingAddress->getCountry()); // SELECT in checkout and text in adminUI is different
         self::assertEquals($identity->getBillingTelephone(),    $billingAddress->getPhone());
@@ -62,7 +62,7 @@ class OrderInformationExtractorTest extends AbstractMagentoTestCase
         self::assertEquals($identity->getShippingAddress(),      $shippingAddress->getStreet1());
         self::assertEquals($identity->getShippingAddress2(),     $shippingAddress->getStreet2());
         self::assertEquals($identity->getShippingCity(),         $shippingAddress->getCity());
-        self::assertEquals($identity->getShippingRegionId(),     $shippingAddress->getRegionId());
+        self::assertEquals($identity->getShippingRegionId(),     $shippingAddress->getRegion());
         self::assertEquals($identity->getShippingPostCode(),     $shippingAddress->getPostCode());
         self::assertEquals(
             $this->getTranslator()->translate('United States'),

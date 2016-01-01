@@ -18,6 +18,7 @@ class BillingAddress implements StepInterface
     protected $testCase;
     protected $shipToDifferentAddress;
 
+    protected $enterNewAddress;
     protected $bypass = [];
     
     public function __construct(
@@ -50,8 +51,27 @@ class BillingAddress implements StepInterface
         $this->shipToDifferentAddress = $ship;
     }
 
+    public function enterNewAddress($newAddress = true)
+    {
+        $this->enterNewAddress = $newAddress;
+    }
+
     public function execute()
     {
+        if ($this->enterNewAddress) {
+            $this->webdriver->byXpath($this->theme->getBillingNewAddressXpath())->click();
+        }
+
+        if ($this->shipToDifferentAddress) {
+            if ($this->webdriver->elementExists($this->theme->getDoNotUseBillingAddressForShipping(), WebDriver::BY_XPATH)) {
+                $this->webdriver->byXpath($this->theme->getDoNotUseBillingAddressForShipping())->click();
+            }
+        } else {
+            if ($this->webdriver->elementExists($this->theme->getUseBillingAddressForShipping(), WebDriver::BY_XPATH)) {
+                $this->webdriver->byXpath($this->theme->getUseBillingAddressForShipping())->click();
+            }
+        }
+
         if ($this->webdriver->elementDisplayed($this->theme->getBillingAddressDropdownXpath(), WebDriver::BY_XPATH)) {
             // We're logged in and we have an address.
 
@@ -119,15 +139,7 @@ class BillingAddress implements StepInterface
         $this->testCase->byXpath($this->theme->getBillingTelephoneXpath())->sendKeys($this->customerIdentity->getBillingTelephone());
         $this->testCase->byXpath($this->theme->getBillingFaxXpath())->sendKeys($this->customerIdentity->getBillingFax());
 
-        if ($this->shipToDifferentAddress) {
-            if ($this->webdriver->elementExists($this->theme->getDoNotUseBillingAddressForShipping(), WebDriver::BY_XPATH)) {
-                $this->webdriver->byXpath($this->theme->getDoNotUseBillingAddressForShipping())->click();
-            }
-        } else {
-            if ($this->webdriver->elementExists($this->theme->getUseBillingAddressForShipping(), WebDriver::BY_XPATH)) {
-                $this->webdriver->byXpath($this->theme->getUseBillingAddressForShipping())->click();
-            }
-        }
+
         return true;
     }
 

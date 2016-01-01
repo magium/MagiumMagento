@@ -58,6 +58,8 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $billingContinueButtonXpath = '//div[@id="billing-buttons-container"]/descendant::button[@title="Continue"]';
     protected $billingContinueCompletedXpath   = '//span[@id="billing-please-wait"]';
 
+    protected $billingNewAddressXpath = '//select[@id="billing-address-select"]/option[.="{{New Address}}"]';
+    protected $shippingNewAddressXpath = '//select[@id="shipping-address-select"]/option[.="{{New Address}}"]';
 
     protected $shippingFirstNameXpath      = '//input[@id="shipping:firstname"]';
     protected $shippingLastNameXpath       = '//input[@id="shipping:lastname"]';

@@ -7,6 +7,7 @@ use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Identities\Customer;
 use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
+use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
 class ShippingAddress implements StepInterface
@@ -18,6 +19,8 @@ class ShippingAddress implements StepInterface
     protected $customerIdentity;
     protected $testCase;
     protected $bypassNextStep = false;
+
+    protected $enterNewAddress = false;
 
     public function __construct(
         WebDriver                   $webdriver,
@@ -31,14 +34,33 @@ class ShippingAddress implements StepInterface
         $this->testCase         = $testCase;
     }
 
+    public function enterNewAddress($newAddress = true)
+    {
+        $this->enterNewAddress = $newAddress;
+    }
+
     public function execute()
     {
+        if ($this->enterNewAddress) {
+            $this->webdriver->wait()->until(
+                ExpectedCondition::visibilityOf(
+                    $this->webdriver->byXpath($this->theme->getShippingNewAddressXpath())
+                )
+            );
+            $this->webdriver->byXpath($this->theme->getShippingNewAddressXpath())->click();
+            $this->webdriver->wait()->until(
+                ExpectedCondition::visibilityOf(
+                    $this->webdriver->byXpath($this->theme->getShippingFirstNameXpath())
+                )
+            );
+        }
         // We will bypass ourself if the billing address is the same as the shipping address.
         if (!$this->webdriver->elementDisplayed($this->theme->getShippingFirstNameXpath(), AbstractTestCase::BY_XPATH)) {
             $this->bypassNextStep = true;
             return true;
         }
 
+        // assertions
         $this->testCase->assertElementExists($this->theme->getShippingFirstNameXpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getShippingLastNameXpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getShippingCompanyXpath(), WebDriver::BY_XPATH);
@@ -54,6 +76,19 @@ class ShippingAddress implements StepInterface
         $this->testCase->assertElementExists($this->theme->getShippingFaxXpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getShippingContinueButtonXpath(), WebDriver::BY_XPATH);
 
+        // clear
+        $this->testCase->byXpath($this->theme->getShippingFirstNameXpath())->clear();
+        $this->testCase->byXpath($this->theme->getShippingLastNameXpath())->clear();
+        $this->testCase->byXpath($this->theme->getShippingCompanyXpath())->clear();
+        $this->testCase->byXpath($this->theme->getShippingAddressXpath())->clear();
+        $this->testCase->byXpath($this->theme->getShippingAddress2Xpath())->clear();
+        $this->testCase->byXpath($this->theme->getShippingCityXpath())->clear();
+        $this->testCase->byXpath($this->theme->getShippingPostCodeXpath())->clear();
+
+        $this->testCase->byXpath($this->theme->getShippingTelephoneXpath())->clear();
+        $this->testCase->byXpath($this->theme->getShippingFaxXpath())->clear();
+
+        // execute
         $this->testCase->byXpath($this->theme->getShippingFirstNameXpath())->sendKeys($this->customerIdentity->getShippingFirstName());
         $this->testCase->byXpath($this->theme->getShippingLastNameXpath())->sendKeys($this->customerIdentity->getShippingLastName());
         $this->testCase->byXpath($this->theme->getShippingCompanyXpath())->sendKeys($this->customerIdentity->getShippingCompany());

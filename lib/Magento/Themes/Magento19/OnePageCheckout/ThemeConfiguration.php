@@ -53,6 +53,8 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $useBillingAddressForShipping = '//input[@id="billing:use_for_shipping_yes"]';
     protected $doNotUseBillingAddressForShipping = '//input[@id="billing:use_for_shipping_no"]';
 
+    protected $billingNewAddressXpath = '//select[@id="billing-address-select"]/option[.="{{New Address}}"]';
+    protected $shippingNewAddressXpath = '//select[@id="shipping-address-select"]/option[.="{{New Address}}"]';
 
     protected $billingContinueButtonXpath = '//div[@id="billing-buttons-container"]/descendant::button[@title="Continue"]';
     protected $billingContinueCompletedXpath   = '//span[@id="billing-please-wait"]';

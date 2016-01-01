@@ -23,8 +23,9 @@ class AbstractCheckoutTest extends \PHPUnit_Framework_TestCase
         $abstractCheckout = $this->getMockBuilder('Magium\Magento\Actions\Checkout\AbstractCheckout')->setMethods(null)->getMock();
         /* @var $abstractCheckout \Magium\Magento\Actions\Checkout\AbstractCheckout */
         
-        $step = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute'])->getMock();
+        $step = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute', 'nextAction'])->getMock();
         $step->expects(self::once())->method('execute')->willReturn(true);
+        $step->expects(self::once())->method('nextAction')->willReturn(true);
         
         $abstractCheckout->addStep($step);
         $abstractCheckout->execute();
@@ -36,10 +37,12 @@ class AbstractCheckoutTest extends \PHPUnit_Framework_TestCase
         $abstractCheckout = $this->getMockBuilder('Magium\Magento\Actions\Checkout\AbstractCheckout')->setMethods(null)->getMock();
         /* @var $abstractCheckout \Magium\Magento\Actions\Checkout\AbstractCheckout */
         
-        $step1 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute'])->getMock();
+        $step1 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute', 'nextAction'])->getMock();
         $step1->expects(self::once())->method('execute')->willReturn(false);
-        $step2 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute'])->getMock();
+        $step1->expects(self::any())->method('nextAction')->willReturn(true);
+        $step2 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute', 'nextAction'])->getMock();
         $step2->expects(self::never())->method('execute')->willReturn(true);
+        $step2->expects(self::any())->method('nextAction')->willReturn(true);
         
         $abstractCheckout->addStep($step1);
         $abstractCheckout->addStep($step2);
@@ -54,13 +57,15 @@ class AbstractCheckoutTest extends \PHPUnit_Framework_TestCase
         
         $count = 0;
         $countIsOne = false;
-        $step2 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute'])->getMock();
+        $step2 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute', 'nextAction'])->getMock();
+        $step2->expects(self::once())->method('nextAction')->willReturn(true);
         $step2->expects(self::once())->method('execute')->willReturnCallback(function() use (&$count, &$countIsOne) {
             $countIsOne = $count === 1;
             return true;
         });
 
-        $step1 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute'])->getMock();
+        $step1 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute', 'nextAction'])->getMock();
+        $step1->expects(self::once())->method('nextAction')->willReturn(true);
         $step1->expects(self::once())->method('execute')->willReturnCallback(function() use (&$count) {
             $count++;
             return true;
@@ -82,21 +87,24 @@ class AbstractCheckoutTest extends \PHPUnit_Framework_TestCase
         $count = 0;
         $countIsOne = false;
         $countIsTwo = false;
-        $step3 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute'])->getMock();
+        $step3 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute', 'nextAction'])->getMock();
+        $step3->expects(self::once())->method('nextAction')->willReturn(true);
         $step3->expects(self::once())->method('execute')->willReturnCallback(function() use (&$count, &$countIsOne) {
             $countIsOne = $count === 1;
             $count++;
             return true;
         });
 
-        $step2 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute'])->getMock();
+        $step2 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute', 'nextAction'])->getMock();
+        $step2->expects(self::once())->method('nextAction')->willReturn(true);
         $step2->expects(self::once())->method('execute')->willReturnCallback(function() use (&$count, &$countIsTwo) {
             $countIsTwo = $count === 2;
             return true;
         });
 
 
-        $step1 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute'])->getMock();
+        $step1 = $this->getMockBuilder('Magium\Magento\Actions\Checkout\Steps\StepInterface')->setMethods(['execute', 'nextAction'])->getMock();
+        $step1->expects(self::once())->method('nextAction')->willReturn(true);
         $step1->expects(self::once())->method('execute')->willReturnCallback(function() use (&$count) {
             $count++;
             return true;

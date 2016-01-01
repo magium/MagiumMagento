@@ -117,6 +117,25 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     protected $cartSummaryCheckoutGrandTotal;
     protected $cartSummaryCheckoutShippingTotal;
 
+    protected $billingNewAddressXpath;
+    protected $shippingNewAddressXpath;
+
+    /**
+     * @return string
+     */
+    public function getBillingNewAddressXpath()
+    {
+        return $this->translate($this->billingNewAddressXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getShippingNewAddressXpath()
+    {
+        return $this->translate($this->shippingNewAddressXpath);
+    }
+
     /**
      * @return mixed
      */
