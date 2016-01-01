@@ -16,6 +16,7 @@ class BillingAddress implements StepInterface
     protected $theme;
     protected $customerIdentity;
     protected $testCase;
+    protected $shipToDifferentAddress;
 
     protected $bypass = [];
     
@@ -44,6 +45,11 @@ class BillingAddress implements StepInterface
         $this->bypass[] = $element;
     }
 
+    public function shipToDifferentAddress($ship = true)
+    {
+        $this->shipToDifferentAddress = $ship;
+    }
+
     public function execute()
     {
         if ($this->webdriver->elementDisplayed($this->theme->getBillingAddressDropdownXpath(), WebDriver::BY_XPATH)) {
@@ -52,6 +58,7 @@ class BillingAddress implements StepInterface
             return true;
         }
 
+        // Assert elements exist
         $this->testCase->assertElementExists($this->theme->getBillingFirstNameXpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getBillingLastNameXpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getBillingCompanyXpath(), WebDriver::BY_XPATH);
@@ -71,6 +78,24 @@ class BillingAddress implements StepInterface
         $this->testCase->assertElementExists($this->theme->getBillingTelephoneXpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getBillingFaxXpath(), WebDriver::BY_XPATH);
         $this->testCase->assertElementExists($this->theme->getBillingContinueButtonXpath(), WebDriver::BY_XPATH);
+
+        // clear elements
+
+        $this->testCase->byXpath($this->theme->getBillingFirstNameXpath())->clear();
+        $this->testCase->byXpath($this->theme->getBillingLastNameXpath())->clear();
+        $this->testCase->byXpath($this->theme->getBillingCompanyXpath())->clear();
+        if (!in_array($this->theme->getBillingEmailAddressXpath(), $this->bypass)) {
+            $this->testCase->byXpath($this->theme->getBillingEmailAddressXpath())->clear();
+        }
+        $this->testCase->byXpath($this->theme->getBillingAddressXpath())->clear();
+        $this->testCase->byXpath($this->theme->getBillingAddress2Xpath())->clear();
+        $this->testCase->byXpath($this->theme->getBillingCityXpath())->clear();
+
+        $this->testCase->byXpath($this->theme->getBillingPostCodeXpath())->clear();
+        $this->testCase->byXpath($this->theme->getBillingTelephoneXpath())->clear();
+        $this->testCase->byXpath($this->theme->getBillingFaxXpath())->clear();
+
+        // enter information
 
         $this->testCase->byXpath($this->theme->getBillingFirstNameXpath())->sendKeys($this->customerIdentity->getBillingFirstName());
         $this->testCase->byXpath($this->theme->getBillingLastNameXpath())->sendKeys($this->customerIdentity->getBillingLastName());
@@ -94,8 +119,18 @@ class BillingAddress implements StepInterface
         $this->testCase->byXpath($this->theme->getBillingTelephoneXpath())->sendKeys($this->customerIdentity->getBillingTelephone());
         $this->testCase->byXpath($this->theme->getBillingFaxXpath())->sendKeys($this->customerIdentity->getBillingFax());
 
-        return true; // continue to next step
+        if ($this->shipToDifferentAddress) {
+            if ($this->webdriver->elementExists($this->theme->getDoNotUseBillingAddressForShipping(), WebDriver::BY_XPATH)) {
+                $this->webdriver->byXpath($this->theme->getDoNotUseBillingAddressForShipping())->click();
+            }
+        } else {
+            if ($this->webdriver->elementExists($this->theme->getUseBillingAddressForShipping(), WebDriver::BY_XPATH)) {
+                $this->webdriver->byXpath($this->theme->getUseBillingAddressForShipping())->click();
+            }
+        }
+        return true;
     }
+
 
     public function nextAction()
     {

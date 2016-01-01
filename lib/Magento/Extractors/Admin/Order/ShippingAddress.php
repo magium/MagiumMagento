@@ -2,9 +2,10 @@
 
 namespace Magium\Magento\Extractors\Admin\Order;
 
-use Magium\Magento\Extractors\Admin\AddressExtractor;
 
-class ShippingAddress extends AddressExtractor
+use Magium\Extractors\AbstractAddressExtractor;
+
+class ShippingAddress extends AbstractAddressExtractor
 {
     const EXTRACTOR = 'Admin\Order\ShippingAddress';
 

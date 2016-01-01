@@ -31,4 +31,26 @@ class CustomerCheckoutTest extends AbstractMagentoTestCase
         self::assertGreaterThan(0, $orderId->getOrderId());
     }
 
+    public function testDifferentShippingAddressCheckout()
+    {
+
+        $theme = $this->getTheme();
+        $this->commandOpen($theme->getBaseUrl());
+        $this->getLogger()->info('Opening page ' . $theme->getBaseUrl());
+        $addToCart = $this->getAction(AddItemToCart::ACTION);
+        /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
+
+        $addToCart->addSimpleProductToCartFromCategoryPage();
+        $this->setPaymentMethod('CashOnDelivery');
+        $customerCheckout= $this->getAction(CustomerCheckout::ACTION);
+        /* @var $customerCheckout \Magium\Magento\Actions\Checkout\CustomerCheckout */
+
+        $customerCheckout->execute();
+
+        $orderId = $this->getExtractor(OrderId::class);
+        /** @var $orderId OrderId */
+        self::assertNotNull($orderId->getOrderId());
+        self::assertGreaterThan(0, $orderId->getOrderId());
+    }
+
 }
