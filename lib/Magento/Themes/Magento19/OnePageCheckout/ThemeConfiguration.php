@@ -49,6 +49,13 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $billingCountryIdXpath      = '//select[@id="billing:country_id"]/descendant::option[@value="%s"]';
     protected $billingTelephoneXpath      = '//input[@id="billing:telephone"]';
     protected $billingFaxXpath            = '//input[@id="billing:fax"]';
+
+    protected $useBillingAddressForShipping = '//input[@id="billing:use_for_shipping_yes"]';
+    protected $doNotUseBillingAddressForShipping = '//input[@id="billing:use_for_shipping_no"]';
+
+    protected $billingNewAddressXpath = '//select[@id="billing-address-select"]/option[.="{{New Address}}"]';
+    protected $shippingNewAddressXpath = '//select[@id="shipping-address-select"]/option[.="{{New Address}}"]';
+
     protected $billingContinueButtonXpath = '//div[@id="billing-buttons-container"]/descendant::button[@title="Continue"]';
     protected $billingContinueCompletedXpath   = '//span[@id="billing-please-wait"]';
 

@@ -2,9 +2,10 @@
 
 namespace Magium\Magento\Extractors\Admin\Order;
 
-use Magium\Magento\Extractors\Admin\AddressExtractor;
 
-class BillingAddress extends AddressExtractor
+use Magium\Extractors\AbstractAddressExtractor;
+
+class BillingAddress extends AbstractAddressExtractor
 {
     const EXTRACTOR = 'Admin\Order\BillingAddress';
     public function getBaseXpath()

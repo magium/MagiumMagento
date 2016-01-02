@@ -51,6 +51,10 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     protected $billingCountryIdXpath;
     protected $billingTelephoneXpath;
     protected $billingFaxXpath;
+
+    protected $useBillingAddressForShipping;
+    protected $doNotUseBillingAddressForShipping;
+
     protected $billingContinueButtonXpath;
     protected $billingContinueCompletedXpath;
 
@@ -113,6 +117,40 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     protected $cartSummaryCheckoutGrandTotal;
     protected $cartSummaryCheckoutShippingTotal;
 
+    protected $billingNewAddressXpath;
+    protected $shippingNewAddressXpath;
+
+    /**
+     * @return string
+     */
+    public function getBillingNewAddressXpath()
+    {
+        return $this->translate($this->billingNewAddressXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getShippingNewAddressXpath()
+    {
+        return $this->translate($this->shippingNewAddressXpath);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDoNotUseBillingAddressForShipping()
+    {
+        return $this->doNotUseBillingAddressForShipping;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUseBillingAddressForShipping()
+    {
+        return $this->useBillingAddressForShipping;
+    }
 
     /**
      * @return string
