@@ -42,7 +42,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     protected $categoryProductPageXpath;
 
-
+    protected $categorySpecificProductPageXpath;
 
 
     /**
@@ -150,6 +150,17 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     abstract public function getCustomerThemeClass();
     abstract public function getOnePageCheckoutThemeClass();
+
+    /**
+     * @return mixed
+     */
+    public function getCategorySpecificProductPageXpath($productName)
+    {
+        $xpath = sprintf($this->categorySpecificProductPageXpath, $productName);
+        return $this->translate($xpath);
+    }
+
+
 
     /**
      * @return mixed

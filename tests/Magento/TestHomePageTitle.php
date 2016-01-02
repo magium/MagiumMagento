@@ -6,6 +6,7 @@ use Magium\Magento\AbstractMagentoTestCase;
 
 class TestHomePageTitle extends AbstractMagentoTestCase
 {
+
     public function testTitleExists()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());

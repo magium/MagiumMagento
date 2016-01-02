@@ -9,7 +9,7 @@ class Admin extends AbstractEntity
     const IDENTITY = 'Admin';
 
     protected $account   = 'admin';
-    protected $password  = 'password';
+    protected $password  = 'Password1';
 
     public function getAccount()
     {
