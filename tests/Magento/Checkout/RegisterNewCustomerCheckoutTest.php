@@ -30,6 +30,7 @@ class RegisterNewCustomerCheckoutTest extends AbstractMagentoTestCase
         /** @var $orderId OrderId */
         self::assertNotNull($orderId->getOrderId());
         self::assertGreaterThan(0, $orderId->getOrderId());
+        self::assertNotEquals('test@example.com', $this->getIdentity()->getEmailAddress());
     }
 
 }

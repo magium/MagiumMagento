@@ -8,6 +8,10 @@ use Magium\Magento\Themes\AbstractThemeConfiguration;
 class ThemeConfiguration extends AbstractThemeConfiguration
 {
 
+    const THEME = 'Magento19\ThemeConfiguration';
+
+    protected $homeXpath = '//a[@class="logo"]';
+
     /**
      * @var string The Xpath string that finds the base of the navigation menu
      */

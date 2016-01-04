@@ -3,9 +3,9 @@
 namespace Magium\Magento\Themes;
 
 
-use Magium\Themes\ThemeConfigurationInterface;
+use Magium\Themes\BaseThemeInterface;
 
-interface NavigableThemeInterface extends ThemeConfigurationInterface {
+interface NavigableThemeInterface extends BaseThemeInterface {
 
     public function getNavigationBaseXPathSelector();
 
