@@ -10,7 +10,9 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     const THEME = 'Admin\ThemeConfiguration';
 
-    protected $baseUrl;
+    protected $baseUrl = 'http://localhost/admin';
+
+    protected $homeXpath = '//img[@class="logo"]';
 
     protected $loginUsernameField           = '//input[@type="text" and @id="username"]';
     protected $loginPasswordField           = '//input[@type="password" and @id="login"]';
@@ -40,6 +42,14 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     protected $selectOrderXpath                         = '//td[concat(" ",normalize-space(.)," ") = " %s "]/../td/a[.="{{View}}"]';
 
     protected $systemConfigSettingLabelXpath            = '//td[@class="label"]/label[.=" {{%s}}"]';
+
+    /**
+     * @return string
+     */
+    public function getHomeXpath()
+    {
+        return $this->homeXpath;
+    }
 
     /**
      * @return string
