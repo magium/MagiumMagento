@@ -7,6 +7,8 @@ use Magium\AbstractConfigurableElement;
 abstract class AbstractThemeConfiguration extends AbstractConfigurableElement implements NavigableThemeInterface
 {
 
+    protected $homeXpath;
+
     /**
      * @var string The Xpath string that finds the base of the navigation menu
      */
@@ -160,7 +162,13 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
         return $this->translate($xpath);
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function getHomeXpath()
+    {
+        return $this->homeXpath;
+    }
 
     /**
      * @return mixed

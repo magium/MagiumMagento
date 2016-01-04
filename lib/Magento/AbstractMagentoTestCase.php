@@ -8,10 +8,9 @@ use Magium\InvalidConfigurationException;
 abstract class AbstractMagentoTestCase extends AbstractTestCase
 {
 
-    protected $baseNamespace = 'Magium\Magento';
-
     protected function setUp()
     {
+        self::addBaseNamespace('Magium\Magento');
         parent::setUp();
 
         $this->di->instanceManager()->setTypePreference(
@@ -43,7 +42,7 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
 
         // If we are passed just the class name we will prepend it with Magium\Magento\Actions\Checkout\PaymentMethods
         if (strpos($method, '\\') === false) {
-            $method = $this->baseNamespace . '\\Actions\\Checkout\\PaymentMethods\\' . $method;
+            $method = 'Magium\Magento\Actions\Checkout\PaymentMethods\\' . $method;
         }
 
         if (is_subclass_of($method, 'Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface')) {
@@ -65,7 +64,7 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
 
         // If we are passed just the class name we will prepend it with Magium\Magento\Actions\Checkout\PaymentMethods
         if (strpos($method, '\\') === false) {
-            $method = $this->baseNamespace . '\\Actions\\Checkout\\ShippingMethods\\' . $method;
+            $method = 'Magium\Magento\Actions\Checkout\ShippingMethods\\' . $method;
         }
 
         if (is_subclass_of($method, 'Magium\Magento\Actions\Checkout\ShippingMethods\ShippingMethodInterface')) {
@@ -83,26 +82,14 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
         if ($reflection->isSubclassOf('Magium\Magento\Themes\NavigableThemeInterface')) {
             // Not entirely sure of hardcoding the various interface types.  May make this configurable
             parent::switchThemeConfiguration($fullyQualifiedClassName);
-            $this->di->instanceManager()->unsetTypePreferences('Magium\Magento\Themes\AbstractThemeConfiguration');
-            $this->di->instanceManager()->setTypePreference(
-                'Magium\Magento\Themes\AbstractThemeConfiguration',
-                [$fullyQualifiedClassName]
-            );
-            $this->di->instanceManager()->unsetTypePreferences('Magium\Magento\Themes\NavigableThemeInterface');
-            $this->di->instanceManager()->setTypePreference(
-                'Magium\Magento\Themes\NavigableThemeInterface',
-                [$fullyQualifiedClassName]
-            );
-            $this->di->instanceManager()->unsetTypePreferences('Magium\Magento\Themes\Customer\AbstractThemeConfiguration');
-            $this->di->instanceManager()->setTypePreference(
-                'Magium\Magento\Themes\Customer\AbstractThemeConfiguration',
-                [$this->getTheme()->getCustomerThemeClass()]
-            );
-            $this->di->instanceManager()->unsetTypePreferences('Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration');
-            $this->di->instanceManager()->setTypePreference(
-                'Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration',
-                [$this->getTheme()->getOnePageCheckoutThemeClass()]
-            );
+            $this->setTypePreference('Magium\Magento\Themes\AbstractThemeConfiguration',$fullyQualifiedClassName);
+            $this->setTypePreference('Magium\Magento\Themes\NavigableThemeInterface',$fullyQualifiedClassName);
+            $this->setTypePreference('Magium\Themes\BaseThemeInterface',$fullyQualifiedClassName);
+
+            $this->setTypePreference('Magium\Magento\Themes\Customer\AbstractThemeConfiguration',$this->getTheme()->getCustomerThemeClass());
+            $this->setTypePreference('Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration',$this->getTheme()->getOnePageCheckoutThemeClass());
+
+
         } else {
             throw new InvalidConfigurationException('The theme configuration extend Magium\Magento\Themes\NavigableThemeInterface');
         }
