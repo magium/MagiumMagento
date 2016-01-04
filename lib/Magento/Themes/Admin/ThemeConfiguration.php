@@ -8,6 +8,8 @@ use Magium\Magento\Themes\NavigableThemeInterface;
 class ThemeConfiguration extends AbstractConfigurableElement implements  NavigableThemeInterface
 {
 
+    const THEME = 'Admin\ThemeConfiguration';
+
     protected $baseUrl;
 
     protected $loginUsernameField           = '//input[@type="text" and @id="username"]';
