@@ -10,7 +10,6 @@ class Customer extends AbstractEntity implements GeneratorAware
     const IDENTITY = 'Customer';
 
     protected $emailAddress          = 'test@example.com';
-    protected $password              = 'password';
 
     protected $billingFirstName        = 'Kevin';
     protected $billingLastName         = 'Schroeder';
@@ -130,6 +129,8 @@ class Customer extends AbstractEntity implements GeneratorAware
     {
         $this->emailAddress = $emailAddress;
     }
+
+
 
     /**
      * @return string
