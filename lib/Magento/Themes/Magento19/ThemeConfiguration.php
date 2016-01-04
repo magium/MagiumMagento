@@ -43,7 +43,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     protected $categoryProductPageXpath             = '//h2[@class="product-name"]/descendant::a';
 
-
+    protected $categorySpecificProductPageXpath             = '//h2[@class="product-name"]/descendant::a[.="%s"]';
 
 
     /**
