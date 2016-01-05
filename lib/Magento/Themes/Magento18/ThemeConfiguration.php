@@ -171,6 +171,10 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $searchSuggestionTextXpath        = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]';
     protected $searchSuggestionCountXpath       = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]/span[@class="amount"]';
 
+    protected $storeSwitcherInstructionsXpath   = [
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//select[@id="select-language"]/descendant::option[contains(@href,"___store=%s"]'],
+    ];
+
     public function getCustomerThemeClass()
     {
         return 'Magium\Magento\Themes\Magento18\Customer\ThemeConfiguration';

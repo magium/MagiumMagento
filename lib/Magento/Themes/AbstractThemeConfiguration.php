@@ -155,8 +155,26 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     protected $searchSuggestionTextXpath;
     protected $searchSuggestionCountXpath;
 
+    protected $storeSwitcherInstructionsXpath;
+
     abstract public function getCustomerThemeClass();
     abstract public function getOnePageCheckoutThemeClass();
+
+    /**
+     * @return mixed
+     */
+    public function getStoreSwitcherInstructionsXpath($store)
+    {
+        $xpaths = $this->storeSwitcherInstructionsXpath;
+        foreach ($xpaths as &$path) {
+            if (strpos($path[1], '%s') !== false) {
+                $path[1] = sprintf($path[1], $store);
+            }
+        }
+        return $xpaths;
+    }
+
+
 
     /**
      * @return mixed
