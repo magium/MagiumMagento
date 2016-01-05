@@ -149,9 +149,48 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     protected $layeredNavigationBaseXpath;
 
+    protected $searchInputXpath;
+    protected $searchSubmitXpath;
+
+    protected $searchSuggestionTextXpath;
+    protected $searchSuggestionCountXpath;
 
     abstract public function getCustomerThemeClass();
     abstract public function getOnePageCheckoutThemeClass();
+
+    /**
+     * @return mixed
+     */
+    public function getSearchSuggestionTextXpath($count)
+    {
+        $xpath = sprintf($this->searchSuggestionTextXpath, $count);
+        return $this->translate($xpath);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSearchSuggestionCountXpath($count)
+    {
+        $xpath = sprintf($this->searchSuggestionCountXpath, $count);
+        return $this->translate($xpath);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSearchSubmitXpath()
+    {
+        return $this->translate($this->searchSubmitXpath);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSearchInputXpath()
+    {
+        return $this->translate($this->searchInputXpath);
+    }
 
     /**
      * @return mixed

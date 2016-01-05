@@ -13,19 +13,19 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
         self::addBaseNamespace('Magium\Magento');
         parent::setUp();
 
-        $this->di->instanceManager()->setTypePreference(
-            'Magium\\Magento\\Actions\\Checkout\\PaymentMethods\\PaymentMethodInterface',
-            ['Magium\\Magento\\Actions\\Checkout\\PaymentMethods\\NoPaymentMethod']
+        $this->setTypePreference(
+            'Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface',
+            'Magium\Magento\Actions\Checkout\PaymentMethods\NoPaymentMethod'
         );
 
-        $this->di->instanceManager()->setTypePreference(
-            'Magium\\Magento\\Actions\\Checkout\\ShippingMethods\\ShippingMethodInterface',
-            ['Magium\\Magento\\Actions\\Checkout\\ShippingMethods\\FirstAvailable']
+        $this->setTypePreference(
+            'Magium\Magento\Actions\Checkout\ShippingMethods\ShippingMethodInterface',
+            'Magium\Magento\Actions\Checkout\ShippingMethods\FirstAvailable'
         );
 
-        $this->di->instanceManager()->setTypePreference(
-            'Magium\\Themes\\ThemeConfigurationInterface',
-            ['Magium\\Magento\\Themes\\AbstractThemeConfiguration']
+        $this->setTypePreference(
+            'Magium\Themes\ThemeConfigurationInterface',
+            'Magium\Magento\Themes\AbstractThemeConfiguration'
         );
 
         $this->switchThemeConfiguration('Magium\Magento\Themes\Magento19\ThemeConfiguration');
@@ -47,8 +47,7 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
 
         if (is_subclass_of($method, 'Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface')) {
 
-            $this->di->instanceManager()->unsetTypePreferences('Magium\\Magento\\Actions\\Checkout\\PaymentMethods\\PaymentMethodInterface');
-            $this->di->instanceManager()->setTypePreference('Magium\\Magento\\Actions\\Checkout\\PaymentMethods\\PaymentMethodInterface', [$method]);
+            $this->setTypePreference('Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface', $method);
         } else {
             throw new InvalidConfigurationException('The payment method must implement Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface');
         }
@@ -69,8 +68,7 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
 
         if (is_subclass_of($method, 'Magium\Magento\Actions\Checkout\ShippingMethods\ShippingMethodInterface')) {
 
-            $this->di->instanceManager()->unsetTypePreferences('Magium\\Magento\\Actions\\Checkout\\PaymentMethods\\ShippingMethodInterface');
-            $this->di->instanceManager()->setTypePreference('Magium\\Magento\\Actions\\Checkout\\PaymentMethods\\ShippingMethodInterface', [$method]);
+            $this->setTypePreference('Magium\Magento\Actions\Checkout\PaymentMethods\ShippingMethodInterface', [$method]);
         } else {
             throw new InvalidConfigurationException('The payment method must implement Magium\Magento\Actions\Checkout\ShippingMethods\ShippingMethodInterface');
         }
