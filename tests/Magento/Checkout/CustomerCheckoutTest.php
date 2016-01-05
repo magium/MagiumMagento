@@ -29,7 +29,7 @@ class CustomerCheckoutTest extends AbstractMagentoTestCase
 
         $customerCheckout->execute();
 
-        $orderId = $this->getExtractor(OrderId::class);
+        $orderId = $this->getExtractor(OrderId::EXTRACTOR);
         /** @var $orderId OrderId */
         self::assertNotNull($orderId->getOrderId());
         self::assertGreaterThan(0, $orderId->getOrderId());
@@ -61,7 +61,7 @@ class CustomerCheckoutTest extends AbstractMagentoTestCase
         $addToCart->addSimpleProductToCartFromCategoryPage();
         $customerCheckout->execute();
 
-        $orderId = $this->getExtractor(OrderId::class);
+        $orderId = $this->getExtractor(OrderId::EXTRACTOR);
         /** @var $orderId OrderId */
         self::assertNotNull($orderId->getOrderId());
         self::assertGreaterThan(0, $orderId->getOrderId());
