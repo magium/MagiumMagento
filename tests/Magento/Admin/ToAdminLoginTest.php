@@ -29,7 +29,7 @@ class ToAdminLoginTest extends AbstractMagentoTestCase
 
     public function testAdminMessage()
     {
-        self::markTestSkipped('This test can only be run if there is a popup message');
+        self::markTestSkipped('This test can only be run if there is a popup message.  You will need to manually remove this skip if you want to test');
         $this->getAction(Login::ACTION)->login();
         $messages = $this->getExtractor(Messages::EXTRACTOR);
         self::assertTrue($messages->hasMessages());
