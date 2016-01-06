@@ -44,9 +44,12 @@ class TranslatorTest extends AbstractMagentoTestCase
         $translator = $this->getTranslator();
         $translator->addTranslationCsvFile(__DIR__ . '/translation.csv', 'en_US');
         $translator->addTranslationCsvFile(__DIR__ . '/translation.de_DE.csv', 'de_DE');
-        $translator->setLocale('de_DE');
+
         $this->commandOpen($this->getTheme()->getBaseUrl());
+        $this->getNavigator(AccountHome::NAVIGATOR)->navigateTo();
+
         $this->getNavigator(Switcher::NAVIGATOR)->switchTo('german');
+        $translator->setLocale('de_DE');
         $this->getNavigator(AccountHome::NAVIGATOR)->navigateTo();
     }
 
