@@ -65,7 +65,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderItemQtyOrderedRegex()
     {
-        return $this->translate($this->orderItemQtyOrderedRegex);
+        return $this->translatePlaceholders($this->orderItemQtyOrderedRegex);
     }
 
     /**
@@ -73,7 +73,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderItemQtyShippedRegex()
     {
-        return $this->translate($this->orderItemQtyShippedRegex);
+        return $this->translatePlaceholders($this->orderItemQtyShippedRegex);
     }
 
 
@@ -83,7 +83,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderStatusRegex()
     {
-        return $this->translate($this->orderStatusRegex);
+        return $this->translatePlaceholders($this->orderStatusRegex);
     }
 
     /**
@@ -91,7 +91,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderStatusXpath()
     {
-        return $this->translate($this->orderStatusXpath);
+        return $this->translatePlaceholders($this->orderStatusXpath);
     }
 
     /**
@@ -107,7 +107,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderPaymentMethod()
     {
-        return $this->translate($this->orderPaymentMethod);
+        return $this->translatePlaceholders($this->orderPaymentMethod);
     }
 
     /**
@@ -115,7 +115,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderShippingMethod()
     {
-        return $this->translate($this->orderShippingMethod);
+        return $this->translatePlaceholders($this->orderShippingMethod);
     }
 
 
@@ -134,11 +134,8 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getOrderItemSubtotalXpath($count)
     {
         $xpath = sprintf($this->orderItemSubtotalXpath, $count);
-        return $this->translate($xpath);
+        return $this->translatePlaceholders($xpath);
     }
-
-
-
 
     /**
      * @return mixed
@@ -146,7 +143,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getOrderItemNameXpath($count)
     {
         $xpath = sprintf($this->orderItemNameXpath, $count);
-        return $this->translate($xpath);
+        return $this->translatePlaceholders($xpath);
     }
 
     /**
@@ -155,7 +152,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getOrderItemPriceXpath($count)
     {
         $xpath = sprintf($this->orderItemPriceXpath, $count);
-        return $this->translate($xpath);
+        return $this->translatePlaceholders($xpath);
     }
 
     /**
@@ -164,7 +161,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getOrderItemQtyXpath($count)
     {
         $xpath = sprintf($this->orderItemQtyXpath, $count);
-        return $this->translate($xpath);
+        return $this->translatePlaceholders($xpath);
     }
 
 
@@ -174,7 +171,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getOrderItemSkuXpath($count)
     {
         $xpath = sprintf($this->orderItemSkuXpath, $count);
-        return $this->translate($xpath);
+        return $this->translatePlaceholders($xpath);
     }
 
     /**
@@ -182,7 +179,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderShippingAndHandlingXpath()
     {
-        return $this->translate($this->orderShippingAndHandlingXpath);
+        return $this->translatePlaceholders($this->orderShippingAndHandlingXpath);
     }
 
     /**
@@ -190,7 +187,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderSubtotalXpath()
     {
-        return $this->translate($this->orderSubtotalXpath);
+        return $this->translatePlaceholders($this->orderSubtotalXpath);
     }
 
     /**
@@ -198,7 +195,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderTaxXpath()
     {
-        return $this->translate($this->orderTaxXpath);
+        return $this->translatePlaceholders($this->orderTaxXpath);
     }
 
     /**
@@ -206,7 +203,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderBillingAddressBaseXpath()
     {
-        return $this->translate($this->orderBillingAddressBaseXpath);
+        return $this->translatePlaceholders($this->orderBillingAddressBaseXpath);
     }
 
     /**
@@ -214,17 +211,15 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderShippingAddressBaseXpath()
     {
-        return $this->translate($this->orderShippingAddressBaseXpath);
+        return $this->translatePlaceholders($this->orderShippingAddressBaseXpath);
     }
-
-
 
     /**
      * @return string
      */
     public function getOrderPageTitleContainsText()
     {
-        return $this->translate($this->orderPageTitleContainsText);
+        return $this->translatePlaceholders($this->orderPageTitleContainsText);
     }
 
     /**
@@ -233,7 +228,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getAccountNavigationXpath($section)
     {
         $return = sprintf($this->accountNavigationXpath, $section);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -242,7 +237,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getAccountSectionHeaderXpath($header)
     {
         $return = sprintf($this->accountSectionHeaderXpath, $header);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -250,7 +245,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderPageName()
     {
-        return $this->translate($this->orderPageName);
+        return $this->translatePlaceholders($this->orderPageName);
     }
 
     /**
@@ -259,7 +254,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getViewOrderLinkXpath($order)
     {
         $return = sprintf($this->viewOrderLinkXpath, $order);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
 

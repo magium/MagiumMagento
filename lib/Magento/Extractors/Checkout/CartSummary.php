@@ -87,12 +87,21 @@ class CartSummary extends AbstractExtractor implements StepInterface
             $testProductXpath = $this->theme->getCartSummaryCheckoutProductLoopNameXpath(++$count);
         }
 
+        // Tax and shipping may not be displayed
+
+        if ($this->webDriver->elementDisplayed($this->theme->getCartSummaryCheckoutTax(), WebDriver::BY_XPATH)) {
+            $this->values[self::VALUE_TAX]
+                = trim($this->webDriver->byXpath($this->theme->getCartSummaryCheckoutTax())->getText());
+        }
+        if ($this->webDriver->elementDisplayed($this->theme->getCartSummaryCheckoutShippingTotal(), WebDriver::BY_XPATH)) {
+            $this->values[self::VALUE_SnH]
+                = trim($this->webDriver->byXpath($this->theme->getCartSummaryCheckoutShippingTotal())->getText());
+        }
+
+
+
         $this->values[self::VALUE_GRAND_TOTAL]
             = trim($this->webDriver->byXpath($this->theme->getCartSummaryCheckoutGrandTotal())->getText());
-        $this->values[self::VALUE_TAX]
-            = trim($this->webDriver->byXpath($this->theme->getCartSummaryCheckoutTax())->getText());
-        $this->values[self::VALUE_SnH]
-            = trim($this->webDriver->byXpath($this->theme->getCartSummaryCheckoutShippingTotal())->getText());
         $this->values[self::VALUE_SUBTOTAL]
             = trim($this->webDriver->byXpath($this->theme->getCartSummaryCheckoutSubTotal())->getText());
 

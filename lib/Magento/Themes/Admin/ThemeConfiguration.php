@@ -57,7 +57,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public function getSystemConfigSettingLabelXpath($label)
     {
         $return = sprintf($this->systemConfigSettingLabelXpath, $label);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -81,7 +81,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
      */
     public function getLoginUsernameField()
     {
-        return $this->translate($this->loginUsernameField);
+        return $this->translatePlaceholders($this->loginUsernameField);
     }
 
     /**
@@ -89,7 +89,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
      */
     public function getLoginPasswordField()
     {
-        return $this->translate($this->loginPasswordField);
+        return $this->translatePlaceholders($this->loginPasswordField);
     }
 
     /**
@@ -97,7 +97,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
      */
     public function getLoginSubmitButton()
     {
-        return $this->translate($this->loginSubmitButton);
+        return $this->translatePlaceholders($this->loginSubmitButton);
     }
 
     /**
@@ -105,7 +105,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
      */
     public function getNavigationBaseXPathSelector()
     {
-        return $this->translate($this->navigationBaseXPathSelector);
+        return $this->translatePlaceholders($this->navigationBaseXPathSelector);
     }
 
     /**
@@ -114,7 +114,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public function getNavigationChildXPathSelector($level, $text)
     {
         $return = sprintf($this->navigationChildXPathSelector, $level, $text);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -130,7 +130,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
      */
     public function getSearchButtonText()
     {
-        return $this->translate($this->searchButtonText);
+        return $this->translatePlaceholders($this->searchButtonText);
     }
 
 
@@ -141,7 +141,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public function getSelectOrderXpath($order)
     {
         $return = sprintf($this->selectOrderXpath, $order);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -150,7 +150,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public function getTableButtonXpath($buttonValue)
     {
         $return = sprintf($this->tableButtonXpath, $buttonValue);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
 
@@ -160,7 +160,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
      */
     public function getTestLoggedInAtBaseUrl()
     {
-        return $this->translate($this->testLoggedInAtBaseUrl);
+        return $this->translatePlaceholders($this->testLoggedInAtBaseUrl);
     }
 
 
@@ -170,7 +170,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
      */
     public function getSystemConfigSaveSuccessfulXpath()
     {
-        return $this->translate($this->systemConfigSaveSuccessfulXpath);
+        return $this->translatePlaceholders($this->systemConfigSaveSuccessfulXpath);
     }
 
     /**
@@ -178,7 +178,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
      */
     public function getSystemConfigurationSaveButtonXpath()
     {
-        return $this->translate($this->systemConfigurationSaveButtonXpath);
+        return $this->translatePlaceholders($this->systemConfigurationSaveButtonXpath);
     }
 
     /**
@@ -187,7 +187,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public function getSystemConfigSectionToggleXpath($section)
     {
         $return = sprintf($this->systemConfigSectionToggleXpath, $section);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -196,7 +196,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public function getSystemConfigSectionDisplayCheckXpath($section)
     {
         $return = sprintf($this->systemConfigSectionDisplayCheckXpath, $section);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -205,7 +205,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public function getSystemConfigToggleEnableXpath($section, $option)
     {
         $return = sprintf($this->systemConfigToggleEnableXpath, $section, $option);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -214,18 +214,18 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public function getSystemConfigTabsXpath($tabName)
     {
         $return = sprintf($this->systemConfigTabsXpath, $tabName);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
 
     public function getAdminPopupMessageContainerXpath()
     {
-        return $this->translate($this->adminPopupMessageContainerXpath);
+        return $this->translatePlaceholders($this->adminPopupMessageContainerXpath);
     }
 
     public function getAdminPopupMessageCloseButtonXpath()
     {
-        return $this->translate($this->adminPopupMessageCloseButtonXpath);
+        return $this->translatePlaceholders($this->adminPopupMessageCloseButtonXpath);
     }
 
 }
