@@ -58,7 +58,7 @@ class BillingAddress implements StepInterface
 
     public function execute()
     {
-        if ($this->enterNewAddress) {
+        if ($this->enterNewAddress & $this->webdriver->elementDisplayed($this->theme->getBillingNewAddressXpath(), WebDriver::BY_XPATH)) {
             $this->webdriver->byXpath($this->theme->getBillingNewAddressXpath())->click();
         }
 
@@ -72,7 +72,7 @@ class BillingAddress implements StepInterface
             }
         }
 
-        if ($this->webdriver->elementDisplayed($this->theme->getBillingAddressDropdownXpath(), WebDriver::BY_XPATH)) {
+        if (!$this->enterNewAddress && $this->webdriver->elementDisplayed($this->theme->getBillingAddressDropdownXpath(), WebDriver::BY_XPATH)) {
             // We're logged in and we have an address.
 
             return true;

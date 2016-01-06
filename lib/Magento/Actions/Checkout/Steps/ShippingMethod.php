@@ -6,6 +6,7 @@ use Facebook\WebDriver\WebDriverExpectedCondition;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Checkout\ShippingMethods\ShippingMethodInterface;
 use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
+use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
 class ShippingMethod implements StepInterface
@@ -45,6 +46,8 @@ class ShippingMethod implements StepInterface
 
     public function nextAction()
     {
+        $this->webdriver->wait()->until(ExpectedCondition::elementExists($this->theme->getShippingMethodContinueButtonXpath(), WebDriver::BY_XPATH));
+        $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($this->webdriver->byXpath($this->theme->getShippingMethodContinueButtonXpath())));
         $this->webdriver->byXpath($this->theme->getShippingMethodContinueButtonXpath())->click();
         $this->webdriver->wait()->until(
             WebDriverExpectedCondition::not(

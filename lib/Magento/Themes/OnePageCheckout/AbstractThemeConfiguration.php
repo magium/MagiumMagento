@@ -125,7 +125,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingNewAddressXpath()
     {
-        return $this->translate($this->billingNewAddressXpath);
+        return $this->translatePlaceholders($this->billingNewAddressXpath);
     }
 
     /**
@@ -133,7 +133,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingNewAddressXpath()
     {
-        return $this->translate($this->shippingNewAddressXpath);
+        return $this->translatePlaceholders($this->shippingNewAddressXpath);
     }
 
     /**
@@ -157,7 +157,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingAddressDropdownXpath()
     {
-        return $this->translate($this->billingAddressDropdownXpath);
+        return $this->translatePlaceholders($this->billingAddressDropdownXpath);
     }
 
     /**
@@ -165,7 +165,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getPasswordInputXpath()
     {
-        return $this->translate($this->passwordInputXpath);
+        return $this->translatePlaceholders($this->passwordInputXpath);
     }
 
     /**
@@ -173,7 +173,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getConfirmPasswordInputXpath()
     {
-        return $this->translate($this->confirmPasswordInputXpath);
+        return $this->translatePlaceholders($this->confirmPasswordInputXpath);
     }
 
 
@@ -183,7 +183,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getRegisterNewCustomerCheckoutButtonXpath()
     {
-        return $this->translate($this->registerNewCustomerCheckoutButtonXpath);
+        return $this->translatePlaceholders($this->registerNewCustomerCheckoutButtonXpath);
     }
 
     /**
@@ -191,7 +191,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getCustomerEmailInputXpath()
     {
-        return $this->translate($this->customerEmailInputXpath);
+        return $this->translatePlaceholders($this->customerEmailInputXpath);
     }
 
     /**
@@ -199,7 +199,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getCustomerPasswordInputXpath()
     {
-        return $this->translate($this->customerPasswordInputXpath);
+        return $this->translatePlaceholders($this->customerPasswordInputXpath);
     }
 
     /**
@@ -207,7 +207,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getCustomerButtonXpath()
     {
-        return $this->translate($this->customerButtonXpath);
+        return $this->translatePlaceholders($this->customerButtonXpath);
     }
 
 
@@ -217,7 +217,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingMethodFormXpath()
     {
-        return $this->translate($this->shippingMethodFormXpath);
+        return $this->translatePlaceholders($this->shippingMethodFormXpath);
     }
 
     /**
@@ -225,7 +225,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getOrderReceivedCompleteXpath()
     {
-        return $this->translate($this->orderReceivedCompleteXpath);
+        return $this->translatePlaceholders($this->orderReceivedCompleteXpath);
     }
 
 
@@ -234,7 +234,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getPaymentMethodContinueButtonXpath()
     {
-        return $this->translate($this->paymentMethodContinueButtonXpath);
+        return $this->translatePlaceholders($this->paymentMethodContinueButtonXpath);
     }
 
     /**
@@ -242,7 +242,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingMethodContinueButtonXpath()
     {
-        return $this->translate($this->shippingMethodContinueButtonXpath);
+        return $this->translatePlaceholders($this->shippingMethodContinueButtonXpath);
     }
 
      /**
@@ -250,7 +250,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getPlaceOrderButtonXpath()
     {
-        return $this->translate($this->placeOrderButtonXpath);
+        return $this->translatePlaceholders($this->placeOrderButtonXpath);
     }
 
 
@@ -259,13 +259,13 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getPaymentMethodContinueCompleteXpath()
     {
-        return $this->translate($this->paymentMethodContinueCompleteXpath);
+        return $this->translatePlaceholders($this->paymentMethodContinueCompleteXpath);
     }
 
 
     public function getDefaultShippingXpath()
     {
-        return $this->translate($this->defaultShippingXpath);
+        return $this->translatePlaceholders($this->defaultShippingXpath);
     }
 
     /**
@@ -273,7 +273,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingMethodContinueCompletedXpath()
     {
-        return $this->translate($this->shippingMethodContinueCompletedXpath);
+        return $this->translatePlaceholders($this->shippingMethodContinueCompletedXpath);
     }
 
     /**
@@ -281,7 +281,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingFirstNameXpath()
     {
-        return $this->translate($this->shippingFirstNameXpath);
+        return $this->translatePlaceholders($this->shippingFirstNameXpath);
     }
 
     /**
@@ -297,7 +297,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingLastNameXpath()
     {
-        return $this->translate($this->shippingLastNameXpath);
+        return $this->translatePlaceholders($this->shippingLastNameXpath);
     }
 
     /**
@@ -313,7 +313,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingCompanyXpath()
     {
-        return $this->translate($this->shippingCompanyXpath);
+        return $this->translatePlaceholders($this->shippingCompanyXpath);
     }
 
     /**
@@ -329,7 +329,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingEmailAddressXpath()
     {
-        return $this->translate($this->shippingEmailAddressXpath);
+        return $this->translatePlaceholders($this->shippingEmailAddressXpath);
     }
 
     /**
@@ -345,7 +345,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingAddressXpath()
     {
-        return $this->translate($this->shippingAddressXpath);
+        return $this->translatePlaceholders($this->shippingAddressXpath);
     }
 
     /**
@@ -361,7 +361,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingAddress2Xpath()
     {
-        return $this->translate($this->shippingAddress2Xpath);
+        return $this->translatePlaceholders($this->shippingAddress2Xpath);
     }
 
     /**
@@ -377,7 +377,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingCityXpath()
     {
-        return $this->translate($this->shippingCityXpath);
+        return $this->translatePlaceholders($this->shippingCityXpath);
     }
 
     /**
@@ -394,7 +394,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getShippingRegionIdXpath($region)
     {
         $return = sprintf($this->shippingRegionIdXpath, $region);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -410,7 +410,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingPostCodeXpath()
     {
-        return $this->translate($this->shippingPostCodeXpath);
+        return $this->translatePlaceholders($this->shippingPostCodeXpath);
     }
 
     /**
@@ -427,7 +427,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getShippingCountryIdXpath($country)
     {
         $return = sprintf($this->shippingCountryIdXpath, $country);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -443,7 +443,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingTelephoneXpath()
     {
-        return $this->translate($this->shippingTelephoneXpath);
+        return $this->translatePlaceholders($this->shippingTelephoneXpath);
     }
 
     /**
@@ -459,7 +459,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingFaxXpath()
     {
-        return $this->translate($this->shippingFaxXpath);
+        return $this->translatePlaceholders($this->shippingFaxXpath);
     }
 
     /**
@@ -475,7 +475,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingContinueButtonXpath()
     {
-        return $this->translate($this->shippingContinueButtonXpath);
+        return $this->translatePlaceholders($this->shippingContinueButtonXpath);
     }
 
     /**
@@ -491,7 +491,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getShippingContinueCompletedXpath()
     {
-        return $this->translate($this->shippingContinueCompletedXpath);
+        return $this->translatePlaceholders($this->shippingContinueCompletedXpath);
     }
 
     /**
@@ -504,17 +504,17 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     public function getBillingContinueCompletedXpath()
     {
-        return $this->translate($this->billingContinueCompletedXpath);
+        return $this->translatePlaceholders($this->billingContinueCompletedXpath);
     }
 
     public function getContinueButtonXpath()
     {
-        return $this->translate($this->continueButtonXpath);
+        return $this->translatePlaceholders($this->continueButtonXpath);
     }
 
     public function getGuestCheckoutButtonXpath()
     {
-        return $this->translate($this->guestCheckoutButtonXpath);
+        return $this->translatePlaceholders($this->guestCheckoutButtonXpath);
     }
 
     /**
@@ -522,7 +522,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingFirstNameXpath()
     {
-        return $this->translate($this->billingFirstNameXpath);
+        return $this->translatePlaceholders($this->billingFirstNameXpath);
     }
 
     /**
@@ -530,7 +530,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingLastNameXpath()
     {
-        return $this->translate($this->billingLastNameXpath);
+        return $this->translatePlaceholders($this->billingLastNameXpath);
     }
 
     /**
@@ -538,7 +538,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingCompanyXpath()
     {
-        return $this->translate($this->billingCompanyXpath);
+        return $this->translatePlaceholders($this->billingCompanyXpath);
     }
 
     /**
@@ -546,7 +546,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingEmailAddressXpath()
     {
-        return $this->translate($this->billingEmailAddressXpath);
+        return $this->translatePlaceholders($this->billingEmailAddressXpath);
     }
 
     /**
@@ -554,7 +554,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingAddressXpath()
     {
-        return$this->translate( $this->billingAddressXpath);
+        return$this->translatePlaceholders( $this->billingAddressXpath);
     }
 
     /**
@@ -562,7 +562,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingAddress2Xpath()
     {
-        return $this->translate($this->billingAddress2Xpath);
+        return $this->translatePlaceholders($this->billingAddress2Xpath);
     }
 
     /**
@@ -570,7 +570,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingCityXpath()
     {
-        return $this->translate($this->billingCityXpath);
+        return $this->translatePlaceholders($this->billingCityXpath);
     }
 
     /**
@@ -579,7 +579,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getBillingRegionIdXpath($region)
     {
         $return = sprintf($this->billingRegionIdXpath, $region);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -587,7 +587,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingPostCodeXpath()
     {
-        return $this->translate($this->billingPostCodeXpath);
+        return $this->translatePlaceholders($this->billingPostCodeXpath);
     }
 
     /**
@@ -596,7 +596,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getBillingCountryIdXpath($country)
     {
         $return = sprintf($this->billingCountryIdXpath, $country);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -604,7 +604,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingTelephoneXpath()
     {
-        return $this->translate($this->billingTelephoneXpath);
+        return $this->translatePlaceholders($this->billingTelephoneXpath);
     }
 
     /**
@@ -612,7 +612,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingFaxXpath()
     {
-        return $this->translate($this->billingFaxXpath);
+        return $this->translatePlaceholders($this->billingFaxXpath);
     }
 
     /**
@@ -620,7 +620,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getBillingContinueButtonXpath()
     {
-        return $this->translate($this->billingContinueButtonXpath);
+        return $this->translatePlaceholders($this->billingContinueButtonXpath);
     }
 
     /**
@@ -628,7 +628,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getCartSummaryCheckoutSubTotal()
     {
-        return $this->translate($this->cartSummaryCheckoutSubTotal);
+        return $this->translatePlaceholders($this->cartSummaryCheckoutSubTotal);
     }
 
     /**
@@ -636,7 +636,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getCartSummaryCheckoutTax()
     {
-        return $this->translate($this->cartSummaryCheckoutTax);
+        return $this->translatePlaceholders($this->cartSummaryCheckoutTax);
     }
 
     /**
@@ -644,7 +644,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getCartSummaryCheckoutGrandTotal()
     {
-        return $this->translate($this->cartSummaryCheckoutGrandTotal);
+        return $this->translatePlaceholders($this->cartSummaryCheckoutGrandTotal);
     }
 
     /**
@@ -652,7 +652,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getCartSummaryCheckoutShippingTotal()
     {
-        return $this->translate($this->cartSummaryCheckoutShippingTotal);
+        return $this->translatePlaceholders($this->cartSummaryCheckoutShippingTotal);
     }
 
 
@@ -663,7 +663,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getCartSummaryCheckoutProductLoopPriceXpath($itemCount)
     {
         $return = sprintf($this->cartSummaryCheckoutProductLoopPriceXpath , $itemCount);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -672,7 +672,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getCartSummaryCheckoutProductLoopNameXpath($itemCount)
     {
         $return = sprintf($this->cartSummaryCheckoutProductLoopNameXpath , $itemCount);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -681,7 +681,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getCartSummaryCheckoutProductLoopQtyXpath($itemCount)
     {
         $return = sprintf($this->cartSummaryCheckoutProductLoopQtyXpath , $itemCount);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
     /**
@@ -690,7 +690,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getCartSummaryCheckoutProductLoopSubtotalXpath($itemCount)
     {
         $return = sprintf($this->cartSummaryCheckoutProductLoopSubtotalXpath , $itemCount);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
 
 }

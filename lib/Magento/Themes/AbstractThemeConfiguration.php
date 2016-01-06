@@ -149,6 +149,13 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     protected $layeredNavigationBaseXpath;
 
+    protected $searchInputXpath;
+    protected $searchSubmitXpath;
+
+    protected $searchSuggestionTextXpath;
+    protected $searchSuggestionCountXpath;
+
+    protected $storeSwitcherInstructionsXpath;
 
     abstract public function getCustomerThemeClass();
     abstract public function getOnePageCheckoutThemeClass();
@@ -156,10 +163,58 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     /**
      * @return mixed
      */
+    public function getStoreSwitcherInstructionsXpath($store)
+    {
+        $xpaths = $this->storeSwitcherInstructionsXpath;
+        foreach ($xpaths as &$path) {
+            if (strpos($path[1], '%s') !== false) {
+                $path[1] = sprintf($path[1], $store);
+            }
+        }
+        return $xpaths;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSearchSuggestionTextXpath($count)
+    {
+        $xpath = sprintf($this->searchSuggestionTextXpath, $count);
+        return $this->translatePlaceholders($xpath);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSearchSuggestionCountXpath($count)
+    {
+        $xpath = sprintf($this->searchSuggestionCountXpath, $count);
+        return $this->translatePlaceholders($xpath);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSearchSubmitXpath()
+    {
+        return $this->translatePlaceholders($this->searchSubmitXpath);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSearchInputXpath()
+    {
+        return $this->translatePlaceholders($this->searchInputXpath);
+    }
+
+    /**
+     * @return mixed
+     */
     public function getCategorySpecificProductPageXpath($productName)
     {
         $xpath = sprintf($this->categorySpecificProductPageXpath, $productName);
-        return $this->translate($xpath);
+        return $this->translatePlaceholders($xpath);
     }
 
     /**
@@ -167,7 +222,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getHomeXpath()
     {
-        return $this->homeXpath;
+        return $this->translatePlaceholders($this->homeXpath);
     }
 
     /**
@@ -395,7 +450,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getLogoutSuccessXpath()
     {
-        return$this->translate( $this->logoutSuccessXpath);
+        return$this->translatePlaceholders( $this->logoutSuccessXpath);
     }
 
     /**
@@ -403,7 +458,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getLogoutNavigationInstructions()
     {
-        return $this->translate($this->logoutNavigationInstructions);
+        return $this->translatePlaceholders($this->logoutNavigationInstructions);
     }
 
 
@@ -412,17 +467,15 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getMyAccountTitle()
     {
-        return $this->translate($this->myAccountTitle);
+        return $this->translatePlaceholders($this->myAccountTitle);
     }
-
-
 
     /**
      * @return string
      */
     public function getRegisterFirstNameXpath()
     {
-        return $this->translate($this->registerFirstNameXpath);
+        return $this->translatePlaceholders($this->registerFirstNameXpath);
     }
 
     /**
@@ -430,7 +483,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getRegisterLastNameXpath()
     {
-        return $this->translate($this->registerLastNameXpath);
+        return $this->translatePlaceholders($this->registerLastNameXpath);
     }
 
     /**
@@ -438,7 +491,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getRegisterEmailXpath()
     {
-        return$this->translate($this->registerEmailXpath);
+        return$this->translatePlaceholders($this->registerEmailXpath);
     }
 
     /**
@@ -446,7 +499,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getRegisterPasswordXpath()
     {
-        return $this->translate($this->registerPasswordXpath);
+        return $this->translatePlaceholders($this->registerPasswordXpath);
     }
 
     /**
@@ -454,7 +507,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getRegisterConfirmPasswordXpath()
     {
-        return $this->translate($this->registerConfirmPasswordXpath);
+        return $this->translatePlaceholders($this->registerConfirmPasswordXpath);
     }
 
     /**
@@ -462,7 +515,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getRegisterNewsletterXpath()
     {
-        return $this->translate($this->registerNewsletterXpath);
+        return $this->translatePlaceholders($this->registerNewsletterXpath);
     }
 
     /**
@@ -470,66 +523,62 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     public function getRegisterSubmitXpath()
     {
-        return $this->translate($this->registerSubmitXpath);
+        return $this->translatePlaceholders($this->registerSubmitXpath);
     }
-
-
 
     /**
      * @return array
      */
     public function getRegistrationNavigationInstructions()
     {
-        return $this->translate($this->registrationNavigationInstructions);
+        return $this->translatePlaceholders($this->registrationNavigationInstructions);
     }
-
-
 
     public function getCheckoutNavigationInstructions()
     {
-        return $this->translate($this->checkoutNavigationInstructions);
+        return $this->translatePlaceholders($this->checkoutNavigationInstructions);
     }
 
     public function getProductPageForCategory()
     {
-        return $this->translate($this->categoryProductPageXpath);
+        return $this->translatePlaceholders($this->categoryProductPageXpath);
     }
 
     public function getAddToCartSuccessXpath()
     {
-        return $this->translate($this->addToCartSuccessXpath);
+        return $this->translatePlaceholders($this->addToCartSuccessXpath);
     }
     
     public function getNavigateToCustomerPageInstructions()
     {
-        return $this->translate($this->navigateToCustomerPageInstructions);
+        return $this->translatePlaceholders($this->navigateToCustomerPageInstructions);
     }
     
     public function getNavigationBaseXPathSelector()
     {
-        return $this->translate($this->navigationBaseXPathSelector);
+        return $this->translatePlaceholders($this->navigationBaseXPathSelector);
     }
     
     public function getNavigationChildXPathSelector($level, $text)
     {
         $return = sprintf($this->navigationChildXPathSelector, $level, $text);
-        return $this->translate($return);
+        return $this->translatePlaceholders($return);
     }
     
     public function getNavigationPathToProductCategory()
     {
-        return $this->translate($this->navigationPathToProductCategory);
+        return $this->translatePlaceholders($this->navigationPathToProductCategory);
     }
     
     public function getCategoryAddToCartButtonXPathSelector()
     {
-        return $this->translate($this->categoryAddToCartButtonXPathSelector);
+        return $this->translatePlaceholders($this->categoryAddToCartButtonXPathSelector);
     }
 
 
     public function getSimpleProductAddToCartXpath()
     {
-        return $this->translate($this->simpleProductAddToCartXpath);
+        return $this->translatePlaceholders($this->simpleProductAddToCartXpath);
     }
 
 

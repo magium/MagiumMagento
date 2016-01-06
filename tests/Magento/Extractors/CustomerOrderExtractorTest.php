@@ -46,9 +46,11 @@ class CustomerOrderExtractorTest extends AbstractMagentoTestCase
         self::assertEquals($this->status, $orderSummary->getStatus());
         self::assertContains('$', $orderSummary->getGrandTotal());
         self::assertNotNull($orderSummary->getOrderDate());
-        self::assertContains('$', $orderSummary->getShippingAndHandling());
         self::assertContains('$', $orderSummary->getSubTotal());
-        self::assertContains('$', $orderSummary->getTax());
+
+        // Tax and shipping may not be displayed
+//        self::assertContains('$', $orderSummary->getShippingAndHandling());
+//        self::assertContains('$', $orderSummary->getTax());
 
         $identity = $this->getIdentity();
         /* @var $identity \Magium\Magento\Identities\Customer */

@@ -137,12 +137,22 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $productGridAddToCartLinkXpath     = '/descendant::div[@class="actions"]/descendant::button[contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
 
     protected $productCollectionViewModeXpath   = '//p[@class="view-mode"]/strong';
-    protected $productCollectionSortByXpath     = '//div[@class="sort-by"/descendant::option[@selected]'; // We select using the div, not the title because the title may be translated
+    protected $productCollectionSortByXpath     = '//div[@class="sort-by"]/descendant::option[@selected]'; // We select using the div, not the title because the title may be translated
     protected $productCollectionShowCountXpath  = '//div[@class="limiter"]/descendant::option[@selected]'; // dittos
     protected $productCollectionShowCountOptionsXpath  = '//div[@class="limiter"]/descendant::option';
-    protected $productCollectionProductCountXpath = '//div[@class="pager"]/p[@class="amount"]';
+    protected $productCollectionProductCountXpath = '//div[contains(concat(" ",normalize-space(@class)," ")," pager ")]/descendant::p[contains(concat(" ",normalize-space(@class)," ")," amount ")]';
 
     protected $layeredNavigationBaseXpath        = '//div[contains(concat(" ",normalize-space(@class)," ")," block-layered-nav ")]';
+
+    protected $searchInputXpath                 = '//input[@id="search"]';
+    protected $searchSubmitXpath                = '//form[@id="search_mini_form"]/descendant::button[@title="Search"]';
+
+    protected $searchSuggestionTextXpath        = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]';
+    protected $searchSuggestionCountXpath       = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]/span[@class="amount"]';
+
+    protected $storeSwitcherInstructionsXpath   = [
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//select[@id="select-language"]/descendant::option[contains(@value,"___store=%s")]'],
+    ];
 
     public function getCustomerThemeClass()
     {

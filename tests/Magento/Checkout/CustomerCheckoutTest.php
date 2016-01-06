@@ -35,6 +35,38 @@ class CustomerCheckoutTest extends AbstractMagentoTestCase
         self::assertGreaterThan(0, $orderId->getOrderId());
     }
 
+    public function testCheckoutwithDifferentBillingAddress()
+    {
+        $theme = $this->getTheme();
+        $this->commandOpen($theme->getBaseUrl());
+        $this->getLogger()->info('Opening page ' . $theme->getBaseUrl());
+        $addToCart = $this->getAction(AddItemToCart::ACTION);
+        /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
+
+        $addToCart->addSimpleProductToCartFromCategoryPage();
+        $this->setPaymentMethod('CashOnDelivery');
+        $customerCheckout= $this->getAction(CustomerCheckout::ACTION);
+        /* @var $customerCheckout \Magium\Magento\Actions\Checkout\CustomerCheckout */
+
+        $customerBilling = $this->getAction(CustomerBillingAddress::ACTION);
+        /* @var $customerBilling \Magium\Magento\Actions\Checkout\Steps\CustomerBillingAddress */
+        $customerBilling->enterNewAddress();
+        $this->getIdentity()->setBillingFirstName('Bob');
+
+        $customerCheckout->execute();
+
+        $orderId = $this->getExtractor(OrderId::EXTRACTOR);
+        /** @var $orderId OrderId */
+        self::assertNotNull($orderId->getOrderId());
+        self::assertGreaterThan(0, $orderId->getOrderId());
+
+        $this->getNavigator(AccountHome::NAVIGATOR)->navigateTo();
+        $this->getNavigator(NavigateToOrder::NAVIGATOR)->navigateTo($orderId->getOrderId());
+        $billingAddress = $this->getExtractor(\Magium\Magento\Extractors\Customer\Order\BillingAddress::EXTRACTOR);
+        $billingAddress->extract();
+        self::assertEquals('Bob Schroeder', $billingAddress->getName());
+    }
+
     public function testDifferentShippingAddressCheckout()
     {
         // setup
