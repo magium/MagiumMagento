@@ -14,7 +14,7 @@
     }
   ],
   "require" : {
-    "magium/magium": "^0.0.30",
+    "magium/magium": "^0.0.31",
     "zendframework/zend-uri": "^2.5"
   },
   "repositories" : [ {
