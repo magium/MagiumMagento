@@ -3,6 +3,7 @@
 namespace Magium\Magento\Navigators;
 
 
+use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Magento\Themes\NavigableThemeInterface;
 use Magium\Themes\ThemeConfigurationInterface;
@@ -12,11 +13,13 @@ class BaseMenu
     const NAVIGATOR = 'BaseMenu';
     protected $webdriver;
     protected $themeConfiguration;
+    protected $loaded;
     
-    public function __construct(NavigableThemeInterface $theme, WebDriver $webdriver)
+    public function __construct(NavigableThemeInterface $theme, WebDriver $webdriver, WaitForPageLoaded $loaded)
     {
         $this->themeConfiguration = $theme;
         $this->webdriver = $webdriver;
+        $this->loaded = $loaded;
     }
 
     
@@ -36,7 +39,7 @@ class BaseMenu
         }
         
         $this->webdriver->getMouse()->click();
-        
+        $this->loaded->execute($element);
     }
     
 }

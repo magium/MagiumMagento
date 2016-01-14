@@ -12,5 +12,6 @@ class Switcher extends InstructionNavigator
     public function switchTo($store)
     {
         $this->navigateTo($this->themeConfiguration->getStoreSwitcherInstructionsXpath($store));
+        $this->loaded->execute();
     }
 }

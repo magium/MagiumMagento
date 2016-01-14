@@ -2,6 +2,7 @@
 
 namespace Magium\Magento\Navigators\Checkout;
 
+use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Checkout\Steps\StepInterface;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
@@ -15,9 +16,10 @@ class CheckoutStart extends InstructionNavigator implements StepInterface
     public function __construct(
         AbstractThemeConfiguration $theme,
         AbstractMagentoTestCase $testCase,
-        WebDriver $webdriver)
+        WebDriver $webdriver,
+        WaitForPageLoaded $loaded)
     {
-        parent::__construct($theme, $testCase, $webdriver);
+        parent::__construct($theme, $testCase, $webdriver, $loaded);
     }
 
     public function navigateTo(array $instructions = null)

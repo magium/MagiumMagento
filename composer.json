@@ -9,12 +9,12 @@
     {
       "name": "Kevin Schroeder",
       "email": "kschroeder@mirageworks.com",
-      "homepage": "http://eschrade.com/",
+      "homepage": "http://magiumlib.com/",
       "role": "Developer"
     }
   ],
   "require" : {
-    "magium/magium": "^0.0.31",
+    "magium/magium": "^0.0.34",
     "zendframework/zend-uri": "^2.5"
   },
   "repositories" : [ {
