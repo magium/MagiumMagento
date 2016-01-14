@@ -23,12 +23,12 @@ class BaseMenu
     public function navigateTo($path)
     {
         $paths = explode('/', $path);
-        $xpath = $this->themeConfiguration->getNavigationBaseXPathSelector();
+        $baseXpath = $this->themeConfiguration->getNavigationBaseXPathSelector();
         
         $level = 0;
         
         foreach ($paths as $p) {
-            $xpath = '/descendant::' . $this->themeConfiguration->getNavigationChildXPathSelector($level++, $p);
+            $xpath = $baseXpath . '/descendant::' . $this->themeConfiguration->getNavigationChildXPathSelector($level++, $p);
 
             $element = $this->webdriver->byXpath($xpath . '/a');
             $this->webdriver->getMouse()->mouseMove($element->getCoordinates());
