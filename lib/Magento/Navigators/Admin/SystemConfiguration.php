@@ -3,6 +3,7 @@
 namespace Magium\Magento\Navigators\Admin;
 
 use Magium\AbstractTestCase;
+use Magium\Actions\WaitForPageLoaded;
 use Magium\InvalidInstructionException;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
@@ -16,15 +17,18 @@ class SystemConfiguration
     protected $webdriver;
     protected $themeConfiguration;
     protected $testCase;
+    protected $loaded;
 
     public function __construct(
         ThemeConfiguration $theme,
         WebDriver $webdriver,
-        AbstractMagentoTestCase $testCase
+        AbstractMagentoTestCase $testCase,
+        WaitForPageLoaded $loaded
     ) {
         $this->themeConfiguration   = $theme;
         $this->webdriver            = $webdriver;
         $this->testCase             = $testCase;
+        $this->loaded               = $loaded;
     }
     
     public function navigateTo($path)
@@ -47,7 +51,8 @@ class SystemConfiguration
 
         $this->testCase->assertElementExists($sectionToggleXpath, AbstractTestCase::BY_XPATH);
         if (!$this->webdriver->elementDisplayed($sectionDisplayXpath, AbstractTestCase::BY_XPATH)) {
-            $this->webdriver->byXpath($sectionToggleXpath)->click();
+            $element = $this->webdriver->byXpath($sectionToggleXpath);
+            $element->click();
         }
     }
     

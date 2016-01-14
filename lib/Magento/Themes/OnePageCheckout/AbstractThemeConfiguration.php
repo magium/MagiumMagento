@@ -120,6 +120,21 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     protected $billingNewAddressXpath;
     protected $shippingNewAddressXpath;
 
+    protected $guaranteedPageLoadedElementDisplayedXpath = '//*[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
+
+    public function getGuaranteedPageLoadedElementDisplayedXpath()
+    {
+        return $this->translatePlaceholders($this->guaranteedPageLoadedElementDisplayedXpath);
+    }
+
+    /**
+     * @param mixed $guaranteedPageLoadedElementDisplayedXpath
+     */
+    public function setGuaranteedPageLoadedElementDisplayedXpath($guaranteedPageLoadedElementDisplayedXpath)
+    {
+        $this->guaranteedPageLoadedElementDisplayedXpath = $guaranteedPageLoadedElementDisplayedXpath;
+    }
+
     /**
      * @return string
      */

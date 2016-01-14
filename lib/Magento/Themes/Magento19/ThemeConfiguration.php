@@ -78,7 +78,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      */
 
     protected $checkoutNavigationInstructions         = [
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="header-minicart"]'],
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="header-minicart"]/descendant::span[.="{{Cart}}"]'],
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="minicart-actions"]/descendant::a[@title="{{Checkout}}"]']
     ];
 

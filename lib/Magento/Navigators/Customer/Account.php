@@ -2,6 +2,7 @@
 
 namespace Magium\Magento\Navigators\Customer;
 
+use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Themes\Customer\AbstractThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
@@ -11,13 +12,16 @@ class Account
     const NAVIGATOR = 'Customer\Account';
     protected $webDriver;
     protected $themeConfiguration;
+    protected $loader;
 
     public function __construct(
         WebDriver               $webDriver,
-        AbstractThemeConfiguration    $themeConfiguration)
+        AbstractThemeConfiguration    $themeConfiguration,
+        WaitForPageLoaded $loaded)
     {
         $this->webDriver            = $webDriver;
         $this->themeConfiguration   = $themeConfiguration;
+        $this->loader = $loaded;
     }
 
     /**
@@ -35,7 +39,7 @@ class Account
         $xpath = $this->themeConfiguration->getAccountNavigationXpath($section);
         $element = $this->webDriver->byXpath($xpath);
         $element->click();
-
+        $this->loader->execute($element);
         if ($header !== null) {
             $xpath = $this->themeConfiguration->getAccountSectionHeaderXpath($header);
             $this->webDriver->wait()->until(ExpectedCondition::elementExists($xpath, WebDriver::BY_XPATH));
