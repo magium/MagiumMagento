@@ -37,7 +37,7 @@ class AddSimpleProductToCart
         $this->requireQty = $require;
     }
 
-    public function addQty($number)
+    public function setQty($number)
     {
         $this->requireQty();
         $this->addQty = $number;

@@ -26,7 +26,7 @@ class AddSimpleProductToCartTest extends AbstractMagentoTestCase
         $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->getTheme()->getDefaultProductName());
         $action = $this->getAction(AddSimpleProductToCart::ACTION);
         /* @var $action AddSimpleProductToCart */
-        $action->addQty(2);
+        $action->setQty(2);
         $action->execute();
 
         $element = $this->webdriver->byCssSelector('.qty');
@@ -40,7 +40,7 @@ class AddSimpleProductToCartTest extends AbstractMagentoTestCase
         $this->commandOpen($this->getTheme()->getBaseUrl());
         $action = $this->getAction(AddSimpleProductToCart::ACTION);
         /* @var $action AddSimpleProductToCart */
-        $action->addQty(2);
+        $action->setQty(2);
         $action->execute();
 
 
