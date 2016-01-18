@@ -5,6 +5,7 @@ namespace Magium\Magento\Actions\Checkout\Steps;
 use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
+use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
 class SelectGuestCheckout implements StepInterface
@@ -26,7 +27,8 @@ class SelectGuestCheckout implements StepInterface
     
     public function execute()
     {
-        $this->testCase->assertElementExists($this->theme->getGuestCheckoutButtonXpath(), AbstractTestCase::BY_XPATH);
+        $this->webdriver->wait()->until(ExpectedCondition::elementExists($this->theme->getGuestCheckoutButtonXpath(), AbstractTestCase::BY_XPATH));
+        $this->testCase->assertElementDisplayed($this->theme->getGuestCheckoutButtonXpath(), AbstractTestCase::BY_XPATH);
         $element = $this->webdriver->byXpath($this->theme->getGuestCheckoutButtonXpath());
         $this->testCase->assertWebDriverElement($element);
         $element->click();

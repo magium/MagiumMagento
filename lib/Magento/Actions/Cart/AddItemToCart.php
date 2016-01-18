@@ -17,19 +17,22 @@ class AddItemToCart
     protected $navigator;
     protected $testCase;
     protected $loaded;
+    protected $addSimpleProductToCart;
     
     public function __construct(
         WebDriver $webdriver,
         AbstractThemeConfiguration $theme,
         BaseMenu $navigator,
         AbstractMagentoTestCase $testCase,
-        WaitForPageLoaded $loaded
+        WaitForPageLoaded $loaded,
+        AddSimpleProductToCart $addSimpleProductToCart
     ) {
         $this->webdriver = $webdriver;
         $this->theme = $theme;
         $this->navigator = $navigator;
         $this->testCase = $testCase;
         $this->loaded = $loaded;
+        $this->addSimpleProductToCart = $addSimpleProductToCart;
     }
     
     /**
@@ -45,17 +48,14 @@ class AddItemToCart
             $categoryNavigationPath = $this->theme->getNavigationPathToProductCategory();
         }
 
-        if ($addToCartXpath === null) {
-            $addToCartXpath = $this->theme->getCategoryAddToCartButtonXPathSelector();
+        $this->navigator->navigateTo($categoryNavigationPath);
+
+        if ($addToCartXpath !== null) {
+            $this->webdriver->byXpath($addToCartXpath)->click();
+            return;
         }
 
-        $this->navigator->navigateTo($categoryNavigationPath);
-        $this->testCase->assertElementExists($addToCartXpath, 'byXpath');
-        $element = $this->webdriver->byXpath($addToCartXpath);
-        $this->testCase->assertWebDriverElement($element);
-        $element->click();
-        $this->loaded->execute($element);
-        $this->testCase->assertElementExists($this->theme->getAddToCartSuccessXpath(), 'byXpath');
+        $this->addSimpleProductToCart->execute();
     }
     
     /**
@@ -82,12 +82,7 @@ class AddItemToCart
         $element->click();
         $this->loaded->execute($element);
 
-        $element = $this->webdriver->byXpath($this->theme->getSimpleProductAddToCartXpath());
-
-        $this->testCase->assertWebDriverElement($element);
-
-        $element->click();
-        $this->loaded->execute($element);
+        $this->addSimpleProductToCart->execute();
 
         $this->testCase->assertElementExists($this->theme->getAddToCartSuccessXpath(), 'byXpath');
     }

@@ -18,6 +18,7 @@ class GuestCheckoutTest extends AbstractMagentoTestCase
         /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
 
         $addToCart->addSimpleProductToCartFromCategoryPage();
+
         $this->setPaymentMethod('CashOnDelivery');
         $guestCheckout = $this->getAction(GuestCheckout::ACTION);
         /* @var $guestCheckout \Magium\Magento\Actions\Checkout\GuestCheckout */

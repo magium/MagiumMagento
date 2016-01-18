@@ -79,7 +79,7 @@ class Login
         $passwordElement->sendKeys($password);
         
         $submitElement->click();
-        $this->webdriver->wait(10)->until(ExpectedCondition::titleContains($this->testCase->getTranslator()->translate('Dashboard')));
+        $this->webdriver->wait()->until(ExpectedCondition::titleContains($this->testCase->getTranslator()->translate('Dashboard')));
 
         $this->messages->extract();
 
