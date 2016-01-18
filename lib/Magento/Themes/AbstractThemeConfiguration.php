@@ -32,6 +32,8 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     protected $simpleProductAddToCartXpath;
 
+    protected $defaultProductName;
+
     /**
      * @var string Xpath to add a Simple product to the cart from the category page
      */
@@ -147,6 +149,8 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     protected $productCollectionShowCountOptionsXpath;
     protected $productCollectionProductCountXpath;
 
+    protected $simpleProductQtyXpath;
+
     protected $layeredNavigationBaseXpath;
 
     protected $searchInputXpath;
@@ -161,6 +165,22 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     abstract public function getOnePageCheckoutThemeClass();
 
     protected $guaranteedPageLoadedElementDisplayedXpath = '//*[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
+
+    /**
+     * @return mixed
+     */
+    public function getDefaultProductName()
+    {
+        return $this->translatePlaceholders($this->defaultProductName);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSimpleProductQtyXpath()
+    {
+        return $this->simpleProductQtyXpath;
+    }
 
     public function getGuaranteedPageLoadedElementDisplayedXpath()
     {

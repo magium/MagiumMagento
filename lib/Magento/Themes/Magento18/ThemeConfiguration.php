@@ -29,6 +29,8 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     protected $navigationPathToProductCategory      = '{{Electronics}}/{{Cell Phones}}';
 
+    protected $defaultProductName = '{{Nokia 2610 Phone}}';
+
     /**
      * @var string Xpath to add a Simple product to the cart from the product's page
      */
@@ -171,6 +173,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $searchSuggestionTextXpath        = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]';
     protected $searchSuggestionCountXpath       = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]/span[@class="amount"]';
 
+    protected $simpleProductQtyXpath = '//input[@id="qty"]';
 
     protected $storeSwitcherInstructionsXpath   = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//select[@id="select-language"]/descendant::option[contains(@href,"___store=%s"]'],
