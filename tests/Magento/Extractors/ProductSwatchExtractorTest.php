@@ -3,7 +3,7 @@
 namespace Tests\Magium\Magento\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Extractors\Catalog\Product\Swatch;
+use Magium\Magento\Extractors\Catalog\Product\ConfigurableProductOptions;
 use Magium\Magento\Navigators\Catalog\Product;
 
 class ProductSwatchExtractorTest extends AbstractMagentoTestCase
@@ -15,17 +15,17 @@ class ProductSwatchExtractorTest extends AbstractMagentoTestCase
         $this->getNavigator()->navigateTo($this->getTheme()->getNavigationPathToConfigurableProductCategory());
         $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->getTheme()->getDefaultConfigurableProductName());
 
-        $extractor = $this->getExtractor(Swatch::EXTRACTOR);
-        /* @var $extractor Swatch */
+        $extractor = $this->getExtractor(ConfigurableProductOptions::EXTRACTOR);
+        /* @var $extractor ConfigurableProductOptions */
 
         $extractor->extract();
 
-        $names = $extractor->getSwatchItemNames();
+        $names = $extractor->getOptionNames();
         self::assertCount(2, $names);
         self::assertContains('Color', $names);
         self::assertContains('Size', $names);
 
-        $item = $extractor->getSwatchItem('Color');
+        $item = $extractor->getOption('Color');
         $options = $item->getOptions();
 
         self::assertCount(4, $options);
@@ -43,12 +43,12 @@ class ProductSwatchExtractorTest extends AbstractMagentoTestCase
         $this->getNavigator()->navigateTo($this->getTheme()->getNavigationPathToConfigurableProductCategory());
         $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->getTheme()->getDefaultConfigurableProductName());
 
-        $extractor = $this->getExtractor(Swatch::EXTRACTOR);
-        /* @var $extractor Swatch */
+        $extractor = $this->getExtractor(ConfigurableProductOptions::EXTRACTOR);
+        /* @var $extractor ConfigurableProductOptions */
 
         $extractor->extract();
 
-        $item = $extractor->getSwatchItem('Color');
+        $item = $extractor->getOption('Color');
         $option = $item->getOption('red');
         self::assertTrue($option->getAvailable());
         $option->getClickElement()->click();
@@ -56,24 +56,10 @@ class ProductSwatchExtractorTest extends AbstractMagentoTestCase
         // Re-extract
         $extractor->extract();
 
-        $item = $extractor->getSwatchItem('Size');
+        $item = $extractor->getOption('Size');
         $option = $item->getOption('xl');
         self::assertFalse($option->getAvailable());
     }
 
-    public function testThemeConfigurationWithoutConfigurationThrowsException()
-    {
-        $this->switchThemeConfiguration('Magium\Magento\Themes\Magento18\ThemeConfiguration');
-        $this->setExpectedException(Swatch::EXCEPTION_MISSING_CONFIGURATION);
-        $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator()->navigateTo($this->getTheme()->getNavigationPathToConfigurableProductCategory());
-        $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->getTheme()->getDefaultConfigurableProductName());
-
-        $extractor = $this->getExtractor(Swatch::EXTRACTOR);
-        /* @var $extractor Swatch */
-
-        $extractor->extract();
-
-    }
 
 }
