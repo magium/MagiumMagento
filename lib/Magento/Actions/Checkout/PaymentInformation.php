@@ -10,10 +10,12 @@ class PaymentInformation extends AbstractConfigurableElement
     const ACTION = 'Checkout\PaymentInformation';
 
     protected $creditCardNumber;
-    protected $expiryDate;
+    protected $expiryYear;
+    protected $expiryMonth;
     protected $cvv;
+    protected $type;
 
-    public function __construct(Translator $translator,  $configurationFile = null)
+    public function __construct($configurationFile = null)
     {
         /*
          * Note: payment information is placed in this class instead of the payment step because I wanted to make
@@ -24,9 +26,11 @@ class PaymentInformation extends AbstractConfigurableElement
          * This way if you want to handle your own credit card you only have to configure this class
         */
         $this->creditCardNumber = '4111111111111111';
-        $this->expiryDate = '01/' . date('', time() + (60 * 60 * 24 * 365 * 5));  // January plus 5 years
+        $this->expiryMonth = '1';
+        $this->expiryYear = date('Y', time() + (60 * 60 * 24 * 365 * 5));  // January plus 5 years
         $this->cvv = '123';
-        parent::__construct($translator, $configurationFile);
+        $this->type = 'VI';
+        parent::__construct($configurationFile);
     }
 
     /**
@@ -48,9 +52,17 @@ class PaymentInformation extends AbstractConfigurableElement
     /**
      * @return string
      */
-    public function getExpiryDate()
+    public function getExpiryMonth()
     {
-        return $this->expiryDate;
+        return $this->expiryMonth;
+    }
+
+    /**
+     * @return bool|string
+     */
+    public function getExpiryYear()
+    {
+        return $this->expiryYear;
     }
 
     /**
@@ -59,6 +71,14 @@ class PaymentInformation extends AbstractConfigurableElement
     public function setExpiryDate($expiryDate)
     {
         $this->expiryDate = $expiryDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
