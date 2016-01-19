@@ -3,6 +3,7 @@
 namespace Magium\Magento\Navigators;
 
 
+use Facebook\WebDriver\WebDriverElement;
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Magento\Themes\NavigableThemeInterface;
@@ -29,6 +30,8 @@ class BaseMenu
         $baseXpath = $this->themeConfiguration->getNavigationBaseXPathSelector();
         
         $level = 0;
+
+        $element = null;
         
         foreach ($paths as $p) {
             $xpath = $baseXpath . '/descendant::' . $this->themeConfiguration->getNavigationChildXPathSelector($level++, $p);
@@ -37,8 +40,10 @@ class BaseMenu
             $this->webdriver->getMouse()->mouseMove($element->getCoordinates());
             usleep(500000); // Give the UI some time to update
         }
-        
-        $this->webdriver->getMouse()->click();
+
+        if ($element instanceof WebDriverElement) {
+            $element->click();
+        }
         $this->loaded->execute($element);
     }
     
