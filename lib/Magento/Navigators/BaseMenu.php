@@ -8,6 +8,7 @@ use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Magento\Themes\NavigableThemeInterface;
 use Magium\Themes\ThemeConfigurationInterface;
+use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 class BaseMenu
 {
@@ -28,6 +29,7 @@ class BaseMenu
     {
         $paths = explode('/', $path);
         $baseXpath = $this->themeConfiguration->getNavigationBaseXPathSelector();
+        $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($this->webdriver->byXpath($baseXpath)));
         
         $level = 0;
 
@@ -42,6 +44,7 @@ class BaseMenu
         }
 
         if ($element instanceof WebDriverElement) {
+
             $element->click();
         }
         $this->loaded->execute($element);
