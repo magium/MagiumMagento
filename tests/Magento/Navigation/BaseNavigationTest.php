@@ -12,7 +12,7 @@ class BaseNavigationTest extends AbstractMagentoTestCase
     {
         $theme = $this->getTheme();
         $this->commandOpen($theme->getBaseUrl());
-        $this->getNavigator()->navigateTo($theme->getNavigationPathToProductCategory());
-        $this->assertPageHasText($this->getTheme()->getDefaultProductName());
+        $this->getNavigator()->navigateTo($theme->getNavigationPathToSimpleProductCategory());
+        $this->assertPageHasText($this->getTheme()->getDefaultSimpleProductName());
     }
 }
