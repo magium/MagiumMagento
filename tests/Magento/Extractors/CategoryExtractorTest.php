@@ -15,7 +15,7 @@ class CategoryExtractorTest extends AbstractMagentoTestCase
     {
         // This is different because it goes through the category extractor.  Perhaps this is useless
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToProductCategory());
+        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToSimpleProductCategory());
         $extractor = $this->getExtractor(Category::EXTRACTOR);
         self::assertTrue($extractor->hasLayeredNavigation());
     }
@@ -23,7 +23,7 @@ class CategoryExtractorTest extends AbstractMagentoTestCase
     public function testProductGridExtraction()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToProductCategory());
+        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToSimpleProductCategory());
         $productGridExtractor = $this->getExtractor(ProductGrid::EXTRACTOR);
         $productGridExtractor->extract();
         $products = $productGridExtractor->getProductList();
@@ -42,7 +42,7 @@ class CategoryExtractorTest extends AbstractMagentoTestCase
     public function testProductListExtraction()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToProductCategory());
+        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToSimpleProductCategory());
         $this->webdriver->byXpath('//p[@class="view-mode"]//a[@class="list"]')->click();
         $productListExtractor = $this->getExtractor(ProductList::EXTRACTOR);
         $productListExtractor->extract();
