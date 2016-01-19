@@ -60,11 +60,11 @@ class AddConfigurableProductToCart extends AddSimpleProductToCart
                 // The options are sorted by  their entry into the setOption() method.  Need to have it ordered by the page order
 
                 if (!$elementOption instanceof Option) {
-                    throw new InvalidConfigurableOptionException('Missing the attribute: ' . $attribute);
+                    throw new InvalidConfigurableOptionException('Missing the attribute: ' . $attributeName);
                 }
                 $element = $elementOption->getOption($this->getOption($attributeName));
                 if (!$element instanceof Value) {
-                    throw new InvalidConfigurableOptionException(sprintf('Missing the option %s for the attribute %s ', $option, $attribute));
+                    throw new InvalidConfigurableOptionException(sprintf('Missing the option %s for the attribute %s ', $this->getOption($attributeName), $attributeName));
                 }
                 $element->getClickElement()->click();
             }
@@ -74,9 +74,13 @@ class AddConfigurableProductToCart extends AddSimpleProductToCart
                 $option = $this->option->getOption($name);
                 $items = $option->getOptions();
                 foreach ($items as $item) {
-                    if ($item->getAvailable()) {
+                    if ($item instanceof SwatchValue) {
+                        if ($item->getAvailable()) {
+                            $item->getClickElement()->click();
+                            break;
+                        }
+                    } else {
                         $item->getClickElement()->click();
-                        break;
                     }
                 }
             }
