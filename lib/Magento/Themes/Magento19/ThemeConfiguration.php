@@ -27,15 +27,17 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      * @var string A simple, default path to use for categories.
      */
 
-    protected $navigationPathToProductCategory      = '{{Accessories}}/{{Jewelry}}';
+    protected $navigationPathToSimpleProductCategory      = '{{Accessories}}/{{Jewelry}}';
+    protected $navigationPathToConfigurableProductCategory      = '{{Men}}/{{Shirts}}';
 
-    protected $defaultProductName = '{{Blue Horizons Bracelets}}';
+    protected $defaultSimpleProductName = '{{Blue Horizons Bracelets}}';
+    protected $defaultConfigurableProductName = '{{Plaid Cotton Shirt}}';
 
     /**
      * @var string Xpath to add a Simple product to the cart from the product's page
      */
 
-    protected $simpleProductAddToCartXpath          = '//button[@title="{{Add to Cart}}" and @onclick]';
+    protected $addToCartXpath          = '//button[@title="{{Add to Cart}}" and @onclick]';
 
     /**
      * @var string Xpath to add a Simple product to the cart from the category page
@@ -153,6 +155,13 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $searchSuggestionCountXpath       = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]/span[@class="amount"]';
 
     protected $simpleProductQtyXpath = '//input[@id="qty"]';
+
+    protected $configurableProductLabelXpath = '//div[@id="product-options-wrapper"]/descendant::label';
+    protected $configurableSwatchSelectorXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::a[%d]';
+    protected $configurableSwatchImgXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::a[%d]/descendant::img';
+    protected $configurableSwatchNotAvailableXpath =  '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::a[%d]/ancestor::li[contains(concat(" ",normalize-space(@class)," ")," not-available ")]';
+
+    protected $configurableProductOptionXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::option[starts-with(., "%s")]';
 
     protected $storeSwitcherInstructionsXpath   = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//select[@id="select-language"]/descendant::option[contains(@value,"___store=%s")]'],

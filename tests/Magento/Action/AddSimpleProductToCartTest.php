@@ -13,8 +13,8 @@ class AddSimpleProductToCartTest extends AbstractMagentoTestCase
     public function testBasicAddToCart()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToProductCategory());
-        $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->getTheme()->getDefaultProductName());
+        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToSimpleProductCategory());
+        $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->getTheme()->getDefaultSimpleProductName());
         $this->getAction(AddSimpleProductToCart::ACTION)->execute();
 
     }
@@ -22,8 +22,8 @@ class AddSimpleProductToCartTest extends AbstractMagentoTestCase
     public function testBasicAddToCartSucceedsWithQty()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToProductCategory());
-        $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->getTheme()->getDefaultProductName());
+        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToSimpleProductCategory());
+        $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->getTheme()->getDefaultSimpleProductName());
         $action = $this->getAction(AddSimpleProductToCart::ACTION);
         /* @var $action AddSimpleProductToCart */
         $action->setQty(2);

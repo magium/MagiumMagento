@@ -45,7 +45,7 @@ class AddItemToCart
     public function addSimpleProductToCartFromCategoryPage($categoryNavigationPath = null, $addToCartXpath = null)
     {
         if ($categoryNavigationPath === null) {
-            $categoryNavigationPath = $this->theme->getNavigationPathToProductCategory();
+            $categoryNavigationPath = $this->theme->getNavigationPathToSimpleProductCategory();
         }
 
         $this->navigator->navigateTo($categoryNavigationPath);
@@ -70,7 +70,7 @@ class AddItemToCart
     public function addSimpleItemToCartFromProductPage($productLinkXpath = null, $categoryNavigationPath = null, $addToCartXpath = null)
     {
         if ($categoryNavigationPath === null) {
-            $categoryNavigationPath = $this->theme->getNavigationPathToProductCategory();
+            $categoryNavigationPath = $this->theme->getNavigationPathToSimpleProductCategory();
         }
 
         $this->navigator->navigateTo($categoryNavigationPath);

@@ -24,15 +24,18 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      * @var string A simple, default path to use for categories.
      */
 
-    protected $navigationPathToProductCategory;
+    protected $navigationPathToSimpleProductCategory;
+
+    protected $navigationPathToConfigurableProductCategory;
 
     /**
      * @var string Xpath to add a Simple product to the cart from the product's page
      */
 
-    protected $simpleProductAddToCartXpath;
+    protected $addToCartXpath;
 
-    protected $defaultProductName;
+    protected $defaultSimpleProductName;
+    protected $defaultConfigurableProductName;
 
     /**
      * @var string Xpath to add a Simple product to the cart from the category page
@@ -161,6 +164,13 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     protected $storeSwitcherInstructionsXpath;
 
+    protected $configurableProductLabelXpath;
+    protected $configurableSwatchSelectorXpath;
+    protected $configurableSwatchImgXpath;
+    protected $configurableSwatchNotAvailableXpath;
+
+    protected $configurableProductOptionXpath;
+
     abstract public function getCustomerThemeClass();
     abstract public function getOnePageCheckoutThemeClass();
 
@@ -169,9 +179,90 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     /**
      * @return mixed
      */
-    public function getDefaultProductName()
+    public function getConfigurableProductOptionXpath($swatchCount, $label)
     {
-        return $this->translatePlaceholders($this->defaultProductName);
+
+        return $this->translatePlaceholders(
+            sprintf(
+                $this->configurableProductOptionXpath,
+                $this->getConfigurableLabelXpath(),
+                $swatchCount,
+                $label
+            )
+        );
+    }
+
+    public function getConfigurableSwatchImgXpath($swatchCount, $optionCount)
+    {
+        return $this->translatePlaceholders(
+            sprintf(
+                $this->configurableSwatchImgXpath,
+                $this->getConfigurableLabelXpath(),
+                $swatchCount,
+                $optionCount
+            )
+        );
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfigurableLabelXpath()
+    {
+        return $this->configurableProductLabelXpath;
+    }
+
+    public function filterConfigurableProductOptionName($swatch)
+    {
+        return preg_replace('/^(.+)\:$/', '$1', $swatch);
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfigurableSwatchNotAvailableXpath($swatchCount, $optionCount)
+    {
+        return $this->translatePlaceholders(
+            sprintf(
+                $this->configurableSwatchNotAvailableXpath,
+                $this->getConfigurableLabelXpath(),
+                $swatchCount,
+                $optionCount
+            )
+        );
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfigurableSwatchSelectorXpath($swatchCount, $optionCount)
+    {
+        return $this->translatePlaceholders(
+            sprintf(
+                $this->configurableSwatchSelectorXpath,
+                $this->getConfigurableLabelXpath(),
+                $swatchCount,
+                $optionCount
+            )
+        );
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getDefaultSimpleProductName()
+    {
+        return $this->translatePlaceholders($this->defaultSimpleProductName);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDefaultConfigurableProductName()
+    {
+        return $this->translatePlaceholders($this->defaultConfigurableProductName);
     }
 
     /**
@@ -600,9 +691,14 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
         return $this->translatePlaceholders($return);
     }
     
-    public function getNavigationPathToProductCategory()
+    public function getNavigationPathToSimpleProductCategory()
     {
-        return $this->translatePlaceholders($this->navigationPathToProductCategory);
+        return $this->translatePlaceholders($this->navigationPathToSimpleProductCategory);
+    }
+
+    public function getNavigationPathToConfigurableProductCategory()
+    {
+        return $this->translatePlaceholders($this->navigationPathToConfigurableProductCategory);
     }
     
     public function getCategoryAddToCartButtonXPathSelector()
@@ -611,9 +707,9 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     }
 
 
-    public function getSimpleProductAddToCartXpath()
+    public function getAddToCartXpath()
     {
-        return $this->translatePlaceholders($this->simpleProductAddToCartXpath);
+        return $this->translatePlaceholders($this->addToCartXpath);
     }
 
 
