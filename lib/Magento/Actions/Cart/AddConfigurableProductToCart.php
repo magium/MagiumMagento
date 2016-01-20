@@ -62,7 +62,7 @@ class AddConfigurableProductToCart extends AddSimpleProductToCart
                 if (!$elementOption instanceof Option) {
                     throw new InvalidConfigurableOptionException('Missing the attribute: ' . $attributeName);
                 }
-                $element = $elementOption->getOption($this->getOption($attributeName));
+                $element = $elementOption->getValue($this->getOption($attributeName));
                 if (!$element instanceof Value) {
                     throw new InvalidConfigurableOptionException(sprintf('Missing the option %s for the attribute %s ', $this->getOption($attributeName), $attributeName));
                 }
@@ -72,7 +72,7 @@ class AddConfigurableProductToCart extends AddSimpleProductToCart
             $names = $this->option->getOptionNames();
             foreach ($names as $name) {
                 $option = $this->option->getOption($name);
-                $items = $option->getOptions();
+                $items = $option->getValues();
                 foreach ($items as $item) {
                     if ($item instanceof SwatchValue) {
                         if ($item->getAvailable()) {

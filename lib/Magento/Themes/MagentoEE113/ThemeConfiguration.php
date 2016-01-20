@@ -1,6 +1,6 @@
 <?php
 
-namespace Magium\Magento\Themes\MagentoEE114;
+namespace Magium\Magento\Themes\MagentoEE113;
 
 
 use Magium\Magento\Themes\AbstractThemeConfiguration;
@@ -8,14 +8,14 @@ use Magium\Magento\Themes\AbstractThemeConfiguration;
 class ThemeConfiguration extends AbstractThemeConfiguration
 {
 
-    const THEME = 'Magium\Magento\Themes\Magento114\ThemeConfiguration';
+    const THEME = 'Magium\Magento\Themes\MagentoEE113\ThemeConfiguration';
 
     protected $homeXpath = '//a[@class="logo"]';
 
     /**
      * @var string The Xpath string that finds the base of the navigation menu
      */
-    protected $navigationBaseXPathSelector          = '//nav[@id="nav"]/ol';
+    protected $navigationBaseXPathSelector          = '//ul[@id="nav"]';
 
     /**
      * @var string The Xpath string that can be used iteratively to find child navigation nodes
@@ -27,11 +27,13 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      * @var string A simple, default path to use for categories.
      */
 
-    protected $navigationPathToSimpleProductCategory      = '{{Accessories}}/{{Jewelry}}';
-    protected $navigationPathToConfigurableProductCategory      = '{{Men}}/{{Shirts}}';
+    protected $navigationPathToSimpleProductCategory      = '{{Electronics}}/{{Cell Phones}}';
 
-    protected $defaultSimpleProductName = '{{Blue Horizons Bracelets}}';
-    protected $defaultConfigurableProductName = '{{Plaid Cotton Shirt}}';
+    protected $defaultSimpleProductName = '{{Nokia 2610 Phone}}';
+
+    protected $navigationPathToConfigurableProductCategory      = '{{Apparel}}/{{Shirts}}';
+
+    protected $defaultConfigurableProductName = '{{Zolof The Rock And Roll Destroyer: LOL Cat T-shirt}}';
 
     /**
      * @var string Xpath to add a Simple product to the cart from the product's page
@@ -53,7 +55,6 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     protected $categorySpecificProductPageXpath             = '//h2[@class="product-name"]/descendant::a[.="%s"]';
 
-
     /**
      * @var string Xpath used after a product has been added to the cart to verify that the product has been added to the cart
      */
@@ -66,43 +67,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     protected $baseUrl                      = 'http://localhost/';
 
-    protected $myAccountTitle               = 'My Account';
-
-    /**
-     * @var array Instructions in an Xpath array syntax to get to the login page.
-     */
-    
-    protected $navigateToCustomerPageInstructions            = [
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="account-cart-wrapper"]/descendant::span[.="{{Account}}"]'],
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="header-account"]/descendant::a[@title="{{My Account}}"]']
-    ];
-
-    /**
-     * @var array Instructions in an Xpath array syntax to get to the start of the checkout page
-     */
-
-    protected $checkoutNavigationInstructions         = [
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="header-minicart"]/descendant::span[.="{{Cart}}"]'],
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="minicart-actions"]/descendant::a[@title="{{Checkout}}"]']
-    ];
-
-    /**
-     * @var array Instructions in an Xpath array syntax to get to the customer registration page
-     */
-
-    protected $registrationNavigationInstructions         = [
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="account-cart-wrapper"]/descendant::span[.="{{Account}}"]'],
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="header-account"]/descendant::a[@title="{{Register}}"]']
-    ];
-
-    /**
-     * @var array Instructions in an Xpath array syntax to get to the customer registration page
-     */
-
-    protected $logoutNavigationInstructions         = [
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="account-cart-wrapper"]/descendant::span[.="{{Account}}"]'],
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="header-account"]/descendant::a[@title="{{Log Out}}"]']
-    ];
+    protected $myAccountTitle               = '{{My Account}}';
 
     protected $registerFirstNameXpath           = '//input[@id="firstname"]';
     protected $registerLastNameXpath            = '//input[@id="lastname"]';
@@ -110,11 +75,69 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $registerPasswordXpath            = '//input[@id="password"]';
     protected $registerConfirmPasswordXpath     = '//input[@id="confirmation"]';
     protected $registerNewsletterXpath          = '//input[@id="is_subscribed"]';
-    protected $registerSubmitXpath              = '//button[@type="submit" and @title="{{Register}}"]';
+    protected $registerSubmitXpath              = '//button[@type="submit" and @title="{{Submit}}"]';
 
     protected $logoutSuccessXpath               = '//div[contains(concat(" ",normalize-space(@class)," ")," page-title ")]/descendant::h1[.="{{You are now logged out}}"]';
 
     protected $layeredNavigationTestXpath       = '//dl[@id="narrow-by-list"]';
+
+    /**
+     * @var array Instructions in an Xpath array syntax to get to the customer registration page
+     */
+
+    protected $logoutNavigationInstructions         = [
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//ul[@class="links"]/descendant::a[.="{{Log Out}}"]'],
+//        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="header-account"]/descendant::a[@title="{{Log Out}}"]']
+    ];
+
+    /**
+     * @var array Instructions in an Xpath array syntax to get to the login page.
+     */
+    
+    protected $navigateToCustomerPageInstructions            = [
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//ul[@class="links"]/descendant::a[.="{{My Account}}"]'],
+        //[\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="header-account"]/descendant::a[@title="My Account"]']
+    ];
+
+    /**
+     * @var array Instructions in an Xpath array syntax to get to the start of the checkout page
+     */
+
+    protected $checkoutNavigationInstructions         = [
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//ul[@class="links"]/descendant::a[@title="{{Checkout}}"]'],
+//        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="minicart-actions"]/descendant::a[@title="Checkout"]']
+    ];
+
+
+    /**
+     * @var array Instructions in an Xpath array syntax to get to the customer registration page
+     */
+
+    protected $registrationNavigationInstructions         = [
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//ul[@class="links"]/descendant::a[.="{{My Account}}"]'],
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//button/span/span[.="{{Register}}"]/../..']
+    ];
+
+
+    /**
+     * This is a hard one.  Each of the summary checkout products will be iterated over until they cannot be found. Having
+     * this work in a manner that gets all of the products, in all languages, in all themes, is quite difficult and
+     * so the Xpath selector needs to be one that can find each individual column with an incrementing iterator.
+     *
+     * @see Magium\Magento\Actions\Checkout\Extractors\CartSummary for an example on how this is done
+     *
+     * @var string
+     */
+
+    protected $cartSummaryCheckoutProductLoopPriceXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="Price"])[%d]';
+    protected $cartSummaryCheckoutProductLoopNameXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td/h3)[%d]';
+    protected $cartSummaryCheckoutProductLoopQtyXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="Qty"])[%d]';
+    protected $cartSummaryCheckoutProductLoopSubtotalXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="Subtotal"])[%d]';
+
+    protected $cartSummaryCheckoutSubTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " Subtotal "]/../td[2]';
+    protected $cartSummaryCheckoutTax              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " Tax "]/../td[2]';
+    protected $cartSummaryCheckoutGrandTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " Grand Total "]/../td[2]';
+    protected $cartSummaryCheckoutShippingTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[contains(concat(" ",normalize-space(.)," "), " Shipping & Handling (")]/../td[2]';
 
     protected $breadCrumbXpath                  = '//div[@class="breadcrumbs"]';
 
@@ -127,7 +150,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $productListOriginalPriceXpath    = '/descendant::div[@class="price-box"]/descendant::p[@class="old-price"]/descendant::*[@class="price"]';
     protected $productListPriceXpath            = '/descendant::div[@class="price-box"]/descendant::*[@class="regular-price" or @class="special-price"]/descendant::span[@class="price"]';
     protected $productListWishlistLinkXpath     = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-wishlist"]';
-    protected $productListAddToCartLinkXpath     = '/descendant::p[@class="action"]/descendant::button[contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
+    protected $productListAddToCartLinkXpath     = '/descendant::div[@class="product-shop"]/descendant::button[contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
 
     protected $productGridBaseXpath             = '//ul[contains(concat(" ",normalize-space(@class)," ")," products-grid ")]/li[%d]';
     protected $productGridDescriptionXpath      = '/*[.="no description in the grid view"]';
@@ -149,32 +172,29 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $layeredNavigationBaseXpath        = '//div[contains(concat(" ",normalize-space(@class)," ")," block-layered-nav ")]';
 
     protected $searchInputXpath                 = '//input[@id="search"]';
-    protected $searchSubmitXpath                = '//form[@id="search_mini_form"]/descendant::button[@title="Search"]';
+    protected $searchSubmitXpath                = '//form[@id="search_mini_form"]/descendant::button[@type="submit"]';
 
     protected $searchSuggestionTextXpath        = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]';
     protected $searchSuggestionCountXpath       = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]/span[@class="amount"]';
 
     protected $simpleProductQtyXpath = '//input[@id="qty"]';
 
-    protected $configurableProductLabelXpath = '//div[@id="product-options-wrapper"]/descendant::label';
-    protected $configurableSwatchSelectorXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::a[%d]';
-    protected $configurableSwatchImgXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::a[%d]/descendant::img';
-    protected $configurableSwatchNotAvailableXpath =  '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::a[%d]/ancestor::li[contains(concat(" ",normalize-space(@class)," ")," not-available ")]';
+    protected $configurableProductLabelXpath = '//fieldset[@id="product-options-wrapper"]/descendant::label';
 
     protected $configurableProductOptionXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::option[starts-with(., "%s")]';
 
     protected $storeSwitcherInstructionsXpath   = [
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//select[@id="select-language"]/descendant::option[contains(@value,"___store=%s")]'],
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//select[@id="select-language"]/descendant::option[contains(@href,"___store=%s"]'],
     ];
 
     public function getCustomerThemeClass()
     {
-        return 'Magium\Magento\Themes\Magento19\Customer\ThemeConfiguration';
+        return 'Magium\Magento\Themes\MagentoEE113\Customer\ThemeConfiguration';
     }
 
     public function getOnePageCheckoutThemeClass()
     {
-        return 'Magium\Magento\Themes\Magento19\OnePageCheckout\ThemeConfiguration';
+        return 'Magium\Magento\Themes\MagentoEE113\OnePageCheckout\ThemeConfiguration';
     }
-
+    
 }

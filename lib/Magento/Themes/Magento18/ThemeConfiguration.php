@@ -8,7 +8,7 @@ use Magium\Magento\Themes\AbstractThemeConfiguration;
 class ThemeConfiguration extends AbstractThemeConfiguration
 {
 
-    const THEME = 'Magento18\ThemeConfiguration';
+    const THEME = 'Magium\Magento\Themes\Magento18\ThemeConfiguration';
 
     protected $homeXpath = '//a[@class="logo"]';
 

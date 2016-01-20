@@ -8,6 +8,7 @@ use Magium\Magento\Extractors\Catalog\Products;
 use Magium\Magento\Extractors\Catalog\Products\ProductGrid;
 use Magium\Magento\Extractors\Catalog\Products\ProductList;
 use Magium\Magento\Navigators\BaseMenu;
+use Magium\Magento\Navigators\Catalog\DefaultSimpleProductCategory;
 
 class CategoryExtractorTest extends AbstractMagentoTestCase
 {
@@ -15,7 +16,7 @@ class CategoryExtractorTest extends AbstractMagentoTestCase
     {
         // This is different because it goes through the category extractor.  Perhaps this is useless
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToSimpleProductCategory());
+        $this->getNavigator(DefaultSimpleProductCategory::NAVIGATOR)->navigateTo();
         $extractor = $this->getExtractor(Category::EXTRACTOR);
         self::assertTrue($extractor->hasLayeredNavigation());
     }
@@ -23,7 +24,7 @@ class CategoryExtractorTest extends AbstractMagentoTestCase
     public function testProductGridExtraction()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToSimpleProductCategory());
+        $this->getNavigator(DefaultSimpleProductCategory::NAVIGATOR)->navigateTo();
         $productGridExtractor = $this->getExtractor(ProductGrid::EXTRACTOR);
         $productGridExtractor->extract();
         $products = $productGridExtractor->getProductList();
@@ -42,7 +43,7 @@ class CategoryExtractorTest extends AbstractMagentoTestCase
     public function testProductListExtraction()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToSimpleProductCategory());
+        $this->getNavigator(DefaultSimpleProductCategory::NAVIGATOR)->navigateTo();
         $this->webdriver->byXpath('//p[@class="view-mode"]//a[@class="list"]')->click();
         $productListExtractor = $this->getExtractor(ProductList::EXTRACTOR);
         $productListExtractor->extract();

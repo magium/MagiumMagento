@@ -108,7 +108,7 @@ class ConfigurableProductOptions extends AbstractExtractor
         foreach ($jsVals['config']['attributes'] as $attribute) {
             if ($attribute['label'] == $name) {
                 foreach ($attribute['options'] as $option) {
-                    $productOption->addOption(new Value(
+                    $productOption->addValue(new Value(
                         $option['label'],
                         new WebDriverElementProxy(
                             $this->webDriver,
@@ -142,7 +142,7 @@ class ConfigurableProductOptions extends AbstractExtractor
             if ($this->webDriver->elementExists($this->theme->getConfigurableSwatchImgXpath($count, $optionCount), WebDriver::BY_XPATH)) {
                 $img = $this->webDriver->byXpath($this->theme->getConfigurableSwatchImgXpath($count, $optionCount))->getAttribute('src');
             }
-            $swatch->addOption(new SwatchValue(
+            $swatch->addValue(new SwatchValue(
                 trim($itemOptionElement->getAttribute('title')),
                 $itemOptionElement,
                 $available,

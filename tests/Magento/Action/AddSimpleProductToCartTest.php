@@ -5,6 +5,8 @@ namespace Tests\Magium\Magento\Action;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Cart\AddSimpleProductToCart;
 use Magium\Magento\Navigators\BaseMenu;
+use Magium\Magento\Navigators\Catalog\DefaultSimpleProduct;
+use Magium\Magento\Navigators\Catalog\DefaultSimpleProductCategory;
 use Magium\Magento\Navigators\Catalog\Product;
 
 class AddSimpleProductToCartTest extends AbstractMagentoTestCase
@@ -13,8 +15,8 @@ class AddSimpleProductToCartTest extends AbstractMagentoTestCase
     public function testBasicAddToCart()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToSimpleProductCategory());
-        $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->getTheme()->getDefaultSimpleProductName());
+        $this->getNavigator(DefaultSimpleProductCategory::NAVIGATOR)->navigateTo();
+        $this->getNavigator(DefaultSimpleProduct::NAVIGATOR)->navigateTo();
         $this->getAction(AddSimpleProductToCart::ACTION)->execute();
 
     }
@@ -22,8 +24,8 @@ class AddSimpleProductToCartTest extends AbstractMagentoTestCase
     public function testBasicAddToCartSucceedsWithQty()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator(BaseMenu::NAVIGATOR)->navigateTo($this->getTheme()->getNavigationPathToSimpleProductCategory());
-        $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->getTheme()->getDefaultSimpleProductName());
+        $this->getNavigator(DefaultSimpleProductCategory::NAVIGATOR)->navigateTo();
+        $this->getNavigator(DefaultSimpleProduct::NAVIGATOR)->navigateTo();
         $action = $this->getAction(AddSimpleProductToCart::ACTION);
         /* @var $action AddSimpleProductToCart */
         $action->setQty(2);
