@@ -30,7 +30,7 @@ class DefaultProductCategory
 
     public function navigateTo()
     {
-        $this->navigator->navigateTo($this->theme->getNavigationPathToProductCategory());
+        $this->navigator->navigateTo($this->theme->getNavigationPathToSimpleProductCategory());
     }
 
 }

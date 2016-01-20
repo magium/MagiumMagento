@@ -45,20 +45,24 @@ class AddSimpleProductToCart
 
     public function execute()
     {
-        if (!$this->webDriver->elementExists($this->theme->getSimpleProductAddToCartXpath(), 'byXpath')) {
-            throw new NoSuchElementException('Could not find the simple add to cart element with the Xpath: ' . $this->theme->getSimpleProductAddToCartXpath());
-        };
-
         if ($this->requireQty || $this->addQty > 1) {
             if (!$this->webDriver->elementExists($this->theme->getSimpleProductQtyXpath(), WebDriver::BY_XPATH)) {
-                throw new NoSuchElementException('Could not find the simple add to cart element with the Xpath: ' . $this->theme->getSimpleProductAddToCartXpath());
+                throw new NoSuchElementException('Could not find the simple add to cart element with the Xpath: ' . $this->theme->getAddToCartXpath());
             }
             $element = $this->webDriver->byXpath($this->theme->getSimpleProductQtyXpath());
             $element->clear();
             $element->sendKeys($this->addQty);
         }
+        $this->clickAddToCart();
+    }
 
-        $element = $this->webDriver->byXpath($this->theme->getSimpleProductAddToCartXpath());
+    protected function clickAddToCart()
+    {
+        if (!$this->webDriver->elementExists($this->theme->getAddToCartXpath(), 'byXpath')) {
+            throw new NoSuchElementException('Could not find the simple add to cart element with the Xpath: ' . $this->theme->getAddToCartXpath());
+        };
+
+        $element = $this->webDriver->byXpath($this->theme->getAddToCartXpath());
 
         $element->click();
         $this->loaded->execute($element);
@@ -66,7 +70,6 @@ class AddSimpleProductToCart
         if (!$this->webDriver->elementExists($this->theme->getAddToCartSuccessXpath(), WebDriver::BY_XPATH)) {
             throw new AddToCartFailedException('Add to cart verification failed finding element with Xpath: ' . $this->theme->getAddToCartSuccessXpath());
         }
-
     }
 
 }

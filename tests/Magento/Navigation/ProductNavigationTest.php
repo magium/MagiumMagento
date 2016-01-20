@@ -14,7 +14,7 @@ class ProductNavigationTest extends AbstractMagentoTestCase
     {
         $theme = $this->getTheme();
         $this->commandOpen($theme->getBaseUrl());
-        $this->getNavigator()->navigateTo($theme->getNavigationPathToProductCategory());
+        $this->getNavigator()->navigateTo($theme->getNavigationPathToSimpleProductCategory());
         $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->productName);
         $this->assertTitleContains($this->productName);
     }
