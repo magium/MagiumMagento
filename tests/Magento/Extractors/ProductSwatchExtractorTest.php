@@ -50,7 +50,8 @@ class ProductSwatchExtractorTest extends AbstractMagentoTestCase
         $extractor->extract();
 
         $item = $extractor->getOption('Color');
-        $option = $item->getValues('red');
+        $option = $item->getValue('red');
+        self::assertInstanceOf('Magium\Magento\Extractors\Catalog\Product\SwatchValue', $option);
         self::assertTrue($option->getAvailable());
         $option->getClickElement()->click();
 
@@ -58,7 +59,8 @@ class ProductSwatchExtractorTest extends AbstractMagentoTestCase
         $extractor->extract();
 
         $item = $extractor->getOption('Size');
-        $option = $item->getOption('xl');
+        $option = $item->getValue('xl');
+        self::assertInstanceOf('Magium\Magento\Extractors\Catalog\Product\SwatchValue', $option);
         self::assertFalse($option->getAvailable());
     }
 
