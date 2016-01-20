@@ -44,7 +44,12 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     protected $systemConfigSettingLabelXpath            = '//td[@class="label"]/label[.=" {{%s}}"]';
 
 
-    protected $guaranteedPageLoadedElementDisplayedXpath = '//*[';
+    protected $guaranteedPageLoadedElementDisplayedXpath = '//div[@class="footer"]';
+
+    public function set($name, $value)
+    {
+        $this->$name = $value;
+    }
 
     public function getGuaranteedPageLoadedElementDisplayedXpath()
     {
