@@ -13,6 +13,7 @@ use Magium\Magento\Extractors\Catalog\Products\ProductGrid;
 use Magium\Magento\Extractors\Catalog\Products\ProductList;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Magento\Themes\Magento19\ThemeConfiguration;
+use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
 class ProductCollection extends AbstractExtractor
@@ -115,6 +116,10 @@ class ProductCollection extends AbstractExtractor
         if ($this->elementTest instanceof WebDriverElement && $this->webDriver->elementAttached($this->elementTest)) {
             return;
         }
+
+        // For some reason Firefox sometimes cannot find the body element, so we'll wait for it to exist instead.
+        $this->webDriver->wait()->until(ExpectedCondition::elementExists('//body', WebDriver::BY_XPATH));
+
         $this->elementTest = $this->webDriver->byXpath('//body');
 
         $element = $this->webDriver->byXpath($this->theme->getProductCollectionProductCountXpath());
