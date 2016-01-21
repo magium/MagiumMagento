@@ -3,6 +3,7 @@
 namespace Magium\Magento\Themes\Admin;
 
 use Magium\AbstractConfigurableElement;
+use Magium\AbstractTestCase;
 use Magium\Magento\Themes\NavigableThemeInterface;
 
 class ThemeConfiguration extends AbstractConfigurableElement implements  NavigableThemeInterface
@@ -247,6 +248,11 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public function getAdminPopupMessageCloseButtonXpath()
     {
         return $this->translatePlaceholders($this->adminPopupMessageCloseButtonXpath);
+    }
+
+    public function configure(AbstractTestCase $testCase)
+    {
+
     }
 
 }
