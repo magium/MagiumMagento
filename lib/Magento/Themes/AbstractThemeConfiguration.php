@@ -3,6 +3,8 @@
 namespace Magium\Magento\Themes;
 
 use Magium\AbstractConfigurableElement;
+use Magium\AbstractTestCase;
+use Magium\Magento\AbstractMagentoTestCase;
 
 abstract class AbstractThemeConfiguration extends AbstractConfigurableElement implements NavigableThemeInterface
 {
@@ -172,9 +174,15 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     protected $configurableProductOptionXpath;
 
     abstract public function getCustomerThemeClass();
-    abstract public function getOnePageCheckoutThemeClass();
+    abstract public function getCheckoutThemeClass();
 
     protected $guaranteedPageLoadedElementDisplayedXpath = '//*[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
+
+    public function configure(AbstractTestCase $testCase)
+    {
+
+    }
+
 
     /**
      * @return mixed

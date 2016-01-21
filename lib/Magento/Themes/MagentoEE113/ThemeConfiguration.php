@@ -192,7 +192,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
         return 'Magium\Magento\Themes\MagentoEE113\Customer\ThemeConfiguration';
     }
 
-    public function getOnePageCheckoutThemeClass()
+    public function getCheckoutThemeClass()
     {
         return 'Magium\Magento\Themes\MagentoEE113\OnePageCheckout\ThemeConfiguration';
     }

@@ -41,11 +41,10 @@ class BaseMenu
 
             $element = $this->webdriver->byXpath($xpath . '/a');
             $this->webdriver->getMouse()->mouseMove($element->getCoordinates());
-
+            $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($element));
         }
 
         if ($element instanceof WebDriverElement) {
-
             $element->click();
         }
         $this->loaded->execute($element);

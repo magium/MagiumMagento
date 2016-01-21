@@ -51,7 +51,7 @@ class Enabler
     {
         $tabDisplayXpath = $this->adminThemeConfiguration->getSystemConfigTabsXpath($this->tab);
         if (!$this->webDriver->elementDisplayed($tabDisplayXpath, AbstractTestCase::BY_XPATH)) {
-            $this->adminMenuNavigator->navigateTo('System/Configuration');
+            $this->adminMenuNavigator->navigateTo('{{System}}/{{Configuration}}');
         }
 
         $sectionDisplayXpath = $this->adminThemeConfiguration->getSystemConfigSectionDisplayCheckXpath($this->section);

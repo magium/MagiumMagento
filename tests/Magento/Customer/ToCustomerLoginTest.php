@@ -10,11 +10,13 @@ use Magium\Magento\Navigators\Customer\AccountHome;
 class ToCustomerLoginTest extends AbstractMagentoTestCase
 {
 
+    protected $pageHeader = 'Login or Create an Account';
+
     public function testNavigateToLogin()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
         $this->getNavigator(AccountHome::NAVIGATOR)->navigateTo();
-        $this->assertElementHasText('h1', 'Login or Create an Account');
+        $this->assertElementHasText('h1', $this->pageHeader);
     }
     
     public function testLoginCustomer()
