@@ -3,6 +3,7 @@
 namespace Tests\Magium\Magento\Navigation;
 
 use Magium\Magento\AbstractMagentoTestCase;
+use Magium\Magento\Navigators\Catalog\DefaultSimpleProductCategory;
 use Magium\Magento\Navigators\Catalog\Product;
 
 class ProductNavigationTest extends AbstractMagentoTestCase
@@ -14,7 +15,7 @@ class ProductNavigationTest extends AbstractMagentoTestCase
     {
         $theme = $this->getTheme();
         $this->commandOpen($theme->getBaseUrl());
-        $this->getNavigator()->navigateTo($theme->getNavigationPathToSimpleProductCategory());
+        $this->getNavigator(DefaultSimpleProductCategory::NAVIGATOR)->navigateTo();
         $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->productName);
         $this->assertTitleContains($this->productName);
     }

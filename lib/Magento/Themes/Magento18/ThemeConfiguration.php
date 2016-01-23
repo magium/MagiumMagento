@@ -8,7 +8,7 @@ use Magium\Magento\Themes\AbstractThemeConfiguration;
 class ThemeConfiguration extends AbstractThemeConfiguration
 {
 
-    const THEME = 'Magento18\ThemeConfiguration';
+    const THEME = 'Magium\Magento\Themes\Magento18\ThemeConfiguration';
 
     protected $homeXpath = '//a[@class="logo"]';
 
@@ -88,6 +88,10 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $logoutNavigationInstructions         = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//ul[@class="links"]/descendant::a[.="{{Log Out}}"]'],
 //        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="header-account"]/descendant::a[@title="{{Log Out}}"]']
+    ];
+
+    protected $cartNavigationInstructions            = [
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//a[@class="top-cart-link"]']
     ];
 
     /**
@@ -183,6 +187,17 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     protected $configurableProductOptionXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::option[starts-with(., "%s")]';
 
+    protected $viewModeAttributeName = 'class';
+
+    protected $breadCrumbMemberXpath = '/descendant::a[concat(" ",normalize-space(.)," ")=" {{%s}} "]';
+    protected $breadCrumbSelectorXpath = '/descendant::a[%d]';
+
+    protected $layeredNavigationFilterNameXpath =  '//dl[@id="narrow-by-list"]/dt';
+
+    protected $layeredNavigationFilterTypesXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li';
+    protected $layeredNavigationFilterLinkXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li/descendant::a';
+    protected $layeredNavigationFilterNameElementXpath =  '//dl[@id="narrow-by-list"]/dt[normalize-space(.) = "%s"]';
+
     protected $storeSwitcherInstructionsXpath   = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//select[@id="select-language"]/descendant::option[contains(@href,"___store=%s"]'],
     ];
@@ -192,7 +207,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
         return 'Magium\Magento\Themes\Magento18\Customer\ThemeConfiguration';
     }
 
-    public function getOnePageCheckoutThemeClass()
+    public function getCheckoutThemeClass()
     {
         return 'Magium\Magento\Themes\Magento18\OnePageCheckout\ThemeConfiguration';
     }

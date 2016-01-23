@@ -25,12 +25,14 @@ abstract class AbstractProductCollection extends AbstractExtractor
         return $this->products;
     }
 
-    protected function getByXpath($type, $count, $attribute = null)
+    protected function getByXpath($type, $count, $attribute = null, $getElement = false)
     {
         $xpath = $this->getElementXpath($type, $count);
         if ($this->webDriver->elementExists($xpath, WebDriver::BY_XPATH)) {
             $element = $this->webDriver->byXpath($xpath);
-            if ($attribute) {
+            if ($getElement) {
+                return $element;
+            } else if ($attribute) {
                 return $element->getAttribute($attribute);
             } else {
                 return trim($element->getText());
@@ -56,10 +58,10 @@ abstract class AbstractProductCollection extends AbstractExtractor
             if ($originalPrice === null) {
                 $originalPrice = $price;
             }
-            $wishlistLink = $this->getByXpath(ProductSummary::WISHLIST_LINK, $count, 'href');
-            $compareLink = $this->getByXpath(ProductSummary::COMPARE_LINK, $count, 'href');
+            $wishlistLink = $this->getByXpath(ProductSummary::WISHLIST_LINK, $count, null, true);
+            $compareLink = $this->getByXpath(ProductSummary::COMPARE_LINK, $count, null, true);
             $description = $this->getByXpath(ProductSummary::DESCRIPTION, $count);
-            $addToCartLink = $this->getByXpath(ProductSummary::ADD_TO_CART_LINK, $count, 'onclick');
+            $addToCartLink = $this->getByXpath(ProductSummary::ADD_TO_CART_LINK, $count, null, true);
 
             $product = new ProductSummary(
                 $title,

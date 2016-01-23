@@ -5,6 +5,7 @@ namespace Magium\Magento\Actions\Cart;
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Navigators\BaseMenu;
+use Magium\Magento\Navigators\Catalog\Product;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
@@ -18,6 +19,8 @@ class AddItemToCart
     protected $testCase;
     protected $loaded;
     protected $addSimpleProductToCart;
+    protected $addConfigurableProductToCart;
+    protected $productNavigator;
     
     public function __construct(
         WebDriver $webdriver,
@@ -25,7 +28,9 @@ class AddItemToCart
         BaseMenu $navigator,
         AbstractMagentoTestCase $testCase,
         WaitForPageLoaded $loaded,
-        AddSimpleProductToCart $addSimpleProductToCart
+        AddSimpleProductToCart $addSimpleProductToCart,
+        AddConfigurableProductToCart $addConfigurableProductToCart,
+        Product $product
     ) {
         $this->webdriver = $webdriver;
         $this->theme = $theme;
@@ -33,6 +38,8 @@ class AddItemToCart
         $this->testCase = $testCase;
         $this->loaded = $loaded;
         $this->addSimpleProductToCart = $addSimpleProductToCart;
+        $this->addConfigurableProductToCart = $addConfigurableProductToCart;
+        $this->productNavigator = $product;
     }
     
     /**
@@ -63,11 +70,9 @@ class AddItemToCart
      * @todo
      *
      * @param string $categoryNavigationPath The category path to go to
-     * @param string $addToCartXpath The Xpath for adding a simple product the cart from the product4 page
-     * @param string $productLinkXpath The Xpath to go to the product page
      */
     
-    public function addSimpleItemToCartFromProductPage($productLinkXpath = null, $categoryNavigationPath = null, $addToCartXpath = null)
+    public function addSimpleItemToCartFromProductPage($categoryNavigationPath = null, $productPageXpath = null)
     {
         if ($categoryNavigationPath === null) {
             $categoryNavigationPath = $this->theme->getNavigationPathToSimpleProductCategory();
@@ -75,12 +80,13 @@ class AddItemToCart
 
         $this->navigator->navigateTo($categoryNavigationPath);
 
-        $element = $this->webdriver->byXpath($this->theme->getProductPageForCategory());
-
-        $this->testCase->assertWebDriverElement($element);
-
-        $element->click();
-        $this->loaded->execute($element);
+        if ($productPageXpath) {
+            $element = $this->webdriver->byXpath($productPageXpath);
+            $element->click();
+            $this->loaded->execute($element);
+        } else {
+            $this->productNavigator->navigateTo($this->theme->getDefaultSimpleProductName());
+        }
 
         $this->addSimpleProductToCart->execute();
 
@@ -88,27 +94,24 @@ class AddItemToCart
     }
     
     /**
-     * Adds as configurable product to the cart from the product page.  If option 
-     * values are not specified it will try to find a combination that works.
+     * Adds as configurable product to the cart from the product page.
      * 
      * @param array $options
      */
     
-    public function addConfigurableItemToCartFromProductPage(array $options = null)
+    public function addConfigurableItemToCartFromProductPage($categoryNavigationPath = null)
     {
-        
+        if ($categoryNavigationPath === null) {
+            $categoryNavigationPath = $this->theme->getNavigationPathToConfigurableProductCategory();
+        }
+
+        $this->navigator->navigateTo($categoryNavigationPath);
+
+        $this->productNavigator->navigateTo($this->theme->getDefaultConfigurableProductName());
+
+        $this->addConfigurableProductToCart->execute();
+
+        $this->testCase->assertElementExists($this->theme->getAddToCartSuccessXpath(), 'byXpath');
     }
-    /**
-     * Will attempt to find a configurable product on the current category page, click on
-     * its product link and add to cart from there.  A specific product can be stated, and its
-     * options, or you can allow it to try and find the first available item
-     * 
-     * @param string $name (Optional) The name of the product
-     * @param array $options (Optional) The options of the product
-     */
-    
-    public function addConfigurableItemToCartFromCategoryPage($name = null, array $options = null)
-    {
-        
-    }
+
 }
