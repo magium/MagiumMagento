@@ -16,7 +16,7 @@ class Option
         $this->name = $name;
     }
 
-    public function addValue(Value $option)
+    public function addOption(Value $option)
     {
         $this->options[] = $option;
     }
@@ -26,7 +26,7 @@ class Option
      * @return Value[]
      */
 
-    public function getValues()
+    public function getOptions()
     {
         return $this->options;
     }
@@ -36,10 +36,10 @@ class Option
      * @return Value|null
      */
 
-    public function getValue($label)
+    public function getOption($label)
     {
         $label = strtolower($label);
-        foreach ($this->getValues() as $option) {
+        foreach ($this->getOptions() as $option) {
             $text = strtolower($option->getText());
             if ($label == $text) {
                 return $option;

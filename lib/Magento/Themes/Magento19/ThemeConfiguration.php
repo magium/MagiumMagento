@@ -8,7 +8,7 @@ use Magium\Magento\Themes\AbstractThemeConfiguration;
 class ThemeConfiguration extends AbstractThemeConfiguration
 {
 
-    const THEME = 'Magium\Magento\Themes\Magento19\ThemeConfiguration';
+    const THEME = 'Magento19\ThemeConfiguration';
 
     protected $homeXpath = '//a[@class="logo"]';
 
@@ -75,11 +75,6 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $navigateToCustomerPageInstructions            = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="account-cart-wrapper"]/descendant::span[.="{{Account}}"]'],
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="header-account"]/descendant::a[@title="{{My Account}}"]']
-    ];
-
-    protected $cartNavigationInstructions            = [
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="account-cart-wrapper"]/descendant::span[.="{{Account}}"]'],
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="header-account"]/descendant::a[contains(concat(" ",normalize-space(@class)," ")," top-link-cart ")]']
     ];
 
     /**
@@ -168,19 +163,6 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     protected $configurableProductOptionXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::option[starts-with(., "%s")]';
 
-    protected $viewModeAttributeName = 'class';
-
-    protected $breadCrumbMemberXpath = '/descendant::a[concat(" ",normalize-space(.)," ")=" {{%s}} "]';
-    protected $breadCrumbSelectorXpath = '/descendant::a[%d]';
-
-    protected $layeredNavigationFilterNameXpath =  '//dl[@id="narrow-by-list"]/dt';
-
-    protected $layeredNavigationFilterTypesXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li';
-    protected $layeredNavigationFilterLinkXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li/descendant::a';
-    protected $layeredNavigationFilterNameElementXpath =  '//dl[@id="narrow-by-list"]/dt[normalize-space(.) = "%s"]';
-    protected $layeredNavigationSwatchAppliesXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::ol[contains(concat(" ",normalize-space(@class)," ")," configurable-swatch-list ")]';
-    protected $layeredNavigationSwatchTitleAttribute = 'title';
-
     protected $storeSwitcherInstructionsXpath   = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//select[@id="select-language"]/descendant::option[contains(@value,"___store=%s")]'],
     ];
@@ -190,7 +172,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
         return 'Magium\Magento\Themes\Magento19\Customer\ThemeConfiguration';
     }
 
-    public function getCheckoutThemeClass()
+    public function getOnePageCheckoutThemeClass()
     {
         return 'Magium\Magento\Themes\Magento19\OnePageCheckout\ThemeConfiguration';
     }

@@ -6,7 +6,6 @@ use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Identities\Customer;
 use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
-use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
 class SelectRegisterNewCustomerCheckout implements StepInterface
@@ -37,7 +36,7 @@ class SelectRegisterNewCustomerCheckout implements StepInterface
         }
 
 
-        $this->webdriver->wait()->until(ExpectedCondition::elementExists($this->theme->getRegisterNewCustomerCheckoutButtonXpath(), AbstractTestCase::BY_XPATH));
+        $this->testCase->assertElementExists($this->theme->getRegisterNewCustomerCheckoutButtonXpath(), AbstractTestCase::BY_XPATH);
         $element = $this->webdriver->byXpath($this->theme->getRegisterNewCustomerCheckoutButtonXpath());
         $this->testCase->assertWebDriverElement($element);
         $element->click();

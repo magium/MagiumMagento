@@ -5,7 +5,7 @@ namespace Magium\Magento\Actions\Customer;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Identities\Customer;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
-use Magium\Magento\Navigators\Customer\Registration;
+use Magium\Navigators\InstructionNavigator;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
@@ -16,14 +16,14 @@ class Register
     protected $webdriver;
     protected $theme;
     protected $testCase;
-    protected $navigator;
+    protected $instructionsNavigator;
     protected $customerIdentity;
 
 
     public function __construct(
         WebDriver               $webdriver,
         AbstractThemeConfiguration      $theme,
-        Registration    $navigator,
+        InstructionNavigator    $instructionsNavigator,
         Customer                $customerIdentity,
         AbstractMagentoTestCase $testCase
 
@@ -31,13 +31,13 @@ class Register
         $this->webdriver    = $webdriver;
         $this->theme        = $theme;
         $this->testCase     = $testCase;
-        $this->navigator = $navigator;
+        $this->instructionsNavigator = $instructionsNavigator;
         $this->customerIdentity = $customerIdentity;
     }
 
     public function register($registerForNewsletter = false)
     {
-        $this->navigator->navigateTo();
+        $this->instructionsNavigator->navigateTo($this->theme->getRegistrationNavigationInstructions());
 
         $firstnameElement  = $this->webdriver->byXpath($this->theme->getRegisterFirstNameXpath());
         $lastnameElement   = $this->webdriver->byXpath($this->theme->getRegisterLastNameXpath());

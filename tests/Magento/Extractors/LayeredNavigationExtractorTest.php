@@ -17,8 +17,6 @@ class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
         'Sharp',
         1
     ];
-    protected $hasSwatchImage = true;
-    protected $hasSwatchShowsCount = true;
 
     public function testDefaultValues()
     {
@@ -95,13 +93,12 @@ class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
         /* @var $extractor \Magium\Magento\Extractors\Catalog\LayeredNavigation\LayeredNavigation */
         $extractor->extract();
 
-        $priceFilter = $extractor->getFilter('price');
-        self::assertInstanceOf('Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes\PriceFilter', $priceFilter);
-        $price = $priceFilter->getValueForPrice(161);
+        $price = $extractor->getFilter('price');
+        self::assertInstanceOf('Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes\PriceFilter', $price);
+        $price = $price->getValueForPrice(161);
         /* @var $price FilterValue */
         self::assertInstanceOf('Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterValue', $price);
         self::assertInstanceOf('Facebook\WebDriver\WebDriverElement', $price->getElement());
-        $priceFilter->getElement()->click(); // This is here for M2 compatibility.  Should not do anything on M1 but click a dormant area
         $price->getElement()->click();
         self::assertEquals($this->webdriver->getCurrentURL(), $price->getLink());
 
@@ -116,7 +113,7 @@ class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
         /* @var $extractor \Magium\Magento\Extractors\Catalog\LayeredNavigation\LayeredNavigation */
         $extractor->extract();
 
-        $price = $extractor->getFilter('price')->getValueForPrice(1);
+        $price = $extractor->getFilter('price')->getValueForPrice(100);
         // This test depends on the sample data; nothing below $140
         self::assertNull($price);
 
@@ -140,13 +137,9 @@ class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
         self::assertInstanceOf('Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes\SwatchFilterValue', $value);
 
         self::assertEquals('Blue', $value->getText());
-        if ($this->hasSwatchImage) {
-            $imageLink = $value->getImageLink();
-            self::assertContains('blue', $imageLink);
-        }
-        if ($this->hasSwatchShowsCount) {
-            self::assertEquals(1, $value->getCount());
-        }
+        $imageLink = $value->getImageLink();
+        self::assertContains('blue', $imageLink);
+        self::assertEquals(1, $value->getCount());
         self::assertTrue(strpos($value->getLink(), $url) === 0);
     }
 
