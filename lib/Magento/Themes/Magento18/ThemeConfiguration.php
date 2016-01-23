@@ -90,6 +90,10 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 //        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="header-account"]/descendant::a[@title="{{Log Out}}"]']
     ];
 
+    protected $cartNavigationInstructions            = [
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//a[@class="top-cart-link"]']
+    ];
+
     /**
      * @var array Instructions in an Xpath array syntax to get to the login page.
      */
@@ -182,6 +186,17 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $configurableProductLabelXpath = '//div[@id="product-options-wrapper"]/descendant::label';
 
     protected $configurableProductOptionXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::option[starts-with(., "%s")]';
+
+    protected $viewModeAttributeName = 'class';
+
+    protected $breadCrumbMemberXpath = '/descendant::a[concat(" ",normalize-space(.)," ")=" {{%s}} "]';
+    protected $breadCrumbSelectorXpath = '/descendant::a[%d]';
+
+    protected $layeredNavigationFilterNameXpath =  '//dl[@id="narrow-by-list"]/dt';
+
+    protected $layeredNavigationFilterTypesXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li';
+    protected $layeredNavigationFilterLinkXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li/descendant::a';
+    protected $layeredNavigationFilterNameElementXpath =  '//dl[@id="narrow-by-list"]/dt[normalize-space(.) = "%s"]';
 
     protected $storeSwitcherInstructionsXpath   = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//select[@id="select-language"]/descendant::option[contains(@href,"___store=%s"]'],

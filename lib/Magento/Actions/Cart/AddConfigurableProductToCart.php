@@ -3,6 +3,7 @@
 namespace Magium\Magento\Actions\Cart;
 
 use Magium\Actions\WaitForPageLoaded;
+use Magium\Magento\Extractors\Catalog\Cart\AddToCart;
 use Magium\Magento\Extractors\Catalog\Product\ConfigurableProductOptions;
 use Magium\Magento\Extractors\Catalog\Product\Swatch;
 use Magium\Magento\Extractors\Catalog\Product\Option;
@@ -24,11 +25,11 @@ class AddConfigurableProductToCart extends AddSimpleProductToCart
     public function __construct(
         WebDriver $webDriver,
         AbstractThemeConfiguration $themeConfiguration,
-        WaitForPageLoaded $loaded,
+        AddToCart $addToCart,
         ConfigurableProductOptions $option
     )
     {
-        parent::__construct($webDriver, $themeConfiguration, $loaded);
+        parent::__construct($webDriver, $themeConfiguration, $addToCart);
         $this->option = $option;
     }
 

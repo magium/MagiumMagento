@@ -39,7 +39,7 @@ class ToCustomerLoginTest extends AbstractMagentoTestCase
 
     public function testLoginCustomerFailsWhenRequireLoginIsSetAndAccountIsAlreadyLoggedIn()
     {
-        $this->setExpectedException('Facebook\WebDriver\Exception\NoSuchElementException');
+        $this->setExpectedException('PHPUnit_Framework_AssertionFailedError');
         $this->commandOpen($this->getTheme()->getBaseUrl());
         $this->getNavigator(AccountHome::NAVIGATOR)->navigateTo();
         $this->getAction(Login::ACTION)->login();

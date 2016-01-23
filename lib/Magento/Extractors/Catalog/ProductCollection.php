@@ -126,7 +126,7 @@ class ProductCollection extends AbstractExtractor
         $this->statedProductCount = trim($element->getText());
 
         $element = $this->webDriver->byXpath($this->theme->getProductCollectionViewModeXpath());
-        $this->viewMode = $element->getAttribute('class');
+        $this->viewMode = $element->getAttribute($this->theme->getViewModeAttributeName());
 
         $element = $this->webDriver->byXpath($this->theme->getProductCollectionSortByXpath());
         $this->sortBy = trim($element->getText());
