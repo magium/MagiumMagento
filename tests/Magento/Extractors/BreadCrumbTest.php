@@ -31,13 +31,13 @@ class BreadCrumbTest extends AbstractMagentoTestCase
         $breadCrumb = $this->getExtractor(Breadcrumb::EXTRACTOR);
         /* @var $breadCrumb \Magium\Magento\Extractors\Catalog\Breadcrumb */
         $parts = $breadCrumb->getBreadCrumbsParts();
-        self::assertCount(2, $parts); // Ignoring non-link parts
+        self::assertCount(3, $parts);
         $crumbParts = explode('/', $this->crumbsText);
         self::assertEquals(trim($crumbParts[0]), $parts[0]);
         self::assertEquals(trim($crumbParts[1]), $parts[1]);
+        self::assertEquals(trim($crumbParts[2]), $parts[2]);
 
     }
-
 
 
     public function testBreadCrumbLinks()

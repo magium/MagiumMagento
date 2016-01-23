@@ -3,8 +3,6 @@
 namespace Magium\Magento\Themes;
 
 use Magium\AbstractConfigurableElement;
-use Magium\AbstractTestCase;
-
 
 abstract class AbstractThemeConfiguration extends AbstractConfigurableElement implements NavigableThemeInterface
 {
@@ -73,12 +71,6 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      */
     
     protected $navigateToCustomerPageInstructions            = [];
-
-    /**
-     * @var array Instructions in an Xpath array syntax to get to the shopping cart
-     */
-
-    protected $cartNavigationInstructions         = [];
 
     /**
      * @var array Instructions in an Xpath array syntax to get to the start of the checkout page
@@ -179,112 +171,10 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     protected $configurableProductOptionXpath;
 
-    protected $viewModeAttributeName;
-
-    protected $breadCrumbMemberXpath;
-    protected $breadCrumbSelectorXpath;
-
-    protected $layeredNavigationFilterNameXpath;
-
-    protected $layeredNavigationFilterTypesXpath;
-    protected $layeredNavigationFilterLinkXpath;
-    protected $layeredNavigationFilterNameElementXpath;
-    protected $layeredNavigationSwatchAppliesXpath;
-    protected $layeredNavigationSwatchFilterTypesXpath;
-    protected $layeredNavigationSwatchTitleAttribute;
-
     abstract public function getCustomerThemeClass();
-    abstract public function getCheckoutThemeClass();
+    abstract public function getOnePageCheckoutThemeClass();
 
-    protected $guaranteedPageLoadedElementDisplayedXpath = '//div[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
-
-    public function configure(AbstractTestCase $testCase)
-    {
-
-    }
-
-    /**
-     * @return array
-     */
-    public function getCartNavigationInstructions()
-    {
-        return $this->translatePlaceholders($this->cartNavigationInstructions);
-    }
-
-    /**
-     * @return string
-     */
-    public function getLayeredNavigationSwatchTitleAttribute()
-    {
-        return $this->layeredNavigationSwatchTitleAttribute;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLayeredNavigationSwatchAppliesXpath($name)
-    {
-        if ($this->layeredNavigationSwatchAppliesXpath) {
-            return $this->translatePlaceholders(sprintf($this->layeredNavigationSwatchAppliesXpath, $name));
-        }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLayeredNavigationSwatchFilterTypesXpath($name)
-    {
-        return $this->translatePlaceholders(sprintf($this->layeredNavigationSwatchFilterTypesXpath, $name));
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLayeredNavigationFilterNameElementXpath($name)
-    {
-        return $this->translatePlaceholders(sprintf($this->layeredNavigationFilterNameElementXpath, $name));
-    }
-
-    /**
-     * @return string
-     */
-    public function getLayeredNavigationFilterTypesXpath($type)
-    {
-        return $this->translatePlaceholders(sprintf($this->layeredNavigationFilterTypesXpath, $type));
-    }
-
-    /**
-     * @return string
-     */
-    public function getLayeredNavigationFilterLinkXpath($type)
-    {
-        return $this->translatePlaceholders(sprintf($this->layeredNavigationFilterLinkXpath, $type));
-    }
-
-
-
-    /**
-     * @return mixed
-     */
-    public function getLayeredNavigationFilterNameXpath()
-    {
-        return $this->layeredNavigationFilterNameXpath;
-    }
-
-    public function getBreadCrumbMemberXpath($name)
-    {
-        return $this->getBreadCrumbXpath() . $this->translatePlaceholders(sprintf($this->breadCrumbMemberXpath, $name));
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBreadCrumbSelectorXpath($test)
-    {
-        return $this->getBreadCrumbXpath() . sprintf($this->breadCrumbSelectorXpath, $test);
-    }
-
-
+    protected $guaranteedPageLoadedElementDisplayedXpath = '//*[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
 
     /**
      * @return mixed
@@ -488,11 +378,6 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getProductCollectionSortByXpath()
     {
         return $this->productCollectionSortByXpath;
-    }
-
-    public function getViewModeAttributeName()
-    {
-        return $this->viewModeAttributeName;
     }
 
     /**

@@ -98,7 +98,7 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
             $this->setTypePreference('Magium\Themes\BaseThemeInterface',$fullyQualifiedClassName);
 
             $this->setTypePreference('Magium\Magento\Themes\Customer\AbstractThemeConfiguration',$this->getTheme()->getCustomerThemeClass());
-            $this->setTypePreference('Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration',$this->getTheme()->getCheckoutThemeClass());
+            $this->setTypePreference('Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration',$this->getTheme()->getOnePageCheckoutThemeClass());
 
 
         } else {

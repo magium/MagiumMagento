@@ -2,7 +2,11 @@
 
 namespace Tests\Magium\MagentoEE114\Checkout;
 
-use Magium\Magento\Themes\MagentoEE114\ThemeConfiguration;
+use Magium\Magento\AbstractMagentoTestCase;
+use Magium\Magento\Actions\Admin\Configuration\Enabler;
+use Magium\Magento\Actions\Admin\Login\Login;
+use Magium\Magento\Actions\Cart\AddItemToCart;
+use Magium\Magento\Actions\Checkout\GuestCheckout;
 
 class SavedCCPaymentTest extends \Tests\Magium\Magento\Checkout\SavedCCPaymentTest
 {
@@ -11,12 +15,6 @@ class SavedCCPaymentTest extends \Tests\Magium\Magento\Checkout\SavedCCPaymentTe
     protected function setUp()
     {
         parent::setUp();
-        $this->getTheme(
-            \Magium\Magento\Themes\Admin\ThemeConfiguration::THEME
-        )->set(
-            'baseUrl',
-            $this->getTheme(ThemeConfiguration::THEME)->getBaseUrl() . 'admin/'
-        );
-        $this->switchThemeConfiguration(ThemeConfiguration::THEME);
+        $this->switchThemeConfiguration('Magium\Magento\Themes\MagentoEE114\ThemeConfiguration');
     }
 }

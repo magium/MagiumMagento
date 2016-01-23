@@ -1,7 +1,0 @@
-<phpunit bootstrap="../../vendor/autoload.php">
-    <testsuites>
-        <testsuite name="Magento EE 1.12">
-            <directory>.</directory>
-        </testsuite>
-    </testsuites>
-</phpunit>

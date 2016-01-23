@@ -9,27 +9,25 @@ use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Navigators\InstructionNavigator;
 use Magium\WebDriver\WebDriver;
 
-class CheckoutStart implements StepInterface
+class CheckoutStart extends InstructionNavigator implements StepInterface
 {
     const NAVIGATOR = 'Checkout\CheckoutStart';
 
-    protected $theme;
-    protected $instructionNavigator;
-
     public function __construct(
         AbstractThemeConfiguration $theme,
-        InstructionNavigator $instructionNavigator
-    )
+        AbstractMagentoTestCase $testCase,
+        WebDriver $webdriver,
+        WaitForPageLoaded $loaded)
     {
-        $this->instructionNavigator = $instructionNavigator;
-        $this->theme = $theme;
+        parent::__construct($theme, $testCase, $webdriver, $loaded);
     }
 
-    public function navigateTo()
+    public function navigateTo(array $instructions = null)
     {
-
-        $instructions = $this->theme->getCheckoutNavigationInstructions();
-        $this->instructionNavigator->navigateTo($instructions);
+        if ($instructions === null) {
+            $instructions = $this->themeConfiguration->getCheckoutNavigationInstructions();
+        }
+        return parent::navigateTo($instructions);
     }
 
     public function execute()

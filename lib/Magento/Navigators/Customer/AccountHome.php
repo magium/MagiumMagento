@@ -13,8 +13,6 @@ class AccountHome
     protected $instructionsNavigator;
     protected $loaded;
 
-    protected $navigatorInstructions = 'getNavigateToCustomerPageInstructions';
-
     public function __construct(
         AbstractThemeConfiguration $theme,
         InstructionNavigator $instructionsNavigator,
@@ -29,7 +27,7 @@ class AccountHome
     public function navigateTo()
     {
 
-        $instructions = $this->theme->{$this->navigatorInstructions}();
+        $instructions = $this->theme->getNavigateToCustomerPageInstructions();
         $this->instructionsNavigator->navigateTo($instructions);
         $this->loaded->execute();
     }

@@ -28,24 +28,23 @@ class BaseMenu
     public function navigateTo($path)
     {
         $paths = explode('/', $path);
-        $xpath = $this->themeConfiguration->getNavigationBaseXPathSelector();
-        $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($this->webdriver->byXpath($xpath)));
+        $baseXpath = $this->themeConfiguration->getNavigationBaseXPathSelector();
+        $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($this->webdriver->byXpath($baseXpath)));
         
         $level = 0;
 
         $element = null;
         
         foreach ($paths as $p) {
-            usleep(500000); // Give the UI some time to update
-            $xpath .= '/descendant::' . $this->themeConfiguration->getNavigationChildXPathSelector($level++, $p);
+            $xpath = $baseXpath . '/descendant::' . $this->themeConfiguration->getNavigationChildXPathSelector($level++, $p);
 
             $element = $this->webdriver->byXpath($xpath . '/a');
-
             $this->webdriver->getMouse()->mouseMove($element->getCoordinates());
-            $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($element));
+            usleep(500000); // Give the UI some time to update
         }
 
         if ($element instanceof WebDriverElement) {
+
             $element->click();
         }
         $this->loaded->execute($element);
