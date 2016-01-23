@@ -51,12 +51,11 @@ class Login
     {
 
         if ($requireLogin) {
-            $element = $this->webdriver->byXpath($this->theme->getLoginUsernameField());
-            $this->testCase->assertNotNull($element);
+            $this->testCase->assertElementDisplayed($this->theme->getLoginUsernameField(), WebDriver::BY_XPATH);
         } else {
             try {
                 $element = $this->webdriver->byXpath($this->theme->getLoginUsernameField());
-                if ($element === null) {
+                if ($element === null || !$element->isDisplayed()) {
                     return;
                 }
                 // If we're logged in we don't need to do the login process.  Continue along.

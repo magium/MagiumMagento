@@ -10,12 +10,12 @@ use Magium\Magento\Extractors\Catalog\LayeredNavigation\UnparseableValueExceptio
 
 class SwatchFilter extends AbstractFilterType
 {
-    protected $swatchAppliesXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::ol[contains(concat(" ",normalize-space(@class)," ")," configurable-swatch-list ")]';
 
     public function filterApplies()
     {
         $xpath = new \DOMXPath($this->document);
-        $elements = $xpath->query(sprintf($this->swatchAppliesXpath, $this->title));
+        $xpathQuery = $this->theme->getLayeredNavigationSwatchAppliesXpath($this->title);
+        $elements = $xpath->query($xpathQuery);
         return $elements->length > 0;
     }
 
@@ -39,7 +39,7 @@ class SwatchFilter extends AbstractFilterType
     {
 
         $xpath = new \DOMXPath($this->document);
-        $elements = $xpath->query(sprintf($this->filterTypesXpath, $this->title));
+        $elements = $xpath->query($this->theme->getLayeredNavigationSwatchFilterTypesXpath($this->title));
         /* @var $elements \DOMElement[] */
         $returnElements = [];
         foreach ($elements as $element) {
@@ -47,7 +47,7 @@ class SwatchFilter extends AbstractFilterType
             $html  =$element->C14N();
             $elementDocument->loadXML($html);
             $elementXpath = new \DOMXPath($elementDocument);
-            $titleElements = $elementXpath->query('//*[@title]');
+            $titleElements = $elementXpath->query(sprintf('//*[@%s]', $this->theme->getLayeredNavigationSwatchTitleAttribute()));
             $imageElements = $elementXpath->query('//img');
             $linkElements = $elementXpath->query('//a');
             if ($titleElements->length != 1) {
@@ -62,20 +62,25 @@ class SwatchFilter extends AbstractFilterType
             if ($imageElements->length > 0) {
                 $image = $imageElements->item(0)->getAttribute('src');
             }
-            $swatchText = trim($titleElements->item(0)->getAttribute('title'));
+            $swatchText = trim($titleElements->item(0)->getAttribute($this->theme->getLayeredNavigationSwatchTitleAttribute()));
             $text = trim($element->nodeValue);
             $matches = null;
-            if (!preg_match('/(\(\d+\))/', $text, $matches)) {
-                throw new UnparseableValueException('Unable to parse navigation filter with default filter.');
+            $count = null;
+            if (preg_match('/(\(\d+\))/', $text, $matches)) {
+                $count = preg_replace('/\D/', '', $matches[1]);
             }
-            $count = preg_replace('/\D/', '', $matches[1]);
+
 
             if ($linkUrl === null) {
                 throw new UnparseableValueException('Unable to determine the link');
             }
 
+            // This hack may make me vomit.  Rather than having yet-another-option-to-code-for I'm basically saying
+            // I don't care what the Xpath says, we're searching for an A tag here.
 
-            $linkElementXpath = sprintf($this->filterLinkXpath . '[@href="%s"]', $this->title, $linkUrl);
+            $linkElementXpath = $this->theme->getLayeredNavigationSwatchFilterTypesXpath($this->title);
+            $linkElementXpath = preg_replace('/\:\:\w+$/', '::', $linkElementXpath);
+            $linkElementXpath .= sprintf('a[@href="%s"]', $linkUrl);
             $linkElement = $this->webDriver->byXpath($linkElementXpath);
 
             $value = new SwatchFilterValue($linkElement, $swatchText, $linkUrl, $count, $image);

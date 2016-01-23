@@ -146,7 +146,7 @@ class LayeredNavigation extends AbstractExtractor
         $doc->loadHTML($html);
 
         $xPath = new \DOMXPath($doc);
-        $filters = $xPath->query('//dl[@id="narrow-by-list"]/dt');
+        $filters = $xPath->query($this->theme->getLayeredNavigationFilterNameXpath());
         /* @var $filters \DOMElement[] */
         foreach ($filters as $filter) {
             $this->filterNames[] = $filter = trim($filter->nodeValue);

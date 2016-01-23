@@ -3,6 +3,7 @@
 namespace Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes;
 
 
+use Facebook\WebDriver\WebDriverElement;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterValue;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\MissingValueException;
@@ -18,8 +19,6 @@ abstract class AbstractFilterType
     protected $theme;
     protected $webDriver;
 
-    protected $filterTypesXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li';
-    protected $filterLinkXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li/descendant::a';
 
     public function __construct(
         $type,
@@ -56,6 +55,15 @@ abstract class AbstractFilterType
     }
 
     /**
+     * @return WebDriverElement
+     */
+
+    public function getElement()
+    {
+        return $this->webDriver->byXpath($this->theme->getLayeredNavigationFilterNameElementXpath($this->title));
+    }
+
+    /**
      * @return FilterValue[]
      */
 
@@ -63,25 +71,27 @@ abstract class AbstractFilterType
     {
 
         $xpath = new \DOMXPath($this->document);
-        $elements = $xpath->query(sprintf($this->filterTypesXpath, $this->title));
+        $elements = $xpath->query($this->theme->getLayeredNavigationFilterTypesXpath($this->title));
         /* @var $elements \DOMElement[] */
         $returnElements = [];
         foreach ($elements as $element) {
 
             $text = trim($element->nodeValue);
             $matches = null;
-            if (!preg_match('/(\(\d+\))/', $text, $matches)) {
-                throw new UnparseableValueException('Unable to parse navigation filter with default filter.');
-            }
-            $count = preg_replace('/\D/', '', $matches[1]);
-            $text = trim(substr($text, 0, -strlen($matches[1])));
+            $text = $startCountText = preg_replace('/\D\d\D*$/', '', $text);
+            $text = preg_replace('/\S+$/', '', $text);
+            $text = trim($text);
+
+            $count = substr(trim($element->nodeValue), strlen($startCountText));
+            $count = preg_replace('/^\D*(\d+)\D*$/', '$1', $count);
+
             /*
              * It is very difficult to build a link matcher that is functionally similar across different versions
              * of Magento.  The HTML rendering is different between 1.8 and 1.9.  This could be addressed via several different
              * theme configuration changes but that seems unnecessary given that things should be mostly close.  So we
              * find all the matched links and then find the most accurate match and go with that.
              */
-            $links = $xpath->query(sprintf($this->filterLinkXpath, $this->title));
+            $links = $xpath->query($this->theme->getLayeredNavigationFilterLinkXpath($this->title));
             /* @var $links \DOMElement[] */
             $linkUrl = null;
             foreach ($links as $link) {
@@ -99,7 +109,7 @@ abstract class AbstractFilterType
                 throw new UnparseableValueException('Unable to determine the link');
             }
 
-            $linkElementXpath = sprintf($this->filterLinkXpath . '[@href="%s"]', $this->title, $linkUrl);
+            $linkElementXpath = $this->theme->getLayeredNavigationFilterLinkXpath($this->title) . sprintf('[@href="%s"]', $linkUrl);
             $linkElement = $this->webDriver->byXpath($linkElementXpath);
 
             $value = new FilterValue($linkElement, $text, $linkUrl, $count);
