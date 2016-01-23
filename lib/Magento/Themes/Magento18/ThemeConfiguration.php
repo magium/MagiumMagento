@@ -91,7 +91,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     ];
 
     protected $cartNavigationInstructions            = [
-        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//a[@class="top-cart-link"]']
+        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//a[@class="top-link-cart"]']
     ];
 
     /**

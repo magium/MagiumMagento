@@ -15,6 +15,7 @@ class SwatchFilter extends AbstractFilterType
     {
         $xpath = new \DOMXPath($this->document);
         $xpathQuery = $this->theme->getLayeredNavigationSwatchAppliesXpath($this->title);
+        if (!$xpathQuery) return false;
         $elements = $xpath->query($xpathQuery);
         return $elements->length > 0;
     }
