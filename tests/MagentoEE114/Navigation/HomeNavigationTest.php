@@ -2,9 +2,8 @@
 
 namespace Tests\Magium\MagentoEE114\Navigation;
 
-use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Navigators\Cart\DefaultProductCategory;
-use Magium\Navigators\Home;
+
+use Magium\Magento\Themes\MagentoEE114\ThemeConfiguration;
 
 class HomeNavigationTest extends \Tests\Magium\Magento\Navigation\HomeNavigationTest
 {
@@ -12,7 +11,7 @@ class HomeNavigationTest extends \Tests\Magium\Magento\Navigation\HomeNavigation
     public function setUp()
     {
         parent::setUp();
-        $this->switchThemeConfiguration('Magium\Magento\Themes\MagentoEE114\ThemeConfiguration');
+        $this->switchThemeConfiguration(ThemeConfiguration::THEME);
     }
 
 }
