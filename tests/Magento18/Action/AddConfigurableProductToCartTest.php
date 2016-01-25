@@ -33,6 +33,7 @@ class AddConfigurableProductToCartTest extends \Tests\Magium\Magento\Action\AddC
         self::markTestSkipped('Magento CE 1.8 does not support configurable swatches');
     }
 
+
     public function testBasicAddToCartWithOptionsSpecified()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
