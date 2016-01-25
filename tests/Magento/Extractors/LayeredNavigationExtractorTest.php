@@ -128,8 +128,6 @@ class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
         /* @var $extractor \Magium\Magento\Extractors\Catalog\LayeredNavigation\LayeredNavigation */
         $extractor->extract();
 
-
-
         $filter = $extractor->getFilter('color');
         /* @var $filter \Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes\SwatchFilter */
         self::assertInstanceOf('Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes\SwatchFilter', $filter);
