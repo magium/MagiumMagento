@@ -178,6 +178,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     protected $layeredNavigationFilterTypesXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li';
     protected $layeredNavigationFilterLinkXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li/descendant::a';
     protected $layeredNavigationFilterNameElementXpath =  '//dl[@id="narrow-by-list"]/dt[normalize-space(.) = "%s"]';
+    protected $layeredNavigationSwatchFilterTypesXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li';
     protected $layeredNavigationSwatchAppliesXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::ol[contains(concat(" ",normalize-space(@class)," ")," configurable-swatch-list ")]';
     protected $layeredNavigationSwatchTitleAttribute = 'title';
 
