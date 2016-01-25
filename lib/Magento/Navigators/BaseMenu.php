@@ -5,9 +5,7 @@ namespace Magium\Magento\Navigators;
 
 use Facebook\WebDriver\WebDriverElement;
 use Magium\Actions\WaitForPageLoaded;
-use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Magento\Themes\NavigableThemeInterface;
-use Magium\Themes\ThemeConfigurationInterface;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 class BaseMenu
