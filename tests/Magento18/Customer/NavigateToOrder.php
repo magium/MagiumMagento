@@ -3,7 +3,7 @@
 namespace Tests\Magium\Magento18\Customer;
 
 
-class NavigateToOrderTest extends \Tests\Magium\Magento\Customer\NavigateToOrderTest
+class NavigateToOrder extends \Tests\Magium\Magento\Customer\NavigateToOrder
 {
 
     protected function setUp()

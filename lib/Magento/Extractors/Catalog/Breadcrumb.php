@@ -4,7 +4,6 @@ namespace Magium\Magento\Extractors\Catalog;
 
 use Facebook\WebDriver\WebDriverElement;
 use Magium\Extractors\AbstractExtractor;
-use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 class Breadcrumb extends AbstractExtractor
@@ -17,30 +16,26 @@ class Breadcrumb extends AbstractExtractor
 
     protected $element;
 
-    /**
-     * @var AbstractThemeConfiguration
-     */
-
-    protected $theme;
-
-    public function getBreadCrumbsParts()
+    public function getBreadCrumbsParts($separator = '/')
     {
         $this->extract();
-        $count = 0;
-        $parts = [];
-        while ($this->webDriver->elementDisplayed($this->theme->getBreadCrumbSelectorXpath(++$count), WebDriver::BY_XPATH)) {
-            $parts[] = trim($this->webDriver->byXpath($this->theme->getBreadCrumbSelectorXpath($count))->getText());
+        $text = $this->getBreadCrumbText();
+        $parts = explode($separator, $text);
+        foreach ($parts as &$part) {
+            $part = trim($part);
         }
         return $parts;
     }
 
     public function getBreadCrumbLink($name)
     {
-
-        $xpath = $this->theme->getBreadCrumbMemberXpath($name);
-        if ($this->webDriver->elementDisplayed($xpath, WebDriver::BY_XPATH));
-
-        return $this->webDriver->byXpath($xpath)->getAttribute('href');
+        $xpath = $this->theme->getBreadCrumbXpath();
+        $xpath .= sprintf('/descendant::a[.="%s"]', $name);
+        // We don't fail outright because the last element name often does not have a link
+        if ($this->webDriver->elementExists($xpath, WebDriver::BY_XPATH)) {
+            return $this->webDriver->byXpath($xpath)->getAttribute('href');
+        }
+        return null;
     }
 
     public function getElement()
@@ -53,7 +48,7 @@ class Breadcrumb extends AbstractExtractor
     public function getBreadCrumbText()
     {
         $this->extract();
-        $text = preg_replace('/\s+/', ' ', $this->element->getText());
+        $text = preg_replace('/\s/', ' ', $this->element->getText());
         return $text;
     }
 

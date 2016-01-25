@@ -4,8 +4,7 @@ namespace Tests\Magium\Magento\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\Product\ConfigurableProductOptions;
-use Magium\Magento\Navigators\Catalog\DefaultConfigurableProduct;
-use Magium\Magento\Navigators\Catalog\DefaultConfigurableProductCategory;
+use Magium\Magento\Navigators\Catalog\Product;
 
 class ProductSwatchExtractorTest extends AbstractMagentoTestCase
 {
@@ -13,8 +12,8 @@ class ProductSwatchExtractorTest extends AbstractMagentoTestCase
     public function testProductSwatchExtractor()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator(DefaultConfigurableProductCategory::NAVIGATOR)->navigateTo();
-        $this->getNavigator(DefaultConfigurableProduct::NAVIGATOR)->navigateTo();
+        $this->getNavigator()->navigateTo($this->getTheme()->getNavigationPathToConfigurableProductCategory());
+        $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->getTheme()->getDefaultConfigurableProductName());
 
         $extractor = $this->getExtractor(ConfigurableProductOptions::EXTRACTOR);
         /* @var $extractor ConfigurableProductOptions */
@@ -27,7 +26,7 @@ class ProductSwatchExtractorTest extends AbstractMagentoTestCase
         self::assertContains('Size', $names);
 
         $item = $extractor->getOption('Color');
-        $options = $item->getValues();
+        $options = $item->getOptions();
 
         self::assertCount(4, $options);
         self::assertInstanceOf('Facebook\WebDriver\WebDriverELement', $options[0]->getClickElement());
@@ -41,8 +40,8 @@ class ProductSwatchExtractorTest extends AbstractMagentoTestCase
     public function testProductSwatchExtractorNotAvailable()
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
-        $this->getNavigator(DefaultConfigurableProductCategory::NAVIGATOR)->navigateTo();
-        $this->getNavigator(DefaultConfigurableProduct::NAVIGATOR)->navigateTo();
+        $this->getNavigator()->navigateTo($this->getTheme()->getNavigationPathToConfigurableProductCategory());
+        $this->getNavigator(Product::NAVIGATOR)->navigateTo($this->getTheme()->getDefaultConfigurableProductName());
 
         $extractor = $this->getExtractor(ConfigurableProductOptions::EXTRACTOR);
         /* @var $extractor ConfigurableProductOptions */
@@ -50,8 +49,7 @@ class ProductSwatchExtractorTest extends AbstractMagentoTestCase
         $extractor->extract();
 
         $item = $extractor->getOption('Color');
-        $option = $item->getValue('red');
-        self::assertInstanceOf('Magium\Magento\Extractors\Catalog\Product\SwatchValue', $option);
+        $option = $item->getOption('red');
         self::assertTrue($option->getAvailable());
         $option->getClickElement()->click();
 
@@ -59,8 +57,7 @@ class ProductSwatchExtractorTest extends AbstractMagentoTestCase
         $extractor->extract();
 
         $item = $extractor->getOption('Size');
-        $option = $item->getValue('xl');
-        self::assertInstanceOf('Magium\Magento\Extractors\Catalog\Product\SwatchValue', $option);
+        $option = $item->getOption('xl');
         self::assertFalse($option->getAvailable());
     }
 
