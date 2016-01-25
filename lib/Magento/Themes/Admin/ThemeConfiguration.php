@@ -3,6 +3,7 @@
 namespace Magium\Magento\Themes\Admin;
 
 use Magium\AbstractConfigurableElement;
+use Magium\AbstractTestCase;
 use Magium\Magento\Themes\NavigableThemeInterface;
 
 class ThemeConfiguration extends AbstractConfigurableElement implements  NavigableThemeInterface
@@ -44,7 +45,12 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     protected $systemConfigSettingLabelXpath            = '//td[@class="label"]/label[.=" {{%s}}"]';
 
 
-    protected $guaranteedPageLoadedElementDisplayedXpath = '//*[';
+    protected $guaranteedPageLoadedElementDisplayedXpath = '//div[@class="footer"]';
+
+    public function set($name, $value)
+    {
+        $this->$name = $value;
+    }
 
     public function getGuaranteedPageLoadedElementDisplayedXpath()
     {
@@ -242,6 +248,11 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public function getAdminPopupMessageCloseButtonXpath()
     {
         return $this->translatePlaceholders($this->adminPopupMessageCloseButtonXpath);
+    }
+
+    public function configure(AbstractTestCase $testCase)
+    {
+
     }
 
 }

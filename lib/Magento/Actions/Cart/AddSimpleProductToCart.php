@@ -2,8 +2,12 @@
 
 namespace Magium\Magento\Actions\Cart;
 
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\WebDriverExpectedCondition;
 use Magium\Actions\WaitForPageLoaded;
+use Magium\Magento\Extractors\Catalog\Cart\AddToCart;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
+use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
 class AddSimpleProductToCart
@@ -16,7 +20,7 @@ class AddSimpleProductToCart
 
     protected $webDriver;
     protected $theme;
-    protected $loaded;
+    protected $addToCart;
 
     protected $requireQty;
     protected $addQty;
@@ -24,12 +28,12 @@ class AddSimpleProductToCart
     public function __construct(
         WebDriver $webDriver,
         AbstractThemeConfiguration $themeConfiguration,
-        WaitForPageLoaded $loaded
+        AddToCart $addToCart
     )
     {
         $this->webDriver = $webDriver;
         $this->theme = $themeConfiguration;
-        $this->loaded = $loaded;
+        $this->addToCart = $addToCart;
     }
 
     public function requireQty($require = true)
@@ -58,18 +62,19 @@ class AddSimpleProductToCart
 
     protected function clickAddToCart()
     {
-        if (!$this->webDriver->elementExists($this->theme->getAddToCartXpath(), 'byXpath')) {
-            throw new NoSuchElementException('Could not find the simple add to cart element with the Xpath: ' . $this->theme->getAddToCartXpath());
-        };
+        $element = $this->addToCart->getElement();
+        // Because, for some reason, the M2 design HIDES the add-to-cart button as part of the default theme.   Why
+        // would you want to hide the second most important button on the site?
 
-        $element = $this->webDriver->byXpath($this->theme->getAddToCartXpath());
-
-        $element->click();
-        $this->loaded->execute($element);
-
-        if (!$this->webDriver->elementExists($this->theme->getAddToCartSuccessXpath(), WebDriver::BY_XPATH)) {
-            throw new AddToCartFailedException('Add to cart verification failed finding element with Xpath: ' . $this->theme->getAddToCartSuccessXpath());
+        try {
+            $element->click();
+        } catch (\Exception $e) {
+            $e2 = $this->webDriver->byXpath($this->theme->getAddToCartXpath() . '/ancestor::li');
+            $this->webDriver->getMouse()->mouseMove($e2->getCoordinates());
+            $element->click();
         }
+        $this->webDriver->wait()->until(ExpectedCondition::elementExists($this->theme->getAddToCartSuccessXpath(), WebDriver::BY_XPATH));
+
     }
 
 }

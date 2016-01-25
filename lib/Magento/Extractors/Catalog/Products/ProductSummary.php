@@ -2,6 +2,8 @@
 
 namespace Magium\Magento\Extractors\Catalog\Products;
 
+use Facebook\WebDriver\WebDriverElement;
+
 class ProductSummary
 {
     const TITLE = 'title';
@@ -27,7 +29,15 @@ class ProductSummary
     ];
 
     public function __construct(
-        $title, $price, $link, $image, $originalPrice, $wishlistLink, $compareLink, $description, $addToCartLink
+        $title,
+        $price,
+        $link,
+        $image,
+        $originalPrice,
+        WebDriverElement $wishlistLink = null,
+        WebDriverElement $compareLink = null,
+        $description = null,
+        WebDriverElement $addToCartLink = null
     )
     {
         $this->attributes[self::TITLE] = $title;
@@ -55,7 +65,7 @@ class ProductSummary
     }
 
 
-    public function getAddToCartLink()
+    public function getAddToCartElement()
     {
         return $this->get(self::ADD_TO_CART_LINK);
     }
@@ -85,12 +95,12 @@ class ProductSummary
         return $this->get(self::ORIGINAL_PRICE);
     }
 
-    public function getWihlistLink()
+    public function getWishlistLinkElement()
     {
         return $this->get(self::WISHLIST_LINK);
     }
 
-    public function getCompareLink()
+    public function getCompareLinkElement()
     {
         return $this->get(self::COMPARE_LINK);
     }

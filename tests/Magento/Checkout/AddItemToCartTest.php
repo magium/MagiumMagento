@@ -55,8 +55,19 @@ class AddItemToCartTest extends AbstractMagentoTestCase
         $addToCart = $this->getAction(AddItemToCart::ACTION);
         /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
 
-        $addToCart->addSimpleItemToCartFromProductPage($this->productPageAddToCart, $this->categoryNavigation);
+        $addToCart->addSimpleItemToCartFromProductPage($this->categoryNavigation, $this->productPageAddToCart);
 
+    }
+
+    public function testAddConfigurableProductToCartFromProductPage()
+    {
+        $theme = $this->getTheme();
+        $this->commandOpen($theme->getBaseUrl());
+        $this->getLogger()->info('Opening page ' . $theme->getBaseUrl());
+        $addToCart = $this->getAction(AddItemToCart::ACTION);
+        /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
+
+        $addToCart->addConfigurableItemToCartFromProductPage();
     }
 
 }

@@ -3,6 +3,7 @@
 namespace Magium\Magento\Actions\Cart;
 
 use Magium\Actions\WaitForPageLoaded;
+use Magium\Magento\Extractors\Catalog\Cart\AddToCart;
 use Magium\Magento\Extractors\Catalog\Product\ConfigurableProductOptions;
 use Magium\Magento\Extractors\Catalog\Product\Swatch;
 use Magium\Magento\Extractors\Catalog\Product\Option;
@@ -24,11 +25,11 @@ class AddConfigurableProductToCart extends AddSimpleProductToCart
     public function __construct(
         WebDriver $webDriver,
         AbstractThemeConfiguration $themeConfiguration,
-        WaitForPageLoaded $loaded,
+        AddToCart $addToCart,
         ConfigurableProductOptions $option
     )
     {
-        parent::__construct($webDriver, $themeConfiguration, $loaded);
+        parent::__construct($webDriver, $themeConfiguration, $addToCart);
         $this->option = $option;
     }
 
@@ -62,7 +63,7 @@ class AddConfigurableProductToCart extends AddSimpleProductToCart
                 if (!$elementOption instanceof Option) {
                     throw new InvalidConfigurableOptionException('Missing the attribute: ' . $attributeName);
                 }
-                $element = $elementOption->getOption($this->getOption($attributeName));
+                $element = $elementOption->getValue($this->getOption($attributeName));
                 if (!$element instanceof Value) {
                     throw new InvalidConfigurableOptionException(sprintf('Missing the option %s for the attribute %s ', $this->getOption($attributeName), $attributeName));
                 }
@@ -72,7 +73,7 @@ class AddConfigurableProductToCart extends AddSimpleProductToCart
             $names = $this->option->getOptionNames();
             foreach ($names as $name) {
                 $option = $this->option->getOption($name);
-                $items = $option->getOptions();
+                $items = $option->getValues();
                 foreach ($items as $item) {
                     if ($item instanceof SwatchValue) {
                         if ($item->getAvailable()) {
