@@ -2,24 +2,10 @@
 
 namespace Magium\Magento\Assertions\Checkout\PaymentMethods;
 
-use Magium\Assertions\AssertionInterface;
-use Magium\Magento\AbstractMagentoTestCase;
-use Magium\WebDriver\WebDriver;
+use Magium\Assertions\AbstractAssertion;
 
-class SavedCC implements AssertionInterface
+class SavedCC extends AbstractAssertion
 {
-
-    protected $testCase;
-    protected $webDriver;
-
-    public function __construct(
-        WebDriver $webDriver,
-        AbstractMagentoTestCase $testCase
-    )
-    {
-        $this->testCase = $testCase;
-        $this->webDriver = $webDriver;
-    }
 
     public function assert()
     {
