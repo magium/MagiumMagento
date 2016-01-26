@@ -3,7 +3,7 @@
   "type": "library",
   "description": "Magento-based functionality for the Magium test library",
   "keywords": ["magento", "selenium", "webdriver", "testing"],
-  "homepage": "https://github.com/magium/MagiumMagento",
+  "homepage": "http://www.magiumlib.com/",
   "license": "ASL-2.0",
   "authors": [
     {
@@ -14,7 +14,7 @@
     }
   ],
   "require" : {
-    "magium/magium": "0.0.40",
+    "magium/magium": "dev-master",
     "zendframework/zend-uri": "^2.5"
   },
   "repositories" : [ {
@@ -25,7 +25,10 @@
     "psr-4" : {
       "Magium\\" : "lib/",
       "Tests\\Magium\\Magento\\" : "tests/Magento",
-      "Tests\\Magium\\Magento18\\" : "tests/Magento18"
+      "Tests\\Magium\\Magento18\\" : "tests/Magento18",
+      "Tests\\Magium\\MagentoEE112\\" : "tests/MagentoEE112",
+      "Tests\\Magium\\MagentoEE113\\" : "tests/MagentoEE113",
+      "Tests\\Magium\\MagentoEE114\\" : "tests/MagentoEE114"
     }
   }
 }
