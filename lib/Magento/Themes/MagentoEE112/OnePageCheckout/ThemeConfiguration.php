@@ -43,7 +43,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      * @var string The Xpath string for the region_id OPTION to click.  Must be sprintf() compatible
      */
 //    protected $billingRegionIdXpath       = null; // Apparently this is not needed for 1.8
-    protected $billingRegionIdXpath       = '//select[@id="billing:region_id"]/descendant::option[@title="%s"]';
+    protected $billingRegionIdXpath       = '//select[@id="billing:region_id"]/descendant::option[.="%s"]';
     protected $billingPostCodeXpath       = '//input[@id="billing:postcode"]';
     /**
      * @var string The Xpath string for the country OPTION to click.  Must be sprintf() compatible
@@ -73,7 +73,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      * @var string The Xpath string for the region_id OPTION to click.  Must be sprintf() compatible
      */
 //    protected $shippingRegionIdXpath       = null; // Magento 1.8's checkout apparently does not have this
-    protected $shippingRegionIdXpath       = '//select[@id="shipping:region_id"]/descendant::option[@title="%s"]';
+    protected $shippingRegionIdXpath       = '//select[@id="shipping:region_id"]/descendant::option[.="%s"]';
     protected $shippingPostCodeXpath       = '//input[@id="shipping:postcode"]';
     /**
      * @var string The Xpath string for the country OPTION to click.  Must be sprintf() compatible
