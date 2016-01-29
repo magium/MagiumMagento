@@ -114,4 +114,9 @@ class AddItemToCart
         $this->testCase->assertElementExists($this->theme->getAddToCartSuccessXpath(), 'byXpath');
     }
 
+    public function execute()
+    {
+        throw new \Exception('The execute() method is not used in this class.  Please consider one of the other methods.');
+    }
+
 }
