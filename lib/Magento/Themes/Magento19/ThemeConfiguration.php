@@ -15,13 +15,13 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     /**
      * @var string The Xpath string that finds the base of the navigation menu
      */
-    protected $navigationBaseXPathSelector          = '//nav[@id="nav"]/ol';
+    protected $navigationBaseXPathSelector          = '//nav[@id="nav"]';
 
     /**
      * @var string The Xpath string that can be used iteratively to find child navigation nodes
      */
 
-    protected $navigationChildXPathSelector         = 'li[contains(concat(" ",normalize-space(@class)," ")," level%d ")]/a[.="%s"]/..';
+    protected $navigationChildXPathSelector         = 'a[concat(" ",normalize-space(.)," ") = " %s "]/..';
 
     /**
      * @var string A simple, default path to use for categories.
@@ -37,7 +37,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      * @var string Xpath to add a Simple product to the cart from the product's page
      */
 
-    protected $addToCartXpath          = '//button[@title="{{Add to Cart}}" and @onclick]';
+    protected $addToCartXpath          = '//button[@title="{{Add to Cart}}" and contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
 
     /**
      * @var string Xpath to add a Simple product to the cart from the category page
