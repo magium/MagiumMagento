@@ -21,7 +21,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     
     protected $navigationBaseXPathSelector          = '//ul[@id="nav"]';
 //    protected $navigationChildXPathSelector1         = 'li/descendant::span[.="{{%s}}"]';
-    protected $navigationChildXPathSelector         = 'li[contains(concat(" ",normalize-space(@class)," ")," level%d ")]/a[.="{{%s}}"]/..';
+    protected $navigationChildXPathSelector         = 'a[concat(" ",normalize-space(.)," ") = " %s "]/..';
 
     protected $adminPopupMessageContainerXpath         = '//*[@id="message-popup-window"]';
     protected $adminPopupMessageCloseButtonXpath        = '//*[@id="message-popup-window"]/descendant::*[@title="close"]';
@@ -133,9 +133,9 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     /**
      * @return string
      */
-    public function getNavigationChildXPathSelector($level, $text)
+    public function getNavigationChildXPathSelector($text)
     {
-        $return = sprintf($this->navigationChildXPathSelector, $level, $text);
+        $return = sprintf($this->navigationChildXPathSelector, $text);
         return $this->translatePlaceholders($return);
     }
 
