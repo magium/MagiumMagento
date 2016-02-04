@@ -9,7 +9,7 @@ use Magium\Magento\Themes\NavigableThemeInterface;
 class ThemeConfiguration extends AbstractConfigurableElement implements  NavigableThemeInterface
 {
 
-    const THEME = 'Admin\ThemeConfiguration';
+    const THEME = 'Magium\Magento\Themes\Admin\ThemeConfiguration';
 
     protected $baseUrl = 'http://localhost/admin';
 
@@ -46,15 +46,36 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     protected $widgetTabXpath                           = '//a[contains(@class, "tab-item-link")]/span[.="{{%s}}"]';
     protected $widgetTabHeaderXpath                     = '//div[@class="entry-edit-head"]/h4[.="{{%s}}"]';
-    protected $widgetAttributeByLabelXpath              = '//table[@class="form-list"]/descendant::td[@class="label"]/label[.="{{%s}} *" or .="{{%s}} " or .="{{%s}}"]/ancestor::tr/td[@class="value"]/*[@name]';
+    protected $widgetAttributeByLabelXpath              = '//table[@class="form-list"]/descendant::td[@class="label"]/label[.="{{%s}} *" or .="{{%s}}*" or .="{{%s}} " or .="{{%s}}"]/ancestor::tr/td[@class="value"]/*[@name]';
     protected $widgetActionButtonXpath                  = '//div[@class="content-header"]/descendant::button/descendant::span[.="{{%s}}"]';
 
     protected $guaranteedPageLoadedElementDisplayedXpath = '//div[@class="footer"]';
+
+    protected $successfulActionXpath                    = '//li[@class="success-msg"]';
+    protected $errorActionXpath                    = '//li[@class="error-msg"]';
 
     public function set($name, $value)
     {
         $this->$name = $value;
     }
+
+    /**
+     * @return string
+     */
+    public function getSuccessfulActionXpath()
+    {
+        return $this->successfulActionXpath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getErrorActionXpath()
+    {
+        return $this->errorActionXpath;
+    }
+
+
 
     /**
      * @return string
@@ -69,7 +90,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
      */
     public function getWidgetAttributeByLabelXpath($attribute)
     {
-        return $this->translatePlaceholders(sprintf($this->widgetAttributeByLabelXpath, $attribute, $attribute, $attribute));
+        return $this->translatePlaceholders(sprintf($this->widgetAttributeByLabelXpath, $attribute, $attribute, $attribute, $attribute));
     }
 
 
