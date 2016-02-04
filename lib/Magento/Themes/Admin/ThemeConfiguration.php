@@ -44,6 +44,10 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     protected $systemConfigSettingLabelXpath            = '//td[@class="label"]/label[.=" {{%s}}"]';
 
+    protected $widgetTabXpath                           = '//a[contains(@class, "tab-item-link")]/span[.="{{%s}}"]';
+    protected $widgetTabHeaderXpath                     = '//div[@class="entry-edit-head"]/h4[.="{{%s}}"]';
+    protected $widgetAttributeByLabelXpath              = '//table[@class="form-list"]/descendant::td[@class="label"]/label[.="{{%s}} *" or .="{{%s}} "]/ancestor::tr/td[@class="value"]/*[@name]';
+    protected $widgetActionButtonXpath                  = '//div[@class="content-header"]/descendant::button/descendant::span[.="{{%s}}"]';
 
     protected $guaranteedPageLoadedElementDisplayedXpath = '//div[@class="footer"]';
 
@@ -51,6 +55,42 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     {
         $this->$name = $value;
     }
+
+    /**
+     * @return string
+     */
+    public function getWidgetActionButtonXpath($label)
+    {
+        return $this->translatePlaceholders(sprintf($this->widgetActionButtonXpath, $label));
+    }
+
+    /**
+     * @return string
+     */
+    public function getWidgetAttributeByLabelXpath($attribute)
+    {
+        return $this->translatePlaceholders(sprintf($this->widgetAttributeByLabelXpath, $attribute, $attribute));
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getWidgetTabHeaderXpath($name)
+    {
+        return $this->translatePlaceholders(sprintf($this->widgetTabHeaderXpath, $name));
+    }
+
+    /**
+     * @return string
+     */
+    public function getWidgetTabXpath($name)
+    {
+        return $this->translatePlaceholders(sprintf($this->widgetTabXpath, $name));
+    }
+
+
 
     public function getGuaranteedPageLoadedElementDisplayedXpath()
     {
