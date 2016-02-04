@@ -2,6 +2,7 @@
 
 namespace Magium\Magento\Extractors\Admin\Widget;
 
+use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverElement;
 use Magium\AbstractTestCase;
 use Magium\Extractors\AbstractExtractor;
@@ -50,7 +51,14 @@ class Attribute extends AbstractExtractor
     public function extract()
     {
         $xpath = $this->theme->getWidgetAttributeByLabelXpath($this->label);
-        $this->element = $this->webDriver->byXpath($xpath);
+        $elements = $this->webDriver->findElements(WebDriverBy::xpath($xpath));
+        foreach ($elements as $element) {
+            if ($element->isDisplayed()) {
+                $this->element = $element;
+                return;
+            }
+        }
+
     }
 
 }
