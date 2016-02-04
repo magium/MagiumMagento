@@ -8,6 +8,7 @@ use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Themes\NavigableThemeInterface;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
+
 class BaseMenu
 {
     const NAVIGATOR = 'BaseMenu';
@@ -28,14 +29,12 @@ class BaseMenu
         $paths = explode('/', $path);
         $xpath = $this->themeConfiguration->getNavigationBaseXPathSelector();
         $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($this->webdriver->byXpath($xpath)));
-        
-        $level = 0;
 
         $element = null;
         
         foreach ($paths as $p) {
             usleep(500000); // Give the UI some time to update
-            $xpath .= '/descendant::' . $this->themeConfiguration->getNavigationChildXPathSelector($level++, $p);
+            $xpath .= '/descendant::' . $this->themeConfiguration->getNavigationChildXPathSelector($p);
 
             $element = $this->webdriver->byXpath($xpath . '/a');
 

@@ -800,9 +800,9 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
         return $this->translatePlaceholders($this->navigationBaseXPathSelector);
     }
 
-    public function getNavigationChildXPathSelector($level, $text)
+    public function getNavigationChildXPathSelector($text)
     {
-        $return = sprintf($this->navigationChildXPathSelector, $level, $text);
+        $return = sprintf($this->navigationChildXPathSelector, $text);
         return $this->translatePlaceholders($return);
     }
 
