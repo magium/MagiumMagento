@@ -46,7 +46,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     protected $widgetTabXpath                           = '//a[contains(@class, "tab-item-link")]/span[.="{{%s}}"]';
     protected $widgetTabHeaderXpath                     = '//div[@class="entry-edit-head"]/h4[.="{{%s}}"]';
-    protected $widgetAttributeByLabelXpath              = '//table[@class="form-list"]/descendant::td[@class="label"]/label[.="{{%s}} *" or .="{{%s}} "]/ancestor::tr/td[@class="value"]/*[@name]';
+    protected $widgetAttributeByLabelXpath              = '//table[@class="form-list"]/descendant::td[@class="label"]/label[.="{{%s}} *" or .="{{%s}} " or .="{{%s}}"]/ancestor::tr/td[@class="value"]/*[@name]';
     protected $widgetActionButtonXpath                  = '//div[@class="content-header"]/descendant::button/descendant::span[.="{{%s}}"]';
 
     protected $guaranteedPageLoadedElementDisplayedXpath = '//div[@class="footer"]';
@@ -69,7 +69,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
      */
     public function getWidgetAttributeByLabelXpath($attribute)
     {
-        return $this->translatePlaceholders(sprintf($this->widgetAttributeByLabelXpath, $attribute, $attribute));
+        return $this->translatePlaceholders(sprintf($this->widgetAttributeByLabelXpath, $attribute, $attribute, $attribute));
     }
 
 
