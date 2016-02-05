@@ -2,10 +2,13 @@
 
 namespace Magium\Magento\Identities;
 
+use Magium\Identities\AddressInterface;
+use Magium\Identities\EmailInterface;
+use Magium\Identities\NameInterface;
 use Magium\Util\EmailGenerator\Generator;
 use Magium\Util\EmailGenerator\GeneratorAware;
 
-class Customer extends AbstractEntity implements GeneratorAware
+class Customer extends AbstractEntity implements GeneratorAware, NameInterface, EmailInterface, AddressInterface
 {
     const IDENTITY = 'Customer';
 
@@ -43,8 +46,106 @@ class Customer extends AbstractEntity implements GeneratorAware
         $this->generator = $generator;
     }
 
+    public function getCompany()
+    {
+        return $this->getBillingCompany();
+    }
+
+    public function getAddress()
+    {
+        return $this->getBillingAddress();
+    }
+
+    public function getAddress2()
+    {
+        return $this->getBillingAddress2();
+    }
+
+    public function getCity()
+    {
+        return $this->getBillingCity();
+    }
+
+    public function getRegionId()
+    {
+        return $this->getBillingRegionId();
+    }
+
+    public function getPostCode()
+    {
+        return $this->getBillingPostCode();
+    }
+
+    public function getCountryId()
+    {
+        return $this->getBillingCountryId();
+    }
+
+    public function setCompany($value)
+    {
+        $this->setBillingCompany($value);
+    }
+
+    public function setAddress($value)
+    {
+        $this->setBillingAddress($value);
+    }
+
+    public function setAddress2($value)
+    {
+        $this->setBillingAddress2($value);
+    }
+
+    public function setCity($value)
+    {
+        $this->setBillingCity($value);
+    }
+
+    public function setRegionId($value)
+    {
+        $this->setBillingRegionId($value);
+    }
+
+    public function setPostCode($value)
+    {
+        $this->setBillingPostCode($value);
+    }
+
+    public function setCountryId($value)
+    {
+        $this->setBillingCountryId($value);
+    }
+
+    public function getFirstName()
+    {
+        return $this->getBillingFirstName();
+    }
+
+    public function getLastName()
+    {
+        return $this->getBillingLastName();
+    }
+
+    public function setFirstName($value)
+    {
+        $this->setBillingFirstName($value);
+    }
+
+    public function setLastName($value)
+    {
+        $this->setBillingLastName($value);
+    }
+
+
     public function generateUniqueEmailAddress($domain = 'example.com')
     {
+        if ($this->generator instanceof NameInterface) {
+            $this->generator->setFirstName($this->getFirstName());
+            $this->generator->setLastName($this->getLastName());
+        }
+        if ($this->generator instanceof EmailInterface) {
+            $this->generator->setEmailAddress($this->getEmailAddress());
+        }
         $this->uniqueEmailAddressGenerated = true;
         $this->emailAddress = $this->generator->generate($domain);
         return $this->emailAddress;
