@@ -13,89 +13,89 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      * @var string The continue button when choosing the checkout type
      */
 
-    protected $continueButtonXpath;
+    public $continueButtonXpath;
 
     /**
      * @var string The checkbox (typically) that sets the guest checkout
      */
 
-    protected $guestCheckoutButtonXpath;
+    public $guestCheckoutButtonXpath;
 
     /**
      * @var string The checkbox (typically) that sets the new customer checkout
      */
 
-    protected $registerNewCustomerCheckoutButtonXpath;
+    public $registerNewCustomerCheckoutButtonXpath;
 
-    protected $billingAddressDropdownXpath;
+    public $billingAddressDropdownXpath;
 
-    protected $customerEmailInputXpath;
-    protected $customerPasswordInputXpath;
-    protected $customerButtonXpath;
+    public $customerEmailInputXpath;
+    public $customerPasswordInputXpath;
+    public $customerButtonXpath;
 
-    protected $billingFirstNameXpath;
-    protected $billingLastNameXpath;
-    protected $billingCompanyXpath;
-    protected $billingEmailAddressXpath;
-    protected $billingAddressXpath;
-    protected $billingAddress2Xpath;
-    protected $billingCityXpath;
+    public $billingFirstNameXpath;
+    public $billingLastNameXpath;
+    public $billingCompanyXpath;
+    public $billingEmailAddressXpath;
+    public $billingAddressXpath;
+    public $billingAddress2Xpath;
+    public $billingCityXpath;
     /**
      * @var string The Xpath string for the region_id OPTION to click.  Must be sprintf() compatible
      */
-    protected $billingRegionIdXpath;
-    protected $billingPostCodeXpath;
+    public $billingRegionIdXpath;
+    public $billingPostCodeXpath;
     /**
      * @var string The Xpath string for the country OPTION to click.  Must be sprintf() compatible
      */
-    protected $billingCountryIdXpath;
-    protected $billingTelephoneXpath;
-    protected $billingFaxXpath;
+    public $billingCountryIdXpath;
+    public $billingTelephoneXpath;
+    public $billingFaxXpath;
 
-    protected $useBillingAddressForShipping;
-    protected $doNotUseBillingAddressForShipping;
+    public $useBillingAddressForShipping;
+    public $doNotUseBillingAddressForShipping;
 
-    protected $billingContinueButtonXpath;
-    protected $billingContinueCompletedXpath;
+    public $billingContinueButtonXpath;
+    public $billingContinueCompletedXpath;
 
 
-    protected $shippingFirstNameXpath;
-    protected $shippingLastNameXpath;
-    protected $shippingCompanyXpath;
-    protected $shippingEmailAddressXpath;
-    protected $shippingAddressXpath;
-    protected $shippingAddress2Xpath;
-    protected $shippingCityXpath;
+    public $shippingFirstNameXpath;
+    public $shippingLastNameXpath;
+    public $shippingCompanyXpath;
+    public $shippingEmailAddressXpath;
+    public $shippingAddressXpath;
+    public $shippingAddress2Xpath;
+    public $shippingCityXpath;
     /**
      * @var string The Xpath string for the region_id OPTION to click.  Must be sprintf() compatible
      */
-    protected $shippingRegionIdXpath;
-    protected $shippingPostCodeXpath;
+    public $shippingRegionIdXpath;
+    public $shippingPostCodeXpath;
     /**
      * @var string The Xpath string for the country OPTION to click.  Must be sprintf() compatible
      */
-    protected $shippingCountryIdXpath;
-    protected $shippingTelephoneXpath;
-    protected $shippingFaxXpath;
-    protected $shippingContinueButtonXpath;
-    protected $shippingContinueCompletedXpath;
-    protected $shippingMethodContinueCompletedXpath;
+    public $shippingCountryIdXpath;
+    public $shippingTelephoneXpath;
+    public $shippingFaxXpath;
+    public $shippingContinueButtonXpath;
+    public $shippingContinueCompletedXpath;
+    public $shippingMethodContinueCompletedXpath;
 
-    protected $shippingMethodContinueButtonXpath;
-    protected $defaultShippingXpath;
+    public $shippingMethodContinueButtonXpath;
+    public $defaultShippingXpath;
 
-    protected $paymentMethodContinueCompleteXpath;
+    public $paymentMethodContinueCompleteXpath;
 
-    protected $paymentMethodContinueButtonXpath;
+    public $paymentMethodContinueButtonXpath;
 
-    protected $placeOrderButtonXpath;
+    public $placeOrderButtonXpath;
 
-    protected $orderReceivedCompleteXpath;
+    public $orderReceivedCompleteXpath;
 
-    protected $shippingMethodFormXpath;
+    public $shippingMethodFormXpath;
 
-    protected $passwordInputXpath;
-    protected $confirmPasswordInputXpath;
+    public $passwordInputXpath;
+    public $confirmPasswordInputXpath;
 
     /**
      * This is a hard one.  Each of the summary checkout products will be iterated over until they cannot be found. Having
@@ -107,20 +107,20 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      * @var string
      */
 
-    protected $cartSummaryCheckoutProductLoopPriceXpath;
-    protected $cartSummaryCheckoutProductLoopNameXpath;
-    protected $cartSummaryCheckoutProductLoopQtyXpath;
-    protected $cartSummaryCheckoutProductLoopSubtotalXpath;
+    public $cartSummaryCheckoutProductLoopPriceXpath;
+    public $cartSummaryCheckoutProductLoopNameXpath;
+    public $cartSummaryCheckoutProductLoopQtyXpath;
+    public $cartSummaryCheckoutProductLoopSubtotalXpath;
 
-    protected $cartSummaryCheckoutSubTotal;
-    protected $cartSummaryCheckoutTax;
-    protected $cartSummaryCheckoutGrandTotal;
-    protected $cartSummaryCheckoutShippingTotal;
+    public $cartSummaryCheckoutSubTotal;
+    public $cartSummaryCheckoutTax;
+    public $cartSummaryCheckoutGrandTotal;
+    public $cartSummaryCheckoutShippingTotal;
 
-    protected $billingNewAddressXpath;
-    protected $shippingNewAddressXpath;
+    public $billingNewAddressXpath;
+    public $shippingNewAddressXpath;
 
-    protected $guaranteedPageLoadedElementDisplayedXpath = '//*[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
+    public $guaranteedPageLoadedElementDisplayedXpath = '//*[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
 
     public function getGuaranteedPageLoadedElementDisplayedXpath()
     {

@@ -9,58 +9,58 @@ use Magium\Themes\ThemeConfigurationInterface;
 abstract class AbstractThemeConfiguration extends AbstractConfigurableElement implements ThemeConfigurationInterface
 {
 
-    protected $accountNavigationXpath;
-    protected $accountSectionHeaderXpath;
+    public $accountNavigationXpath;
+    public $accountSectionHeaderXpath;
 
-    protected $orderPageName;
+    public $orderPageName;
 
-    protected $viewOrderLinkXpath;
+    public $viewOrderLinkXpath;
 
-    protected $orderPageTitleContainsText;
+    public $orderPageTitleContainsText;
 
     /**
      * @var string Xpath for the customer email form element
      */
 
-    protected $loginUsernameField;
+    public $loginUsernameField;
 
     /**
      * @var string Xpath for the customer password form element
      */
 
-    protected $loginPasswordField;
+    public $loginPasswordField;
 
 
     /**
      * @var string Xpath for the customer login "submit" button
      */
 
-    protected $loginSubmitButton;
+    public $loginSubmitButton;
 
-    protected $orderShippingAddressBaseXpath;
+    public $orderShippingAddressBaseXpath;
 
-    protected $orderBillingAddressBaseXpath;
+    public $orderBillingAddressBaseXpath;
 
-    protected $orderItemNameXpath;
-    protected $orderItemSkuXpath;
-    protected $orderItemPriceXpath;
-    protected $orderItemQtyXpath;
-    protected $orderItemQtyOrderedRegex;
-    protected $orderItemQtyShippedRegex;
-    protected $orderItemSubtotalXpath;
-    protected $orderSubtotalXpath;
-    protected $orderShippingAndHandlingXpath;
-    protected $orderTaxXpath;
-    protected $orderGrandTotalXpath;
+    public $orderItemNameXpath;
+    public $orderItemSkuXpath;
+    public $orderItemPriceXpath;
+    public $orderItemQtyXpath;
+    public $orderItemQtyOrderedRegex;
+    public $orderItemQtyShippedRegex;
+    public $orderItemSubtotalXpath;
+    public $orderSubtotalXpath;
+    public $orderShippingAndHandlingXpath;
+    public $orderTaxXpath;
+    public $orderGrandTotalXpath;
 
-    protected $orderDateXpath;
-    protected $orderStatusXpath;
-    protected $orderStatusRegex;
+    public $orderDateXpath;
+    public $orderStatusXpath;
+    public $orderStatusRegex;
 
-    protected $orderShippingMethod;
-    protected $orderPaymentMethod;
+    public $orderShippingMethod;
+    public $orderPaymentMethod;
 
-    protected $guaranteedPageLoadedElementDisplayedXpath = '//*[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
+    public $guaranteedPageLoadedElementDisplayedXpath = '//*[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
 
     public function getGuaranteedPageLoadedElementDisplayedXpath()
     {

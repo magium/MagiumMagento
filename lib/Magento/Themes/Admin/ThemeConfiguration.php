@@ -11,48 +11,48 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     const THEME = 'Magium\Magento\Themes\Admin\ThemeConfiguration';
 
-    protected $baseUrl = 'http://localhost/admin';
+    public $baseUrl = 'http://localhost/admin';
 
-    protected $homeXpath = '//img[@class="logo"]';
+    public $homeXpath = '//img[@class="logo"]';
 
-    protected $loginUsernameField           = '//input[@type="text" and @id="username"]';
-    protected $loginPasswordField           = '//input[@type="password" and @id="login"]';
-    protected $loginSubmitButton            = '//input[@type="submit" and @value="{{Login}}"]';
+    public $loginUsernameField           = '//input[@type="text" and @id="username"]';
+    public $loginPasswordField           = '//input[@type="password" and @id="login"]';
+    public $loginSubmitButton            = '//input[@type="submit" and @value="{{Login}}"]';
     
-    protected $navigationBaseXPathSelector          = '//ul[@id="nav"]';
-//    protected $navigationChildXPathSelector1         = 'li/descendant::span[.="{{%s}}"]';
-    protected $navigationChildXPathSelector         = 'a[concat(" ",normalize-space(.)," ") = " %s "]/..';
+    public $navigationBaseXPathSelector          = '//ul[@id="nav"]';
+//    public $navigationChildXPathSelector1         = 'li/descendant::span[.="{{%s}}"]';
+    public $navigationChildXPathSelector         = 'a[concat(" ",normalize-space(.)," ") = " %s "]/..';
 
-    protected $adminPopupMessageContainerXpath         = '//*[@id="message-popup-window"]';
-    protected $adminPopupMessageCloseButtonXpath        = '//*[@id="message-popup-window"]/descendant::*[@title="close"]';
+    public $adminPopupMessageContainerXpath         = '//*[@id="message-popup-window"]';
+    public $adminPopupMessageCloseButtonXpath        = '//*[@id="message-popup-window"]/descendant::*[@title="close"]';
 
-    protected $systemConfigTabsXpath                = '//ul[@id="system_config_tabs"]/descendant::a[concat(" ",normalize-space(.)," ") = " {{%s}} "]';
-    protected $systemConfigSectionToggleXpath             = '//form[@id="config_edit_form"]/descendant::div[contains(concat(" ",normalize-space(@class)," ")," section-config ")]/descendant::a[.="{{%s}}"]';
-    protected $systemConfigSectionDisplayCheckXpath            = '//legend[.="{{%s}}"]/ancestor::fieldset';
-    protected $systemConfigToggleEnableXpath            = '//legend[.="{{%s}}"]/../descendant::td[concat(" ",normalize-space(.)," ") = " {{Enabled}} "]/../td/descendant::select/option[@value="%d"]';
+    public $systemConfigTabsXpath                = '//ul[@id="system_config_tabs"]/descendant::a[concat(" ",normalize-space(.)," ") = " {{%s}} "]';
+    public $systemConfigSectionToggleXpath             = '//form[@id="config_edit_form"]/descendant::div[contains(concat(" ",normalize-space(@class)," ")," section-config ")]/descendant::a[.="{{%s}}"]';
+    public $systemConfigSectionDisplayCheckXpath            = '//legend[.="{{%s}}"]/ancestor::fieldset';
+    public $systemConfigToggleEnableXpath            = '//legend[.="{{%s}}"]/../descendant::td[concat(" ",normalize-space(.)," ") = " {{Enabled}} "]/../td/descendant::select/option[@value="%d"]';
 
 
-    protected $systemConfigurationSaveButtonXpath       = '//div[@class="main-col-inner"]/div[@class="content-header"]/descendant::button[@title="{{Save Config}}"]';
+    public $systemConfigurationSaveButtonXpath       = '//div[@class="main-col-inner"]/div[@class="content-header"]/descendant::button[@title="{{Save Config}}"]';
 
-    protected $systemConfigSaveSuccessfulXpath          = '//li[@class="success-msg"]/descendant::span[.="{{The configuration has been saved}}."]';
+    public $systemConfigSaveSuccessfulXpath          = '//li[@class="success-msg"]/descendant::span[.="{{The configuration has been saved}}."]';
 
-    protected $testLoggedInAtBaseUrl                     = '//a[@class="active"]/span[.="{{Dashboard}}"]';
+    public $testLoggedInAtBaseUrl                     = '//a[@class="active"]/span[.="{{Dashboard}}"]';
 
-    protected $tableButtonXpath                         = '//table[@class="actions"]/descendant::span[.="{{%s}}"]';
+    public $tableButtonXpath                         = '//table[@class="actions"]/descendant::span[.="{{%s}}"]';
 
-    protected $selectOrderXpath                         = '//td[concat(" ",normalize-space(.)," ") = " %s "]/../td/a[.="{{View}}"]';
+    public $selectOrderXpath                         = '//td[concat(" ",normalize-space(.)," ") = " %s "]/../td/a[.="{{View}}"]';
 
-    protected $systemConfigSettingLabelXpath            = '//td[@class="label"]/label[.=" {{%s}}"]';
+    public $systemConfigSettingLabelXpath            = '//td[@class="label"]/label[.=" {{%s}}"]';
 
-    protected $widgetTabXpath                           = '//a[contains(@class, "tab-item-link")]/span[.="{{%s}}"]';
-    protected $widgetTabHeaderXpath                     = '//div[@class="entry-edit-head"]/h4[.="{{%s}}"]';
-    protected $widgetAttributeByLabelXpath              = '//table[@class="form-list"]/descendant::td[@class="label"]/label[.="{{%s}} *" or .="{{%s}}*" or .="{{%s}} " or .="{{%s}}"]/ancestor::tr/td[@class="value"]/*[@name]';
-    protected $widgetActionButtonXpath                  = '//div[@class="content-header"]/descendant::button/descendant::span[.="{{%s}}"]';
+    public $widgetTabXpath                           = '//a[contains(@class, "tab-item-link")]/span[.="{{%s}}"]';
+    public $widgetTabHeaderXpath                     = '//div[@class="entry-edit-head"]/h4[.="{{%s}}"]';
+    public $widgetAttributeByLabelXpath              = '//table[@class="form-list"]/descendant::td[@class="label"]/label[.="{{%s}} *" or .="{{%s}}*" or .="{{%s}} " or .="{{%s}}"]/ancestor::tr/td[@class="value"]/*[@name]';
+    public $widgetActionButtonXpath                  = '//div[@class="content-header"]/descendant::button/descendant::span[.="{{%s}}"]';
 
-    protected $guaranteedPageLoadedElementDisplayedXpath = '//div[@class="footer"]';
+    public $guaranteedPageLoadedElementDisplayedXpath = '//div[@class="footer"]';
 
-    protected $successfulActionXpath                    = '//li[@class="success-msg"]';
-    protected $errorActionXpath                    = '//li[@class="error-msg"]';
+    public $successfulActionXpath                    = '//li[@class="success-msg"]';
+    public $errorActionXpath                    = '//li[@class="error-msg"]';
 
     public function set($name, $value)
     {
@@ -149,7 +149,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
      * @var string
      */
 
-    protected $searchButtonText                         = '{{Search}}';
+    public $searchButtonText                         = '{{Search}}';
 
     /**
      * @return Translator

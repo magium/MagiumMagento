@@ -10,87 +10,87 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     const THEME = 'Magium\Magento\Themes\MagentoEE113\ThemeConfiguration';
 
-    protected $homeXpath = '//a[@class="logo"]';
+    public $homeXpath = '//a[@class="logo"]';
 
     /**
      * @var string The Xpath string that finds the base of the navigation menu
      */
-    protected $navigationBaseXPathSelector          = '//ul[@id="nav"]';
+    public $navigationBaseXPathSelector          = '//ul[@id="nav"]';
 
     /**
      * @var string The Xpath string that can be used iteratively to find child navigation nodes
      */
 
-    protected $navigationChildXPathSelector         = 'a[concat(" ",normalize-space(.)," ") = " %s "]/..';
+    public $navigationChildXPathSelector         = 'a[concat(" ",normalize-space(.)," ") = " %s "]/..';
 
     /**
      * @var string A simple, default path to use for categories.
      */
 
-    protected $navigationPathToSimpleProductCategory      = '{{Electronics}}/{{Cell Phones}}';
+    public $navigationPathToSimpleProductCategory      = '{{Electronics}}/{{Cell Phones}}';
 
-    protected $defaultSimpleProductName = '{{Nokia 2610 Phone}}';
+    public $defaultSimpleProductName = '{{Nokia 2610 Phone}}';
 
-    protected $navigationPathToConfigurableProductCategory      = '{{Apparel}}/{{Shirts}}';
+    public $navigationPathToConfigurableProductCategory      = '{{Apparel}}/{{Shirts}}';
 
-    protected $defaultConfigurableProductName = '{{Zolof The Rock And Roll Destroyer: LOL Cat T-shirt}}';
+    public $defaultConfigurableProductName = '{{Zolof The Rock And Roll Destroyer: LOL Cat T-shirt}}';
 
     /**
      * @var string Xpath to add a Simple product to the cart from the product's page
      */
 
-    protected $addToCartXpath          = '//button[@title="{{Add to Cart}}" and contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
+    public $addToCartXpath          = '//button[@title="{{Add to Cart}}" and contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
 
     /**
      * @var string Xpath to add a Simple product to the cart from the category page
      */
 
-    protected $categoryAddToCartButtonXPathSelector = '//button[@title="{{Add to Cart}}" and contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
+    public $categoryAddToCartButtonXPathSelector = '//button[@title="{{Add to Cart}}" and contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
 
     /**
      * @var string Xpath to find a product's link on a category page.  Used to navigate to the product from the category
      */
 
-    protected $categoryProductPageXpath             = '//h2[@class="product-name"]/descendant::a';
+    public $categoryProductPageXpath             = '//h2[@class="product-name"]/descendant::a';
 
-    protected $categorySpecificProductPageXpath             = '//h2[@class="product-name"]/descendant::a[.="%s"]';
+    public $categorySpecificProductPageXpath             = '//h2[@class="product-name"]/descendant::a[.="%s"]';
 
     /**
      * @var string Xpath used after a product has been added to the cart to verify that the product has been added to the cart
      */
 
-    protected $addToCartSuccessXpath        = '//li[@class="success-msg" and contains(., "{{was added to your shopping cart}}")]';
+    public $addToCartSuccessXpath        = '//li[@class="success-msg" and contains(., "{{was added to your shopping cart}}")]';
 
     /**
      * @var string The base URL of the installation
      */
 
-    protected $baseUrl                      = 'http://localhost/';
+    public $baseUrl                      = 'http://localhost/';
 
-    protected $myAccountTitle               = '{{My Account}}';
+    public $myAccountTitle               = '{{My Account}}';
 
-    protected $registerFirstNameXpath           = '//input[@id="firstname"]';
-    protected $registerLastNameXpath            = '//input[@id="lastname"]';
-    protected $registerEmailXpath               = '//input[@id="email_address"]';
-    protected $registerPasswordXpath            = '//input[@id="password"]';
-    protected $registerConfirmPasswordXpath     = '//input[@id="confirmation"]';
-    protected $registerNewsletterXpath          = '//input[@id="is_subscribed"]';
-    protected $registerSubmitXpath              = '//button[@type="submit" and @title="{{Submit}}"]';
+    public $registerFirstNameXpath           = '//input[@id="firstname"]';
+    public $registerLastNameXpath            = '//input[@id="lastname"]';
+    public $registerEmailXpath               = '//input[@id="email_address"]';
+    public $registerPasswordXpath            = '//input[@id="password"]';
+    public $registerConfirmPasswordXpath     = '//input[@id="confirmation"]';
+    public $registerNewsletterXpath          = '//input[@id="is_subscribed"]';
+    public $registerSubmitXpath              = '//button[@type="submit" and @title="{{Submit}}"]';
 
-    protected $logoutSuccessXpath               = '//div[contains(concat(" ",normalize-space(@class)," ")," page-title ")]/descendant::h1[.="{{You are now logged out}}"]';
+    public $logoutSuccessXpath               = '//div[contains(concat(" ",normalize-space(@class)," ")," page-title ")]/descendant::h1[.="{{You are now logged out}}"]';
 
-    protected $layeredNavigationTestXpath       = '//dl[@id="narrow-by-list"]';
+    public $layeredNavigationTestXpath       = '//dl[@id="narrow-by-list"]';
 
     /**
      * @var array Instructions in an Xpath array syntax to get to the customer registration page
      */
 
-    protected $logoutNavigationInstructions         = [
+    public $logoutNavigationInstructions         = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//ul[@class="links"]/descendant::a[.="{{Log Out}}"]'],
 //        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="header-account"]/descendant::a[@title="{{Log Out}}"]']
     ];
 
-    protected $cartNavigationInstructions            = [
+    public $cartNavigationInstructions            = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//string[@id="cartHeader"]'],
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="topCartContent"]/descendant::a/span[.="{{Go to Shopping Cart}}"]']
     ];
@@ -99,7 +99,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      * @var array Instructions in an Xpath array syntax to get to the login page.
      */
     
-    protected $navigateToCustomerPageInstructions            = [
+    public $navigateToCustomerPageInstructions            = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//ul[@class="links"]/descendant::a[.="{{My Account}}"]'],
         //[\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@id="header-account"]/descendant::a[@title="My Account"]']
     ];
@@ -108,7 +108,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      * @var array Instructions in an Xpath array syntax to get to the start of the checkout page
      */
 
-    protected $checkoutNavigationInstructions         = [
+    public $checkoutNavigationInstructions         = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//ul[@class="links"]/descendant::a[@title="{{Checkout}}"]'],
 //        [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//div[@class="minicart-actions"]/descendant::a[@title="Checkout"]']
     ];
@@ -118,7 +118,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      * @var array Instructions in an Xpath array syntax to get to the customer registration page
      */
 
-    protected $registrationNavigationInstructions         = [
+    public $registrationNavigationInstructions         = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//ul[@class="links"]/descendant::a[.="{{My Account}}"]'],
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//button/span/span[.="{{Register}}"]/../..']
     ];
@@ -134,72 +134,72 @@ class ThemeConfiguration extends AbstractThemeConfiguration
      * @var string
      */
 
-    protected $cartSummaryCheckoutProductLoopPriceXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="Price"])[%d]';
-    protected $cartSummaryCheckoutProductLoopNameXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td/h3)[%d]';
-    protected $cartSummaryCheckoutProductLoopQtyXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="Qty"])[%d]';
-    protected $cartSummaryCheckoutProductLoopSubtotalXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="Subtotal"])[%d]';
+    public $cartSummaryCheckoutProductLoopPriceXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="Price"])[%d]';
+    public $cartSummaryCheckoutProductLoopNameXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td/h3)[%d]';
+    public $cartSummaryCheckoutProductLoopQtyXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="Qty"])[%d]';
+    public $cartSummaryCheckoutProductLoopSubtotalXpath = '(//table[@id="checkout-review-table"]/tbody/descendant::td[@data-rwd-label="Subtotal"])[%d]';
 
-    protected $cartSummaryCheckoutSubTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " Subtotal "]/../td[2]';
-    protected $cartSummaryCheckoutTax              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " Tax "]/../td[2]';
-    protected $cartSummaryCheckoutGrandTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " Grand Total "]/../td[2]';
-    protected $cartSummaryCheckoutShippingTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[contains(concat(" ",normalize-space(.)," "), " Shipping & Handling (")]/../td[2]';
+    public $cartSummaryCheckoutSubTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " Subtotal "]/../td[2]';
+    public $cartSummaryCheckoutTax              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " Tax "]/../td[2]';
+    public $cartSummaryCheckoutGrandTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " Grand Total "]/../td[2]';
+    public $cartSummaryCheckoutShippingTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[contains(concat(" ",normalize-space(.)," "), " Shipping & Handling (")]/../td[2]';
 
-    protected $breadCrumbXpath                  = '//div[@class="breadcrumbs"]';
+    public $breadCrumbXpath                  = '//div[@class="breadcrumbs"]';
 
-    protected $productListBaseXpath             = '//ol[contains(concat(" ",normalize-space(@class)," ")," products-list ")]/li[%d]';
-    protected $productListDescriptionXpath      = '/descendant::div[contains(concat(" ",normalize-space(@class)," ")," desc ")]';
-    protected $productListTitleXpath            = '/descendant::h2[@class="product-name"]/a';
-    protected $productListCompareLinkXpath      = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-compare"]';
-    protected $productListImageXpath            = '/descendant::a[@class="product-image"]/img';
-    protected $productListLinkXpath             = '/descendant::a[@class="product-image"]';
-    protected $productListOriginalPriceXpath    = '/descendant::div[@class="price-box"]/descendant::p[@class="old-price"]/descendant::*[@class="price"]';
-    protected $productListPriceXpath            = '/descendant::div[@class="price-box"]/descendant::*[@class="regular-price" or @class="special-price"]/descendant::span[@class="price"]';
-    protected $productListWishlistLinkXpath     = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-wishlist"]';
-    protected $productListAddToCartLinkXpath     = '/descendant::div[@class="product-shop"]/descendant::button[contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
+    public $productListBaseXpath             = '//ol[contains(concat(" ",normalize-space(@class)," ")," products-list ")]/li[%d]';
+    public $productListDescriptionXpath      = '/descendant::div[contains(concat(" ",normalize-space(@class)," ")," desc ")]';
+    public $productListTitleXpath            = '/descendant::h2[@class="product-name"]/a';
+    public $productListCompareLinkXpath      = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-compare"]';
+    public $productListImageXpath            = '/descendant::a[@class="product-image"]/img';
+    public $productListLinkXpath             = '/descendant::a[@class="product-image"]';
+    public $productListOriginalPriceXpath    = '/descendant::div[@class="price-box"]/descendant::p[@class="old-price"]/descendant::*[@class="price"]';
+    public $productListPriceXpath            = '/descendant::div[@class="price-box"]/descendant::*[@class="regular-price" or @class="special-price"]/descendant::span[@class="price"]';
+    public $productListWishlistLinkXpath     = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-wishlist"]';
+    public $productListAddToCartLinkXpath     = '/descendant::div[@class="product-shop"]/descendant::button[contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
 
-    protected $productGridBaseXpath             = '//ul[contains(concat(" ",normalize-space(@class)," ")," products-grid ")]/li[%d]';
-    protected $productGridDescriptionXpath      = '/*[.="no description in the grid view"]';
-    protected $productGridTitleXpath            = '/descendant::h2[@class="product-name"]/a';
-    protected $productGridCompareLinkXpath      = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-compare"]';
-    protected $productGridImageXpath            = '/descendant::a[@class="product-image"]/img';
-    protected $productGridLinkXpath             = '/descendant::a[@class="product-image"]';
-    protected $productGridOriginalPriceXpath    = '/descendant::div[@class="price-box"]/descendant::p[@class="old-price"]/descendant::*[@class="price"]';
-    protected $productGridPriceXpath            = '/descendant::div[@class="price-box"]/descendant::*[@class="regular-price" or @class="special-price"]/descendant::span[@class="price"]';
-    protected $productGridWishlistLinkXpath     = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-wishlist"]';
-    protected $productGridAddToCartLinkXpath     = '/descendant::div[@class="actions"]/descendant::button[contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
+    public $productGridBaseXpath             = '//ul[contains(concat(" ",normalize-space(@class)," ")," products-grid ")]/li[%d]';
+    public $productGridDescriptionXpath      = '/*[.="no description in the grid view"]';
+    public $productGridTitleXpath            = '/descendant::h2[@class="product-name"]/a';
+    public $productGridCompareLinkXpath      = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-compare"]';
+    public $productGridImageXpath            = '/descendant::a[@class="product-image"]/img';
+    public $productGridLinkXpath             = '/descendant::a[@class="product-image"]';
+    public $productGridOriginalPriceXpath    = '/descendant::div[@class="price-box"]/descendant::p[@class="old-price"]/descendant::*[@class="price"]';
+    public $productGridPriceXpath            = '/descendant::div[@class="price-box"]/descendant::*[@class="regular-price" or @class="special-price"]/descendant::span[@class="price"]';
+    public $productGridWishlistLinkXpath     = '/descendant::ul[@class="add-to-links"]/descendant::a[@class="link-wishlist"]';
+    public $productGridAddToCartLinkXpath     = '/descendant::div[@class="actions"]/descendant::button[contains(concat(" ",normalize-space(@class)," ")," btn-cart ")]';
 
-    protected $productCollectionViewModeXpath   = '//p[@class="view-mode"]/strong';
-    protected $productCollectionSortByXpath     = '//div[@class="sort-by"]/descendant::option[@selected]'; // We select using the div, not the title because the title may be translated
-    protected $productCollectionShowCountXpath  = '//div[@class="limiter"]/descendant::option[@selected]'; // dittos
-    protected $productCollectionShowCountOptionsXpath  = '//div[@class="limiter"]/descendant::option';
-    protected $productCollectionProductCountXpath = '//div[contains(concat(" ",normalize-space(@class)," ")," pager ")]/descendant::p[contains(concat(" ",normalize-space(@class)," ")," amount ")]';
+    public $productCollectionViewModeXpath   = '//p[@class="view-mode"]/strong';
+    public $productCollectionSortByXpath     = '//div[@class="sort-by"]/descendant::option[@selected]'; // We select using the div, not the title because the title may be translated
+    public $productCollectionShowCountXpath  = '//div[@class="limiter"]/descendant::option[@selected]'; // dittos
+    public $productCollectionShowCountOptionsXpath  = '//div[@class="limiter"]/descendant::option';
+    public $productCollectionProductCountXpath = '//div[contains(concat(" ",normalize-space(@class)," ")," pager ")]/descendant::p[contains(concat(" ",normalize-space(@class)," ")," amount ")]';
 
-    protected $layeredNavigationBaseXpath        = '//div[contains(concat(" ",normalize-space(@class)," ")," block-layered-nav ")]';
+    public $layeredNavigationBaseXpath        = '//div[contains(concat(" ",normalize-space(@class)," ")," block-layered-nav ")]';
 
-    protected $searchInputXpath                 = '//input[@id="search"]';
-    protected $searchSubmitXpath                = '//form[@id="search_mini_form"]/descendant::button[@type="submit"]';
+    public $searchInputXpath                 = '//input[@id="search"]';
+    public $searchSubmitXpath                = '//form[@id="search_mini_form"]/descendant::button[@type="submit"]';
 
-    protected $searchSuggestionTextXpath        = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]';
-    protected $searchSuggestionCountXpath       = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]/span[@class="amount"]';
+    public $searchSuggestionTextXpath        = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]';
+    public $searchSuggestionCountXpath       = '//div[@id="search_autocomplete"]/descendant::li[@title][%d]/span[@class="amount"]';
 
-    protected $simpleProductQtyXpath = '//input[@id="qty"]';
+    public $simpleProductQtyXpath = '//input[@id="qty"]';
 
-    protected $configurableProductLabelXpath = '//fieldset[@id="product-options-wrapper"]/descendant::label';
+    public $configurableProductLabelXpath = '//fieldset[@id="product-options-wrapper"]/descendant::label';
 
-    protected $configurableProductOptionXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::option[starts-with(., "%s")]';
+    public $configurableProductOptionXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::option[starts-with(., "%s")]';
 
-    protected $viewModeAttributeName = 'class';
+    public $viewModeAttributeName = 'class';
 
-    protected $breadCrumbMemberXpath = '/descendant::a[concat(" ",normalize-space(.)," ")=" {{%s}} "]';
-    protected $breadCrumbSelectorXpath = '/descendant::a[%d]';
+    public $breadCrumbMemberXpath = '/descendant::a[concat(" ",normalize-space(.)," ")=" {{%s}} "]';
+    public $breadCrumbSelectorXpath = '/descendant::a[%d]';
 
-    protected $layeredNavigationFilterNameXpath =  '//dl[@id="narrow-by-list"]/dt';
+    public $layeredNavigationFilterNameXpath =  '//dl[@id="narrow-by-list"]/dt';
 
-    protected $layeredNavigationFilterTypesXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li';
-    protected $layeredNavigationFilterLinkXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li/descendant::a';
-    protected $layeredNavigationFilterNameElementXpath =  '//dl[@id="narrow-by-list"]/dt[normalize-space(.) = "%s"]';
+    public $layeredNavigationFilterTypesXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li';
+    public $layeredNavigationFilterLinkXpath = '//dt[.="%s"]/following-sibling::dd[1]/descendant::li/descendant::a';
+    public $layeredNavigationFilterNameElementXpath =  '//dl[@id="narrow-by-list"]/dt[normalize-space(.) = "%s"]';
 
-    protected $storeSwitcherInstructionsXpath   = [
+    public $storeSwitcherInstructionsXpath   = [
         [\Magium\WebDriver\WebDriver::INSTRUCTION_MOUSE_CLICK, '//select[@id="select-language"]/descendant::option[contains(@href,"___store=%s"]'],
     ];
 
