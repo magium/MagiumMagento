@@ -15,19 +15,19 @@ class CategoryExtractorTest extends \Tests\Magium\Magento\Extractors\CategoryExt
 
     public function testLayeredNavTestWorks()
     {
-        $this->getTheme()->set('navigationPathToSimpleProductCategory', 'Apparel/Shirts');
+        $this->getTheme()->navigationPathToSimpleProductCategory = 'Apparel/Shirts';
         parent::testLayeredNavTestWorks();
     }
 
     public function testProductGridExtraction()
     {
-        $this->getTheme()->set('navigationPathToSimpleProductCategory', 'Apparel/Shirts');
+        $this->getTheme()->navigationPathToSimpleProductCategory = 'Apparel/Shirts';
         parent::testProductGridExtraction();
     }
 
     public function testProductListExtraction()
     {
-        $this->getTheme()->set('navigationPathToSimpleProductCategory', 'Apparel/Shirts');
+        $this->getTheme()->navigationPathToSimpleProductCategory = 'Apparel/Shirts';
         parent::testProductListExtraction();
     }
 
