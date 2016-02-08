@@ -2,9 +2,6 @@
 
 namespace Magium\Magento\Actions\Cart;
 
-use Facebook\WebDriver\WebDriverBy;
-use Facebook\WebDriver\WebDriverExpectedCondition;
-use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Extractors\Catalog\Cart\AddToCart;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
@@ -74,6 +71,8 @@ class AddSimpleProductToCart
             $element->click();
         }
         $this->webDriver->wait()->until(ExpectedCondition::elementExists($this->theme->getAddToCartSuccessXpath(), WebDriver::BY_XPATH));
+        $element = $this->webDriver->byXpath($this->theme->getAddToCartSuccessXpath());
+        $this->webDriver->wait()->until(ExpectedCondition::visibilityOf($element));
 
     }
 
