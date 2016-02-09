@@ -9,104 +9,104 @@ use Magium\AbstractTestCase;
 abstract class AbstractThemeConfiguration extends AbstractConfigurableElement implements NavigableThemeInterface
 {
 
-    protected $homeXpath;
+    public $homeXpath;
 
     /**
      * @var string The Xpath string that finds the base of the navigation menu
      */
-    protected $navigationBaseXPathSelector;
+    public $navigationBaseXPathSelector;
 
     /**
      * @var string The Xpath string that can be used iteratively to find child navigation nodes
      */
 
-    protected $navigationChildXPathSelector;
+    public $navigationChildXPathSelector;
 
     /**
      * @var string A simple, default path to use for categories.
      */
 
-    protected $navigationPathToSimpleProductCategory;
+    public $navigationPathToSimpleProductCategory;
 
-    protected $navigationPathToConfigurableProductCategory;
+    public $navigationPathToConfigurableProductCategory;
 
     /**
      * @var string Xpath to add a Simple product to the cart from the product's page
      */
 
-    protected $addToCartXpath;
+    public $addToCartXpath;
 
-    protected $defaultSimpleProductName;
-    protected $defaultConfigurableProductName;
+    public $defaultSimpleProductName;
+    public $defaultConfigurableProductName;
 
     /**
      * @var string Xpath to add a Simple product to the cart from the category page
      */
 
-    protected $categoryAddToCartButtonXPathSelector;
+    public $categoryAddToCartButtonXPathSelector;
 
     /**
      * @var string Xpath to find a product's link on a category page.  Used to navigate to the product from the category
      */
 
-    protected $categoryProductPageXpath;
+    public $categoryProductPageXpath;
 
-    protected $categorySpecificProductPageXpath;
+    public $categorySpecificProductPageXpath;
 
 
     /**
      * @var string Xpath used after a product has been added to the cart to verify that the product has been added to the cart
      */
 
-    protected $addToCartSuccessXpath;
+    public $addToCartSuccessXpath;
 
     /**
      * @var string The base URL of the installation
      */
 
-    protected $baseUrl;
+    public $baseUrl;
 
-    protected $myAccountTitle;
+    public $myAccountTitle;
 
     /**
      * @var array Instructions in an Xpath array syntax to get to the login page.
      */
 
-    protected $navigateToCustomerPageInstructions            = [];
+    public $navigateToCustomerPageInstructions            = [];
 
     /**
      * @var array Instructions in an Xpath array syntax to get to the shopping cart
      */
 
-    protected $cartNavigationInstructions         = [];
+    public $cartNavigationInstructions         = [];
 
     /**
      * @var array Instructions in an Xpath array syntax to get to the start of the checkout page
      */
 
-    protected $checkoutNavigationInstructions         = [];
+    public $checkoutNavigationInstructions         = [];
 
     /**
      * @var array Instructions in an Xpath array syntax to get to the customer registration page
      */
 
-    protected $registrationNavigationInstructions         = [];
+    public $registrationNavigationInstructions         = [];
 
     /**
      * @var array Instructions in an Xpath array syntax to get to the customer registration page
      */
 
-    protected $logoutNavigationInstructions         = [];
+    public $logoutNavigationInstructions         = [];
 
-    protected $registerFirstNameXpath;
-    protected $registerLastNameXpath;
-    protected $registerEmailXpath;
-    protected $registerPasswordXpath;
-    protected $registerConfirmPasswordXpath;
-    protected $registerNewsletterXpath;
-    protected $registerSubmitXpath;
+    public $registerFirstNameXpath;
+    public $registerLastNameXpath;
+    public $registerEmailXpath;
+    public $registerPasswordXpath;
+    public $registerConfirmPasswordXpath;
+    public $registerNewsletterXpath;
+    public $registerSubmitXpath;
 
-    protected $logoutSuccessXpath;
+    public $logoutSuccessXpath;
 
     /**
      * This is a hard one.  Each of the summary checkout products will be iterated over until they cannot be found. Having
@@ -118,85 +118,85 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
      * @var string
      */
 
-    protected $cartSummaryCheckoutProductLoopPriceXpath;
-    protected $cartSummaryCheckoutProductLoopNameXpath;
-    protected $cartSummaryCheckoutProductLoopQtyXpath;
-    protected $cartSummaryCheckoutProductLoopSubtotalXpath;
+    public $cartSummaryCheckoutProductLoopPriceXpath;
+    public $cartSummaryCheckoutProductLoopNameXpath;
+    public $cartSummaryCheckoutProductLoopQtyXpath;
+    public $cartSummaryCheckoutProductLoopSubtotalXpath;
 
-    protected $cartSummaryCheckoutSubTotal;
-    protected $cartSummaryCheckoutTax;
-    protected $cartSummaryCheckoutGrandTotal;
-    protected $cartSummaryCheckoutShippingTotal;
+    public $cartSummaryCheckoutSubTotal;
+    public $cartSummaryCheckoutTax;
+    public $cartSummaryCheckoutGrandTotal;
+    public $cartSummaryCheckoutShippingTotal;
 
-    protected $layeredNavigationTestXpath;
+    public $layeredNavigationTestXpath;
 
-    protected $breadCrumbXpath;
+    public $breadCrumbXpath;
 
-    protected $productListBaseXpath;
-    protected $productListDescriptionXpath;
-    protected $productListTitleXpath;
-    protected $productListCompareLinkXpath;
-    protected $productListImageXpath;
-    protected $productListLinkXpath;
-    protected $productListOriginalPriceXpath;
-    protected $productListPriceXpath;
-    protected $productListWishlistLinkXpath;
-    protected $productListAddToCartLinkXpath;
+    public $productListBaseXpath;
+    public $productListDescriptionXpath;
+    public $productListTitleXpath;
+    public $productListCompareLinkXpath;
+    public $productListImageXpath;
+    public $productListLinkXpath;
+    public $productListOriginalPriceXpath;
+    public $productListPriceXpath;
+    public $productListWishlistLinkXpath;
+    public $productListAddToCartLinkXpath;
 
-    protected $productGridBaseXpath;
-    protected $productGridDescriptionXpath;
-    protected $productGridTitleXpath;
-    protected $productGridCompareLinkXpath;
-    protected $productGridImageXpath;
-    protected $productGridLinkXpath;
-    protected $productGridOriginalPriceXpath;
-    protected $productGridPriceXpath;
-    protected $productGridWishlistLinkXpath;
-    protected $productGridAddToCartLinkXpath;
+    public $productGridBaseXpath;
+    public $productGridDescriptionXpath;
+    public $productGridTitleXpath;
+    public $productGridCompareLinkXpath;
+    public $productGridImageXpath;
+    public $productGridLinkXpath;
+    public $productGridOriginalPriceXpath;
+    public $productGridPriceXpath;
+    public $productGridWishlistLinkXpath;
+    public $productGridAddToCartLinkXpath;
 
-    protected $productCollectionViewModeXpath;
-    protected $productCollectionSortByXpath;
-    protected $productCollectionShowCountXpath;
-    protected $productCollectionShowCountOptionsXpath;
-    protected $productCollectionProductCountXpath;
+    public $productCollectionViewModeXpath;
+    public $productCollectionSortByXpath;
+    public $productCollectionShowCountXpath;
+    public $productCollectionShowCountOptionsXpath;
+    public $productCollectionProductCountXpath;
 
-    protected $simpleProductQtyXpath;
+    public $simpleProductQtyXpath;
 
-    protected $layeredNavigationBaseXpath;
+    public $layeredNavigationBaseXpath;
 
-    protected $searchInputXpath;
-    protected $searchSubmitXpath;
+    public $searchInputXpath;
+    public $searchSubmitXpath;
 
-    protected $searchSuggestionTextXpath;
-    protected $searchSuggestionCountXpath;
+    public $searchSuggestionTextXpath;
+    public $searchSuggestionCountXpath;
 
-    protected $storeSwitcherInstructionsXpath;
+    public $storeSwitcherInstructionsXpath;
 
-    protected $configurableProductLabelXpath;
-    protected $configurableSwatchSelectorXpath;
-    protected $configurableSwatchImgXpath;
-    protected $configurableSwatchNotAvailableXpath;
+    public $configurableProductLabelXpath;
+    public $configurableSwatchSelectorXpath;
+    public $configurableSwatchImgXpath;
+    public $configurableSwatchNotAvailableXpath;
 
-    protected $configurableProductOptionXpath;
+    public $configurableProductOptionXpath;
 
-    protected $viewModeAttributeName;
+    public $viewModeAttributeName;
 
-    protected $breadCrumbMemberXpath;
-    protected $breadCrumbSelectorXpath;
+    public $breadCrumbMemberXpath;
+    public $breadCrumbSelectorXpath;
 
-    protected $layeredNavigationFilterNameXpath;
+    public $layeredNavigationFilterNameXpath;
 
-    protected $layeredNavigationFilterTypesXpath;
-    protected $layeredNavigationFilterLinkXpath;
-    protected $layeredNavigationFilterNameElementXpath;
-    protected $layeredNavigationSwatchAppliesXpath;
-    protected $layeredNavigationSwatchFilterTypesXpath;
-    protected $layeredNavigationSwatchTitleAttribute;
+    public $layeredNavigationFilterTypesXpath;
+    public $layeredNavigationFilterLinkXpath;
+    public $layeredNavigationFilterNameElementXpath;
+    public $layeredNavigationSwatchAppliesXpath;
+    public $layeredNavigationSwatchFilterTypesXpath;
+    public $layeredNavigationSwatchTitleAttribute;
 
     abstract public function getCustomerThemeClass();
     abstract public function getCheckoutThemeClass();
 
-    protected $guaranteedPageLoadedElementDisplayedXpath = '//div[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
+    public $guaranteedPageLoadedElementDisplayedXpath = '//div[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
 
     public function configure(AbstractTestCase $testCase)
     {
@@ -467,11 +467,6 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public function getLayeredNavigationBaseXpath()
     {
         return $this->layeredNavigationBaseXpath;
-    }
-
-    public function set($name, $value)
-    {
-        $this->$name = $value;
     }
 
     /**
