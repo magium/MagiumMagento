@@ -6,6 +6,7 @@ namespace Magium\Magento\Navigators;
 use Facebook\WebDriver\WebDriverElement;
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Themes\NavigableThemeInterface;
+use Magium\Util\Log\Logger;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
@@ -15,12 +16,19 @@ class BaseMenu
     protected $webdriver;
     protected $themeConfiguration;
     protected $loaded;
+    protected $logger;
     
-    public function __construct(NavigableThemeInterface $theme, WebDriver $webdriver, WaitForPageLoaded $loaded)
+    public function __construct(
+        NavigableThemeInterface $theme,
+        WebDriver $webdriver,
+        WaitForPageLoaded $loaded,
+        Logger $logger
+    )
     {
         $this->themeConfiguration = $theme;
         $this->webdriver = $webdriver;
         $this->loaded = $loaded;
+        $this->logger = $logger;
     }
 
     
@@ -28,6 +36,7 @@ class BaseMenu
     {
         $paths = explode('/', $path);
         $xpath = $this->themeConfiguration->getNavigationBaseXPathSelector();
+
         $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($this->webdriver->byXpath($xpath)));
 
         $element = null;
