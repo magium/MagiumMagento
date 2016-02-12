@@ -12,25 +12,8 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
     protected function setUp()
     {
         self::addBaseNamespace('Magium\Magento');
+        self::addRegistrationCallback(new Registration());
         parent::setUp();
-
-        $this->setTypePreference(
-            'Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface',
-            'Magium\Magento\Actions\Checkout\PaymentMethods\NoPaymentMethod'
-        );
-
-        $this->setTypePreference(
-            'Magium\Magento\Actions\Checkout\ShippingMethods\ShippingMethodInterface',
-            'Magium\Magento\Actions\Checkout\ShippingMethods\FirstAvailable'
-        );
-
-        $this->setTypePreference(
-            'Magium\Themes\ThemeConfigurationInterface',
-            'Magium\Magento\Themes\AbstractThemeConfiguration'
-        );
-
-        $this->switchThemeConfiguration('Magium\Magento\Themes\Magento19\ThemeConfiguration');
-
     }
 
     /**
