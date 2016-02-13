@@ -12,7 +12,7 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
     protected function setUp()
     {
         self::addBaseNamespace('Magium\Magento');
-        self::addRegistrationCallback(new Registration());
+        self::addRegistrationCallback(new Registration(), 100);
         parent::setUp();
     }
 
