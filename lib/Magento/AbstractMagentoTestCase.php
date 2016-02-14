@@ -5,6 +5,7 @@ namespace Magium\Magento;
 use Magium\AbstractTestCase;
 use Magium\InvalidConfigurationException;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
+use Magium\Util\TestCase\RegistrationListener;
 
 abstract class AbstractMagentoTestCase extends AbstractTestCase
 {
@@ -12,7 +13,7 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
     protected function setUp()
     {
         self::addBaseNamespace('Magium\Magento');
-        self::addRegistrationCallback(new Registration(), 100);
+        RegistrationListener::addCallback(new Registration(), 100);
         parent::setUp();
     }
 
