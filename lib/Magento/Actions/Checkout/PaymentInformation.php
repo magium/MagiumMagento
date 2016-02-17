@@ -3,7 +3,6 @@
 namespace Magium\Magento\Actions\Checkout;
 
 use Magium\AbstractConfigurableElement;
-use Zend\I18n\Translator\Translator;
 
 class PaymentInformation extends AbstractConfigurableElement
 {
@@ -25,12 +24,17 @@ class PaymentInformation extends AbstractConfigurableElement
          *
          * This way if you want to handle your own credit card you only have to configure this class
         */
+        $this->setDefaults();
+        parent::__construct($configurationFile);
+    }
+
+    protected function setDefaults()
+    {
         $this->creditCardNumber = '4111111111111111';
         $this->expiryMonth = '1';
         $this->expiryYear = date('Y', time() + (60 * 60 * 24 * 365 * 5));  // January plus 5 years
         $this->cvv = '123';
         $this->type = 'VI';
-        parent::__construct($configurationFile);
     }
 
     /**
@@ -95,6 +99,30 @@ class PaymentInformation extends AbstractConfigurableElement
     public function setCvv($cvv)
     {
         $this->cvv = $cvv;
+    }
+
+    /**
+     * @param mixed $expiryMonth
+     */
+    public function setExpiryMonth($expiryMonth)
+    {
+        $this->expiryMonth = $expiryMonth;
+    }
+
+    /**
+     * @param mixed $expiryYear
+     */
+    public function setExpiryYear($expiryYear)
+    {
+        $this->expiryYear = $expiryYear;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 
 

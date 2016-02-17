@@ -2,6 +2,7 @@
 
 namespace Magium\Magento\Actions\Checkout\Steps;
 
+use Facebook\WebDriver\Exception\StaleElementReferenceException;
 use Facebook\WebDriver\WebDriverExpectedCondition;
 use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
@@ -54,15 +55,19 @@ class PaymentMethod implements StepInterface
     {
         $this->webdriver->byXpath($this->theme->getPaymentMethodContinueButtonXpath())->click();
 
-        $this->webdriver->wait()->until(
-            WebDriverExpectedCondition::not(
-                WebDriverExpectedCondition::visibilityOf(
-                    $this->webdriver->byXpath(
-                        $this->theme->getPaymentMethodContinueCompleteXpath()
+        try {
+            $this->webdriver->wait()->until(
+                WebDriverExpectedCondition::not(
+                    WebDriverExpectedCondition::visibilityOf(
+                        $this->webdriver->byXpath(
+                            $this->theme->getPaymentMethodContinueCompleteXpath()
+                        )
                     )
                 )
-            )
-        );
+            );
+        } catch (StaleElementReferenceException $e) {
+            // it is possible that the page rendered with unexpected timing which may lead to a harmless StaleElementReferenceException
+        }
         return true;
     }
 }
