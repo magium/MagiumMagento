@@ -37,7 +37,6 @@ class AuthorizeNetPaymentTest extends AbstractMagentoTestCase
     {
         $this->commandOpen($this->getTheme()->getBaseUrl());
         $this->getAction(AddItemToCart::ACTION)->addSimpleProductToCartFromCategoryPage();
-        $this->setPaymentMethod('AuthorizeNet');
         $payment = $this->getAction(AuthorizeNet::ACTION);
         /* @var $payment \Magium\Magento\Actions\Checkout\PaymentInformation\AuthorizeNet */
         $payment->configureTest($this);
