@@ -39,6 +39,15 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
     }
 
     /**
+     * @return \Magium\Magento\Actions\Checkout\PaymentInformation
+     */
+
+    public function getPaymentInformation()
+    {
+        return $this->get('Magium\Magento\Actions\Checkout\PaymentInformation');
+    }
+
+    /**
      * This is more of a helper for code completion
      *
      * @param null $theme
