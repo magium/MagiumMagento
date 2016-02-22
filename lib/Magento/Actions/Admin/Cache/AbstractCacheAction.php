@@ -3,6 +3,7 @@
 namespace Magium\Magento\Actions\Admin\Cache;
 
 use Facebook\WebDriver\WebDriverBy;
+use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Navigators\Admin\AdminMenu;
 use Magium\WebDriver\WebDriver;
 
@@ -22,16 +23,19 @@ abstract class AbstractCacheAction
 
     protected $adminMenu;
     protected $webDriver;
+    protected $loaded;
 
     protected $option;
 
     public function __construct(
         WebDriver $webDriver,
-        AdminMenu $adminMenu
+        AdminMenu $adminMenu,
+        WaitForPageLoaded $loaded
     )
     {
         $this->webDriver = $webDriver;
         $this->adminMenu = $adminMenu;
+        $this->loaded = $loaded;
     }
 
     public function addTarget($target)
@@ -63,7 +67,11 @@ abstract class AbstractCacheAction
             }
         }
         $this->webDriver->byXpath(sprintf('//select[@id="cache_grid_massaction-select"]/option[@value="%s"]', $this->option))->click();
+        $body = $this->webDriver->byXpath('//body');
         $this->webDriver->byXpath('//button[@title="Submit"]')->click();
+
+        $this->loaded->execute($body);
+
     }
 
 

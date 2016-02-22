@@ -5,6 +5,7 @@ namespace Tests\Magium\Magento\Admin;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Admin\Cache\DisableCache;
 use Magium\Magento\Actions\Admin\Cache\EnableCache;
+use Magium\Magento\Actions\Admin\Cache\RefreshCache;
 use Magium\Magento\Actions\Admin\Login\Login;
 use Magium\WebDriver\WebDriver;
 
@@ -34,6 +35,15 @@ class CacheTest extends AbstractMagentoTestCase
         $this->assertEnabled('layout');
         $this->assertEnabled('collections');
 
+    }
+
+
+    public function testRefreshDoesNotBarf()
+    {
+        $this->getAction(Login::ACTION)->login();
+        $cacheAction = $this->getAction(RefreshCache::ACTION);
+        /* @var $cacheAction RefreshCacheCache */
+        $cacheAction->execute();
     }
 
     public function testDisableAllThenEnableAll()
