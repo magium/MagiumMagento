@@ -40,7 +40,8 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     public $tableButtonXpath                         = '//table[@class="actions"]/descendant::span[.="{{%s}}"]';
 
-    public $selectOrderXpath                         = '//td[concat(" ",normalize-space(.)," ") = " %s "]/../td/a[.="{{View}}"]';
+    public $selectOrderXpath                         = '//table[@id="sales_order_grid_table"]/descendant::td[concat(" ",normalize-space(.)," ") = " %s "]/../td/a[.="{{View}}"]';
+    public $selectCustomerXpath                         = '//table[@id="customerGrid_table"]/descendant::td[concat(" ",normalize-space(.)," ") = " %s "]/../td/a[.="{{Edit}}"]';
 
     public $systemConfigSettingLabelXpath            = '//td[@class="label"]/label[.=" {{%s}}"]';
 
@@ -225,6 +226,14 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     {
         $return = sprintf($this->selectOrderXpath, $order);
         return $this->translatePlaceholders($return);
+    }
+    /**
+     * @return string
+     */
+    public function getSelectCustomerXpath($value)
+    {
+        $xpath = sprintf($this->selectCustomerXpath, $value);
+        return $this->translatePlaceholders($xpath);
     }
 
     /**
