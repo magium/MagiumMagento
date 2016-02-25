@@ -16,7 +16,6 @@ class InvoiceTest extends AbstractMagentoTestCase
 
     public function testOrderExtraction()
     {
-
         $this->commandOpen($this->getTheme()->getBaseUrl());
         $addToCart = $this->getAction(AddItemToCart::ACTION);
         /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */

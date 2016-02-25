@@ -3,12 +3,14 @@
 namespace Magium\Magento\Actions\Admin\Orders;
 
 use Magium\AbstractTestCase;
+use Magium\Actions\SubAction\SubActionInterface;
+use Magium\Actions\SubAction\SubActionSupported;
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Actions\Admin\Widget\ClickActionButton;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
-class Invoice
+class Invoice implements SubActionSupported
 {
 
     const ACTION = 'Admin\Orders\Invoice';
@@ -36,7 +38,7 @@ class Invoice
         $this->testCase = $testCase;
     }
 
-    public function addPreExecuteAction(PreExecuteActionInterface $action)
+    public function addSubAction(SubActionInterface $action)
     {
         $this->preExecuteActions[] = $action;
     }
@@ -52,7 +54,7 @@ class Invoice
         $this->loaded->execute($body);
 
         foreach ($this->preExecuteActions as $action) {
-            if ($action instanceof PreExecuteActionInterface) {
+            if ($action instanceof SubActionInterface) {
                 $action->execute();
             }
         }
