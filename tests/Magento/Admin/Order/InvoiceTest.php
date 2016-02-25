@@ -29,7 +29,6 @@ class InvoiceTest extends AbstractMagentoTestCase
         $orderId = $this->getExtractor(OrderId::EXTRACTOR)->getOrderId();
         $this->getAction(Login::ACTION)->login();
         $this->getNavigator(Order::NAVIGATOR)->navigateTo($orderId);
-
         $this->getAction(Invoice::ACTION)->execute();
     }
 

@@ -3,6 +3,7 @@
 namespace Magium\Magento\Actions\Checkout;
 
 use Magium\AbstractConfigurableElement;
+use Magium\Util\Configuration\StandardConfigurationProvider;
 
 class PaymentInformation extends AbstractConfigurableElement
 {
@@ -14,7 +15,7 @@ class PaymentInformation extends AbstractConfigurableElement
     protected $cvv;
     protected $type;
 
-    public function __construct($configurationFile = null)
+    public function __construct(StandardConfigurationProvider $configurationProvider)
     {
         /*
          * Note: payment information is placed in this class instead of the payment step because I wanted to make
@@ -24,9 +25,11 @@ class PaymentInformation extends AbstractConfigurableElement
          *
          * This way if you want to handle your own credit card you only have to configure this class
         */
+
+        parent::__construct($configurationProvider);
         $this->setDefaults();
-        parent::__construct($configurationFile);
     }
+
 
     protected function setDefaults()
     {
