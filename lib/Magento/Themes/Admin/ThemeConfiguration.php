@@ -21,7 +21,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     
     public $navigationBaseXPathSelector          = '//ul[@id="nav"]';
 //    public $navigationChildXPathSelector1         = 'li/descendant::span[.="{{%s}}"]';
-    public $navigationChildXPathSelector         = 'a[concat(" ",normalize-space(.)," ") = " %s "]/..';
+    public $navigationChildXPathSelector         = 'a[concat(" ",normalize-space(.)," ") = " {{%s}} "]/..';
 
     public $adminPopupMessageContainerXpath         = '//*[@id="message-popup-window"]';
     public $adminPopupMessageCloseButtonXpath        = '//*[@id="message-popup-window"]/descendant::*[@title="close"]';
@@ -31,6 +31,11 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public $systemConfigSectionDisplayCheckXpath            = '//legend[.="{{%s}}"]/ancestor::fieldset';
     public $systemConfigToggleEnableXpath            = '//legend[.="{{%s}}"]/../descendant::td[concat(" ",normalize-space(.)," ") = " {{Enabled}} "]/../td/descendant::select/option[@value="%d"]';
 
+    public $xTreeRootXpath                          = '//ul[contains(concat(" ",normalize-space(@class)," ")," x-tree-root-ct ")]/div/li[contains(concat(" ",normalize-space(@class)," ")," x-tree-node ")]/div/a';
+    public $xTreeNamedRootXpath                          = '//ul[contains(concat(" ",normalize-space(@class)," ")," x-tree-root-ct ")]/div/li[contains(concat(" ",normalize-space(@class)," ")," x-tree-node ")]/div/a[contains(concat("---",normalize-space(.)), "---{{%s}} (")]';
+    public $xTreeChildXpath                          = 'ul/li[contains(concat(" ",normalize-space(@class)," ")," x-tree-node ")]/div/a/span[contains(concat("---",normalize-space(.)), "---{{%s}} (")]/..';
+    public $xTreeChildNodePrefixXpath                = '/../..';
+    public $xTreeChildNodeExpandPrefixXpath          = '/../img[contains(concat(" ",normalize-space(@class)," ")," x-tree-ec-icon ")]';
 
     public $systemConfigurationSaveButtonXpath       = '//div[@class="main-col-inner"]/div[@class="content-header"]/descendant::button[@title="{{Save Config}}"]';
 
@@ -54,6 +59,53 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     public $successfulActionXpath                    = '//li[@class="success-msg"]';
     public $errorActionXpath                    = '//li[@class="error-msg"]';
+
+    /**
+     * @return string
+     */
+    public function getXTreeChildNodeExpandPrefixXpath()
+    {
+        return $this->translatePlaceholders($this->xTreeChildNodeExpandPrefixXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getXTreeNamedRootXpath($category)
+    {
+        $xpath = sprintf($this->xTreeNamedRootXpath, $category);
+        return $this->translatePlaceholders($xpath);
+    }
+
+
+
+
+    /**
+     * @return string
+     */
+    public function getXTreeChildNodePrefixXpath()
+    {
+        return $this->translatePlaceholders($this->xTreeChildNodePrefixXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getXTreeChildXpath($name)
+    {
+        $xpath = sprintf($this->xTreeChildXpath, $name);
+        return $this->translatePlaceholders($xpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getXTreeRootXpath()
+    {
+        return $this->translatePlaceholders($this->xTreeRootXpath);
+    }
+
+
 
     public function set($name, $value)
     {

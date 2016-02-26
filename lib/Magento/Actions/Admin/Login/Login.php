@@ -85,4 +85,9 @@ class Login
 
     }
 
+    public function execute()
+    {
+        return $this->login();
+    }
+
 }
