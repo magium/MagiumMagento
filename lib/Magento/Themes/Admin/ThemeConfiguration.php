@@ -60,6 +60,39 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public $successfulActionXpath                    = '//li[@class="success-msg"]';
     public $errorActionXpath                    = '//li[@class="error-msg"]';
 
+    public $shippingCarrierXpath                = '//select[@name="tracking[%d][carrier_code]"]';
+    public $shippingTitleXpath                = '//input[@name="tracking[%d][title]"]';
+    public $shippingTrackingNumberXpath                = '//input[@name="tracking[%d][number]"]';
+
+    /**
+     * @return string
+     */
+    public function getShippingCarrierXpath($count)
+    {
+        $xpath = sprintf($this->shippingCarrierXpath, $count);
+        return $xpath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShippingTitleXpath($count)
+    {
+        $xpath = sprintf($this->shippingTitleXpath, $count);
+        return $xpath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShippingTrackingNumberXpath($count)
+    {
+        $xpath = sprintf($this->shippingTrackingNumberXpath, $count);
+        return $xpath;
+    }
+
+
+
     /**
      * @return string
      */
