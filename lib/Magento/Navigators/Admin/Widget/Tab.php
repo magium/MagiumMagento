@@ -2,6 +2,7 @@
 
 namespace Magium\Magento\Navigators\Admin\Widget;
 
+use Magium\Magento\Actions\Admin\WaitForLoadingMask;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
@@ -13,14 +14,17 @@ class Tab
 
     protected $webDriver;
     protected $themeConfiguration;
+    protected $loadingMask;
 
     public function __construct(
         WebDriver $webDriver,
-        ThemeConfiguration $themeConfiguration
+        ThemeConfiguration $themeConfiguration,
+        WaitForLoadingMask $loadingMask
     )
     {
         $this->themeConfiguration = $themeConfiguration;
         $this->webDriver          = $webDriver;
+        $this->loadingMask        = $loadingMask;
     }
 
     public function navigateTo($tab)
@@ -32,9 +36,12 @@ class Tab
         }
         $element = $this->webDriver->byXpath($this->themeConfiguration->getWidgetTabXpath($tab));
         $element->click();
-
-        $this->webDriver->wait()->until(ExpectedCondition::elementExists($this->themeConfiguration->getWidgetTabHeaderXpath($header), WebDriver::BY_XPATH));
-        $element = $this->webDriver->byXpath($this->themeConfiguration->getWidgetTabHeaderXpath($header));
+        if ($header) {
+            $this->webDriver->wait()->until(ExpectedCondition::elementExists($this->themeConfiguration->getWidgetTabHeaderXpath($header), WebDriver::BY_XPATH));
+            $element = $this->webDriver->byXpath($this->themeConfiguration->getWidgetTabHeaderXpath($header));
+        } else {
+            $this->loadingMask->wait();
+        }
         $this->webDriver->wait()->until(ExpectedCondition::visibilityOf($element));
 
     }
