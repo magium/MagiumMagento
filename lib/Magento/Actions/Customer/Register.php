@@ -45,12 +45,17 @@ class Register
         $passwordElement   = $this->webdriver->byXpath($this->theme->getRegisterPasswordXpath());
         $confirmElement    = $this->webdriver->byXpath($this->theme->getRegisterConfirmPasswordXpath());
         $submitElement     = $this->webdriver->byXpath($this->theme->getRegisterSubmitXpath());
+        $registerElement     = $this->webdriver->byXpath($this->theme->getRegisterNewsletterXpath());
 
         $firstnameElement->sendKeys($this->customerIdentity->getFirstName());
         $lastnameElement->sendKeys($this->customerIdentity->getLastName());
         $emailElement->sendKeys($this->customerIdentity->getEmailAddress());
         $passwordElement->sendKeys($this->customerIdentity->getPassword());
         $confirmElement->sendKeys($this->customerIdentity->getPassword());
+
+        if ($registerForNewsletter) {
+            $registerElement->click();
+        }
 
         $submitElement->click();
 
