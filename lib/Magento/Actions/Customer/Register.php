@@ -4,8 +4,8 @@ namespace Magium\Magento\Actions\Customer;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Identities\Customer;
-use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Magento\Navigators\Customer\Registration;
+use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
@@ -46,8 +46,8 @@ class Register
         $confirmElement    = $this->webdriver->byXpath($this->theme->getRegisterConfirmPasswordXpath());
         $submitElement     = $this->webdriver->byXpath($this->theme->getRegisterSubmitXpath());
 
-        $firstnameElement->sendKeys($this->customerIdentity->getBillingFirstName());
-        $lastnameElement->sendKeys($this->customerIdentity->getBillingLastName());
+        $firstnameElement->sendKeys($this->customerIdentity->getFirstName());
+        $lastnameElement->sendKeys($this->customerIdentity->getLastName());
         $emailElement->sendKeys($this->customerIdentity->getEmailAddress());
         $passwordElement->sendKeys($this->customerIdentity->getPassword());
         $confirmElement->sendKeys($this->customerIdentity->getPassword());
