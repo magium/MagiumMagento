@@ -64,6 +64,14 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
     public $shippingTitleXpath                = '//input[@name="tracking[%d][title]"]';
     public $shippingTrackingNumberXpath                = '//input[@name="tracking[%d][number]"]';
 
+    public $formButtonXpath = '//div[@class="content-header"]/p[@class="form-buttons"]/descendant::span[.="{{%s}}"]';
+
+    public function getFormButtonXpath($button)
+    {
+        $xpath = sprintf($this->formButtonXpath, $button);
+        return $this->translatePlaceholders($xpath);
+    }
+
     /**
      * @return string
      */

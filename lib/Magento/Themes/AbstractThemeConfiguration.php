@@ -198,10 +198,58 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     public $guaranteedPageLoadedElementDisplayedXpath = '//div[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
 
+    public $contactUsNameXpath = '//form[@id="contactForm"]/descendant::input[@id="name"]';
+    public $contactUsEmailXpath = '//form[@id="contactForm"]/descendant::input[@id="email"]';
+    public $contactUsTelephoneXpath = '//form[@id="contactForm"]/descendant::input[@id="telephone"]';
+    public $contactUsCommentXpath = '//form[@id="contactForm"]/descendant::textarea[@id="comment"]';
+    public $contactUsSubmitXpath = '//form[@id="contactForm"]/descendant::button';
+
     public function configure(AbstractTestCase $testCase)
     {
 
     }
+
+    /**
+     * @return string
+     */
+    public function getContactUsSubmitXpath()
+    {
+        return $this->translatePlaceholders($this->contactUsSubmitXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactUsNameXpath()
+    {
+        return $this->translatePlaceholders($this->contactUsNameXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactUsEmailXpath()
+    {
+        return $this->translatePlaceholders($this->contactUsEmailXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactUsCommentXpath()
+    {
+        return $this->translatePlaceholders($this->contactUsCommentXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactUsTelephoneXpath()
+    {
+        return $this->translatePlaceholders($this->contactUsTelephoneXpath);
+    }
+
+
 
     /**
      * @return array
