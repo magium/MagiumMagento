@@ -29,6 +29,9 @@
       "Tests\\Magium\\MagentoEE112\\" : "tests/MagentoEE112",
       "Tests\\Magium\\MagentoEE113\\" : "tests/MagentoEE113",
       "Tests\\Magium\\MagentoEE114\\" : "tests/MagentoEE114"
-    }
+    },
+    "files": [
+      "register.php"
+    ]
   }
 }
