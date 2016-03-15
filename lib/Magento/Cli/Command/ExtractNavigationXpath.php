@@ -35,9 +35,9 @@ class ExtractNavigationXpath extends Command
         $test->setCategory($input->getArgument('category'));
         $test->run();
 
-        $output->writeln('Past the following lines into your theme configuration file');
-        $output->writeln(sprintf("\$this->navigationBaseXPathSelector = '%s';\n", $test->getBaseXpath()));
-        $output->writeln(sprintf("\$this->navigationChildXPathSelector = '%s';\n", $test->getChildXpath()));
+        $output->writeln('Paste the following lines into your theme configuration file');
+        $output->writeln(sprintf("\$this->navigationBaseXPathSelector = '%s';", $test->getBaseXpath()));
+        $output->writeln(sprintf("\$this->navigationChildXPathSelector = '%s';", $test->getChildXpath()));
     }
 
 }
