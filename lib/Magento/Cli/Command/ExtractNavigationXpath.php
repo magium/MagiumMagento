@@ -13,7 +13,7 @@ class ExtractNavigationXpath extends Command
 
     protected function configure()
     {
-        $this->setName('magium:magento:extract-navigation-xpath');
+        $this->setName('magento:extract-navigation-xpath');
         $this->setDescription('Will run a series of tests on the provided URL to attempt to extract the navigation Xpath for the theme configuration');
         $this->addArgument(
             'url',
