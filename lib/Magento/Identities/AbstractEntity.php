@@ -6,7 +6,7 @@ use Magium\AbstractConfigurableElement;
 
 abstract class AbstractEntity extends AbstractConfigurableElement
 {
-    protected $password = 'password';
+    public $password = 'password';
 
     public function setPassword($password)
     {

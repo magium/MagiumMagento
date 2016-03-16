@@ -12,31 +12,31 @@ class Customer extends AbstractEntity implements GeneratorAware, NameInterface, 
 {
     const IDENTITY = 'Customer';
 
-    protected $emailAddress          = 'test@example.com';
+    public $emailAddress          = 'test@example.com';
 
-    protected $billingFirstName        = 'Kevin';
-    protected $billingLastName         = 'Schroeder';
-    protected $billingCompany          = '';
-    protected $billingAddress          = '10451 Jefferson Blvd';
-    protected $billingAddress2         = '';
-    protected $billingCity             = 'Culver City';
-    protected $billingRegionId         = 'California';
-    protected $billingPostCode         = '90232';
-    protected $billingCountryId        = 'US';
-    protected $billingTelephone        = '123-123-1234';
-    protected $billingFax              = '';
+    public $billingFirstName        = 'Kevin';
+    public $billingLastName         = 'Schroeder';
+    public $billingCompany          = '';
+    public $billingAddress          = '10451 Jefferson Blvd';
+    public $billingAddress2         = '';
+    public $billingCity             = 'Culver City';
+    public $billingRegionId         = 'California';
+    public $billingPostCode         = '90232';
+    public $billingCountryId        = 'US';
+    public $billingTelephone        = '123-123-1234';
+    public $billingFax              = '';
 
-    protected $shippingFirstName        = 'Kevin';
-    protected $shippingLastName         = 'Schroeder';
-    protected $shippingCompany          = '';
-    protected $shippingAddress          = '10451 Jefferson Blvd';
-    protected $shippingAddress2         = '';
-    protected $shippingCity             = 'Culver City';
-    protected $shippingRegionId         = 'California';
-    protected $shippingPostCode         = '90232';
-    protected $shippingCountryId        = 'US';
-    protected $shippingTelephone        = '123-123-1234';
-    protected $shippingFax              = '';
+    public $shippingFirstName        = 'Kevin';
+    public $shippingLastName         = 'Schroeder';
+    public $shippingCompany          = '';
+    public $shippingAddress          = '10451 Jefferson Blvd';
+    public $shippingAddress2         = '';
+    public $shippingCity             = 'Culver City';
+    public $shippingRegionId         = 'California';
+    public $shippingPostCode         = '90232';
+    public $shippingCountryId        = 'US';
+    public $shippingTelephone        = '123-123-1234';
+    public $shippingFax              = '';
 
     protected $uniqueEmailAddressGenerated = false;
     protected $generator;
