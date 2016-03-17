@@ -16,7 +16,7 @@ abstract class AbstractProductCollection extends AbstractExtractor
     abstract function getElementXpath($type, $count);
 
     /**
-     * @return array
+     * @return ProductSummary[]
      */
 
     public function getProductList()

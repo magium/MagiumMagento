@@ -2,7 +2,6 @@
 
 namespace Magium\Magento\Cli\Command;
 
-use Magium\NotFoundException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
@@ -38,18 +37,8 @@ class SetBaseUrl extends Command
             $class = 'Magento19';
         }
 
-        $origClass = $class;
-
-        if (!class_exists($class)) {
-            $class = $origClass . '\ThemeConfiguration';
-            if (!class_exists($class)) {
-                $class = 'Magium\Magento\Themes\\' . $origClass . '\ThemeConfiguration';
-                if (!class_exists($class)) {
-                    throw new NotFoundException('Could not resolve the theme class for: ' . $origClass);
-                }
-
-            }
-        }
+        $resolver = new ThemeResolver();
+        $class = $resolver->resolve($class);
 
         $internalInput = new ArrayInput([
             'command'   => $command->getName(),
