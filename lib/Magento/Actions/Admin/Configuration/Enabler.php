@@ -67,7 +67,7 @@ class Enabler
         $this->navigateToSystemConfiguration($setting);
         $settingXpath = $this->adminThemeConfiguration->getSystemConfigToggleEnableXpath($this->section, 1);
         $element = $this->webDriver->byXpath($settingXpath);
-        if (!$element->getAttribute('selected')) {
+        if ($element->getAttribute('selected') === null) {
             $element->click();
             if ($save) {
                 $this->save->save();
@@ -83,7 +83,7 @@ class Enabler
         $this->navigateToSystemConfiguration($setting);
         $settingXpath = $this->adminThemeConfiguration->getSystemConfigToggleEnableXpath($this->section, 0);
         $element = $this->webDriver->byXpath($settingXpath);
-        if (!$element->getAttribute('selected')) {
+        if ($element->getAttribute('selected') === null) {
             $element->click();
             if ($save) {
                 $this->save->save();

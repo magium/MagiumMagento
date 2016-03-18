@@ -96,7 +96,7 @@ class AddItemToCart
     /**
      * Adds as configurable product to the cart from the product page.
      * 
-     * @param array $options
+     * @param string $categoryNavigationPath The name of the category to navigate to.  e.g. Accessories/Jewelry
      */
     
     public function addConfigurableItemToCartFromProductPage($categoryNavigationPath = null)

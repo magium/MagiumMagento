@@ -25,7 +25,7 @@ abstract class AbstractSettingGroup extends SettingModifier
             throw new InvalidConfigurationException('The AbstractSettingGroup needs the protected $section property defined in any child class in the format of "Tab/Section"');
         }
 
-        if (!$this->settings) {
+        if (!empty($this->settings)) {
             throw new InvalidConfigurationException('The AbstractSettingGroup needs the protected $settings property defined in any child class in the format of ["id" => "value"] ala SettingModifier');
         }
 

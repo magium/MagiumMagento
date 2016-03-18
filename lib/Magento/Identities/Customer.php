@@ -192,7 +192,7 @@ class Customer extends AbstractEntity implements GeneratorAware, NameInterface, 
     }
 
     /**
-     * @param string $billingFastName
+     * @param string $billingLastName
      */
     public function setBillingLastName($billingLastName)
     {

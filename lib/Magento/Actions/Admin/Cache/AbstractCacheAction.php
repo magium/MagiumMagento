@@ -55,7 +55,7 @@ abstract class AbstractCacheAction
     public function execute()
     {
         $this->adminMenu->navigateTo('System/Cache Management');
-        if ($this->targets) {
+        if (empty($this->targets)) {
             foreach ($this->targets as $target) {
                 $element = $this->webDriver->byXpath(sprintf('//input[@name="types" and @value="%s"]', $target));
                 $element->click();
