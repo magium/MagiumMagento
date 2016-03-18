@@ -29,8 +29,8 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
         if (strpos($method, '\\') === false) {
             $method = 'Magium\Magento\Actions\Checkout\PaymentMethods\\' . $method;
         }
-
-        if (is_subclass_of($method, 'Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface')) {
+        $reflection = new \ReflectionClass($method);
+        if ($reflection->implementsInterface('Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface')) {
 
             $this->setTypePreference('Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface', $method);
         } else {
@@ -71,8 +71,8 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
         if (strpos($method, '\\') === false) {
             $method = 'Magium\Magento\Actions\Checkout\ShippingMethods\\' . $method;
         }
-
-        if (is_subclass_of($method, 'Magium\Magento\Actions\Checkout\ShippingMethods\ShippingMethodInterface')) {
+        $reflection = new \ReflectionClass($method);
+        if ($reflection->implementsInterface('Magium\Magento\Actions\Checkout\ShippingMethods\ShippingMethodInterface')) {
 
             $this->setTypePreference('Magium\Magento\Actions\Checkout\PaymentMethods\ShippingMethodInterface', [$method]);
         } else {
@@ -92,8 +92,6 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
 
             $this->setTypePreference('Magium\Magento\Themes\Customer\AbstractThemeConfiguration',$this->getTheme()->getCustomerThemeClass());
             $this->setTypePreference('Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration',$this->getTheme()->getCheckoutThemeClass());
-
-
         } else {
             throw new InvalidConfigurationException('The theme configuration extend Magium\Magento\Themes\NavigableThemeInterface');
         }

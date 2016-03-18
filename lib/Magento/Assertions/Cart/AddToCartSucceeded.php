@@ -20,7 +20,7 @@ class AddToCartSucceeded extends AbstractAssertion
 
     public function assert()
     {
-        $this->testCase->assertElementDisplayed($this->themeConfiguration->getAddToCartSuccessXpath(), WebDriver::BY_XPATH);
+        $this->getTestCase()->assertElementDisplayed($this->themeConfiguration->getAddToCartSuccessXpath(), WebDriver::BY_XPATH);
     }
 
 }

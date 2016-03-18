@@ -23,7 +23,7 @@ class CashOnDelivery extends AbstractPaymentMethod
     ];
 
     /**
-     * @param string $active
+     * @param string $enabled
      */
     public function setEnabled($enabled)
     {

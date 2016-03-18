@@ -21,6 +21,12 @@ class CashOnDelivery implements PaymentMethodInterface
         $this->testCase     = $testCase;
     }
 
+    /**
+     * Fills in the payment form, selecting it, if necessary
+     *
+     * @param $requirePayment
+     */
+
     public function pay($requirePayment)
     {
         if ($requirePayment) {

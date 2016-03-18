@@ -76,7 +76,7 @@ class PaymentInformation extends AbstractConfigurableElement
     }
 
     /**
-     * @return bool|string
+     * @return string
      */
     public function getExpiryYear()
     {
