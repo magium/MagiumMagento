@@ -40,7 +40,7 @@ class BaseMenu
         $element = $this->webdriver->byXpath($xpath . '/a');
 
         $this->execute($element);
-        $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($element));
+        
         return $element;
     }
 
