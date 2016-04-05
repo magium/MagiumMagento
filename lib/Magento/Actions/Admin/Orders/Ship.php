@@ -5,7 +5,7 @@ namespace Magium\Magento\Actions\Admin\Orders;
 use Magium\AbstractTestCase;
 use Magium\Actions\SubAction\SubActionInterface;
 use Magium\Actions\SubAction\SubActionSupported;
-use Magium\Actions\WaitForPageLoaded;
+use Magium\Magento\Actions\Admin\WaitForPageLoaded;
 use Magium\Magento\Actions\Admin\Widget\ClickActionButton;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;

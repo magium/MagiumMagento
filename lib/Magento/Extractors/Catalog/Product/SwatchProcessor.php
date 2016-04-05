@@ -44,7 +44,7 @@ class SwatchProcessor
                 $img = $this->webDriver->byXpath($this->theme->getConfigurableSwatchImgXpath($count, $optionCount))->getAttribute('src');
             }
             $swatch->addValue(new SwatchValue(
-                trim($itemOptionElement->getAttribute('title')),
+                trim($itemOptionElement->getAttribute($this->theme->getConfigurableSwatchOptionLabelAttributeName())),
                 $itemOptionElement,
                 $available,
                 $img

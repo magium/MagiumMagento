@@ -31,9 +31,9 @@ class BaseMenu
         $this->logger = $logger;
     }
 
-    protected function pathAction($path)
+    protected function pathAction($path, &$xpath)
     {
-        $xpath = $this->themeConfiguration->getNavigationBaseXPathSelector();
+
         usleep(500000); // Give the UI some time to update
         $xpath .= '/descendant::' . $this->themeConfiguration->getNavigationChildXPathSelector($path);
 
@@ -59,7 +59,7 @@ class BaseMenu
         $element = null;
         
         foreach ($paths as $p) {
-            $element = $this->pathAction($p);
+            $element = $this->pathAction($p, $xpath);
         }
 
         if ($element instanceof WebDriverElement) {

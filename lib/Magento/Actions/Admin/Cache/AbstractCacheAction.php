@@ -3,7 +3,7 @@
 namespace Magium\Magento\Actions\Admin\Cache;
 
 use Facebook\WebDriver\WebDriverBy;
-use Magium\Actions\WaitForPageLoaded;
+use Magium\Magento\Actions\Admin\WaitForPageLoaded;
 use Magium\Magento\Navigators\Admin\AdminMenu;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
