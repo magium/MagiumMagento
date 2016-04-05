@@ -31,6 +31,23 @@ class BaseMenu
         $this->logger = $logger;
     }
 
+    protected function pathAction($path)
+    {
+        $xpath = $this->themeConfiguration->getNavigationBaseXPathSelector();
+        usleep(500000); // Give the UI some time to update
+        $xpath .= '/descendant::' . $this->themeConfiguration->getNavigationChildXPathSelector($path);
+
+        $element = $this->webdriver->byXpath($xpath . '/a');
+
+        $this->execute($element);
+        $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($element));
+        return $element;
+    }
+
+    protected function execute(WebDriverElement $element)
+    {
+        $this->webdriver->getMouse()->mouseMove($element->getCoordinates());
+    }
     
     public function navigateTo($path)
     {
@@ -42,13 +59,7 @@ class BaseMenu
         $element = null;
         
         foreach ($paths as $p) {
-            usleep(500000); // Give the UI some time to update
-            $xpath .= '/descendant::' . $this->themeConfiguration->getNavigationChildXPathSelector($p);
-
-            $element = $this->webdriver->byXpath($xpath . '/a');
-
-            $this->webdriver->getMouse()->mouseMove($element->getCoordinates());
-            $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($element));
+            $element = $this->pathAction($p);
         }
 
         if ($element instanceof WebDriverElement) {
