@@ -40,7 +40,7 @@ class BaseMenu
         $element = $this->webdriver->byXpath($xpath . '/a');
 
         $this->execute($element);
-        
+
         return $element;
     }
 
@@ -64,8 +64,10 @@ class BaseMenu
 
         if ($element instanceof WebDriverElement) {
             $element->click();
+            $this->loaded->execute($element);
+        
         }
-        $this->loaded->execute($element);
+
     }
     
 }
