@@ -66,6 +66,67 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     public $formButtonXpath = '//div[@class="content-header"]/p[@class="form-buttons"]/descendant::span[.="{{%s}}"]';
 
+    public $cacheNavigationPath = '{{System}}/{{Cache Management}}';
+
+    public $cacheTargetXpath = '//input[@name="types" and @value="{{%s}}"]';
+
+    public $cacheAllTargetsXpath = '//input[@name="types"]';
+
+    public $cacheMassActionOptionXpath = '//select[@id="cache_grid_massaction-select"]/option[@value="{{%s}}"]';
+
+    public $cacheSubmitXpath = '//button[@title="{{Submit}}"]';
+
+    /**
+     * @return string
+     */
+    public function getCacheSubmitXpath()
+    {
+        return $this->translatePlaceholders($this->cacheSubmitXpath);
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getCacheMassActionOptionXpath($option)
+    {
+        $xpath = sprintf($this->cacheMassActionOptionXpath, $option);
+        return $this->translatePlaceholders($xpath);
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getCacheAllTargetsXpath()
+    {
+        return $this->translatePlaceholders($this->cacheAllTargetsXpath);
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getCacheTargetXpath($type)
+    {
+        $xpath = sprintf($this->cacheTargetXpath, $type);
+        return $this->translatePlaceholders($xpath);
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getCacheNavigationPath()
+    {
+        return $this->translatePlaceholders($this->cacheNavigationPath);
+    }
+
+
     public function getFormButtonXpath($button)
     {
         $xpath = sprintf($this->formButtonXpath, $button);

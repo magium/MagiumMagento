@@ -84,4 +84,9 @@ class Login
         $passwordElement->sendKeys($password);
         $submitElement->click();
     }
+
+    public function execute($username = null, $password = null, $requireLogin = false)
+    {
+        $this->login($username, $password, $requireLogin);
+    }
 }
