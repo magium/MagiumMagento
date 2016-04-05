@@ -176,6 +176,7 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public $configurableSwatchSelectorXpath;
     public $configurableSwatchImgXpath;
     public $configurableSwatchNotAvailableXpath;
+    public $configurableSwatchOptionLabelAttributeName;
 
     public $configurableProductOptionXpath;
 
@@ -204,9 +205,18 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public $contactUsCommentXpath = '//form[@id="contactForm"]/descendant::textarea[@id="comment"]';
     public $contactUsSubmitXpath = '//form[@id="contactForm"]/descendant::button';
 
+
     public function configure(AbstractTestCase $testCase)
     {
 
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConfigurableSwatchOptionLabelAttributeName()
+    {
+        return $this->configurableSwatchOptionLabelAttributeName;
     }
 
     /**

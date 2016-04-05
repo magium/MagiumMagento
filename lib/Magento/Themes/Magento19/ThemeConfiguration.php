@@ -165,8 +165,8 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public $configurableSwatchSelectorXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::a[%d]';
     public $configurableSwatchImgXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::a[%d]/descendant::img';
     public $configurableSwatchNotAvailableXpath =  '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::a[%d]/ancestor::li[contains(concat(" ",normalize-space(@class)," ")," not-available ")]';
-
     public $configurableProductOptionXpath = '(%s)[%d]/ancestor::dt/following-sibling::dd[1]/descendant::option[starts-with(., "%s")]';
+    public $configurableSwatchOptionLabelAttributeName = 'title';
 
     public $viewModeAttributeName = 'class';
 
