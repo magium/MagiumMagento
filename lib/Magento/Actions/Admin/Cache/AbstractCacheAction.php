@@ -5,6 +5,7 @@ namespace Magium\Magento\Actions\Admin\Cache;
 use Facebook\WebDriver\WebDriverBy;
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Navigators\Admin\AdminMenu;
+use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
 abstract class AbstractCacheAction
@@ -23,6 +24,7 @@ abstract class AbstractCacheAction
 
     protected $adminMenu;
     protected $webDriver;
+    protected $theme;
     protected $loaded;
 
     protected $option;
@@ -30,12 +32,14 @@ abstract class AbstractCacheAction
     public function __construct(
         WebDriver $webDriver,
         AdminMenu $adminMenu,
+        ThemeConfiguration $theme,
         WaitForPageLoaded $loaded
     )
     {
-        $this->webDriver = $webDriver;
-        $this->adminMenu = $adminMenu;
-        $this->loaded = $loaded;
+        $this->webDriver    = $webDriver;
+        $this->adminMenu    = $adminMenu;
+        $this->theme        = $theme;
+        $this->loaded       = $loaded;
     }
 
     public function addTarget($target)
@@ -54,21 +58,21 @@ abstract class AbstractCacheAction
 
     public function execute()
     {
-        $this->adminMenu->navigateTo('System/Cache Management');
+        $this->adminMenu->navigateTo($this->theme->getCacheNavigationPath());
         if (!empty($this->targets)) {
             foreach ($this->targets as $target) {
-                $element = $this->webDriver->byXpath(sprintf('//input[@name="types" and @value="%s"]', $target));
+                $element = $this->webDriver->byXpath($this->theme->getCacheTargetXpath($target));
                 $element->click();
             }
         } else {
-            $elements = $this->webDriver->findElements(WebDriverBy::xpath('//input[@name="types"]'));
+            $elements = $this->webDriver->findElements(WebDriverBy::xpath($this->theme->getCacheAllTargetsXpath()));
             foreach ($elements as $element) {
                 $element->click();
             }
         }
-        $this->webDriver->byXpath(sprintf('//select[@id="cache_grid_massaction-select"]/option[@value="%s"]', $this->option))->click();
+        $this->webDriver->byXpath($this->theme->getCacheMassActionOptionXpath($this->option))->click();
         $body = $this->webDriver->byXpath('//body');
-        $this->webDriver->byXpath('//button[@title="Submit"]')->click();
+        $this->webDriver->byXpath($this->theme->getCacheSubmitXpath())->click();
 
         $this->loaded->execute($body);
 
