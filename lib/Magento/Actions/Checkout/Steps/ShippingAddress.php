@@ -68,49 +68,60 @@ class ShippingAddress implements StepInterface
             return true;
         }
 
-        // assertions
-        $this->testCase->assertElementExists($this->theme->getShippingFirstNameXpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getShippingLastNameXpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getShippingCompanyXpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getShippingAddressXpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getShippingAddress2Xpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getShippingCityXpath(), WebDriver::BY_XPATH);
+        if ($this->theme->getShippingFirstNameXpath()) {
+            $this->testCase->byXpath($this->theme->getShippingFirstNameXpath())->clear();
+            $this->testCase->byXpath($this->theme->getShippingFirstNameXpath())->sendKeys($this->customerIdentity->getShippingFirstName());
+        }
+
+        if ($this->theme->getShippingLastNameXpath()) {
+            $this->testCase->byXpath($this->theme->getShippingLastNameXpath())->clear();
+            $this->testCase->byXpath($this->theme->getShippingLastNameXpath())->sendKeys($this->customerIdentity->getShippingLastName());
+        }
+
+        if ($this->theme->getShippingCompanyXpath()) {
+            $this->testCase->byXpath($this->theme->getShippingCompanyXpath())->clear();
+            $this->testCase->byXpath($this->theme->getShippingCompanyXpath())->sendKeys($this->customerIdentity->getShippingCompany());
+        }
+
+        if ($this->theme->getShippingAddressXpath()) {
+            $this->testCase->byXpath($this->theme->getShippingAddressXpath())->clear();
+            $this->testCase->byXpath($this->theme->getShippingAddressXpath())->sendKeys($this->customerIdentity->getShippingAddress());
+        }
+
+        if ($this->theme->getShippingAddress2Xpath()) {
+            $this->testCase->byXpath($this->theme->getShippingAddress2Xpath())->clear();
+            $this->testCase->byXpath($this->theme->getShippingAddress2Xpath())->sendKeys($this->customerIdentity->getShippingAddress2());
+        }
+
+        if ($this->theme->getShippingCityXpath()) {
+            $this->testCase->byXpath($this->theme->getShippingCityXpath())->clear();
+            $this->testCase->byXpath($this->theme->getShippingCityXpath())->sendKeys($this->customerIdentity->getShippingCity());
+        }
+
         $regionXpath = $this->theme->getShippingRegionIdXpath($this->customerIdentity->getShippingRegionId());
-        $this->testCase->assertElementExists($regionXpath, WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getShippingPostCodeXpath(), WebDriver::BY_XPATH);
+        if ($regionXpath) {
+            $this->testCase->byXpath($regionXpath)->click();
+        }
+
+        if ($this->theme->getShippingPostCodeXpath()) {
+            $this->testCase->byXpath($this->theme->getShippingPostCodeXpath())->clear();
+            $this->testCase->byXpath($this->theme->getShippingPostCodeXpath())->sendKeys($this->customerIdentity->getShippingPostCode());
+        }
+
         $countryXpath = $this->theme->getShippingCountryIdXpath($this->customerIdentity->getShippingCountryId());
-        $this->testCase->assertElementExists($countryXpath, WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getShippingTelephoneXpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getShippingFaxXpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getShippingContinueButtonXpath(), WebDriver::BY_XPATH);
+        if ($countryXpath) {
+            $this->testCase->byXpath($countryXpath)->click();
+        }
 
-        // clear
-        $this->testCase->byXpath($this->theme->getShippingFirstNameXpath())->clear();
-        $this->testCase->byXpath($this->theme->getShippingLastNameXpath())->clear();
-        $this->testCase->byXpath($this->theme->getShippingCompanyXpath())->clear();
-        $this->testCase->byXpath($this->theme->getShippingAddressXpath())->clear();
-        $this->testCase->byXpath($this->theme->getShippingAddress2Xpath())->clear();
-        $this->testCase->byXpath($this->theme->getShippingCityXpath())->clear();
-        $this->testCase->byXpath($this->theme->getShippingPostCodeXpath())->clear();
+        if ($this->theme->getShippingTelephoneXpath()) {
+            $this->testCase->byXpath($this->theme->getShippingTelephoneXpath())->clear();
+            $this->testCase->byXpath($this->theme->getShippingTelephoneXpath())->sendKeys($this->customerIdentity->getShippingTelephone());
+        }
 
-        $this->testCase->byXpath($this->theme->getShippingTelephoneXpath())->clear();
-        $this->testCase->byXpath($this->theme->getShippingFaxXpath())->clear();
-
-        // execute
-        $this->testCase->byXpath($this->theme->getShippingFirstNameXpath())->sendKeys($this->customerIdentity->getShippingFirstName());
-        $this->testCase->byXpath($this->theme->getShippingLastNameXpath())->sendKeys($this->customerIdentity->getShippingLastName());
-        $this->testCase->byXpath($this->theme->getShippingCompanyXpath())->sendKeys($this->customerIdentity->getShippingCompany());
-        $this->testCase->byXpath($this->theme->getShippingAddressXpath())->sendKeys($this->customerIdentity->getShippingAddress());
-        $this->testCase->byXpath($this->theme->getShippingAddress2Xpath())->sendKeys($this->customerIdentity->getShippingAddress2());
-        $this->testCase->byXpath($this->theme->getShippingCityXpath())->sendKeys($this->customerIdentity->getShippingCity());
-        $regionXpath = $this->theme->getShippingRegionIdXpath($this->customerIdentity->getShippingRegionId());
-        $this->testCase->byXpath($regionXpath)->click();
-        $this->testCase->byXpath($this->theme->getShippingPostCodeXpath())->sendKeys($this->customerIdentity->getShippingPostCode());
-        $countryXpath = $this->theme->getShippingCountryIdXpath($this->customerIdentity->getShippingCountryId());
-        $this->testCase->byXpath($countryXpath)->click();
-        $this->testCase->byXpath($this->theme->getShippingTelephoneXpath())->sendKeys($this->customerIdentity->getShippingTelephone());
-        $this->testCase->byXpath($this->theme->getShippingFaxXpath())->sendKeys($this->customerIdentity->getShippingFax());
-
+        if ($this->theme->getShippingFaxXpath()) {
+            $this->testCase->byXpath($this->theme->getShippingFaxXpath())->clear();
+            $this->testCase->byXpath($this->theme->getShippingFaxXpath())->sendKeys($this->customerIdentity->getShippingFax());
+        }
         return true;
     }
 
