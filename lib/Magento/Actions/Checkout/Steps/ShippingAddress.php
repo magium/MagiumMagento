@@ -39,7 +39,7 @@ class ShippingAddress implements StepInterface
         $this->enterNewAddress = $newAddress;
     }
 
-    public function execute()
+    protected function preExecute()
     {
         if ($this->enterNewAddress) {
             $this->webdriver->wait()->until(
@@ -57,6 +57,14 @@ class ShippingAddress implements StepInterface
         // We will bypass ourself if the billing address is the same as the shipping address.
         if (!$this->webdriver->elementDisplayed($this->theme->getShippingFirstNameXpath(), AbstractTestCase::BY_XPATH)) {
             $this->bypassNextStep = true;
+            return true;
+        }
+        return false;
+    }
+
+    public function execute()
+    {
+        if ($this->preExecute()) {
             return true;
         }
 
