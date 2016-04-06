@@ -56,7 +56,7 @@ class BillingAddress implements StepInterface
         $this->enterNewAddress = $newAddress;
     }
 
-    public function execute()
+    protected function preExecute()
     {
         if ($this->enterNewAddress & $this->webdriver->elementDisplayed($this->theme->getBillingNewAddressXpath(), WebDriver::BY_XPATH)) {
             $this->webdriver->byXpath($this->theme->getBillingNewAddressXpath())->click();
@@ -77,68 +77,73 @@ class BillingAddress implements StepInterface
 
             return true;
         }
+        return false;
+    }
 
-        // Assert elements exist
-        $this->testCase->assertElementExists($this->theme->getBillingFirstNameXpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getBillingLastNameXpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getBillingCompanyXpath(), WebDriver::BY_XPATH);
-        if (!in_array($this->theme->getBillingEmailAddressXpath(), $this->bypass)) {
-            $this->testCase->assertElementExists($this->theme->getBillingEmailAddressXpath(), WebDriver::BY_XPATH);
+    public function execute()
+    {
+        if ($this->preExecute()) {
+            return true;
         }
-        $this->testCase->assertElementExists($this->theme->getBillingAddressXpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getBillingAddress2Xpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getBillingCityXpath(), WebDriver::BY_XPATH);
-        if ($this->theme->getBillingRegionIdXpath($this->customerIdentity->getBillingRegionId())) {
-            $regionXpath = $this->theme->getBillingRegionIdXpath($this->customerIdentity->getBillingRegionId());
-            $this->testCase->assertElementExists($regionXpath, WebDriver::BY_XPATH);
-        }
-        $this->testCase->assertElementExists($this->theme->getBillingPostCodeXpath(), WebDriver::BY_XPATH);
-        $countryXpath = $this->theme->getBillingCountryIdXpath($this->customerIdentity->getBillingCountryId());
-        $this->testCase->assertElementExists($countryXpath, WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getBillingTelephoneXpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getBillingFaxXpath(), WebDriver::BY_XPATH);
-        $this->testCase->assertElementExists($this->theme->getBillingContinueButtonXpath(), WebDriver::BY_XPATH);
 
-        // clear elements
-
-        $this->testCase->byXpath($this->theme->getBillingFirstNameXpath())->clear();
-        $this->testCase->byXpath($this->theme->getBillingLastNameXpath())->clear();
-        $this->testCase->byXpath($this->theme->getBillingCompanyXpath())->clear();
-        if (!in_array($this->theme->getBillingEmailAddressXpath(), $this->bypass)) {
+        if ($this->theme->getBillingEmailAddressXpath()) {
             $this->testCase->byXpath($this->theme->getBillingEmailAddressXpath())->clear();
-        }
-        $this->testCase->byXpath($this->theme->getBillingAddressXpath())->clear();
-        $this->testCase->byXpath($this->theme->getBillingAddress2Xpath())->clear();
-        $this->testCase->byXpath($this->theme->getBillingCityXpath())->clear();
-
-        $this->testCase->byXpath($this->theme->getBillingPostCodeXpath())->clear();
-        $this->testCase->byXpath($this->theme->getBillingTelephoneXpath())->clear();
-        $this->testCase->byXpath($this->theme->getBillingFaxXpath())->clear();
-
-        // enter information
-
-        $this->testCase->byXpath($this->theme->getBillingFirstNameXpath())->sendKeys($this->customerIdentity->getBillingFirstName());
-        $this->testCase->byXpath($this->theme->getBillingLastNameXpath())->sendKeys($this->customerIdentity->getBillingLastName());
-        $this->testCase->byXpath($this->theme->getBillingCompanyXpath())->sendKeys($this->customerIdentity->getBillingCompany());
-        if (!in_array($this->theme->getBillingEmailAddressXpath(), $this->bypass)) {
             $this->testCase->byXpath($this->theme->getBillingEmailAddressXpath())->sendKeys($this->customerIdentity->getEmailAddress());
         }
-        $this->testCase->byXpath($this->theme->getBillingAddressXpath())->sendKeys($this->customerIdentity->getBillingAddress());
-        $this->testCase->byXpath($this->theme->getBillingAddress2Xpath())->sendKeys($this->customerIdentity->getBillingAddress2());
-        $this->testCase->byXpath($this->theme->getBillingCityXpath())->sendKeys($this->customerIdentity->getBillingCity());
-        /* not all themes have a region ID.  This kind of conditional statement will probably be multiplied across all
-         * items so that if the theme does not require a certain element it will simply have it as null.
-         */
-        if ($this->theme->getBillingRegionIdXpath($this->customerIdentity->getBillingRegionId())) {
-            $regionXpath = $this->theme->getBillingRegionIdXpath($this->customerIdentity->getBillingRegionId());
+        if ($this->theme->getBillingFirstNameXpath()) {
+            $this->testCase->byXpath($this->theme->getBillingFirstNameXpath())->clear();
+            $this->testCase->byXpath($this->theme->getBillingFirstNameXpath())->sendKeys($this->customerIdentity->getBillingFirstName());
+        }
+
+        if ($this->theme->getBillingLastNameXpath()) {
+            $this->testCase->byXpath($this->theme->getBillingLastNameXpath())->clear();
+            $this->testCase->byXpath($this->theme->getBillingLastNameXpath())->sendKeys($this->customerIdentity->getBillingLastName());
+        }
+
+        if ($this->theme->getBillingCompanyXpath()) {
+            $this->testCase->byXpath($this->theme->getBillingCompanyXpath())->clear();
+            $this->testCase->byXpath($this->theme->getBillingCompanyXpath())->sendKeys($this->customerIdentity->getBillingCompany());
+        }
+
+        if ($this->theme->getBillingAddressXpath()) {
+            $this->testCase->byXpath($this->theme->getBillingAddressXpath())->clear();
+            $this->testCase->byXpath($this->theme->getBillingAddressXpath())->sendKeys($this->customerIdentity->getBillingAddress());
+        }
+
+        if ($this->theme->getBillingAddress2Xpath()) {
+            $this->testCase->byXpath($this->theme->getBillingAddress2Xpath())->clear();
+            $this->testCase->byXpath($this->theme->getBillingAddress2Xpath())->sendKeys($this->customerIdentity->getBillingAddress2());
+        }
+
+        if ($this->theme->getBillingCityXpath()) {
+            $this->testCase->byXpath($this->theme->getBillingCityXpath())->clear();
+            $this->testCase->byXpath($this->theme->getBillingCityXpath())->sendKeys($this->customerIdentity->getBillingCity());
+        }
+
+        $regionXpath = $this->theme->getBillingRegionIdXpath($this->customerIdentity->getBillingRegionId());
+        if ($regionXpath) {
             $this->testCase->byXpath($regionXpath)->click();
         }
-        $this->testCase->byXpath($this->theme->getBillingPostCodeXpath())->sendKeys($this->customerIdentity->getBillingPostCode());
-        $countryXpath = $this->theme->getBillingCountryIdXpath($this->customerIdentity->getBillingCountryId());
-        $this->testCase->byXpath($countryXpath)->click();
-        $this->testCase->byXpath($this->theme->getBillingTelephoneXpath())->sendKeys($this->customerIdentity->getBillingTelephone());
-        $this->testCase->byXpath($this->theme->getBillingFaxXpath())->sendKeys($this->customerIdentity->getBillingFax());
 
+        if ($this->theme->getBillingPostCodeXpath()) {
+            $this->testCase->byXpath($this->theme->getBillingPostCodeXpath())->clear();
+            $this->testCase->byXpath($this->theme->getBillingPostCodeXpath())->sendKeys($this->customerIdentity->getBillingPostCode());
+        }
+
+        $countryXpath = $this->theme->getBillingCountryIdXpath($this->customerIdentity->getBillingCountryId());
+        if ($countryXpath) {
+            $this->testCase->byXpath($countryXpath)->click();
+        }
+
+        if ($this->theme->getBillingTelephoneXpath()) {
+            $this->testCase->byXpath($this->theme->getBillingTelephoneXpath())->clear();
+            $this->testCase->byXpath($this->theme->getBillingTelephoneXpath())->sendKeys($this->customerIdentity->getBillingTelephone());
+        }
+
+        if ($this->theme->getBillingFaxXpath()) {
+            $this->testCase->byXpath($this->theme->getBillingFaxXpath())->clear();
+            $this->testCase->byXpath($this->theme->getBillingFaxXpath())->sendKeys($this->customerIdentity->getBillingFax());
+        }
 
         return true;
     }

@@ -29,7 +29,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     public $customerEmailInputXpath      = '//input[@id="login-email"]';
     public $customerPasswordInputXpath   = '//input[@id="login-password"]';
-    public $customerButtonXpath          = '//button[@type="submit"]/descendant::span[.="Login"]';
+    public $customerButtonXpath          = '//button[@type="submit"]/descendant::span[.="{{Login}}"]';
 
     public $billingFirstNameXpath      = '//input[@id="billing:firstname"]';
     public $billingLastNameXpath       = '//input[@id="billing:lastname"]';
@@ -56,7 +56,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public $billingNewAddressXpath = '//select[@id="billing-address-select"]/option[.="{{New Address}}"]';
     public $shippingNewAddressXpath = '//select[@id="shipping-address-select"]/option[.="{{New Address}}"]';
 
-    public $billingContinueButtonXpath = '//div[@id="billing-buttons-container"]/descendant::button[@title="Continue"]';
+    public $billingContinueButtonXpath = '//div[@id="billing-buttons-container"]/descendant::button[@title="{{Continue}}"]';
     public $billingContinueCompletedXpath   = '//span[@id="billing-please-wait"]';
 
 
@@ -78,7 +78,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public $shippingCountryIdXpath      = '//select[@id="shipping:country_id"]/descendant::option[@value="%s"]';
     public $shippingTelephoneXpath      = '//input[@id="shipping:telephone"]';
     public $shippingFaxXpath            = '//input[@id="shipping:fax"]';
-    public $shippingContinueButtonXpath = '//div[@id="shipping-buttons-container"]/descendant::button[@title="Continue"]';
+    public $shippingContinueButtonXpath = '//div[@id="shipping-buttons-container"]/descendant::button[@title="{{Continue}}"]';
     public $shippingContinueCompletedXpath   = '//span[@id="shipping-please-wait"]';
     public $shippingMethodContinueCompletedXpath   = '//span[@id="shipping-method-please-wait"]';
 
@@ -89,7 +89,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     public $paymentMethodContinueButtonXpath = '//div[@id="payment-buttons-container"]/descendant::button';
 
-    public $placeOrderButtonXpath        = '//div[@id="review-buttons-container"]/descendant::button[@title="Place Order"]';
+    public $placeOrderButtonXpath        = '//div[@id="review-buttons-container"]/descendant::button[@title="{{Place Order}}"]';
 
     public $orderReceivedCompleteXpath = '//h1[.="Your order has been received."]';
 
