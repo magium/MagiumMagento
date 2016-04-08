@@ -11,6 +11,7 @@ use Magium\Magento\Actions\Checkout\RegisterNewCustomerCheckout;
 use Magium\Magento\Actions\Checkout\Steps\BillingAddress;
 use Magium\Magento\Actions\Checkout\Steps\StepInterface;
 use Magium\Magento\Extractors\Checkout\CartSummary;
+use Magium\Magento\Extractors\Checkout\Product;
 use Magium\WebDriver\WebDriver;
 
 class CartSummaryTest extends AbstractMagentoTestCase
@@ -35,6 +36,13 @@ class CartSummaryTest extends AbstractMagentoTestCase
         /* @var $cartSummary \Magium\Magento\Extractors\Checkout\CartSummary */
         self::assertNotNull($cartSummary->getGrandTotal());
         self::assertCount(1, $cartSummary->getProducts());
+        foreach ($cartSummary->getProducts() as $product) {
+            /* @var $product Product */
+            self::assertNotNull($product->getName());
+            self::assertNotNull($product->getPrice());
+            self::assertContains('$', $product->getPrice());
+            self::assertEquals(1, $product->getQty());
+        }
     }
 
     public function testCustomerCheckout()
