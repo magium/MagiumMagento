@@ -3,8 +3,8 @@
 namespace Magium\Magento\Extractors\Checkout;
 
 use Magium\AbstractTestCase;
-use Magium\Magento\Actions\Checkout\Steps\StepInterface;
 use Magium\Extractors\AbstractExtractor;
+use Magium\Magento\Actions\Checkout\Steps\StepInterface;
 use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
@@ -72,15 +72,29 @@ class CartSummary extends AbstractExtractor implements StepInterface
         $testProductXpath = $this->theme->getCartSummaryCheckoutProductLoopNameXpath($count);
 
         while ($this->webDriver->elementExists($testProductXpath, WebDriver::BY_XPATH)) {
-            $nameElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopNameXpath($count));
-            $priceElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopPriceXpath($count));
-            $qtyElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopQtyXpath($count));
-            $subtotalElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopSubtotalXpath($count));
 
+            $xpath = $this->theme->getCartSummaryCheckoutProductLoopNameXpath($count);
+            $nameElement = $this->webDriver->byXpath($xpath);
             $name = trim($nameElement->getText());
-            $price = trim($priceElement->getText()); // We do not extract the number value so currency checks can be done
-            $qty = trim($qtyElement->getText());
-            $subtotal = trim($subtotalElement->getText());
+
+            if ($this->webDriver->elementExists($xpath, WebDriver::BY_XPATH)) {
+                $priceElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopPriceXpath($count));
+                $price = trim($priceElement->getText()); // We do not extract the number value so currency checks can be done
+            } else {
+                $price = 0;
+            }
+            if ($this->webDriver->elementExists($xpath, WebDriver::BY_XPATH)) {
+                $qtyElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopQtyXpath($count));
+                $qty = trim($qtyElement->getText());
+            } else {
+                $qty = 0;
+            }
+            if ($this->webDriver->elementExists($xpath, WebDriver::BY_XPATH)) {
+                $subtotalElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopSubtotalXpath($count));
+                $subtotal = trim($subtotalElement->getText());
+            } else {
+                $subtotal = 0;
+            }
 
             $product = new Product($name, $qty, $price, $subtotal);
             $productIterator->addProduct($product);
