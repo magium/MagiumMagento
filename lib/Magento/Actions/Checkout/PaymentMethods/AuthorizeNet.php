@@ -26,14 +26,19 @@ class AuthorizeNet implements PaymentMethodInterface
         $this->paymentInformation   = $paymentInformation;
     }
 
+    public function getId()
+    {
+        return 'p_method_authorizenet';
+    }
+
     public function pay($requirePayment)
     {
         if ($requirePayment) {
-            $this->testCase->assertElementExists('p_method_authorizenet');
+            $this->testCase->assertElementExists($this->getId());
         }
 
-        if ($this->webDriver->elementDisplayed('p_method_authorizenet')) {
-            $this->webDriver->byId('p_method_authorizenet')->click();
+        if ($this->webDriver->elementDisplayed($this->getId())) {
+            $this->webDriver->byId($this->getId())->click();
         }
         $this->webDriver->byId('authorizenet_cc_number')
                         ->clear()
