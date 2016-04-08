@@ -21,6 +21,11 @@ class CashOnDelivery implements PaymentMethodInterface
         $this->testCase     = $testCase;
     }
 
+    public function getId()
+    {
+        return 'p_method_cashondelivery';
+    }
+
     /**
      * Fills in the payment form, selecting it, if necessary
      *
@@ -30,11 +35,11 @@ class CashOnDelivery implements PaymentMethodInterface
     public function pay($requirePayment)
     {
         if ($requirePayment) {
-            $this->testCase->assertElementExists('p_method_cashondelivery');
+            $this->testCase->assertElementExists($this->getId());
         }
 
-        if ($this->webDriver->elementDisplayed('p_method_cashondelivery')) {
-            $this->webDriver->byId('p_method_cashondelivery')->click();
+        if ($this->webDriver->elementDisplayed($this->getId())) {
+            $this->webDriver->byId($this->getId())->click();
         }
     }
 }
