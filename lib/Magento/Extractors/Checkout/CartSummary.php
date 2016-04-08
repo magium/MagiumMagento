@@ -77,20 +77,25 @@ class CartSummary extends AbstractExtractor implements StepInterface
             $nameElement = $this->webDriver->byXpath($xpath);
             $name = trim($nameElement->getText());
 
+            $xpath = $this->theme->getCartSummaryCheckoutProductLoopPriceXpath($count);
             if ($this->webDriver->elementExists($xpath, WebDriver::BY_XPATH)) {
-                $priceElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopPriceXpath($count));
+                $priceElement = $this->webDriver->byXpath($xpath);
                 $price = trim($priceElement->getText()); // We do not extract the number value so currency checks can be done
             } else {
                 $price = 0;
             }
+
+            $xpath = $this->theme->getCartSummaryCheckoutProductLoopQtyXpath($count);
             if ($this->webDriver->elementExists($xpath, WebDriver::BY_XPATH)) {
-                $qtyElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopQtyXpath($count));
+                $qtyElement = $this->webDriver->byXpath($xpath);
                 $qty = trim($qtyElement->getText());
             } else {
                 $qty = 0;
             }
+
+            $xpath = $this->theme->getCartSummaryCheckoutProductLoopSubtotalXpath($count);
             if ($this->webDriver->elementExists($xpath, WebDriver::BY_XPATH)) {
-                $subtotalElement = $this->webDriver->byXpath($this->theme->getCartSummaryCheckoutProductLoopSubtotalXpath($count));
+                $subtotalElement = $this->webDriver->byXpath($xpath);
                 $subtotal = trim($subtotalElement->getText());
             } else {
                 $subtotal = 0;
