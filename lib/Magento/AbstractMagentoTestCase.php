@@ -27,7 +27,8 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
 
         // If we are passed just the class name we will prepend it with Magium\Magento\Actions\Checkout\PaymentMethods
         if (strpos($method, '\\') === false) {
-            $method = 'Magium\Magento\Actions\Checkout\PaymentMethods\\' . $method;
+            $method = 'Checkout\PaymentMethods\\' . $method;
+            $method = self::resolveClass($method, 'Actions');
         }
         $reflection = new \ReflectionClass($method);
         if ($reflection->implementsInterface('Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface')) {
