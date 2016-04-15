@@ -122,6 +122,13 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     public $guaranteedPageLoadedElementDisplayedXpath = '//*[contains(concat(" ",normalize-space(@class)," ")," footer ")]';
 
+    public $orderNumberExtractorXpath;
+
+    public function getOrderNumberExtractorXpath()
+    {
+        return $this->translatePlaceholders($this->orderNumberExtractorXpath);
+    }
+
     public function getGuaranteedPageLoadedElementDisplayedXpath()
     {
         return $this->translatePlaceholders($this->guaranteedPageLoadedElementDisplayedXpath);
