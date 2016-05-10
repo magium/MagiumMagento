@@ -80,67 +80,75 @@ class BillingAddress implements StepInterface
         return false;
     }
 
+    protected function canProcess($xpath)
+    {
+        if (!$xpath) {
+            return false;
+        }
+        return array_search($xpath, $this->bypass) === false;
+    }
+
     public function execute()
     {
         if ($this->preExecute()) {
             return true;
         }
 
-        if ($this->theme->getBillingEmailAddressXpath()) {
+        if ($this->canProcess($this->theme->getBillingEmailAddressXpath())) {
             $this->testCase->byXpath($this->theme->getBillingEmailAddressXpath())->clear();
             $this->testCase->byXpath($this->theme->getBillingEmailAddressXpath())->sendKeys($this->customerIdentity->getEmailAddress());
         }
-        if ($this->theme->getBillingFirstNameXpath()) {
+        if ($this->canProcess($this->theme->getBillingFirstNameXpath())) {
             $this->testCase->byXpath($this->theme->getBillingFirstNameXpath())->clear();
             $this->testCase->byXpath($this->theme->getBillingFirstNameXpath())->sendKeys($this->customerIdentity->getBillingFirstName());
         }
 
-        if ($this->theme->getBillingLastNameXpath()) {
+        if ($this->canProcess($this->theme->getBillingLastNameXpath())) {
             $this->testCase->byXpath($this->theme->getBillingLastNameXpath())->clear();
             $this->testCase->byXpath($this->theme->getBillingLastNameXpath())->sendKeys($this->customerIdentity->getBillingLastName());
         }
 
-        if ($this->theme->getBillingCompanyXpath()) {
+        if ($this->canProcess($this->theme->getBillingCompanyXpath())) {
             $this->testCase->byXpath($this->theme->getBillingCompanyXpath())->clear();
             $this->testCase->byXpath($this->theme->getBillingCompanyXpath())->sendKeys($this->customerIdentity->getBillingCompany());
         }
 
-        if ($this->theme->getBillingAddressXpath()) {
+        if ($this->canProcess($this->theme->getBillingAddressXpath())) {
             $this->testCase->byXpath($this->theme->getBillingAddressXpath())->clear();
             $this->testCase->byXpath($this->theme->getBillingAddressXpath())->sendKeys($this->customerIdentity->getBillingAddress());
         }
 
-        if ($this->theme->getBillingAddress2Xpath()) {
+        if ($this->canProcess($this->theme->getBillingAddress2Xpath())) {
             $this->testCase->byXpath($this->theme->getBillingAddress2Xpath())->clear();
             $this->testCase->byXpath($this->theme->getBillingAddress2Xpath())->sendKeys($this->customerIdentity->getBillingAddress2());
         }
 
-        if ($this->theme->getBillingCityXpath()) {
+        if ($this->canProcess($this->theme->getBillingCityXpath())) {
             $this->testCase->byXpath($this->theme->getBillingCityXpath())->clear();
             $this->testCase->byXpath($this->theme->getBillingCityXpath())->sendKeys($this->customerIdentity->getBillingCity());
         }
 
         $regionXpath = $this->theme->getBillingRegionIdXpath($this->customerIdentity->getBillingRegionId());
-        if ($regionXpath) {
+        if ($this->canProcess($regionXpath)) {
             $this->testCase->byXpath($regionXpath)->click();
         }
 
-        if ($this->theme->getBillingPostCodeXpath()) {
+        if ($this->canProcess($this->theme->getBillingPostCodeXpath())) {
             $this->testCase->byXpath($this->theme->getBillingPostCodeXpath())->clear();
             $this->testCase->byXpath($this->theme->getBillingPostCodeXpath())->sendKeys($this->customerIdentity->getBillingPostCode());
         }
 
         $countryXpath = $this->theme->getBillingCountryIdXpath($this->customerIdentity->getBillingCountryId());
-        if ($countryXpath) {
+        if ($this->canProcess($countryXpath)) {
             $this->testCase->byXpath($countryXpath)->click();
         }
 
-        if ($this->theme->getBillingTelephoneXpath()) {
+        if ($this->canProcess($this->theme->getBillingTelephoneXpath())) {
             $this->testCase->byXpath($this->theme->getBillingTelephoneXpath())->clear();
             $this->testCase->byXpath($this->theme->getBillingTelephoneXpath())->sendKeys($this->customerIdentity->getBillingTelephone());
         }
 
-        if ($this->theme->getBillingFaxXpath()) {
+        if ($this->canProcess($this->theme->getBillingFaxXpath())) {
             $this->testCase->byXpath($this->theme->getBillingFaxXpath())->clear();
             $this->testCase->byXpath($this->theme->getBillingFaxXpath())->sendKeys($this->customerIdentity->getBillingFax());
         }
