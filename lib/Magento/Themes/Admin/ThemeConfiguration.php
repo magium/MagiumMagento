@@ -76,6 +76,16 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     public $cacheSubmitXpath = '//button[@title="{{Submit}}"]';
 
+    public $firstTermsRowXpath = '//table[@id="agreementGrid_table"]/tbody/tr/td[not(contains(concat(" ",normalize-space(@class)," ")," empty-text "))]';
+
+    /**
+     * @return string
+     */
+    public function getFirstTermsRowXpath()
+    {
+        return $this->firstTermsRowXpath;
+    }
+
     /**
      * @return string
      */

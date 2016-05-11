@@ -30,7 +30,6 @@ class ClickButton
     public function click($text)
     {
         $elementXpath = $this->theme->getTableButtonXpath($text);
-        $this->testCase->assertElementDisplayed($elementXpath, WebDriver::BY_XPATH);
 
         $this->webDriver->byXpath($elementXpath)->click();
 
