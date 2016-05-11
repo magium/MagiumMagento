@@ -4,6 +4,7 @@ namespace Magium\Magento\Actions\Admin\Widget;
 
 use Facebook\WebDriver\Exception\NoSuchElementException;
 use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\WebDriverElement;
 use Facebook\WebDriver\WebDriverSelect;
 use Magium\Magento\Extractors\Admin\Widget\Attribute;
 use Magium\Magento\Navigators\Admin\AdminMenu;
@@ -120,10 +121,7 @@ class TermsAndConditions
         }
 
         $element = $this->attribute->getElementByLabel($this->translator->translate('Condition Name'));
-        $element->clear();
-        if ($this->name) {
-            $element->sendKeys($this->name);
-        }
+        $this->setValue($element, $this->name);
 
         if ($this->contentAs) {
             $select = new WebDriverSelect($this->attribute->getElementByLabel($this->translator->translate('Show Content as')));
@@ -144,26 +142,26 @@ class TermsAndConditions
 
 
         $element = $this->attribute->getElementByLabel($this->translator->translate('Checkbox Text'));
-        $element->clear();
-        if ($this->checkboxText) {
-            $element->sendKeys($this->checkboxText);
-        }
+        $this->setValue($element, $this->checkboxText);
+
         $element = $this->attribute->getElementByLabel($this->translator->translate('Content'));
-        $element->clear();
-        if ($this->content) {
-            $element->sendKeys($this->content);
-        }
+        $this->setValue($element, $this->content);
 
         $element = $this->attribute->getElementByLabel($this->translator->translate('Content Height (css)'));
-        $element->clear();
-        if ($this->contentHeight) {
-            $element->sendKeys($this->contentHeight);
-        }
+        $this->setValue($element, $this->contentHeight);
 
         $this->preSave();
         if ($this->save) {
             $this->webDriver->executeScript('window.scrollTo(0, 0);');
             $this->clickActionButton->click($this->translator->translate('Save Condition'));
+        }
+    }
+
+    protected function setValue(WebDriverElement $element, $value)
+    {
+        $element->clear();
+        if ($value) {
+            $element->sendKeys($value);
         }
     }
 
