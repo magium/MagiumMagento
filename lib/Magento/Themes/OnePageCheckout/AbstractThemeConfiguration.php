@@ -124,6 +124,18 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     public $orderNumberExtractorXpath;
 
+    public $termsAndConditionsSelectorXpath;
+
+
+    /**
+     * @return mixed
+     */
+    public function getTermsAndConditionsSelectorXpath($term)
+    {
+        $return = sprintf($this->termsAndConditionsSelectorXpath, $term);
+        return $this->translatePlaceholders($return);
+    }
+
     public function getOrderNumberExtractorXpath()
     {
         return $this->translatePlaceholders($this->orderNumberExtractorXpath);
