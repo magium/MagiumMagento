@@ -35,7 +35,7 @@ class SavedCC implements PaymentMethodInterface
 
     public function getId()
     {
-        return 'ccsave_cc_owner';
+        return 'p_method_ccsave';
     }
 
     public function pay($requirePayment)
@@ -44,7 +44,7 @@ class SavedCC implements PaymentMethodInterface
             $this->testCase->assertElementExists($this->getId());
         }
 
-        if ($this->webDriver->elementDisplayed($this->getId())) {
+        if (!$this->webDriver->elementDisplayed('ccsave_cc_owner')) {
             $this->webDriver->byId($this->getId())->click();
         }
         $this->assertion->assert();

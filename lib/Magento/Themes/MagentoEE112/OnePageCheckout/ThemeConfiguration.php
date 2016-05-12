@@ -124,4 +124,6 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public $orderNumberExtractorXpath = '//p[contains(., "{{Your order # is}}:")]';
 
     public $termsAndConditionsSelectorXpath = '//form[@id="checkout-agreements"]/descendant::input[@title="%s"]';
+
+    public $shippingByNameXpath             = '//form[@id="co-shipping-method-form"]/descendant::label[contains(., "%s")]';
 }
