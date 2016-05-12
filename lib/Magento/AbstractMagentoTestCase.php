@@ -79,7 +79,7 @@ abstract class AbstractMagentoTestCase extends AbstractTestCase
     public function setShippingMethod($method)
     {
 
-        // If we are passed just the class name we will prepend it with Magium\Magento\Actions\Checkout\PaymentMethods
+        // When just the class name is passed we will prepend it with Magium\Magento\Actions\Checkout\PaymentMethods
         if (strpos($method, '\\') === false) {
             $method = 'Magium\Magento\Actions\Checkout\ShippingMethods\\' . $method;
         }
