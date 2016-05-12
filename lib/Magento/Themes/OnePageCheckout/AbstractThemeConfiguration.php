@@ -126,6 +126,16 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     public $termsAndConditionsSelectorXpath;
 
+    public $shippingByNameXpath;
+
+    /**
+     * @return mixed
+     */
+    public function getShippingByNameXpath($name)
+    {
+        $xpath = sprintf($this->shippingByNameXpath, $name);
+        return $this->translatePlaceholders($xpath);
+    }
 
     /**
      * @return mixed

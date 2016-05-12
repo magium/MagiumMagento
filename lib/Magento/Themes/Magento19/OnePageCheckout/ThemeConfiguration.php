@@ -122,4 +122,6 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     public $termsAndConditionsSelectorXpath = '//form[@id="checkout-agreements"]/descendant::input[@title="%s"]';
 
+    public $shippingByNameXpath             = '//form[@id="co-shipping-method-form"]/descendant::label[contains(., "%s")]';
+
 }
