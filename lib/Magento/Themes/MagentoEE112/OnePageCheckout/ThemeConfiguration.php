@@ -121,7 +121,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public $cartSummaryCheckoutGrandTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[concat(" ",normalize-space(.)," ") = " {{Grand Total}} "]/../td[2]';
     public $cartSummaryCheckoutShippingTotal              = '//table[@id="checkout-review-table"]/tfoot/tr/td[contains(concat(" ",normalize-space(.)," "), " {{Shipping & Handling}} (")]/../td[2]';
 
-    public $orderNumberExtractorXpath = '//p[contains(., "{{Your order # is}}:")]';
+    public $orderNumberExtractorXpath = '//p[contains(., "{{Your order # is:}}")]';
 
     public $termsAndConditionsSelectorXpath = '//form[@id="checkout-agreements"]/descendant::input[@title="%s"]';
 
