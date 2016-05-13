@@ -6,8 +6,6 @@ use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverElement;
 use Magium\Extractors\AbstractExtractor;
 use Magium\Magento\AbstractMagentoTestCase;
-
-
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\HasLayeredNavigation;
 use Magium\Magento\Extractors\Catalog\Products\ProductGrid;
 use Magium\Magento\Extractors\Catalog\Products\ProductList;
@@ -15,6 +13,7 @@ use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Magento\Themes\Magento19\ThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
+
 
 class ProductCollection extends AbstractExtractor
 {
@@ -126,7 +125,7 @@ class ProductCollection extends AbstractExtractor
         $this->statedProductCount = trim($element->getText());
 
         $element = $this->webDriver->byXpath($this->theme->getProductCollectionViewModeXpath());
-        $this->viewMode = $element->getAttribute($this->theme->getViewModeAttributeName());
+        $this->viewMode = strtolower($element->getAttribute($this->theme->getViewModeAttributeName()));
 
         $element = $this->webDriver->byXpath($this->theme->getProductCollectionSortByXpath());
         $this->sortBy = trim($element->getText());
