@@ -93,7 +93,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     public $placeOrderButtonXpath        = '//div[@id="review-buttons-container"]/descendant::button[@title="{{Place Order}}"]';
 
-    public $orderReceivedCompleteXpath = '//h1[.="Your order has been received."]';
+    public $orderReceivedCompleteXpath = '//h1[.="{{Your order has been received.}}"]';
 
     public $shippingMethodFormXpath      = '//form[@id="co-shipping-method-form"]';
 
