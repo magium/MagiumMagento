@@ -10,19 +10,25 @@ use Magium\Magento\Navigators\Admin\SystemConfiguration;
 class SystemConfigurationNavigationTest extends AbstractMagentoTestCase
 {
 
+    protected $nav = 'System/Configuration';
+    protected $method = 'Payment Methods/Saved CC';
+    protected $cc = 'payment_ccsave_active';
+    protected $ship = 'carriers_freeshipping_active';
+    protected $shipLoc = 'Shipping Methods/Free Shipping';
+
     public function testConfigPanelOpened()
     {
         $this->getAction(Login::ACTION)->login();
         $adminMenuNavigator = $this->getNavigator(AdminMenu::NAVIGATOR);
-        $adminMenuNavigator->navigateTo('System/Configuration');
+        $adminMenuNavigator->navigateTo($this->nav);
 
         $navigator = $this->getNavigator(SystemConfiguration::NAVIGATOR);
         /** @var $navigator \Magium\Magento\Navigators\Admin\SystemConfiguration */
-        $navigator->navigateTo('Payment Methods/Saved CC');
-        $this->assertElementDisplayed('payment_ccsave_active');
+        $navigator->navigateTo($this->method);
+        $this->assertElementDisplayed($this->cc);
 
-        $navigator->navigateTo('Shipping Methods/Free Shipping');
-        $this->assertElementDisplayed('carriers_freeshipping_active');
+        $navigator->navigateTo($this->shipLoc);
+        $this->assertElementDisplayed($this->ship);
 
     }
 
@@ -30,16 +36,16 @@ class SystemConfigurationNavigationTest extends AbstractMagentoTestCase
     {
         $this->getAction(Login::ACTION)->login();
         $adminMenuNavigator = $this->getNavigator(AdminMenu::NAVIGATOR);
-        $adminMenuNavigator->navigateTo('System/Configuration');
+        $adminMenuNavigator->navigateTo($this->nav);
 
         $navigator = $this->getNavigator(SystemConfiguration::NAVIGATOR);
         /** @var $navigator \Magium\Magento\Navigators\Admin\SystemConfiguration */
-        $navigator->navigateTo('Payment Methods/Saved CC');
-        $this->assertElementDisplayed('payment_ccsave_active');
-        $testElement = $this->byId('payment_ccsave_active');
+        $navigator->navigateTo($this->method);
+        $this->assertElementDisplayed($this->cc);
+        $testElement = $this->byId($this->cc);
 
-        $navigator->navigateTo('Payment Methods/Saved CC');
-        $this->assertElementDisplayed('payment_ccsave_active');
+        $navigator->navigateTo($this->method);
+        $this->assertElementDisplayed($this->cc);
 
         /*
          * What this is doing is getting an instance of the element from WebDriver and then re-doing the navigation.
@@ -63,18 +69,18 @@ class SystemConfigurationNavigationTest extends AbstractMagentoTestCase
         $this->setExpectedException('Facebook\WebDriver\Exception\StaleElementReferenceException');
         $this->getAction(Login::ACTION)->login();
         $adminMenuNavigator = $this->getNavigator(AdminMenu::NAVIGATOR);
-        $adminMenuNavigator->navigateTo('System/Configuration');
+        $adminMenuNavigator->navigateTo($this->nav);
 
         $navigator = $this->getNavigator(SystemConfiguration::NAVIGATOR);
         /** @var $navigator \Magium\Magento\Navigators\Admin\SystemConfiguration */
-        $navigator->navigateTo('Payment Methods/Saved CC');
-        $this->assertElementDisplayed('payment_ccsave_active');
-        $testElement = $this->byId('payment_ccsave_active');
+        $navigator->navigateTo($this->method);
+        $this->assertElementDisplayed($this->cc);
+        $testElement = $this->byId($this->cc);
 
-        $navigator->navigateTo('Shipping Methods/Free Shipping'); // Key part of the test where we naviate away
+        $navigator->navigateTo($this->shipLoc); // Key part of the test where we navivate away
 
-        $navigator->navigateTo('Payment Methods/Saved CC');
-        $this->assertElementDisplayed('payment_ccsave_active');
+        $navigator->navigateTo($this->method);
+        $this->assertElementDisplayed($this->cc);
 
         $testElement->click();
 

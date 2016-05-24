@@ -47,7 +47,6 @@ class TermsTest extends AbstractMagentoTestCase
         /* @var $terms \Magium\Magento\Actions\Checkout\Steps\TermsAndConditions */
         $terms->setCheckboxText('Terms');
         $terms->configureCheckout($guestCheckout);
-
         $guestCheckout->execute();
 
         $this->getAction(Login::ACTION)->login();
