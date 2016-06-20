@@ -4,6 +4,7 @@ namespace Magium\Magento\Actions\Customer;
 
 use Magium\Magento\Identities\Customer;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
+use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
 class FillRegistrationForm
@@ -29,7 +30,10 @@ class FillRegistrationForm
 
     public function execute($registerForNewsletter = false)
     {
+        $this->webdriver->wait(5)->until(ExpectedCondition::elementExists($this->theme->getRegisterFirstNameXpath(), WebDriver::BY_XPATH));
+
         $firstnameElement  = $this->webdriver->byXpath($this->theme->getRegisterFirstNameXpath());
+        $this->webdriver->wait(5)->until(ExpectedCondition::visibilityOf($firstnameElement));
         $lastnameElement   = $this->webdriver->byXpath($this->theme->getRegisterLastNameXpath());
         $emailElement      = $this->webdriver->byXpath($this->theme->getRegisterEmailXpath());
         $passwordElement   = $this->webdriver->byXpath($this->theme->getRegisterPasswordXpath());
