@@ -18,44 +18,31 @@ class Register
     protected $testCase;
     protected $navigator;
     protected $customerIdentity;
-
+    protected $form;
 
     public function __construct(
         WebDriver               $webdriver,
         AbstractThemeConfiguration      $theme,
         Registration    $navigator,
         Customer                $customerIdentity,
-        AbstractMagentoTestCase $testCase
-
+        AbstractMagentoTestCase $testCase,
+        FillRegistrationForm    $form
     ) {
         $this->webdriver    = $webdriver;
         $this->theme        = $theme;
         $this->testCase     = $testCase;
         $this->navigator = $navigator;
         $this->customerIdentity = $customerIdentity;
+        $this->form = $form;
     }
 
     public function register($registerForNewsletter = false)
     {
         $this->navigator->navigateTo();
 
-        $firstnameElement  = $this->webdriver->byXpath($this->theme->getRegisterFirstNameXpath());
-        $lastnameElement   = $this->webdriver->byXpath($this->theme->getRegisterLastNameXpath());
-        $emailElement      = $this->webdriver->byXpath($this->theme->getRegisterEmailXpath());
-        $passwordElement   = $this->webdriver->byXpath($this->theme->getRegisterPasswordXpath());
-        $confirmElement    = $this->webdriver->byXpath($this->theme->getRegisterConfirmPasswordXpath());
+        $this->form->execute($registerForNewsletter);
+
         $submitElement     = $this->webdriver->byXpath($this->theme->getRegisterSubmitXpath());
-        $registerElement     = $this->webdriver->byXpath($this->theme->getRegisterNewsletterXpath());
-
-        $firstnameElement->sendKeys($this->customerIdentity->getFirstName());
-        $lastnameElement->sendKeys($this->customerIdentity->getLastName());
-        $emailElement->sendKeys($this->customerIdentity->getEmailAddress());
-        $passwordElement->sendKeys($this->customerIdentity->getPassword());
-        $confirmElement->sendKeys($this->customerIdentity->getPassword());
-
-        if ($registerForNewsletter) {
-            $registerElement->click();
-        }
 
         $submitElement->click();
 
