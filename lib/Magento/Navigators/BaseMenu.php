@@ -47,6 +47,9 @@ class BaseMenu
     protected function execute(WebDriverElement $element)
     {
         $this->webdriver->getMouse()->mouseMove($element->getCoordinates());
+        if ($this->themeConfiguration->getUseClicksToNavigate()) {
+            $element->click();
+        }
     }
     
     public function navigateTo($path)
@@ -62,7 +65,7 @@ class BaseMenu
             $element = $this->pathAction($p, $xpath);
         }
 
-        if ($element instanceof WebDriverElement) {
+        if (!$this->themeConfiguration->getUseClicksToNavigate() && $element instanceof WebDriverElement) {
             $element->click();
             $this->loaded->execute($element);
         

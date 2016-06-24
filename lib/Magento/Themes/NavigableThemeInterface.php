@@ -11,4 +11,6 @@ interface NavigableThemeInterface extends BaseThemeInterface {
 
     public function getNavigationChildXPathSelector($text);
 
+    public function getUseClicksToNavigate();
+
 }

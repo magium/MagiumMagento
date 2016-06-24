@@ -205,6 +205,12 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
     public $contactUsCommentXpath = '//form[@id="contactForm"]/descendant::textarea[@id="comment"]';
     public $contactUsSubmitXpath = '//form[@id="contactForm"]/descendant::button';
 
+    public $useClicksToNavigate = false;
+
+    public function getUseClicksToNavigate()
+    {
+        return $this->useClicksToNavigate;
+    }
 
     public function configure(AbstractTestCase $testCase)
     {
