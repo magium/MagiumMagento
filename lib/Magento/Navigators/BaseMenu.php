@@ -48,7 +48,7 @@ class BaseMenu
     {
         $this->webdriver->getMouse()->mouseMove($element->getCoordinates());
         if ($this->themeConfiguration->getUseClicksToNavigate()) {
-            $element->click();
+            $this->webdriver->getMouse()->click();
         }
     }
     
