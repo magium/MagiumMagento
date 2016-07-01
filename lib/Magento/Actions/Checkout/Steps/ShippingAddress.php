@@ -83,6 +83,12 @@ class ShippingAddress implements StepInterface
         $this->sendData($this->theme->getShippingAddress2Xpath(), $this->customerIdentity->getShippingAddress2());
         $this->sendData($this->theme->getShippingCityXpath(), $this->customerIdentity->getShippingCity());
 
+
+        $countryXpath = $this->theme->getShippingCountryIdXpath($this->customerIdentity->getShippingCountryId());
+        if ($countryXpath) {
+            $this->testCase->byXpath($countryXpath)->click();
+        }
+
         $regionXpath = $this->theme->getShippingRegionIdXpath($this->customerIdentity->getShippingRegionId());
         if ($regionXpath) {
             $this->testCase->byXpath($regionXpath)->click();
@@ -90,10 +96,6 @@ class ShippingAddress implements StepInterface
 
         $this->sendData($this->theme->getShippingPostCodeXpath(), $this->customerIdentity->getShippingPostCode());
 
-        $countryXpath = $this->theme->getShippingCountryIdXpath($this->customerIdentity->getShippingCountryId());
-        if ($countryXpath) {
-            $this->testCase->byXpath($countryXpath)->click();
-        }
 
         $this->sendData($this->theme->getShippingTelephoneXpath(), $this->customerIdentity->getShippingTelephone());
         $this->sendData($this->theme->getShippingFaxXpath(), $this->customerIdentity->getShippingFax());

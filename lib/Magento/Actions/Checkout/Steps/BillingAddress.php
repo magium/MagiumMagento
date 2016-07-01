@@ -109,17 +109,17 @@ class BillingAddress implements StepInterface
         $this->sendData($this->theme->getBillingAddress2Xpath(), $this->customerIdentity->getBillingAddress2());
         $this->sendData($this->theme->getBillingCityXpath(), $this->customerIdentity->getBillingCity());
 
+        $countryXpath = $this->theme->getBillingCountryIdXpath($this->customerIdentity->getBillingCountryId());
+        if ($this->shouldProcess($countryXpath)) {
+            $this->testCase->byXpath($countryXpath)->click();
+        }
+
         $regionXpath = $this->theme->getBillingRegionIdXpath($this->customerIdentity->getBillingRegionId());
         if ($this->shouldProcess($regionXpath)) {
             $this->testCase->byXpath($regionXpath)->click();
         }
 
         $this->sendData($this->theme->getBillingPostCodeXpath(), $this->customerIdentity->getBillingPostCode());
-
-        $countryXpath = $this->theme->getBillingCountryIdXpath($this->customerIdentity->getBillingCountryId());
-        if ($this->shouldProcess($countryXpath)) {
-            $this->testCase->byXpath($countryXpath)->click();
-        }
 
         $this->sendData($this->theme->getBillingTelephoneXpath(), $this->customerIdentity->getBillingTelephone());
         $this->sendData($this->theme->getBillingFaxXpath(), $this->customerIdentity->getBillingFax());
