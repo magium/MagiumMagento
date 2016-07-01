@@ -39,6 +39,8 @@ class ShippingMethod implements StepInterface
     
     public function execute()
     {
+        $this->webdriver->wait()->until(ExpectedCondition::elementExists($this->theme->getShippingMethodContinueButtonXpath(), WebDriver::BY_XPATH));
+        $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($this->webdriver->byXpath($this->theme->getShippingMethodContinueButtonXpath())));
         $this->shipping->choose($this->requireShipping);
 
         return true; // continue to next step
@@ -47,8 +49,6 @@ class ShippingMethod implements StepInterface
     public function nextAction()
     {
 
-        $this->webdriver->wait()->until(ExpectedCondition::elementExists($this->theme->getShippingMethodContinueButtonXpath(), WebDriver::BY_XPATH));
-        $this->webdriver->wait()->until(ExpectedCondition::visibilityOf($this->webdriver->byXpath($this->theme->getShippingMethodContinueButtonXpath())));
         $this->webdriver->byXpath($this->theme->getShippingMethodContinueButtonXpath())->click();
         $this->webdriver->wait()->until(
             WebDriverExpectedCondition::not(
