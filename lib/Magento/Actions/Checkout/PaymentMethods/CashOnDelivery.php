@@ -39,7 +39,8 @@ class CashOnDelivery implements PaymentMethodInterface
         }
 
         if ($this->webDriver->elementDisplayed($this->getId())) {
-            $this->webDriver->byId($this->getId())->click();
+            $element = $this->webDriver->byId($this->getId());
+            $this->webDriver->getMouse()->click($element->getCoordinates());
         }
     }
 }

@@ -484,6 +484,11 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
         return $this->translatePlaceholders($this->adminPopupMessageCloseButtonXpath);
     }
 
+    public function getUseClicksToNavigate()
+    {
+        return false;
+    }
+
     public function configure(AbstractTestCase $testCase)
     {
 
