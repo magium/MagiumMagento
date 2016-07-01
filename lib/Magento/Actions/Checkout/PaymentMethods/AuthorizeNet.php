@@ -37,8 +37,9 @@ class AuthorizeNet implements PaymentMethodInterface
             $this->testCase->assertElementExists($this->getId());
         }
 
-        if ($this->webDriver->elementDisplayed($this->getId())) {
-            $this->webDriver->byId($this->getId())->click();
+        if (!$this->webDriver->elementDisplayed('authorizenet_cc_number')) {
+            $element = $this->webDriver->byId($this->getId());
+            $this->webDriver->getMouse()->click($element->getCoordinates());
         }
         $this->webDriver->byId('authorizenet_cc_number')
                         ->clear()

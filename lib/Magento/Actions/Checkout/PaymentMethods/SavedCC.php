@@ -45,7 +45,8 @@ class SavedCC implements PaymentMethodInterface
         }
 
         if (!$this->webDriver->elementDisplayed('ccsave_cc_owner')) {
-            $this->webDriver->byId($this->getId())->click();
+            $element = $this->webDriver->byId($this->getId());
+            $this->webDriver->getMouse()->click($element->getCoordinates());
         }
         $this->assertion->assert();
 
