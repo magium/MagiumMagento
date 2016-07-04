@@ -4,10 +4,10 @@ namespace Magium\Magento\Actions\Checkout\Steps;
 
 use Facebook\WebDriver\Exception\StaleElementReferenceException;
 use Facebook\WebDriver\WebDriverExpectedCondition;
-use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface;
 use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
+use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
 class PaymentMethod implements StepInterface
@@ -40,14 +40,15 @@ class PaymentMethod implements StepInterface
     
     public function execute()
     {
+        $this->webdriver->wait(10)->until(ExpectedCondition::elementExists($this->theme->getPaymentMethodContinueButtonXpath(), WebDriver::BY_XPATH));
+        $element = $this->webdriver->byXpath($this->theme->getPaymentMethodContinueButtonXpath());
+        $this->webdriver->wait(5)->until(ExpectedCondition::visibilityOf($element));
+
         /* Given that there is the possibility of either a) products with $0, and b) payment methods that do not use
          * the standard form we do not fail if we cannot find payment elements
          */
 
         $this->paymentMethod->pay($this->requirePayment);
-
-        $this->testCase->assertElementExists($this->theme->getPaymentMethodContinueButtonXpath(), AbstractTestCase::BY_XPATH);
-
         return true;
     }
 
