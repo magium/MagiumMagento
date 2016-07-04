@@ -6,6 +6,7 @@ use Magium\AbstractTestCase;
 use Magium\Extractors\AbstractExtractor;
 use Magium\Magento\Actions\Checkout\Steps\StepInterface;
 use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
+use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
 class CartSummary extends AbstractExtractor implements StepInterface
@@ -70,6 +71,7 @@ class CartSummary extends AbstractExtractor implements StepInterface
         $count = 1;
 
         $testProductXpath = $this->theme->getCartSummaryCheckoutProductLoopNameXpath($count);
+        $this->webDriver->wait()->until(ExpectedCondition::elementExists($testProductXpath, WebDriver::BY_XPATH));
 
         while ($this->webDriver->elementExists($testProductXpath, WebDriver::BY_XPATH)) {
 
