@@ -4,9 +4,11 @@ namespace Magium\Magento\Navigators\Catalog;
 
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
+use Magium\Navigators\ConfigurableNavigatorInterface;
+use Magium\Navigators\StaticNavigatorInterface;
 use Magium\WebDriver\WebDriver;
 
-class Product
+class Product implements ConfigurableNavigatorInterface
 {
 
     const NAVIGATOR = 'Catalog\Product';

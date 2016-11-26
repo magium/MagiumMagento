@@ -2,10 +2,11 @@
 
 namespace Magium\Magento\Actions\Admin;
 
+use Magium\Actions\StaticActionInterface;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
-class WaitForLoadingMask
+class WaitForLoadingMask implements StaticActionInterface
 {
     const ACTION = 'Admin\WaitForLoadingMask';
 
@@ -21,6 +22,11 @@ class WaitForLoadingMask
     public function wait()
     {
         $this->webDriver->wait()->until(ExpectedCondition::not(ExpectedCondition::visibilityOf($this->webDriver->byId('loading-mask'))));
+    }
+
+    public function execute()
+    {
+        $this->wait();
     }
 
 }

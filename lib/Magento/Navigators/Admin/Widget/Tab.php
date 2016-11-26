@@ -4,10 +4,11 @@ namespace Magium\Magento\Navigators\Admin\Widget;
 
 use Magium\Magento\Actions\Admin\WaitForLoadingMask;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
+use Magium\Navigators\ConfigurableNavigatorInterface;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
-class Tab
+class Tab implements ConfigurableNavigatorInterface
 {
 
     const NAVIGATOR = 'Admin\Widget\Tab';

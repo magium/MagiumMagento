@@ -8,10 +8,11 @@ use Magium\Magento\Actions\Admin\Tables\ClearTableFilters;
 use Magium\Magento\Actions\Admin\Tables\ClickButton;
 use Magium\Magento\Actions\Admin\WaitForLoadingMask;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
+use Magium\Navigators\NavigatorInterface;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
-class Order
+class Order implements NavigatorInterface
 {
     const NAVIGATOR = 'Admin\Order';
 

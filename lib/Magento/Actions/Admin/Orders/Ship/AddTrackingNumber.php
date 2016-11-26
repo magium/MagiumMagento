@@ -4,11 +4,12 @@ namespace Magium\Magento\Actions\Admin\Orders\Ship;
 
 use Facebook\WebDriver\WebDriverSelect;
 use Magium\AbstractTestCase;
+use Magium\Actions\StaticActionInterface;
 use Magium\Actions\SubAction\SubActionInterface;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
-class AddTrackingNumber implements SubActionInterface
+class AddTrackingNumber implements SubActionInterface, StaticActionInterface 
 {
 
     const ACTION = 'Admin\Orders\Ship\AddTrackingNumber';

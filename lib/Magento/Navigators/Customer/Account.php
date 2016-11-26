@@ -4,10 +4,11 @@ namespace Magium\Magento\Navigators\Customer;
 
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Themes\Customer\AbstractThemeConfiguration;
+use Magium\Navigators\NavigatorInterface;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
-class Account
+class Account implements NavigatorInterface
 {
     const NAVIGATOR = 'Customer\Account';
     protected $webDriver;

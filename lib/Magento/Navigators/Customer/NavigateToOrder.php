@@ -4,10 +4,11 @@ namespace Magium\Magento\Navigators\Customer;
 
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Themes\Customer\AbstractThemeConfiguration;
+use Magium\Navigators\ConfigurableNavigatorInterface;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
-class NavigateToOrder
+class NavigateToOrder implements ConfigurableNavigatorInterface
 {
     const NAVIGATOR = 'Customer\NavigateToOrder';
     protected $webDriver;

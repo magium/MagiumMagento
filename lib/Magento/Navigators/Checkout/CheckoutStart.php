@@ -7,9 +7,10 @@ use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Checkout\Steps\StepInterface;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Navigators\InstructionNavigator;
+use Magium\Navigators\StaticNavigatorInterface;
 use Magium\WebDriver\WebDriver;
 
-class CheckoutStart implements StepInterface
+class CheckoutStart implements StepInterface, StaticNavigatorInterface
 {
     const NAVIGATOR = 'Checkout\CheckoutStart';
 

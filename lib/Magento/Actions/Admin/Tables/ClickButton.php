@@ -3,11 +3,12 @@
 
 namespace Magium\Magento\Actions\Admin\Tables;
 
+use Magium\Actions\ConfigurableActionInterface;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
-class ClickButton
+class ClickButton implements ConfigurableActionInterface
 {
 
     const ACTION = 'Admin\Tables\ClickButton';
@@ -33,6 +34,11 @@ class ClickButton
 
         $this->webDriver->byXpath($elementXpath)->click();
 
+    }
+
+    public function execute($param)
+    {
+        $this->click($param);
     }
 
 }
