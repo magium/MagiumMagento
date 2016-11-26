@@ -2,6 +2,7 @@
 
 namespace Magium\Magento\Actions\Admin\Login;
 
+use Magium\Actions\StaticActionInterface;
 use Magium\Commands\Open;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Admin\Login\Messages;
@@ -11,7 +12,7 @@ use Magium\Navigators\InstructionNavigator;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
-class Login
+class Login implements StaticActionInterface 
 {
 
     const ACTION = 'Admin\Login\Login';
