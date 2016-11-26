@@ -4,8 +4,9 @@ namespace Magium\Magento\Navigators\Customer;
 
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Navigators\InstructionNavigator;
+use Magium\Navigators\StaticNavigatorInterface;
 
-class Registration
+class Registration implements StaticNavigatorInterface
 {
 
     const NAVIGATOR = 'Customer\Registration';

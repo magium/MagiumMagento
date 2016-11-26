@@ -4,8 +4,9 @@ namespace Magium\Magento\Navigators\Cart;
 
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Navigators\InstructionNavigator;
+use Magium\Navigators\StaticNavigatorInterface;
 
-class Cart
+class Cart implements StaticNavigatorInterface
 {
 
     const NAVIGATOR = 'Cart\Cart';

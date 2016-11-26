@@ -7,9 +7,10 @@ use Magium\Actions\WaitForPageLoaded;
 use Magium\InvalidInstructionException;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
+use Magium\Navigators\ConfigurableNavigatorInterface;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
-class SystemConfiguration
+class SystemConfiguration implements ConfigurableNavigatorInterface
 {
 
     const NAVIGATOR = 'Admin\SystemConfiguration';

@@ -4,8 +4,9 @@ namespace Magium\Magento\Navigators\Catalog;
 
 use Magium\Magento\Navigators\BaseMenu;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
+use Magium\Navigators\StaticNavigatorInterface;
 
-abstract class AbstractDefaultCategory
+abstract class AbstractDefaultCategory implements StaticNavigatorInterface
 {
 
     protected $theme;
@@ -19,7 +20,5 @@ abstract class AbstractDefaultCategory
         $this->theme = $theme;
         $this->navigator = $navigator;
     }
-
-    abstract function navigateTo();
 
 }

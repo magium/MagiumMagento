@@ -6,11 +6,12 @@ namespace Magium\Magento\Navigators;
 use Facebook\WebDriver\WebDriverElement;
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Themes\NavigableThemeInterface;
+use Magium\Navigators\ConfigurableNavigatorInterface;
 use Magium\Util\Log\Logger;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
-class BaseMenu
+class BaseMenu implements ConfigurableNavigatorInterface
 {
     const NAVIGATOR = 'BaseMenu';
     protected $webdriver;

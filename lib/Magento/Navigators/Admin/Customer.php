@@ -8,10 +8,11 @@ use Magium\Magento\Actions\Admin\Tables\ClickButton;
 use Magium\Magento\Actions\Admin\WaitForLoadingMask;
 use Magium\Magento\Navigators\Admin\Customer\AbstractCustomerNavigation;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
+use Magium\Navigators\NavigatorInterface;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
-class Customer
+class Customer implements NavigatorInterface
 {
     const NAVIGATOR = 'Admin\Customer';
 

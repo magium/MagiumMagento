@@ -5,8 +5,9 @@ namespace Magium\Magento\Navigators\Customer;
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\Navigators\InstructionNavigator;
+use Magium\Navigators\StaticNavigatorInterface;
 
-class AccountHome
+class AccountHome implements StaticNavigatorInterface
 {
     const NAVIGATOR = 'Customer\AccountHome';
     protected $theme;
