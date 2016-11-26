@@ -2,12 +2,13 @@
 
 namespace Magium\Magento\Actions\Cart;
 
+use Magium\Actions\ActionInterface;
 use Magium\Magento\Extractors\Catalog\Cart\AddToCart;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
-class AddSimpleProductToCart
+class AddSimpleProductToCart implements ActionInterface
 {
 
     const ACTION = 'Cart\AddSimpleProductToCart';

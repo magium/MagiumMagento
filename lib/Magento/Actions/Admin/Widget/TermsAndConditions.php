@@ -6,13 +6,14 @@ use Facebook\WebDriver\Exception\NoSuchElementException;
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverElement;
 use Facebook\WebDriver\WebDriverSelect;
+use Magium\Actions\OptionallyConfigurableActionInterface;
 use Magium\Magento\Extractors\Admin\Widget\Attribute;
 use Magium\Magento\Navigators\Admin\AdminMenu;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\Util\Translator\Translator;
 use Magium\WebDriver\WebDriver;
 
-class TermsAndConditions
+class TermsAndConditions implements OptionallyConfigurableActionInterface
 {
 
     const ACTION = 'Admin\Widget\TermsAndConditions';

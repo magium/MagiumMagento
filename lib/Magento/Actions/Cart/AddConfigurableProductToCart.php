@@ -2,6 +2,7 @@
 
 namespace Magium\Magento\Actions\Cart;
 
+use Magium\Actions\ActionInterface;
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Extractors\Catalog\Cart\AddToCart;
 use Magium\Magento\Extractors\Catalog\Product\ConfigurableProductOptions;
@@ -12,7 +13,7 @@ use Magium\Magento\Extractors\Catalog\Product\Value;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
-class AddConfigurableProductToCart extends AddSimpleProductToCart
+class AddConfigurableProductToCart extends AddSimpleProductToCart implements ActionInterface
 {
 
     const ACTION = 'Cart\AddConfigurableProductToCart';

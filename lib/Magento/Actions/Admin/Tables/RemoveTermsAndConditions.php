@@ -2,13 +2,14 @@
 
 namespace Magium\Magento\Actions\Admin\Tables;
 
+use Magium\Actions\OptionallyConfigurableActionInterface;
 use Magium\Magento\Actions\Admin\Widget\ClickActionButton;
 use Magium\Magento\Navigators\Admin\AdminMenu;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\Util\Translator\Translator;
 use Magium\WebDriver\WebDriver;
 
-class RemoveTermsAndConditions
+class RemoveTermsAndConditions implements OptionallyConfigurableActionInterface
 {
 
     const ACTION = 'Admin\Tables\RemoveTermsAndConditions';
@@ -48,6 +49,11 @@ class RemoveTermsAndConditions
             $this->webDriver->switchTo()->alert()->accept();
         }
 
+    }
+
+    public function execute($param = null)
+    {
+        $this->removeAll($param);
     }
 
 }

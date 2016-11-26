@@ -3,12 +3,13 @@
 namespace Magium\Magento\Actions\Admin\Cache;
 
 use Facebook\WebDriver\WebDriverBy;
+use Magium\Actions\StaticActionInterface;
 use Magium\Magento\Actions\Admin\WaitForPageLoaded;
 use Magium\Magento\Navigators\Admin\AdminMenu;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
-abstract class AbstractCacheAction
+abstract class AbstractCacheAction implements StaticActionInterface
 {
 
     const TARGET_CONFIGURATION  = 'config';

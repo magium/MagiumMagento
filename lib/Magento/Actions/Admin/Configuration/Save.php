@@ -3,12 +3,13 @@
 namespace Magium\Magento\Actions\Admin\Configuration;
 
 use Magium\AbstractTestCase;
+use Magium\Actions\StaticActionInterface;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
-class Save
+class Save implements StaticActionInterface
 {
     const ACTION = 'Admin\Configuration\Save';
 
@@ -37,6 +38,11 @@ class Save
         $element->click();
         $this->webDriver->wait()->until(ExpectedCondition::elementRemoved($element));
         $this->testCase->assertElementDisplayed($this->adminThemeConfiguration->getSystemConfigSaveSuccessfulXpath(), WebDriver::BY_XPATH);
+    }
+
+    public function execute()
+    {
+        $this->save();
     }
 
 }

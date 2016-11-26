@@ -2,11 +2,12 @@
 
 namespace Magium\Magento\Actions\Admin\Widget;
 
+use Magium\Actions\ConfigurableActionInterface;
 use Magium\InvalidInstructionException;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
-class ClickActionButton
+class ClickActionButton implements ConfigurableActionInterface
 {
 
     const ACTION = 'Admin\Widget\ClickActionButton';
@@ -35,9 +36,9 @@ class ClickActionButton
         $this->webDriver->byXpath($xpath)->click();
     }
 
-    public function execute()
+    public function execute($label)
     {
-        throw new InvalidInstructionException('Use click() instead');
+        $this->click($label);
     }
 
 }

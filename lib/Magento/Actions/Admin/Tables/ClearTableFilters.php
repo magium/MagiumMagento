@@ -3,9 +3,10 @@
 namespace Magium\Magento\Actions\Admin\Tables;
 
 use Facebook\WebDriver\WebDriverBy;
+use Magium\Actions\StaticActionInterface;
 use Magium\WebDriver\WebDriver;
 
-class ClearTableFilters
+class ClearTableFilters implements StaticActionInterface
     {
 
     const ACTION = 'Admin\Tables\ClearTableFilters';
@@ -26,4 +27,10 @@ class ClearTableFilters
             $element->clear();
         }
     }
+
+    public function execute()
+    {
+        $this->clear();
+    }
+
 }
