@@ -6,7 +6,7 @@ namespace Magium\Magento\Themes\OnePageCheckout;
 use Magium\AbstractConfigurableElement;
 use Magium\Themes\ThemeConfigurationInterface;
 
-abstract class AbstractThemeConfiguration extends AbstractConfigurableElement implements ThemeConfigurationInterface // ThemeConfigurationInterface is here simply for compatibility for extractors
+abstract class AbstractThemeConfiguration extends AbstractConfigurableElement
 {
 
     /**

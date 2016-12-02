@@ -40,7 +40,7 @@ class TranslatorTest extends AbstractMagentoTestCase
 
     public function testOnWebpage()
     {
-//        self::markTestSkipped('This test requires the German language pack.  This test will fail unless you have that optional feature installed');
+        self::markTestSkipped('This test requires the German language pack.  This test will fail unless you have that optional feature installed');
         $translator = $this->getTranslator();
         $translator->addTranslationCsvFile(__DIR__ . '/translation.csv', 'en_US');
         $translator->addTranslationCsvFile(__DIR__ . '/translation.de_DE.csv', 'de_DE');
