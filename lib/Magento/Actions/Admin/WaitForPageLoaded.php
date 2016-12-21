@@ -12,5 +12,4 @@ class WaitForPageLoaded extends \Magium\Actions\WaitForPageLoaded
         parent::__construct($webDriver, $themeConfiguration);
     }
 
-
 }
