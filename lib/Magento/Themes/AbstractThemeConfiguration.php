@@ -66,6 +66,12 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
 
     public $baseUrl;
 
+    /**
+     * @var string The Xpath for extracting the price from a page
+     */
+
+    public $productPagePriceXpath;
+
     public $myAccountTitle;
 
     /**
@@ -348,7 +354,13 @@ abstract class AbstractThemeConfiguration extends AbstractConfigurableElement im
         return $this->getBreadCrumbXpath() . sprintf($this->breadCrumbSelectorXpath, $test);
     }
 
-
+    /**
+     * @return string
+     */
+    public function getProductPagePriceXpath()
+    {
+        return $this->productPagePriceXpath;
+    }
 
     /**
      * @return mixed
