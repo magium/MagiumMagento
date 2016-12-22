@@ -30,6 +30,8 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public $navigationPathToSimpleProductCategory      = '{{Accessories}}/{{Jewelry}}';
     public $navigationPathToConfigurableProductCategory      = '{{Men}}/{{Shirts}}';
 
+    public $productPagePriceXpath = '(//form[@id="product_addtocart_form"]/descendant::span[contains(concat(" ",normalize-space(@class)," ")," regular-price ")]/span[contains(concat(" ",normalize-space(@class)," ")," price ")])[1]';
+
     public $defaultSimpleProductName = '{{Blue Horizons Bracelets}}';
     public $defaultConfigurableProductName = '{{Plaid Cotton Shirt}}';
 

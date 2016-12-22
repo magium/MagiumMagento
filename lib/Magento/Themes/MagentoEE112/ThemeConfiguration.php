@@ -31,6 +31,8 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     public $defaultSimpleProductName = '{{Nokia 2610 Phone}}';
 
+    public $productPagePriceXpath = '(//form[@id="product_addtocart_form"]/descendant::span[contains(concat(" ",normalize-space(@class)," ")," regular-price ")]/span[contains(concat(" ",normalize-space(@class)," ")," price ")])[1]';
+
     public $navigationPathToConfigurableProductCategory      = '{{Apparel}}/{{Shirts}}';
 
     public $defaultConfigurableProductName = '{{Zolof The Rock And Roll Destroyer: LOL Cat T-shirt}}';
