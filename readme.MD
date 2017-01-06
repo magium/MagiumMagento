@@ -79,7 +79,7 @@ phpunit -c tests/phpunit.xml.dist
 
 And with that you should see 15 tests running and passed after a few minutes.
 
-[http://magiumlib.com/blog/wp-content/uploads/2016/03/2016-03-04_1204.png"]
+[![Tests Passed](http://magiumlib.com/blog/wp-content/uploads/2016/03/2016-03-04_1204.png)]
 
 Does it really work this easily?  Check out the video below to see Magium in action.
 
