@@ -47,14 +47,15 @@ class Login implements StaticActionInterface
         // We're having the login action take responsibility for figuring out how to get to the login screen.
 
         $url = $this->webdriver->getCurrentURL();
-        if (strpos($url, 'http') === false) {
-            $this->openCommand->open($this->theme->getBaseUrl());
-        } else {
+        $adminUrl = $this->theme->getBaseUrl();
+        if (strpos($adminUrl, $url) === 0) {
             $this->webdriver->navigate()->to($this->theme->getBaseUrl());
             $title = $this->webdriver->getTitle();
             if (strpos($title, $this->testCase->getTranslator()->translate('Dashboard')) !== false) {
                 return;
             }
+        } else {
+            $this->openCommand->open($adminUrl);
         }
 
         $usernameElement = $this->webdriver->byXpath($this->theme->getLoginUsernameField());

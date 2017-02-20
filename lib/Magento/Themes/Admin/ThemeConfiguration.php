@@ -78,6 +78,18 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     public $firstTermsRowXpath = '//table[@id="agreementGrid_table"]/tbody/tr/td[not(contains(concat(" ",normalize-space(@class)," ")," empty-text "))]';
 
+    public $orderCancelledMessageXpath = '//div[@id="messages"]/descendant::span[contains(., "{{The order has been cancelled}}")]';
+
+    /**
+     * @return string
+     */
+    public function getOrderCancelledMessageXpath()
+    {
+        return $this->translatePlaceholders($this->orderCancelledMessageXpath);
+    }
+
+
+
     /**
      * @return string
      */

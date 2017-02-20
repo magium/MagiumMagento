@@ -5,6 +5,7 @@ namespace Magium\Magento\Actions\Admin\Widget;
 use Magium\Actions\ConfigurableActionInterface;
 use Magium\InvalidInstructionException;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
+use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
 class ClickActionButton implements ConfigurableActionInterface
@@ -33,7 +34,10 @@ class ClickActionButton implements ConfigurableActionInterface
     {
         $this->webDriver->action()->moveToElement($this->webDriver->byXpath('//body'));
         $xpath = $this->themeConfiguration->getWidgetActionButtonXpath($label);
-        $this->webDriver->byXpath($xpath)->click();
+        $this->webDriver->wait(10)->until(ExpectedCondition::elementExists($xpath, WebDriver::BY_XPATH));
+        $element = $this->webDriver->byXpath($xpath);
+        $this->webDriver->wait(10)->until(ExpectedCondition::visibilityOf($element));
+        $element->click();
     }
 
     public function execute($label)
