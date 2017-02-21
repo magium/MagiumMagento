@@ -2,6 +2,7 @@
 
 namespace Magium\Magento\Actions\Checkout\ShippingMethods;
 
+use Facebook\WebDriver\WebDriverBy;
 use Magium\AbstractTestCase;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
@@ -40,7 +41,9 @@ class FirstAvailable implements ShippingMethodInterface
         }
 
         if ($this->webDriver->elementDisplayed($this->theme->getDefaultShippingXpath(), AbstractTestCase::BY_XPATH)) {
-            $this->webDriver->byXpath($this->theme->getDefaultShippingXpath())->click();
+            $xpath = $this->theme->getDefaultShippingXpath();
+            $this->webDriver->wait()->until(ExpectedCondition::elementToBeClickable(WebDriverBy::xpath($xpath)));
+            $this->webDriver->byXpath($xpath)->click();
         }
     }
 
