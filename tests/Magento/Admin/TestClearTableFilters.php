@@ -23,7 +23,7 @@ class TestClearTableFilters extends AbstractMagentoTestCase
         $element = $this->webdriver->byId('sales_order_grid_filter_billing_name');
         self::assertEquals('Kevin Schroeder', $element->getAttribute('value'));
 
-        // Actual test
+        // Actual test`
 
         $this->getAction(ClearTableFilters::ACTION)->clear();
 
