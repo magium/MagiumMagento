@@ -2,8 +2,10 @@
 
 namespace Magium\Magento\Actions\Search;
 
+use Facebook\WebDriver\WebDriverBy;
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\Themes\AbstractThemeConfiguration;
+use Magium\WebDriver\ExpectedCondition;
 use Magium\WebDriver\WebDriver;
 
 class Search
@@ -27,7 +29,9 @@ class Search
     public function search($characters)
     {
         $this->type($characters);
-        $element = $this->webDriver->byXpath($this->theme->getSearchSubmitXpath());
+        $searchButtonXpath = $this->theme->getSearchSubmitXpath();
+        $element = $this->webDriver->byXpath($searchButtonXpath);
+        $this->webDriver->wait()->until(ExpectedCondition::elementToBeClickable(WebDriverBy::xpath($searchButtonXpath)));
         $element->click();
         $this->loaded->execute($element);
     }
