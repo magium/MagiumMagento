@@ -80,6 +80,13 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     public $orderCancelledMessageXpath = '//div[@id="messages"]/descendant::span[contains(., "{{The order has been cancelled}}")]';
 
+    public $loadingMaskXpath = '//*[@id="loading-mask"]';
+
+    public function getLoadMaskXpath()
+    {
+        return $this->loadingMaskXpath;
+    }
+
     /**
      * @return string
      */
