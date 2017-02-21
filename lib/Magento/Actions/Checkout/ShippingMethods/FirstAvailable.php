@@ -42,6 +42,8 @@ class FirstAvailable implements ShippingMethodInterface
 
         if ($this->webDriver->elementDisplayed($this->theme->getDefaultShippingXpath(), AbstractTestCase::BY_XPATH)) {
             $xpath = $this->theme->getDefaultShippingXpath();
+            $element = $this->webDriver->byXpath($xpath);
+            $this->webDriver->action()->moveToElement($element);
             $this->webDriver->wait()->until(ExpectedCondition::elementToBeClickable(WebDriverBy::xpath($xpath)));
             $this->webDriver->byXpath($xpath)->click();
         }
