@@ -12,4 +12,9 @@ class CustomerCheckoutTest extends \Tests\Magium\Magento\Checkout\CustomerChecko
         $this->switchThemeConfiguration('Magium\Magento\Themes\Magento18\ThemeConfiguration');
     }
 
+    public function testCheckoutwithDifferentBillingAddress()
+    {
+        return parent::testCheckoutwithDifferentBillingAddress();
+    }
+
 }
