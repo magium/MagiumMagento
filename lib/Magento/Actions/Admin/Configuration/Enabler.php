@@ -41,7 +41,7 @@ class Enabler
 
     protected function setting($setting)
     {
-        $parts = explode('/', $setting);
+        $parts = explode('/', $setting, 2);
         $this->testCase->assertCount(2, $parts);
         $this->tab  = $parts[0];
         $this->section  = $parts[1];

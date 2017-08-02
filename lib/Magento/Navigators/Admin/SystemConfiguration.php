@@ -34,7 +34,7 @@ class SystemConfiguration implements ConfigurableNavigatorInterface
     
     public function navigateTo($path)
     {
-        $instructions = explode('/', $path);
+        $instructions = explode('/', $path, 2);
         if (count($instructions) !== 2) {
             throw new InvalidInstructionException('System Configuration instructions need to be in the format of "Tab/Section"');
         }
