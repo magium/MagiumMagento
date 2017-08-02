@@ -20,7 +20,7 @@ class SavedCCPaymentTest extends \Tests\Magium\Magento\Checkout\SavedCCPaymentTe
             \Magium\Magento\Themes\Admin\ThemeConfiguration::THEME
         )->set(
             'baseUrl',
-            $this->getTheme(ThemeConfiguration::THEME)->getBaseUrl() . 'admin/'
+            $this->getTheme(ThemeConfiguration::THEME)->getBaseUrl() . 'index.php/admin/'
         );
         $this->switchThemeConfiguration(ThemeConfiguration::THEME);
     }

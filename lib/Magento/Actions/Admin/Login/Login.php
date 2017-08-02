@@ -56,6 +56,10 @@ class Login implements StaticActionInterface
             }
         } else {
             $this->openCommand->open($adminUrl);
+            $title = $this->webdriver->getTitle();
+            if (strpos($title, $this->testCase->getTranslator()->translate('Dashboard')) !== false) {
+                return;
+            }
         }
 
         $usernameElement = $this->webdriver->byXpath($this->theme->getLoginUsernameField());

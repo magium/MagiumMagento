@@ -4,8 +4,9 @@ namespace Magium\Magento\Themes\Customer;
 
 
 use Magium\AbstractConfigurableElement;
+use Magium\Themes\ThemeConfigurationInterface;
 
-abstract class AbstractThemeConfiguration extends AbstractConfigurableElement
+abstract class AbstractThemeConfiguration extends AbstractConfigurableElement implements ThemeConfigurationInterface
 {
 
     public $accountNavigationXpath;
