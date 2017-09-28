@@ -37,7 +37,7 @@ class PlaceOrder implements StepInterface
     public function nextAction()
     {
         $this->webdriver->byXpath($this->theme->getPlaceOrderButtonXpath())->click();
-        $this->webdriver->wait()->until(
+        $this->webdriver->wait(120)->until(
             ExpectedCondition::elementExists(
                 $this->theme->getOrderReceivedCompleteXpath(),
                 AbstractTestCase::BY_XPATH
