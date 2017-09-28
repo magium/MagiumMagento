@@ -87,7 +87,7 @@ class Login implements StaticActionInterface
         $passwordElement->sendKeys($password);
         
         $submitElement->click();
-        $this->webdriver->wait()->until(ExpectedCondition::titleContains($this->testCase->getTranslator()->translate('Dashboard')));
+        $this->webdriver->wait()->until(ExpectedCondition::titleContains($defaultAdminTitle));
 
         $this->messages->extract();
 
