@@ -82,6 +82,16 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
 
     public $loadingMaskXpath = '//*[@id="loading-mask"]';
 
+    public $defaultAdminTitle = '{{Dashboard}}';
+
+    /**
+     * @return string
+     */
+    public function getDefaultAdminTitle()
+    {
+        return $this->defaultAdminTitle;
+    }
+
     public function getLoadMaskXpath()
     {
         return $this->loadingMaskXpath;

@@ -44,20 +44,22 @@ class Login implements StaticActionInterface
     public function login($username = null, $password = null)
     {
         // We break SOLID here there might be scenarios where multiple logins are required.  So for expediency's sake
-        // We're having the login action take responsibility for figuring out how to get to the login screen.
+        // we're having the login action take responsibility for figuring out how to get to the login screen.
 
         $url = $this->webdriver->getCurrentURL();
         $adminUrl = $this->theme->getBaseUrl();
+
+        $defaultAdminTitle = $this->theme->getDefaultAdminTitle();
         if (strpos($adminUrl, $url) === 0) {
             $this->webdriver->navigate()->to($this->theme->getBaseUrl());
             $title = $this->webdriver->getTitle();
-            if (strpos($title, $this->testCase->getTranslator()->translate('Dashboard')) !== false) {
+            if (strpos($title, $defaultAdminTitle) !== false) {
                 return;
             }
         } else {
             $this->openCommand->open($adminUrl);
             $title = $this->webdriver->getTitle();
-            if (strpos($title, $this->testCase->getTranslator()->translate('Dashboard')) !== false) {
+            if (strpos($title, $defaultAdminTitle) !== false) {
                 return;
             }
         }
