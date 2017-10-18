@@ -89,7 +89,7 @@ class ThemeConfiguration extends AbstractConfigurableElement implements  Navigab
      */
     public function getDefaultAdminTitle()
     {
-        return $this->defaultAdminTitle;
+        return $this->translatePlaceholders($this->defaultAdminTitle);
     }
 
     public function getLoadMaskXpath()
