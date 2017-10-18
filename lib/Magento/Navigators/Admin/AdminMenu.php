@@ -2,7 +2,7 @@
 
 namespace Magium\Magento\Navigators\Admin;
 
-use Magium\Actions\WaitForPageLoaded;
+use Magium\Magento\Actions\Admin\WaitForPageLoaded;
 use Magium\Magento\Navigators\BaseMenu;
 use Magium\Magento\Themes\Admin\ThemeConfiguration;
 use Magium\Util\Log\Logger;
