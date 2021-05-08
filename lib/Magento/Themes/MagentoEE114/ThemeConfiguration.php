@@ -192,12 +192,12 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     public function getCustomerThemeClass()
     {
-        return 'Magium\Magento\Themes\Magento19\Customer\ThemeConfiguration';
+        return 'Magium\Magento\Themes\MagentoEE114\Customer\ThemeConfiguration';
     }
 
     public function getCheckoutThemeClass()
     {
-        return 'Magium\Magento\Themes\Magento19\OnePageCheckout\ThemeConfiguration';
+        return 'Magium\Magento\Themes\MagentoEE114\OnePageCheckout\ThemeConfiguration';
     }
 
 }
